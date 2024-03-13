@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ModalAddWoter from '../ModalAddWoter/ModalAddWoter';
 import {
+  AddBtnWrapper,
   Amount,
   BtnWrapper,
   InfoWrapper,
@@ -92,8 +93,13 @@ const TodayElement = () => {
 
           {/* / */}
         </StyledList>
+        <AddBtnWrapper>
+          <button onClick={openModal}>
+            <span>+</span>
+            <span>Open ModalAddWoter</span>
+          </button>
+        </AddBtnWrapper>
 
-        <button onClick={openModal}>Open ModalAddWoter</button>
         {isModalOpen && <ModalAddWoter onClose={closeModal} />}
       </ListWrapper>
     </>

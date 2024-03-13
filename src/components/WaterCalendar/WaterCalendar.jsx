@@ -1,11 +1,14 @@
 import CalendarElement from '../CalendarElement/CalendarElement';
 import TodayElement from '../TodayElement/TodayElement';
+import { SectionTodayAndCalendar } from './WaterCalendar.styled';
 
 const WaterCalendar = () => {
   return (
     <>
-      <TodayElement />
-      <CalendarElement />
+      <SectionTodayAndCalendar>
+        <TodayElement />
+        <CalendarElement />
+      </SectionTodayAndCalendar>
     </>
   );
 };
