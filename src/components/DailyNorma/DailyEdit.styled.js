@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const DailyWrapper = styled.div`
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
