@@ -82,3 +82,36 @@ export const BtnWrapper = styled.div`
     border-bottom: 2px solid #ef5050;
   }
 `;
+
+export const AddBtnWrapper = styled.div`
+  padding: 12px 0;
+  display: flex;
+  justify-content: start;
+  border-top: 1px solid #d7e3ff;
+
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    span {
+      color: #407bff;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.33;
+      @media screen and (min-width: 768px) {
+        font-size: 18px;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      span {
+        color: #ff9d43;
+      }
+    }
+  }
+`;
