@@ -24,7 +24,10 @@ const Header = () => {
     <>
       {isModalOpen && <ProfileSettings onClose={closeModal} />}
       <HeaderDivContainer>
-        <SvgIconMobail />
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <SvgIconMobail />
+        </Link>
+
         <HeaderDivButtonContainer>
           <Link to="/signin" style={{ textDecoration: 'none' }}>
             Sign in

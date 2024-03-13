@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import ModalDailyNorma from '../ModalDailyNorma/ModalDailyNorma';
 import ModalAddWater from '../ModalAddWater/ModalAddWater';
+import DailyEdit from './DailyEdit';
+import WaterRatio from './WaterRatio';
+import bottleMobile from '../../images/dailyBottle/bottleMobile.png';
 
 const DailyNorma = () => {
   const [modalType, setModalType] = useState(null);
@@ -15,7 +18,11 @@ const DailyNorma = () => {
 
   return (
     <>
-      <h1>Ліва сторона</h1>
+      <div>
+        <DailyEdit />
+        <img src={bottleMobile} alt="bottle-background" />
+        <WaterRatio />
+      </div>
       <div>
         <button onClick={() => openModal('dailyNorma')}>ModalDailyNorma</button>
         {modalType === 'dailyNorma' && <ModalDailyNorma onClose={closeModal} />}
