@@ -1,7 +1,19 @@
 import SvgHabit from '../../images/svg/svgWelcome/SvgHabit';
 import SvgPersonal from '../../images/svg/svgWelcome/SvgPersonal';
 import SvgView from '../../images/svg/svgWelcome/SvgView';
-import { DivImgContainerWelcome, WelcomeDivCantainer } from './WelcomStyled';
+
+import {
+  DivImgContainerWelcome,
+  WelcomeButton,
+  WelcomeDivCantainer,
+  WelcomeLi,
+  WelcomeUl,
+  WelcomeWhyDrinkDivCantainer,
+  WelcomeWhyDrinkLi,
+  Welcomeh1,
+  Welcomeh2,
+  Welcomeh3,
+} from './WelcomStyled';
 
 const Welcom = () => {
   return (
@@ -10,28 +22,49 @@ const Welcom = () => {
 
       <WelcomeDivCantainer>
         <div>
-          <h1>Water consumption tracker</h1>
-          <h2>Record daily water intake and track</h2>
-          <h3>Tracker Benefits</h3>
-          <ul>
-            <li>
+          <Welcomeh1>Water consumption tracker</Welcomeh1>
+          <Welcomeh2>Record daily water intake and track</Welcomeh2>
+          <Welcomeh3>Tracker Benefits</Welcomeh3>
+          <WelcomeUl>
+            <WelcomeLi>
               <SvgHabit />
               <span>Habit drive</span>
-            </li>
-            <li>
+            </WelcomeLi>
+            <WelcomeLi>
               <SvgView />
               <span>View statistics</span>
-            </li>
-            <li>
+            </WelcomeLi>
+            <WelcomeLi>
               <SvgPersonal />
               <span>Personal rate setting</span>
-            </li>
-            <button>Try tracker</button>
+            </WelcomeLi>
+            <WelcomeButton>Try tracker</WelcomeButton>
+          </WelcomeUl>
+        </div>
+        <WelcomeWhyDrinkDivCantainer>
+          <h3>Why drink water</h3>
+          <ul>
+            <WelcomeWhyDrinkLi>
+              Supply of nutrients to all organs
+            </WelcomeWhyDrinkLi>
+            <WelcomeWhyDrinkLi>Providing oxygen to the lungs</WelcomeWhyDrinkLi>
+            <WelcomeWhyDrinkLi>
+              Maintaining the work of the heart
+            </WelcomeWhyDrinkLi>
+            <WelcomeWhyDrinkLi>
+              Release of processed substances
+            </WelcomeWhyDrinkLi>
+            <WelcomeWhyDrinkLi>
+              Ensuring the stability of the internal environment
+            </WelcomeWhyDrinkLi>
+            <WelcomeWhyDrinkLi>
+              Maintaining within the normal temperature
+            </WelcomeWhyDrinkLi>
+            <WelcomeWhyDrinkLi>
+              Maintaining an immune system capable of resisting disease
+            </WelcomeWhyDrinkLi>
           </ul>
-        </div>
-        <div>
-          <h1>Право</h1>
-        </div>
+        </WelcomeWhyDrinkDivCantainer>
       </WelcomeDivCantainer>
     </>
   );
