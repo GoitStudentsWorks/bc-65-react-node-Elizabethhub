@@ -1,6 +1,14 @@
 import { useState } from 'react';
 import ProfileSettings from '../ProfileІSettings/ProfileSettings';
-
+import SvgIconMobail from '../../images/svg/svgIcon/SvgIconMobail';
+import {
+  HeaderButton,
+  HeaderDivButtonContainer,
+  HeaderDivContainer,
+} from './HeaderStyled';
+import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
+import HeaderSVGPhoto from '../../images/svg/svgheader/HeaderSVGPhoto';
+import { Link } from 'react-router-dom';
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -15,10 +23,19 @@ const Header = () => {
   return (
     <>
       {isModalOpen && <ProfileSettings onClose={closeModal} />}
-      <div>
-        <h1>Header</h1>
-        <button onClick={openModal}>Settings</button>
-      </div>
+      <HeaderDivContainer>
+        <SvgIconMobail />
+        <HeaderDivButtonContainer>
+          <Link to="/signin" style={{ textDecoration: 'none' }}>
+            Sign in
+          </Link>
+          <HeaderButton onClick={openModal}>
+            <HeaderSVGPhoto />
+            {/* <HeaderImg></HeaderImg> */}
+            <HeaderButtonSVG />
+          </HeaderButton>
+        </HeaderDivButtonContainer>
+      </HeaderDivContainer>
     </>
   );
 };
