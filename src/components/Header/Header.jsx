@@ -1,29 +1,26 @@
-import {
-  HeaderContainer,
-  Navigation,
-  StyledLink,
-  IconWrapper,
-} from './Header.styled';
-import sprite from 'assets/sprite.svg';
+import { useState } from 'react';
+import ProfileSettings from '../ProfileІSettings/ProfileSettings';
 
-export const Header = () => {
+const Header = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
-    <HeaderContainer>
-      <Navigation>
-        <StyledLink to="/first">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          First
-        </StyledLink>
-        <StyledLink to="/second">
-          <IconWrapper>
-            <use href={`${sprite}#icon-logo`} />
-          </IconWrapper>
-          Second
-        </StyledLink>
-      </Navigation>
-    </HeaderContainer>
+    <>
+      {isModalOpen && <ProfileSettings onClose={closeModal} />}
+      <div>
+        <h1>Header</h1>
+        <button onClick={openModal}>Settings</button>
+      </div>
+    </>
   );
 };
+
+export default Header;
