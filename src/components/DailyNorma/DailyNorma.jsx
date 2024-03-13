@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import ModalDailyNorma from '../ModalDailyNorma/ModalDailyNorma';
 import ModalAddWoter from '../ModalAddWoter/ModalAddWoter';
+import DailyEdit from './DailyEdit';
 
 const DailyNorma = () => {
   const [modalType, setModalType] = useState(null);
@@ -15,7 +16,7 @@ const DailyNorma = () => {
 
   return (
     <>
-      <h1>Ліва сторона</h1>
+      <DailyEdit />
       <div>
         <button onClick={() => openModal('dailyNorma')}>ModalDailyNorma</button>
         {modalType === 'dailyNorma' && <ModalDailyNorma onClose={closeModal} />}
