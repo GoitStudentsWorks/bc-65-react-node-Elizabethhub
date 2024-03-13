@@ -14,7 +14,6 @@ import * as yup from 'yup';
 import BottleSVG from '../../images/AuthImg/BottleSVG';
 import BottleSVGTablet from '../../images/AuthImg/BottleSVGTablet';
 import BottleSVGDesktop from '../../images/AuthImg/BottleSVGDesktop';
-import BottleTest from '../../images/AuthImg/BottleTest';
 
 const schema = yup
   .object()
