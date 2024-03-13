@@ -1,9 +1,5 @@
-import BottleSVG from '../../images/AuthImg/BottleSVG';
-import BottleSVGTablet from '../../images/AuthImg/BottleSVGTablet';
 import { LoginWrapper, StyledSection, SvgContainer } from './LoginPage.styled';
-
 import { useMediaQuery } from 'react-responsive';
-import BottleSVGDesktop from '../../images/AuthImg/BottleSVGDesktop';
 import AuthForm from '../../components/LoginForm/LoginForm';
 import {
   LoginBtn,
@@ -13,8 +9,12 @@ import {
 } from '../../components/LoginForm/LoginForm.styled';
 import PassEye from '../../images/AuthImg/PassEye';
 import { useForm } from 'react-hook-form';
-// import { yupResolver } from '@hookfrom/';
+
 import * as yup from 'yup';
+import BottleSVG from '../../images/AuthImg/BottleSVG';
+import BottleSVGTablet from '../../images/AuthImg/BottleSVGTablet';
+import BottleSVGDesktop from '../../images/AuthImg/BottleSVGDesktop';
+import BottleTest from '../../images/AuthImg/BottleTest';
 
 const schema = yup
   .object()
@@ -28,6 +28,7 @@ const LoginPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
+  console.log(isMobile);
 
   const {
     register,
@@ -72,6 +73,8 @@ const LoginPage = () => {
           <LoginBtn type="submit">Sign In</LoginBtn>
         </AuthForm>
         <SvgContainer>
+          <BottleTest />
+          <PassEye height="200" width="200" />
           {isMobile && <BottleSVG />}
           {isTablet && <BottleSVGTablet />}
           {isDesktop && <BottleSVGDesktop />}
