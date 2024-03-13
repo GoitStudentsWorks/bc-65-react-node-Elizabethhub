@@ -1,12 +1,10 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header.jsx';
-import { Container, DivImgContainer } from './Layout.styled.js';
+import { Container } from './Layout.styled.js';
 
 const Layout = () => {
   return (
     <>
-      <DivImgContainer />
-
       <header>
         <Container>
           <Header />

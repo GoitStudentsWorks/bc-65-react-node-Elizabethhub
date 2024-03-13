@@ -1,8 +1,14 @@
+import { DivImgContainerWelcome } from './WelcomStyled';
+
 const Welcom = () => {
   return (
-    <div>
-      <h1>Велком</h1>
-    </div>
+    <>
+      <DivImgContainerWelcome />
+
+      <div>
+        <h1>Велком</h1>
+      </div>
+    </>
   );
 };
 
