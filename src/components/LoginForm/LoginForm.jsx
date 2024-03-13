@@ -1,5 +1,7 @@
+import { Form } from './LoginForm.styled';
+
 const LoginForm = () => {
-  return <div>LoginForm</div>;
+  return <Form>LoginForm</Form>;
 };
 
 export default LoginForm;
