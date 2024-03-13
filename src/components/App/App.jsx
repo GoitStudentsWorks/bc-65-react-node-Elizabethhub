@@ -4,6 +4,7 @@ import WelcomePage from '../../pages/WelcomePage/WelcomePage';
 import HomePage from '../../pages/Home/HomePage';
 import LoginPage from '../../pages/LoginPage/LoginPage';
 import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
+import ModalAddWater from '../ModalAddWater/ModalAddWater';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/signin" element={<LoginPage />} />
         <Route path="/signup" element={<RegistrationPage />} />
+        <Route path="/modaladd" element={<ModalAddWater />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
     </Routes>

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ModalDailyNorma from '../ModalDailyNorma/ModalDailyNorma';
-import ModalAddWoter from '../ModalAddWoter/ModalAddWoter';
+import ModalAddWater from '../ModalAddWater/ModalAddWater';
 
 const DailyNorma = () => {
   const [modalType, setModalType] = useState(null);
@@ -21,8 +21,8 @@ const DailyNorma = () => {
         {modalType === 'dailyNorma' && <ModalDailyNorma onClose={closeModal} />}
       </div>
       <div>
-        <button onClick={() => openModal('addWater')}>ModalAddWoter</button>
-        {modalType === 'addWater' && <ModalAddWoter onClose={closeModal} />}
+        <button onClick={() => openModal('addWater')}>ModalAddWater</button>
+        {modalType === 'addWater' && <ModalAddWater onClose={closeModal} />}
       </div>
     </>
   );

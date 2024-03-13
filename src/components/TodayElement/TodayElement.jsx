@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ModalAddWoter from '../ModalAddWoter/ModalAddWoter';
+import ModalAddWater from '../ModalAddWater/ModalAddWater';
 import {
   AddBtnWrapper,
   Amount,
@@ -96,11 +96,11 @@ const TodayElement = () => {
         <AddBtnWrapper>
           <button onClick={openModal}>
             <span>+</span>
-            <span>Open ModalAddWoter</span>
+            <span>Open </span>
           </button>
         </AddBtnWrapper>
 
-        {isModalOpen && <ModalAddWoter onClose={closeModal} />}
+        {isModalOpen && <ModalAddWater onClose={closeModal} />}
       </ListWrapper>
     </>
   );
