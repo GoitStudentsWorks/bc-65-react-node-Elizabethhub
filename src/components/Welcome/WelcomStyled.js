@@ -25,3 +25,7 @@ export const DivImgContainerWelcome = styled.div`
     background-image: url(${welcomebackgroundImageMobail});
   }
 `;
+
+export const WelcomeDivCantainer = styled.div`
+  display: flex;
+`;

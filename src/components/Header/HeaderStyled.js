@@ -5,7 +5,7 @@ export const HeaderDivContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   padding-top: 14px;
-  padding-bottom: 50px;
+
   align-items: center;
 `;
 
