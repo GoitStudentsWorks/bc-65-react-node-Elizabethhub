@@ -4,9 +4,9 @@ import SvgView from '../../images/svg/svgWelcome/SvgView';
 
 import {
   DivImgContainerWelcome,
-  WelcomeButton,
   WelcomeDivCantainer,
   WelcomeLi,
+  WelcomeNavLink,
   WelcomeUl,
   WelcomeWhyDrinkDivCantainer,
   WelcomeWhyDrinkLi,
@@ -38,7 +38,9 @@ const Welcom = () => {
               <SvgPersonal />
               <span>Personal rate setting</span>
             </WelcomeLi>
-            <WelcomeButton>Try tracker</WelcomeButton>
+            <WelcomeNavLink to="/signin" style={{ textDecoration: 'none' }}>
+              Try tracker
+            </WelcomeNavLink>
           </WelcomeUl>
         </div>
         <WelcomeWhyDrinkDivCantainer>
