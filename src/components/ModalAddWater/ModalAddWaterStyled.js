@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// TODO: to check all paddings/margins in normal figma
 export const StyledModalAddBackdrop = styled.div`
   position: fixed;
   top: 0;
@@ -14,11 +15,6 @@ export const StyledModalAddBackdrop = styled.div`
   align-items: center;
   height: 100%;
   width: 100%;
-
-  @media only screen and (min-width: 768px) {
-  }
-  @media only screen and (min-width: 1280px) {
-  }
 `;
 
 export const StyledModalAddWrapper = styled.div`
@@ -35,8 +31,12 @@ export const StyledModalAddWrapper = styled.div`
   align-items: center;
 
   @media only screen and (min-width: 768px) {
+    width: 704px;
+    padding: 32px 24px 32px 24px;
   }
   @media only screen and (min-width: 1280px) {
+    width: 592px;
+    padding: 32px 24px 32px 24px;
   }
 
   h2 {
@@ -86,7 +86,6 @@ export const StyledModalAddTracker = styled.div`
   gap: 7px;
   margin-bottom: 24px;
   align-items: center;
-  /* justify-content: center; */
 
   button {
     border: 1px solid var(--modal-light-blue);
@@ -132,6 +131,12 @@ export const StyledModalAddTime = styled.div`
       font-size: 16px;
       font-weight: 400;
     }
+    @media only screen and (min-width: 768px) {
+      width: 656px;
+    }
+    @media only screen and (min-width: 1280px) {
+      width: 544px;
+    }
   }
 `;
 export const StyledModalAddValue = styled.div`
@@ -149,6 +154,12 @@ export const StyledModalAddValue = styled.div`
       font-size: 16px;
       font-weight: 400;
     }
+    @media only screen and (min-width: 768px) {
+      width: 656px;
+    }
+    @media only screen and (min-width: 1280px) {
+      width: 544px;
+    }
   }
 `;
 
@@ -158,6 +169,16 @@ export const StyledModalAddSave = styled.div`
   align-items: center;
   justify-content: center;
   gap: 16px;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    gap: 24px;
+    justify-content: end;
+  }
+  @media only screen and (min-width: 1280px) {
+    flex-direction: row;
+    gap: 24px;
+    justify-content: end;
+  }
 
   span {
     color: var(--blue);
@@ -179,6 +200,14 @@ export const StyledModalAddSave = styled.div`
 
     &:hover {
       transform: scale(1.05);
+    }
+    @media only screen and (min-width: 768px) {
+      width: 160px;
+      padding: 10px 30px 10px 30px;
+    }
+    @media only screen and (min-width: 1280px) {
+      width: 160px;
+      padding: 10px 30px 10px 30px;
     }
   }
 `;
