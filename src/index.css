@@ -1,5 +1,6 @@
 @import url(../node_modules/modern-normalize/modern-normalize.css);
 @import './styles/fonts.css';
+@import './styles/variables.css';
 
 body {
   font-family: Roboto;
