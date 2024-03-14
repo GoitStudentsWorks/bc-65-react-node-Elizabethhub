@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import bottleTablet from '../../images/dailyBottle/bottleTablet.png';
-import botleMain from '../../images/dailyBottle/botleMain.png';
+import botleMain from '../../images/dailyBottle/BotleMain.png';
 
 export const RangeWrapper = styled.div`
   margin-bottom: 40px;
