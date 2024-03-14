@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import welcomebackgroundImageMobail from '../../images/backgroundWelcome/MobileWelkome.jpg';
+import welcomebackgroundImageMobail from '../../images/backgroundWelcome/MobileBacgraund.jpg';
 import welcomebackgroundImageTablet from '../../images/backgroundWelcome/TabletMainpage.jpg';
 import welcomebackgroundImageDesctop from '../../images/backgroundWelcome/DesktopMainpage.jpg';
 import { NavLink } from 'react-router-dom';
