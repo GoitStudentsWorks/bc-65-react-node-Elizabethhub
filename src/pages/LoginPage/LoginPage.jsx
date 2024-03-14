@@ -1,4 +1,9 @@
-import { LoginWrapper, StyledSection, SvgContainer } from './LoginPage.styled';
+import {
+  ErrorSpan,
+  LoginWrapper,
+  StyledSection,
+  SvgContainer,
+} from './LoginPage.styled';
 import { useMediaQuery } from 'react-responsive';
 import AuthForm from '../../components/LoginForm/LoginForm';
 import {
@@ -10,16 +15,24 @@ import {
 import PassEye from '../../images/AuthImg/PassEye';
 import { useForm } from 'react-hook-form';
 
-import * as yup from 'yup';
 import BottleSVG from '../../images/AuthImg/BottleSVG';
 import BottleSVGTablet from '../../images/AuthImg/BottleSVGTablet';
 import BottleSVGDesktop from '../../images/AuthImg/BottleSVGDesktop';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 const schema = yup
-  .object()
-  .shape({
-    email: yup.string().required(),
-    password: yup.string().required(),
+  .object({
+    email: yup
+      .string()
+      .email('Please write valid email')
+      .matches(/^(?!.*@[^,]*,)/)
+      .required('Email is required'),
+    password: yup
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .max(64)
+      .required('Password is required'),
   })
   .required();
 
@@ -27,7 +40,6 @@ const LoginPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
-  console.log(isMobile);
 
   const {
     register,
@@ -35,7 +47,8 @@ const LoginPage = () => {
 
     formState: { errors },
   } = useForm({
-    validationSchema: schema,
+    resolver: yupResolver(schema),
+    mode: 'onChange',
   });
 
   function submit(data) {
@@ -45,7 +58,12 @@ const LoginPage = () => {
   return (
     <StyledSection>
       <LoginWrapper>
-        <AuthForm on={true} handleSubmit={handleSubmit} submit={submit}>
+        <AuthForm
+          on={true}
+          handleSubmit={handleSubmit}
+          submit={submit}
+          errors={errors}
+        >
           <Loginlabel>
             Enter your email
             <LoginInput
@@ -55,6 +73,7 @@ const LoginPage = () => {
               required
               {...register('email')}
             />
+            <ErrorSpan>{errors?.email?.message}</ErrorSpan>
           </Loginlabel>
           <Loginlabel>
             Enter your password
@@ -65,6 +84,7 @@ const LoginPage = () => {
               required
               {...register('password')}
             />
+            <ErrorSpan>{errors?.password?.message}</ErrorSpan>
             <PassShowBtn type="button">
               <PassEye />
             </PassShowBtn>

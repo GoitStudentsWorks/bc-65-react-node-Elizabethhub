@@ -3,6 +3,7 @@ import BottleSVG from '../../images/AuthImg/BottleSVG';
 import BottleSVGDesktop from '../../images/AuthImg/BottleSVGDesktop';
 import BottleSVGTablet from '../../images/AuthImg/BottleSVGTablet';
 import {
+  ErrorSpan,
   LoginWrapper,
   StyledSection,
   SvgContainer,
@@ -16,6 +17,27 @@ import {
 } from '../../components/LoginForm/LoginForm.styled';
 import PassEye from '../../images/AuthImg/PassEye';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email('Please write valid email')
+      .matches(/^(?!.*@[^,]*,)/)
+      .required('Email is required'),
+    password: yup
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .required('Password is required'),
+    repPassword: yup
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .oneOf([yup.ref('password')], "Passwords don't match, please try again.")
+      .required('Password is required'),
+  })
+  .required('Required');
 
 const RegistrationPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
@@ -27,7 +49,7 @@ const RegistrationPage = () => {
     handleSubmit,
 
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schema), mode: 'onChange' });
 
   function submit(data) {
     console.log(data);
@@ -36,7 +58,12 @@ const RegistrationPage = () => {
   return (
     <StyledSection>
       <LoginWrapper>
-        <AuthForm on={false} handleSubmit={handleSubmit} submit={submit}>
+        <AuthForm
+          on={false}
+          handleSubmit={handleSubmit}
+          submit={submit}
+          errors={errors}
+        >
           <Loginlabel>
             Enter your email
             <LoginInput
@@ -45,6 +72,7 @@ const RegistrationPage = () => {
               name="email"
               {...register('email')}
             />
+            <ErrorSpan>{errors?.email?.message}</ErrorSpan>
           </Loginlabel>
           <Loginlabel>
             Enter your password
@@ -54,6 +82,7 @@ const RegistrationPage = () => {
               name="password"
               {...register('password')}
             />
+            <ErrorSpan>{errors?.password?.message}</ErrorSpan>
             <PassShowBtn type="button">
               <PassEye />
             </PassShowBtn>
@@ -63,9 +92,10 @@ const RegistrationPage = () => {
             <LoginInput
               type="password"
               placeholder="Repeat password"
-              name="rep_password"
-              {...register('rep_password')}
+              name="repPassword"
+              {...register('repPassword')}
             />
+            <ErrorSpan>{errors?.repPassword?.message}</ErrorSpan>
             <PassShowBtn type="button">
               <PassEye />
             </PassShowBtn>
