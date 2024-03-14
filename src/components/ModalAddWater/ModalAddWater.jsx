@@ -10,14 +10,42 @@ import {
   StyledModalAddValue,
   StyledModalAddWrapper,
 } from './ModalAddWaterStyled.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { modalIsOpen } from '../../store/water/selectors.js';
+import { changeModalClose } from '../../store/water/waterSlice.js';
+import { useEffect } from 'react';
 
-const ModalAddWater = ({ onClose }) => {
+const ModalAddWater = () => {
+  const isModalOpen = useSelector(modalIsOpen);
+
+  const dispatch = useDispatch();
+
+  const clickBackdrop = (e) => {
+    if (e.target === e.currentTarget) {
+      dispatch(changeModalClose(false));
+    }
+  };
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        dispatch(changeModalClose(false));
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [dispatch]);
+
   return (
-    <StyledModalAddBackdrop>
+    <StyledModalAddBackdrop open={isModalOpen} onClick={clickBackdrop}>
       <StyledModalAddWrapper>
         <form>
           <h2>Add water</h2>
-          <StyledModalAddClose onClick={onClose}>
+          <StyledModalAddClose
+            onClick={() => {
+              dispatch(changeModalClose(false));
+            }}
+          >
             <SvgCross />
           </StyledModalAddClose>
 
@@ -45,7 +73,7 @@ const ModalAddWater = ({ onClose }) => {
 
           <StyledModalAddSave>
             <span>50ml</span>
-            <button onClick={onClose}>Save</button>
+            <button>Save</button>
           </StyledModalAddSave>
         </form>
       </StyledModalAddWrapper>
