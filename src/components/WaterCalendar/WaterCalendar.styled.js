@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SectionTodayAndCalendar = styled.section`
+  max-width: 592px;
   height: max-content;
   padding: 24px 8px;
   display: flex;
