@@ -1,6 +1,7 @@
 import SvgHabit from '../../images/svg/svgWelcome/SvgHabit';
 import SvgPersonal from '../../images/svg/svgWelcome/SvgPersonal';
 import SvgView from '../../images/svg/svgWelcome/SvgView';
+// import ModalDailyNorma from '../ModalDailyNorma/ModalDailyNorma';
 
 import {
   DivImgContainerWelcome,
@@ -22,6 +23,7 @@ const Welcom = () => {
 
       <WelcomeDivCantainer>
         <div>
+          {/* <ModalDailyNorma /> */}
           <Welcomeh1>Water consumption tracker</Welcomeh1>
           <Welcomeh2>Record daily water intake and track</Welcomeh2>
           <Welcomeh3>Tracker Benefits</Welcomeh3>
