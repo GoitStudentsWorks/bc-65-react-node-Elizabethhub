@@ -8,4 +8,9 @@
   --primary-orange: #ff9d43;
   --primary-lightblue: #ecf2ff;
   --primary-mediumblue: #d7e3ff;
+
+  --modal-backdrop: rgba(0, 0, 0, 0.8);
+  --modal-light-blue: #9ebbff;
+  --modal-calc-shadow: 0px 2px 4px 0px rgba(64, 123, 255, 0.2);
+  --modal-add-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
 }

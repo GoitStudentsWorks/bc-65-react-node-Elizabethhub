@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import ModalDailyNorma from '../ModalDailyNorma/ModalDailyNorma';
-import ModalAddWoter from '../ModalAddWoter/ModalAddWoter';
+import ModalAddWater from '../ModalAddWater/ModalAddWater';
 import DailyEdit from './DailyEdit';
 import WaterRatio from './WaterRatio';
 import bottleMobile from '../../images/dailyBottle/bottleMobile.png';

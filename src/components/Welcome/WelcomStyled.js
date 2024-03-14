@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import welcomebackgroundImageMobail from '../../images/backgroundWelcome/MobileWelkome.jpg';
-import welcomebackgroundImageTablet from '../../images/backgroundWelcome/TabletTrackerofwaterMainpage.jpg';
-import welcomebackgroundImageDesctop from '../../images/backgroundWelcome/DesktopTrackerofwaterMainpage.jpg';
+import welcomebackgroundImageMobail from '../../images/backgroundWelcome/MobileBacgraund.jpg';
+import welcomebackgroundImageTablet from '../../images/backgroundWelcome/TabletMainpage.jpg';
+import welcomebackgroundImageDesctop from '../../images/backgroundWelcome/DesktopMainpage.jpg';
 import { NavLink } from 'react-router-dom';
 
 export const DivImgContainerWelcome = styled.div`
@@ -29,6 +29,18 @@ export const DivImgContainerWelcome = styled.div`
 
 export const WelcomeDivCantainer = styled.div`
   display: flex;
+  flex-direction: column;
+  gap: 165px;
+  @media only screen and (min-width: 768px) {
+    gap: 60px;
+  }
+  @media only screen and (min-width: 1440px) {
+    flex-direction: row;
+    gap: 81px;
+    justify-content: center;
+    align-items: flex-end;
+    padding-top: 80px;
+  }
 `;
 export const Welcomeh1 = styled.h1`
   width: 246px;
@@ -36,6 +48,9 @@ export const Welcomeh1 = styled.h1`
   font-size: 28px;
   padding-top: 24px;
   padding-bottom: 16px;
+  @media only screen and (min-width: 768px) {
+    width: 100%;
+  }
 `;
 export const Welcomeh2 = styled.h2`
   width: 220px;
@@ -43,17 +58,28 @@ export const Welcomeh2 = styled.h2`
   font-size: 24px;
 
   padding-bottom: 24px;
+  @media only screen and (min-width: 768px) {
+    width: 100%;
+  }
 `;
 export const Welcomeh3 = styled.h3`
   font-weight: 500;
   font-size: 18px;
   padding-bottom: 12px;
+  @media only screen and (min-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const WelcomeUl = styled.ul`
   display: flex;
   gap: 16px;
   flex-direction: column;
+  padding-bottom: 24px;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+  }
 `;
 
 export const WelcomeLi = styled.li`
@@ -97,22 +123,29 @@ export const WelcomeWhyDrinkLi = styled.li`
 `;
 
 export const WelcomeWhyDrinkDivCantainer = styled.div`
-  display: none;
   border-radius: 10px;
   padding: 32px 24px;
-  width: 494px;
-  height: 300px;
+
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
   background: #ecf2ff;
+  max-width: 380px;
+  margin-bottom: 20px;
   @media only screen and (min-width: 768px) {
-    display: block;
+    max-width: 494px;
+  }
+  @media only screen and (min-width: 1440px) {
+    margin-bottom: 0px;
   }
 `;
 export const WelcomeNavLink = styled(NavLink)`
+  max-width: 280px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 10px;
-  padding: 8px 30px;
+  padding: 9px;
   width: 100%;
-  height: 36px;
+
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   background: #407bff;
 
@@ -122,4 +155,52 @@ export const WelcomeNavLink = styled(NavLink)`
   text-align: center;
   color: #fff;
   border: none;
+  @media only screen and (min-width: 768px) {
+    max-width: 336px;
+    padding: 13px;
+  }
+`;
+
+export const TryTrackerDivContainer = styled.div`
+  @media only screen and (min-width: 768px) {
+  }
+`;
+
+export const WelcomeWhyDrinkH3 = styled.h3`
+  padding-bottom: 12px;
+
+  font-weight: 500;
+  font-size: 18px;
+
+  @media only screen and (min-width: 768px) {
+  }
+`;
+export const WelcomeWhyDrinkUl = styled.ul`
+  padding-left: 20px;
+  @media only screen and (min-width: 768px) {
+  }
+`;
+export const TabletWoterDivImg = styled.div`
+  @media only screen and (max-width: 767px) {
+    display: none;
+  }
+
+  position: absolute;
+  left: 50%;
+  top: 36%;
+  z-index: -1;
+  @media only screen and (min-width: 1440px) {
+    display: none;
+  }
+`;
+
+export const DesctopWoterDivImg = styled.div`
+  @media only screen and (max-width: 1439px) {
+    display: none;
+  }
+
+  position: absolute;
+  left: 71%;
+  top: 39%;
+  z-index: -1;
 `;
