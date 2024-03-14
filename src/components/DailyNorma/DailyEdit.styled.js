@@ -11,6 +11,12 @@ export const DailyWrapper = styled.div`
   gap: 12px;
   width: 164px;
   height: 74px;
+  @media only screen and (min-width: 768px) {
+    margin-bottom: 326px;
+  }
+  @media only screen and (min-width: 1440px) {
+    margin-bottom: 466px;
+  }
 `;
 
 export const DailyWrapperEdit = styled.div`
