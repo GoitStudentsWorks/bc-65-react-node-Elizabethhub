@@ -72,7 +72,6 @@ const TodayElement = () => {
           </button>
         </AddBtnWrapper>
 
-        {isModalOpen && <ModalWater />}
       </ListWrapper>
     </>
   );
