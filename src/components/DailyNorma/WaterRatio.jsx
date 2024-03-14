@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   RangeButton,
-  RangeInput,
+  // RangeInput,
   RangeInputTitl,
   RangePercent,
   RangePercentWrap,
@@ -44,6 +44,7 @@ const WaterRatio = () => {
       </RangeButton>
       <AddSvg />
       {isModalOpen && <ModalAddWater />}
+
     </RangeWrapper>
   );
 };

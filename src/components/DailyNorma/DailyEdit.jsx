@@ -7,13 +7,15 @@ import {
   DailyWrapperEdit,
 } from './DailyEdit.styled';
 
-const DailyEdit = () => {
+const DailyEdit = ({ openModal }) => {
   return (
     <DailyWrapper>
       <DailyTittle>My daily norma</DailyTittle>
       <DailyWrapperEdit>
         <DailyLiter>1.5 L</DailyLiter>
-        <DailyEditButton type="button">Edit</DailyEditButton>
+        <DailyEditButton type="button" onClick={() => openModal('dailyNorma')}>
+          Edit
+        </DailyEditButton>
       </DailyWrapperEdit>
     </DailyWrapper>
   );
