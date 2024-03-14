@@ -60,7 +60,7 @@ const TodayElement = () => {
         <AddBtnWrapper>
           <button onClick={openModal}>
             <span>+</span>
-            <span>Open </span>
+            <span>Add water</span>
           </button>
         </AddBtnWrapper>
 
