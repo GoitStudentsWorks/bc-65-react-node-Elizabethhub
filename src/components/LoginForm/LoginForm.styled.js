@@ -16,6 +16,38 @@ export const FormWrapper = styled.div`
 export const StyledLoginForm = styled.form`
   display: flex;
   flex-direction: column;
+
+  label:first-child > input {
+    border: 1px solid
+      var(
+        ${(props) =>
+          props.$errorEmail ? '--primary-red' : '--primary-mediumblue'}
+      );
+
+    color: var(${(props) => (props.$errorEmail ? '--primary-red' : '--blue')});
+  }
+  label:nth-child(2) > input {
+    border: 1px solid
+      var(
+        ${(props) =>
+          props.$errorPassword ? '--primary-red' : '--primary-mediumblue'}
+      );
+
+    color: var(
+      ${(props) => (props.$errorPassword ? '--primary-red' : '--blue')}
+    );
+  }
+  label:nth-child(3) > input {
+    border: 1px solid
+      var(
+        ${(props) =>
+          props.$errorPassword ? '--primary-red' : '--primary-mediumblue'}
+      );
+
+    color: var(
+      ${(props) => (props.$errorPassword ? '--primary-red' : '--blue')}
+    );
+  }
 `;
 export const Heading2 = styled.h2`
   font-weight: 500;
@@ -37,6 +69,7 @@ export const LoginInput = styled.input`
     line-height: 20px;
   }
 `;
+
 export const Loginlabel = styled.label`
   display: flex;
   flex-direction: column;

@@ -26,3 +26,7 @@ export const SvgContainer = styled.div`
     margin-left: -298px;
   }
 `;
+
+export const ErrorSpan = styled.span`
+  color: var(--primary-red);
+`;

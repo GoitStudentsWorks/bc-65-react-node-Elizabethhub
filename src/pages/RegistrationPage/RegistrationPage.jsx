@@ -3,6 +3,7 @@ import BottleSVG from '../../images/AuthImg/BottleSVG';
 import BottleSVGDesktop from '../../images/AuthImg/BottleSVGDesktop';
 import BottleSVGTablet from '../../images/AuthImg/BottleSVGTablet';
 import {
+  ErrorSpan,
   LoginWrapper,
   StyledSection,
   SvgContainer,
@@ -16,27 +17,60 @@ import {
 } from '../../components/LoginForm/LoginForm.styled';
 import PassEye from '../../images/AuthImg/PassEye';
 import { useForm } from 'react-hook-form';
+import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
+import OpenPassEye from '../../images/AuthImg/OpenPassEye';
+import { useState } from 'react';
+
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email('Please write valid email')
+      .matches(/^(?!.*@[^,]*,)/)
+      .required('Email is required'),
+    password: yup
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .required('Password is required'),
+    repPassword: yup
+      .string()
+      .min(8, 'Password must be at least 8 characters')
+      .oneOf([yup.ref('password')], "Passwords don't match, please try again.")
+      .required('Password is required'),
+  })
+  .required('Required');
 
 const RegistrationPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
+  const [eyePass, setEyePass] = useState(false);
 
   const {
     register,
     handleSubmit,
 
     formState: { errors },
-  } = useForm();
+  } = useForm({ resolver: yupResolver(schema), mode: 'onChange' });
 
   function submit(data) {
     console.log(data);
   }
 
+  function showPass() {
+    eyePass ? setEyePass(false) : setEyePass(true);
+  }
+
   return (
     <StyledSection>
       <LoginWrapper>
-        <AuthForm on={false} handleSubmit={handleSubmit} submit={submit}>
+        <AuthForm
+          on={false}
+          handleSubmit={handleSubmit}
+          submit={submit}
+          errors={errors}
+        >
           <Loginlabel>
             Enter your email
             <LoginInput
@@ -45,29 +79,32 @@ const RegistrationPage = () => {
               name="email"
               {...register('email')}
             />
+            <ErrorSpan>{errors?.email?.message}</ErrorSpan>
           </Loginlabel>
           <Loginlabel>
             Enter your password
             <LoginInput
-              type="password"
+              type={eyePass ? 'text' : 'password'}
               placeholder="Password"
               name="password"
               {...register('password')}
             />
-            <PassShowBtn type="button">
-              <PassEye />
+            <ErrorSpan>{errors?.password?.message}</ErrorSpan>
+            <PassShowBtn type="button" onClick={showPass}>
+              {eyePass ? <OpenPassEye /> : <PassEye />}
             </PassShowBtn>
           </Loginlabel>
           <Loginlabel>
             Repeat password
             <LoginInput
-              type="password"
+              type={eyePass ? 'text' : 'password'}
               placeholder="Repeat password"
-              name="rep_password"
-              {...register('rep_password')}
+              name="repPassword"
+              {...register('repPassword')}
             />
-            <PassShowBtn type="button">
-              <PassEye />
+            <ErrorSpan>{errors?.repPassword?.message}</ErrorSpan>
+            <PassShowBtn type="button" onClick={showPass}>
+              {eyePass ? <OpenPassEye /> : <PassEye />}
             </PassShowBtn>
           </Loginlabel>
           <LoginBtn type="submit">Sign Up</LoginBtn>
