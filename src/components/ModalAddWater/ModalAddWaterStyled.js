@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-// TODO: to check all paddings/margins in normal figma
 export const StyledModalAddBackdrop = styled.div`
   position: fixed;
   top: 0;
@@ -45,7 +44,7 @@ export const StyledModalAddWrapper = styled.div`
     font-family: 'Roboto';
     font-size: 26px;
     font-weight: 500;
-    margin-bottom: 20px; //??????
+    margin-bottom: 24px; 
   }
   h3 {
     color: var(--black);
@@ -53,7 +52,7 @@ export const StyledModalAddWrapper = styled.div`
     font-family: 'Roboto';
     font-size: 18px;
     font-weight: 500;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   p {
     color: var(--black);
@@ -78,9 +77,16 @@ export const StyledModalAddClose = styled.button`
   &:hover {
     transform: scale(1.05);
   }
+  @media only screen and (min-width: 768px) {
+    top: 36px;
+    right: 24px;
+  }
+  @media only screen and (min-width: 1280px) {
+    top: 36px;
+    right: 24px;
+  }
 `;
 
-// TODO: to center svgs + and - inside buttons
 export const StyledModalAddTracker = styled.div`
   display: flex;
   gap: 7px;
@@ -90,11 +96,13 @@ export const StyledModalAddTracker = styled.div`
   button {
     border: 1px solid var(--modal-light-blue);
     border-radius: 30px;
-    padding: 20px 14px;
     width: 44px;
     height: 44px;
     background-color: transparent;
     box-shadow: var(--modal-calc-shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     transition: all 0.5s ease;
     cursor: pointer;
