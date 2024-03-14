@@ -20,6 +20,8 @@ import BottleSVGTablet from '../../images/AuthImg/BottleSVGTablet';
 import BottleSVGDesktop from '../../images/AuthImg/BottleSVGDesktop';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
+import OpenPassEye from '../../images/AuthImg/OpenPassEye';
 
 const schema = yup
   .object({
@@ -40,6 +42,7 @@ const LoginPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
+  const [eyePass, setEyePass] = useState(false);
 
   const {
     register,
@@ -53,6 +56,10 @@ const LoginPage = () => {
 
   function submit(data) {
     console.log(data);
+  }
+
+  function showPass() {
+    eyePass ? setEyePass(false) : setEyePass(true);
   }
 
   return (
@@ -78,15 +85,15 @@ const LoginPage = () => {
           <Loginlabel>
             Enter your password
             <LoginInput
-              type="password"
+              type={eyePass ? 'text' : 'password'}
               placeholder="Password"
               name="password"
               required
               {...register('password')}
             />
             <ErrorSpan>{errors?.password?.message}</ErrorSpan>
-            <PassShowBtn type="button">
-              <PassEye />
+            <PassShowBtn type="button" onClick={showPass}>
+              {eyePass ? <OpenPassEye /> : <PassEye />}
             </PassShowBtn>
           </Loginlabel>
           <LoginBtn type="submit">Sign In</LoginBtn>
