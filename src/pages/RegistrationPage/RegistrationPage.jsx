@@ -19,6 +19,8 @@ import PassEye from '../../images/AuthImg/PassEye';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import OpenPassEye from '../../images/AuthImg/OpenPassEye';
+import { useState } from 'react';
 
 const schema = yup
   .object({
@@ -43,6 +45,7 @@ const RegistrationPage = () => {
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
+  const [eyePass, setEyePass] = useState(false);
 
   const {
     register,
@@ -53,6 +56,10 @@ const RegistrationPage = () => {
 
   function submit(data) {
     console.log(data);
+  }
+
+  function showPass() {
+    eyePass ? setEyePass(false) : setEyePass(true);
   }
 
   return (
@@ -77,27 +84,27 @@ const RegistrationPage = () => {
           <Loginlabel>
             Enter your password
             <LoginInput
-              type="password"
+              type={eyePass ? 'text' : 'password'}
               placeholder="Password"
               name="password"
               {...register('password')}
             />
             <ErrorSpan>{errors?.password?.message}</ErrorSpan>
-            <PassShowBtn type="button">
-              <PassEye />
+            <PassShowBtn type="button" onClick={showPass}>
+              {eyePass ? <OpenPassEye /> : <PassEye />}
             </PassShowBtn>
           </Loginlabel>
           <Loginlabel>
             Repeat password
             <LoginInput
-              type="password"
+              type={eyePass ? 'text' : 'password'}
               placeholder="Repeat password"
               name="repPassword"
               {...register('repPassword')}
             />
             <ErrorSpan>{errors?.repPassword?.message}</ErrorSpan>
-            <PassShowBtn type="button">
-              <PassEye />
+            <PassShowBtn type="button" onClick={showPass}>
+              {eyePass ? <OpenPassEye /> : <PassEye />}
             </PassShowBtn>
           </Loginlabel>
           <LoginBtn type="submit">Sign Up</LoginBtn>
