@@ -72,8 +72,6 @@ const LoginPage = () => {
           <LoginBtn type="submit">Sign In</LoginBtn>
         </AuthForm>
         <SvgContainer>
-          <BottleTest />
-          <PassEye height="200" width="200" />
           {isMobile && <BottleSVG />}
           {isTablet && <BottleSVGTablet />}
           {isDesktop && <BottleSVGDesktop />}
