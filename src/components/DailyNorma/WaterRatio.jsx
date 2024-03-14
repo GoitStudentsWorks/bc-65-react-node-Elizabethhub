@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   RangeButton,
-  RangeInput,
+  // RangeInput,
   RangeInputTitl,
   RangePercent,
   RangePercentWrap,
@@ -20,7 +20,7 @@ const WaterRatio = () => {
   return (
     <RangeWrapper>
       <RangeInputTitl>Today</RangeInputTitl>
-      <RangeInput type="range"></RangeInput>
+      {/* <RangeInput type="range"></RangeInput> */}
       <RangePercentWrap>
         <RangePercent>
           <RangeSpanLine>|</RangeSpanLine>

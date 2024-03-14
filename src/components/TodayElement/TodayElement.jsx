@@ -68,7 +68,7 @@ const TodayElement = () => {
             }}
           >
             <span>+</span>
-            <span>Open </span>
+            <span>Add water</span>
           </button>
         </AddBtnWrapper>
 
