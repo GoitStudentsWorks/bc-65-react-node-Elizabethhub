@@ -1,15 +1,21 @@
+import DesctopWoter from '../../images/backgroundImg/backgraundSvg/DesctopWoter';
+import TabletWoter from '../../images/backgroundImg/backgraundSvg/TabletWoter';
 import SvgHabit from '../../images/svg/svgWelcome/SvgHabit';
 import SvgPersonal from '../../images/svg/svgWelcome/SvgPersonal';
 import SvgView from '../../images/svg/svgWelcome/SvgView';
 
 import {
+  DesctopWoterDivImg,
   DivImgContainerWelcome,
+  TabletWoterDivImg,
   WelcomeDivCantainer,
   WelcomeLi,
   WelcomeNavLink,
   WelcomeUl,
   WelcomeWhyDrinkDivCantainer,
+  WelcomeWhyDrinkH3,
   WelcomeWhyDrinkLi,
+  WelcomeWhyDrinkUl,
   Welcomeh1,
   Welcomeh2,
   Welcomeh3,
@@ -19,6 +25,12 @@ const Welcom = () => {
   return (
     <>
       <DivImgContainerWelcome />
+      <TabletWoterDivImg>
+        <TabletWoter />
+      </TabletWoterDivImg>
+      <DesctopWoterDivImg>
+        <DesctopWoter />
+      </DesctopWoterDivImg>
 
       <WelcomeDivCantainer>
         <div>
@@ -38,14 +50,15 @@ const Welcom = () => {
               <SvgPersonal />
               <span>Personal rate setting</span>
             </WelcomeLi>
-            <WelcomeNavLink to="/signin" style={{ textDecoration: 'none' }}>
-              Try tracker
-            </WelcomeNavLink>
           </WelcomeUl>
+
+          <WelcomeNavLink to="/signin" style={{ textDecoration: 'none' }}>
+            Try tracker
+          </WelcomeNavLink>
         </div>
         <WelcomeWhyDrinkDivCantainer>
-          <h3>Why drink water</h3>
-          <ul>
+          <WelcomeWhyDrinkH3>Why drink water</WelcomeWhyDrinkH3>
+          <WelcomeWhyDrinkUl>
             <WelcomeWhyDrinkLi>
               Supply of nutrients to all organs
             </WelcomeWhyDrinkLi>
@@ -65,7 +78,7 @@ const Welcom = () => {
             <WelcomeWhyDrinkLi>
               Maintaining an immune system capable of resisting disease
             </WelcomeWhyDrinkLi>
-          </ul>
+          </WelcomeWhyDrinkUl>
         </WelcomeWhyDrinkDivCantainer>
       </WelcomeDivCantainer>
     </>
