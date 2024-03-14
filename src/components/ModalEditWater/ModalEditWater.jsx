@@ -1,5 +1,6 @@
 import SvgPlus from '../../images/svg/svgModal/SvgPlus.jsx';
 import SvgMinus from '../../images/svg/svgModal/SvgMinus.jsx';
+import SvgGlass from '../../images/svg/svgToday/GlassSvg.jsx';
 import {
   StyledModalAddSave,
   StyledModalAddTime,
@@ -13,7 +14,7 @@ const ModalEditWater = () => {
   return (
     <StyledModalForm>
       <StyledModalEditStat>
-        {/* <svg /> */}
+        <SvgGlass />
         <span>250ml</span>
         <p>7:00 AM</p>
       </StyledModalEditStat>
@@ -34,7 +35,7 @@ const ModalEditWater = () => {
         <p>Recording time:</p>
         <StyledModalEditInput type="number" placeholder="7:00" name="time" />
       </StyledModalAddTime>
-      
+
       <StyledModalAddValue>
         <h3>Enter the value of the water used:</h3>
         <StyledModalEditInput type="number" placeholder="250" name="value" />

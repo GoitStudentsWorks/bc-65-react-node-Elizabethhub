@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledModalEditStat = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   gap: 12px;
 
@@ -18,6 +18,7 @@ export const StyledModalEditStat = styled.div`
   p {
     font-size: 12px;
     color: var(--black);
+    margin: 0;
   }
   @media only screen and (min-width: 768px) {
     width: 254px;
