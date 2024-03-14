@@ -12,3 +12,16 @@ export const addWaterThunk = createAsyncThunk(
     }
   }
 );
+
+export const fetchAllWaterThunk = createAsyncThunk(
+  'fetchAll',
+  async (_, thunkApi) => {
+    try {
+      const { data } = await api.get('/api/home');
+      console.log(data);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

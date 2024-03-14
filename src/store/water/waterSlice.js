@@ -13,7 +13,7 @@ const waterSlice = createSlice({
     changeModalClose: (state, { payload }) => {
       state.modal.modalIsOpen = payload;
       state.modal.modalAddForm = payload;
-      state.modal.modalEditForm = payload;
+    //   state.modal.modalEditForm = payload;
     },
     changeModalAddForm: (state, { payload }) => {
       state.modal.modalIsOpen = payload;
