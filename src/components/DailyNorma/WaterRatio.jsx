@@ -20,7 +20,7 @@ const WaterRatio = () => {
   return (
     <RangeWrapper>
       <RangeInputTitl>Today</RangeInputTitl>
-      <RangeInput type="range"></RangeInput>
+      {/* <RangeInput type="range"></RangeInput> */}
       <RangePercentWrap>
         <RangePercent>
           <RangeSpanLine>|</RangeSpanLine>
@@ -44,7 +44,6 @@ const WaterRatio = () => {
       </RangeButton>
       <AddSvg />
       {isModalOpen && <ModalAddWater />}
-
     </RangeWrapper>
   );
 };
