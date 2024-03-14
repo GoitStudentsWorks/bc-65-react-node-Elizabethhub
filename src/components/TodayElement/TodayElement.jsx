@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import ModalAddWater from '../ModalAddWater/ModalAddWater';
 import {
   AddBtnWrapper,
@@ -13,16 +13,12 @@ import {
 import EditSvg from '../../images/svg/svgToday/EditSvg';
 import DeleteSvg from '../../images/svg/svgToday/DeleteSvg';
 import SvgGlass from '../../images/svg/svgToday/GlassSvg';
+import { useDispatch, useSelector } from 'react-redux';
+import { modalIsOpen } from '../../store/water/selectors';
+import { changeModalAddForm } from '../../store/water/waterSlice';
 const TodayElement = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const isModalOpen = useSelector(modalIsOpen);
+  const dispatch = useDispatch();
 
   let waterArr = [
     { id: 1, amount: 250, hours: '11:00' },
@@ -58,13 +54,17 @@ const TodayElement = () => {
         </StyledList>
 
         <AddBtnWrapper>
-          <button onClick={openModal}>
+          <button
+            onClick={() => {
+              dispatch(changeModalAddForm(true));
+            }}
+          >
             <span>+</span>
             <span>Open </span>
           </button>
         </AddBtnWrapper>
 
-        {isModalOpen && <ModalAddWater onClose={closeModal} />}
+        {isModalOpen && <ModalAddWater />}
       </ListWrapper>
     </>
   );
