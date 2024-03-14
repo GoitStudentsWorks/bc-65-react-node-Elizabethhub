@@ -1,28 +1,11 @@
-import { useState } from 'react';
-import ProfileSettings from '../ProfileІSettings/ProfileSettings';
 import SvgIconMobail from '../../images/svg/svgIcon/SvgIconMobail';
-import {
-  HeaderButton,
-  HeaderDivButtonContainer,
-  HeaderDivContainer,
-} from './HeaderStyled';
-import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
-import HeaderSVGPhoto from '../../images/svg/svgheader/HeaderSVGPhoto';
+import { HeaderDivButtonContainer, HeaderDivContainer } from './HeaderStyled';
+
 import { Link } from 'react-router-dom';
+import HeaderModal from './HeaderModal';
 const Header = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
   return (
     <>
-      {isModalOpen && <ProfileSettings onClose={closeModal} />}
       <HeaderDivContainer>
         <Link to="/" style={{ textDecoration: 'none' }}>
           <SvgIconMobail />
@@ -32,11 +15,7 @@ const Header = () => {
           <Link to="/signin" style={{ textDecoration: 'none' }}>
             Sign in
           </Link>
-          <HeaderButton onClick={openModal}>
-            <HeaderSVGPhoto />
-            {/* <HeaderImg></HeaderImg> */}
-            <HeaderButtonSVG />
-          </HeaderButton>
+          <HeaderModal />
         </HeaderDivButtonContainer>
       </HeaderDivContainer>
     </>
