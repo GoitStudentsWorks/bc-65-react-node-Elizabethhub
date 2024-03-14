@@ -49,7 +49,7 @@ const RegistrationPage = () => {
     handleSubmit,
 
     formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  } = useForm({ resolver: yupResolver(schema), mode: 'onChange' });
 
   function submit(data) {
     console.log(data);

@@ -48,6 +48,7 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: 'onChange',
   });
 
   function submit(data) {
