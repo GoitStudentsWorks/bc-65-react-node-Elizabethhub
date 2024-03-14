@@ -41,7 +41,6 @@ export const StyledModalAddWrapper = styled.div`
   h2 {
     color: var(--black);
     text-align: start;
-    font-family: 'Roboto';
     font-size: 26px;
     font-weight: 500;
     margin-bottom: 24px; 
@@ -49,7 +48,6 @@ export const StyledModalAddWrapper = styled.div`
   h3 {
     color: var(--black);
     text-align: start;
-    font-family: 'Roboto';
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 16px;
@@ -57,9 +55,7 @@ export const StyledModalAddWrapper = styled.div`
   p {
     color: var(--black);
     text-align: start;
-    font-family: 'Roboto';
     font-size: 16px;
-    font-weight: 400;
     margin-bottom: 12px;
   }
 `;
@@ -118,7 +114,6 @@ export const StyledModalAddTracker = styled.div`
     min-width: 92px;
 
     text-align: center;
-    font-family: 'Roboto';
     font-size: 18px;
     font-weight: 700;
     color: var(--blue);
@@ -135,9 +130,7 @@ export const StyledModalAddTime = styled.div`
     padding: 12px 10px 12px 10px;
     &::placeholder {
       color: var(--blue);
-      font-family: 'Roboto';
       font-size: 16px;
-      font-weight: 400;
     }
     @media only screen and (min-width: 768px) {
       width: 656px;
@@ -158,9 +151,7 @@ export const StyledModalAddValue = styled.div`
     padding: 12px 10px 12px 10px;
     &::placeholder {
       color: var(--blue);
-      font-family: 'Roboto';
       font-size: 16px;
-      font-weight: 400;
     }
     @media only screen and (min-width: 768px) {
       width: 656px;
@@ -190,7 +181,6 @@ export const StyledModalAddSave = styled.div`
 
   span {
     color: var(--blue);
-    font-family: 'Roboto';
     font-size: 18px;
     font-weight: 700;
   }
