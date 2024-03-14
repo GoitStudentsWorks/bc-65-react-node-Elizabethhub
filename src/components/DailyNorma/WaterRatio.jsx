@@ -9,33 +9,42 @@ import {
   RangeWrapper,
 } from './WaterRatio.styled';
 import AddSvg from '../../images/svg/AddSvg';
-import InputComponent from './InputComponent';
-const WaterRatio = ({ openModal }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { modalIsOpen } from '../../store/water/selectors';
+import { changeModalAddForm } from '../../store/water/waterSlice';
+import ModalAddWater from '../ModalAddWater/ModalAddWater';
+const WaterRatio = () => {
+  const isModalOpen = useSelector(modalIsOpen);
+  const dispatch = useDispatch();
+
   return (
     <RangeWrapper>
-      <div>
-        <RangeInputTitl>Today</RangeInputTitl>
-        {/* <RangeInput type="range"></RangeInput> */}
-        <InputComponent />
-        <RangePercentWrap>
-          <RangePercent>
-            <RangeSpanLine>|</RangeSpanLine>
-            0%
-          </RangePercent>
-          <RangePercent $fsize="16px" $fweight="500">
-            <RangeSpanLine>|</RangeSpanLine>
-            50%
-          </RangePercent>
-          <RangePercent>
-            <RangeSpanLine>|</RangeSpanLine>
-            100%
-          </RangePercent>
-        </RangePercentWrap>
-      </div>
-      <RangeButton onClick={() => openModal('addWater')}>
-        <AddSvg />
+      <RangeInputTitl>Today</RangeInputTitl>
+      <RangeInput type="range"></RangeInput>
+      <RangePercentWrap>
+        <RangePercent>
+          <RangeSpanLine>|</RangeSpanLine>
+          0%
+        </RangePercent>
+        <RangePercent $fsize="16px" $fweight="500">
+          <RangeSpanLine>|</RangeSpanLine>
+          50%
+        </RangePercent>
+        <RangePercent>
+          <RangeSpanLine>|</RangeSpanLine>
+          100%
+        </RangePercent>
+      </RangePercentWrap>
+      <RangeButton
+        onClick={() => {
+          dispatch(changeModalAddForm(true));
+        }}
+      >
         Add Water
       </RangeButton>
+      <AddSvg />
+      {isModalOpen && <ModalAddWater />}
+
     </RangeWrapper>
   );
 };
