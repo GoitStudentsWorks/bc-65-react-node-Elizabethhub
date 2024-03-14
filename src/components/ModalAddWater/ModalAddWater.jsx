@@ -1,6 +1,6 @@
 import SvgCross from '../../images/svg/svgModal/SvgCross.jsx';
 import SvgPlus from '../../images/svg/svgModal/SvgPlus.jsx';
-import SvgMinus from '../../images/svg/svgModal/svgMinus.jsx';
+import SvgMinus from '../../images/svg/svgModal/SvgMinus.jsx';
 import {
   StyledModalAddBackdrop,
   StyledModalAddClose,
