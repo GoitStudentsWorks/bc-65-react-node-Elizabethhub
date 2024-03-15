@@ -7,6 +7,7 @@ const waterSlice = createSlice({
       modalIsOpen: false,
       modalAddForm: false,
       modalEditForm: false,
+      modalDeleteForm: false,
     },
     isLoading: false,
   },
@@ -24,6 +25,10 @@ const waterSlice = createSlice({
       state.modal.modalIsOpen = payload;
       state.modal.modalEditForm = payload;
     },
+    changeModalDeleteForm: (state, { payload }) => {
+      state.modal.modalIsOpen = payload;
+      state.modal.modalDeleteForm = payload;
+    },
     extraReducers: (builder) => {
       // builder.addCase();
     },
@@ -31,5 +36,9 @@ const waterSlice = createSlice({
 });
 
 export const waterReducer = waterSlice.reducer;
-export const { changeModalAddForm, changeModalClose, changeModalEditForm } =
-  waterSlice.actions;
+export const {
+  changeModalAddForm,
+  changeModalClose,
+  changeModalEditForm,
+  changeModalDeleteForm,
+} = waterSlice.actions;
