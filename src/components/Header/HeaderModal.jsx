@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { HeaderButton } from './HeaderStyled';
 import HeaderSVGPhoto from '../../images/svg/svgheader/HeaderSVGPhoto';
 import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
-import ProfileSettings from '../ProfileІSettings/ProfileSettings';
+
 import {
   Backdrop,
   ButtonLogOut,
@@ -14,6 +14,7 @@ import {
   SpanLogOut,
   SpanLogOutQuestion,
 } from './HeaderModalStyled';
+import SettingModal from '../SettingModal/SettingModal';
 
 const HeaderModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -48,7 +49,7 @@ const HeaderModal = () => {
         <div>
           <Backdrop $visible={isBackdropVisible} />
 
-          <ProfileSettings onClose={closeModal} />
+          <SettingModal onClose={closeModal} />
         </div>
       )}
       <HeaderButton onClick={toggleHeaderModal}>
