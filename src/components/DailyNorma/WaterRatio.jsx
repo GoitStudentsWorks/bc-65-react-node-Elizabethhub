@@ -8,9 +8,13 @@ import {
   RangeWrapper,
 } from './WaterRatio.styled';
 import AddSvg from '../../images/svg/AddSvg';
-import { useDispatch } from 'react-redux';
-import { changeModalAddForm } from '../../store/water/waterSlice';
+
 import InputComponent from './InputComponent';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { changeModalAddForm } from '../../store/water/waterSlice';
+import ModalWater from '../ModalWater/ModalWater';
+import { modalIsOpen } from '../../store/water/selectors';
 
 const WaterRatio = () => {
   const dispatch = useDispatch();
