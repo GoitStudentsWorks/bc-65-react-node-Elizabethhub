@@ -122,13 +122,14 @@ export const Svg = styled.svg`
     left: 23px;
   }
 `;
-export const Wrp = styled.div`
-  background-image: url(${botleMain});
+
+export const Wrp = styled.section`
+  /* background-image: url(${botleMain});
   background-repeat: no-repeat;
   @media only screen and (min-width: 768px) {
     background-image: url(${botleMain});
   }
   @media only screen and (min-width: 1440px) {
     background-image: url(${botleMain});
-  }
+  } */
 `;
