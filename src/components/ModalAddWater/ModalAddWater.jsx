@@ -48,6 +48,7 @@ const ModalAddWater = () => {
 
       <StyledModalAddTime>
         <p>Recording time:</p>
+        {/* TODO: change to time format */}
         <StyledModalAddInput
           type="number"
           // id="time"

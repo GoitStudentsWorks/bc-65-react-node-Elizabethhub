@@ -10,9 +10,10 @@ import {
 } from './WaterRatio.styled';
 import AddSvg from '../../images/svg/AddSvg';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalIsOpen } from '../../store/water/selectors';
 import { changeModalAddForm } from '../../store/water/waterSlice';
 import ModalWater from '../ModalWater/ModalWater';
+import { modalIsOpen } from '../../store/water/selectors';
+
 const WaterRatio = () => {
   const isModalOpen = useSelector(modalIsOpen);
   const dispatch = useDispatch();
