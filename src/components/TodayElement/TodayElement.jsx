@@ -13,15 +13,17 @@ import EditSvg from '../../images/svg/svgToday/EditSvg';
 import DeleteSvg from '../../images/svg/svgToday/DeleteSvg';
 import SvgGlass from '../../images/svg/svgToday/GlassSvg';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalIsOpen } from '../../store/water/selectors';
 import {
   changeModalAddForm,
+  changeModalDeleteForm,
   changeModalEditForm,
 } from '../../store/water/waterSlice';
-import ModalWater from '../ModalWater/ModalWater';
+import { modalDeleteOpen } from '../../store/water/selectors';
+import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
 
 const TodayElement = () => {
-  const isModalOpen = useSelector(modalIsOpen);
+  const isModalOpen = useSelector(modalDeleteOpen);
+
   const dispatch = useDispatch();
 
   let waterArr = [
@@ -52,7 +54,11 @@ const TodayElement = () => {
                   >
                     <EditSvg />
                   </div>
-                  <div>
+                  <div
+                    onClick={() => {
+                      dispatch(changeModalDeleteForm(true));
+                    }}
+                  >
                     <DeleteSvg />
                   </div>
                 </BtnWrapper>
@@ -71,7 +77,7 @@ const TodayElement = () => {
             <span>Add water</span>
           </button>
         </AddBtnWrapper>
-
+        {isModalOpen && <ModalDeleteWater />}
       </ListWrapper>
     </>
   );

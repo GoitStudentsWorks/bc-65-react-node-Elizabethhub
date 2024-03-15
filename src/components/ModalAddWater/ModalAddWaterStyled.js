@@ -98,6 +98,7 @@ export const StyledModalAddTracker = styled.div`
 
   button {
     border: 1px solid var(--modal-light-blue);
+    outline: transparent;
     border-radius: 30px;
     width: 44px;
     height: 44px;
@@ -140,9 +141,16 @@ export const StyledModalAddInput = styled.input`
   border-radius: 6px;
   border: 1px solid var(--primary-mediumblue);
   padding: 12px 10px 12px 10px;
+  color: var(--blue);
   &::placeholder {
     color: var(--blue);
     font-size: 16px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--blue);
+    border: 1px solid var(--primary-mediumblue);
+    outline: transparent;
   }
   @media only screen and (min-width: 768px) {
     width: 656px;
