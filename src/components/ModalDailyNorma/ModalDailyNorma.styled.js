@@ -27,11 +27,14 @@ export const StyledWrapper = styled.div`
   padding: 24px 12px 24px 12px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   @media only screen and (min-width: 768px) {
     width: 704px;
     padding: 32px 24px 32px 24px;
+    .formula {
+      display: inline-block;
+      margin-right: 24px;
+    }
   }
   @media only screen and (min-width: 1280px) {
     width: 592px;
@@ -43,6 +46,7 @@ export const StyledWrapper = styled.div`
     text-align: start;
     font-size: 26px;
     font-weight: 500;
+    line-height: 32px;
     margin-bottom: 24px;
   }
   h3 {
@@ -50,7 +54,7 @@ export const StyledWrapper = styled.div`
     text-align: start;
     font-size: 18px;
     font-weight: 500;
-    margin-bottom: 16px;
+    margin-bottom: 10px;
   }
   p {
     color: var(--black);
@@ -61,7 +65,48 @@ export const StyledWrapper = styled.div`
   span {
     color: var(--blue);
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 400;
+    line-height: 24px;
+  }
+
+  .hint {
+    font-size: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--primary-mediumblue);
+    color: #8f8f8f;
+    margin-bottom: 24px;
+    line-height: 16px;
+  }
+  .star {
+    font-size: 12px;
+    line-height: 16px;
+  }
+`;
+export const SaveButton = styled.button`
+  width: 256px;
+  border-radius: 10px;
+  padding: 8px 30px 8px 30px;
+  background-color: var(--blue);
+  box-shadow: var(--modal-add-shadow);
+  color: var(--white);
+  border: none;
+  outline: transparent;
+  transition: all 0.5s ease;
+  margin-top: 8px;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+  @media only screen and (min-width: 768px) {
+    width: 160px;
+    height: 44px;
+    font-size: 18px;
+    flex-direction: row-reverse;
+    margin-left: auto;
+  }
+  @media only screen and (min-width: 1280px) {
   }
 `;
 
@@ -89,22 +134,55 @@ export const StyledCross = styled.button`
 `;
 
 export const StyledInputBox = styled.div`
-  margin-bottom: 24px;
-
   input {
-    width: 120px;
+    width: 100%;
     border-radius: 6px;
     border: 1px solid var(--primary-mediumblue);
     padding: 12px 10px 12px 10px;
+    margin-top: 8px;
+    margin-bottom: 16px;
     &::placeholder {
       color: var(--blue);
       font-size: 16px;
     }
+
     @media only screen and (min-width: 768px) {
       width: 656px;
     }
     @media only screen and (min-width: 1280px) {
       width: 544px;
     }
+  }
+  .no-margin {
+    margin-bottom: 0;
+    padding: 0;
+  }
+`;
+export const StyledRequiredLitres = styled.div`
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+  p {
+    width: 180px;
+    margin-bottom: 0;
+  }
+  span {
+    padding: 10px;
+    font-weight: 700;
+    margin-right: 12px;
+  }
+  @media only screen and (min-width: 768px) {
+    justify-content: flex-start;
+    p {
+      width: 328px;
+    }
+    span {
+      padding: 0;
+      line-height: 20px;
+      margin-left: 5px;
+    }
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 544px;
   }
 `;
