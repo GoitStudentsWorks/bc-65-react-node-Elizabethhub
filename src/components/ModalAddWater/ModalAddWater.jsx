@@ -13,33 +13,11 @@ import {
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import useCounter from '../../../helpers/modalHandleUpdate.js';
 
 const ModalAddWater = () => {
-  const [counter, setCounter] = useState(0);
+  const { counter, handleUpdate } = useCounter(0);
   const [time, setTime] = useState(new Date());
-
-  const handleUpdate = (evt) => {
-    const { name } = evt.currentTarget;
-    let newCounter;
-    let inputValue;
-
-    switch (name) {
-      case 'decrement':
-        newCounter = Math.max(counter - 50, 0);
-        break;
-      case 'increment':
-        newCounter = Math.min(counter + 50, 5000);
-        break;
-      case 'input':
-        inputValue = Number(evt.target.value);
-        newCounter = Math.min(Math.max(inputValue, 0), 5000);
-        break;
-      default:
-        newCounter = counter;
-    }
-
-    setCounter(newCounter);
-  };
 
   const onSubmit = (e) => {
     e.preventDefault();

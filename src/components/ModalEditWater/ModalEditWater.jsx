@@ -17,43 +17,25 @@ import {
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import useCounter from '../../../helpers/modalHandleUpdate.js';
+import { format } from 'date-fns';
 
 const ModalEditWater = () => {
-  const [counter, setCounter] = useState(50);
   const [time, setTime] = useState(new Date());
-
-  const handleUpdate = (evt) => {
-    const { name } = evt.currentTarget;
-    let newCounter;
-    let inputValue;
-
-    switch (name) {
-      case 'decrement':
-        newCounter = Math.max(counter - 50, 0);
-        break;
-      case 'increment':
-        newCounter = Math.min(counter + 50, 5000);
-        break;
-      case 'input':
-        inputValue = Number(evt.target.value);
-        newCounter = Math.min(Math.max(inputValue, 0), 5000);
-        break;
-      default:
-        newCounter = counter;
-    }
-
-    setCounter(newCounter);
-  };
+  const { counter, handleUpdate } = useCounter(0);
 
   const onSubmit = (e) => {
     e.preventDefault();
   };
+
+  const formattedTime = format(time, 'HH:mm');
+
   return (
     <StyledModalForm onSubmit={onSubmit}>
       <StyledModalEditStat>
         <SvgGlass />
         <span>{`${counter}ml`}</span>
-        <p>7:00 AM</p>
+        <p>{formattedTime}</p>
       </StyledModalEditStat>
       <h3>Correct entered data:</h3>
       <p>Amount of water:</p>
