@@ -18,11 +18,11 @@ import {
   changeModalDeleteForm,
   changeModalEditForm,
 } from '../../store/water/waterSlice';
-import { modalIsOpen } from '../../store/water/selectors';
+import { modalDeleteOpen } from '../../store/water/selectors';
 import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
 
 const TodayElement = () => {
-  const isModalOpen = useSelector(modalIsOpen);
+  const isModalOpen = useSelector(modalDeleteOpen);
 
   const dispatch = useDispatch();
 

@@ -29,8 +29,10 @@ export const StyledModalDeleteWrapper = styled.div`
   flex-direction: column;
 
   @media only screen and (min-width: 768px) {
+    width: 592px;
   }
   @media only screen and (min-width: 1280px) {
+    width: 592px;
   }
 
   h2 {
@@ -84,8 +86,12 @@ export const StyledModalDeleteButtons = styled.div`
   justify-content: center;
 
   @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: end;
   }
   @media only screen and (min-width: 1280px) {
+    flex-direction: row;
+    justify-content: end;
   }
 `;
 
@@ -110,6 +116,13 @@ export const StyledModalDeleteBtn = styled.button`
   &:hover {
     transform: scale(1.05);
   }
+
+  @media only screen and (min-width: 768px) {
+    width: 160px;
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 160px;
+  }
 `;
 
 export const StyledModalCancelBtn = styled.button`
@@ -131,5 +144,12 @@ export const StyledModalCancelBtn = styled.button`
 
   &:hover {
     transform: scale(1.05);
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 160px;
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 160px;
   }
 `;

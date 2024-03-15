@@ -1,6 +1,6 @@
 import SvgCross from '../../images/svg/svgModal/SvgCross.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalIsOpen } from '../../store/water/selectors.js';
+import { modalDeleteOpen } from '../../store/water/selectors.js';
 import { changeModalClose } from '../../store/water/waterSlice.js';
 import { useEffect } from 'react';
 import {
@@ -14,7 +14,7 @@ import {
 } from './ModalDeleteWater.styled.js';
 
 const ModalDeleteWater = () => {
-  const isModalOpen = useSelector(modalIsOpen);
+  const isModalOpen = useSelector(modalDeleteOpen);
 
   const dispatch = useDispatch();
 
