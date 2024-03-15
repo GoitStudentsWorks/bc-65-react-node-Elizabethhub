@@ -55,16 +55,15 @@ const ModalDeleteWater = () => {
           <StyledModalDeleteForm onSubmit={onSubmit}>
             <p>Are you sure you want to delete the entry?</p>
             <StyledModalDeleteButtons>
-            <StyledModalDeleteBtn type="submit">Delete</StyledModalDeleteBtn>
-            <StyledModalCancelBtn
-              onClick={() => {
-                dispatch(changeModalClose(false));
-              }}
-            >
-              Cancel
-            </StyledModalCancelBtn>
+              <StyledModalDeleteBtn type="submit">Delete</StyledModalDeleteBtn>
+              <StyledModalCancelBtn
+                onClick={() => {
+                  dispatch(changeModalClose(false));
+                }}
+              >
+                Cancel
+              </StyledModalCancelBtn>
             </StyledModalDeleteButtons>
-            
           </StyledModalDeleteForm>
         </StyledModalDeleteWrapper>
       </StyledModalDeleteBackdrop>

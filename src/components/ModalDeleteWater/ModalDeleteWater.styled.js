@@ -72,10 +72,6 @@ export const StyledModalDeleteClose = styled.button`
   &:hover {
     transform: scale(1.05);
   }
-  @media only screen and (min-width: 768px) {
-  }
-  @media only screen and (min-width: 1280px) {
-  }
 `;
 
 export const StyledModalDeleteButtons = styled.div`
@@ -148,8 +144,10 @@ export const StyledModalCancelBtn = styled.button`
 
   @media only screen and (min-width: 768px) {
     width: 160px;
+    font-size: 18px;
   }
   @media only screen and (min-width: 1280px) {
     width: 160px;
+    font-size: 18px;
   }
 `;
