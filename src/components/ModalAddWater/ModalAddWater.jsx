@@ -13,7 +13,7 @@ import {
 import { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import useCounter from '../../../helpers/modalHandleUpdate.js';
+import useCounter from '../../helpers/modalHandleUpdate.js';
 
 const ModalAddWater = () => {
   const { counter, handleUpdate } = useCounter(0);
