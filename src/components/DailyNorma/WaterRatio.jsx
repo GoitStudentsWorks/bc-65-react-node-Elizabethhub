@@ -7,7 +7,7 @@ import {
   RangeSpanLine,
   RangeWrapper,
 } from './WaterRatio.styled';
-import AddSvg from '../../images/svg/AddSvg';
+import AddSvg from '../../images/svg/svgDailyNorma/AddSvg';
 
 import InputComponent from './InputComponent';
 
@@ -17,6 +17,7 @@ import ModalWater from '../ModalWater/ModalWater';
 import { modalIsOpen } from '../../store/water/selectors';
 
 const WaterRatio = () => {
+  const isModalOpen = useSelector(modalIsOpen);
   const dispatch = useDispatch();
 
   return (
@@ -47,6 +48,7 @@ const WaterRatio = () => {
         <AddSvg />
         Add Water
       </RangeButton>
+      {isModalOpen && <ModalWater />}
     </RangeWrapper>
   );
 };

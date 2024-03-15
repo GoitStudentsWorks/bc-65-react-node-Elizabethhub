@@ -1,5 +1,5 @@
 import React from 'react';
-import { Svg } from '../../components/DailyNorma/WaterRatio.styled';
+import { Svg } from '../../../components/DailyNorma/WaterRatio.styled';
 
 const AddSvg = () => {
   return (
@@ -9,13 +9,6 @@ const AddSvg = () => {
       height="20"
       fill="none"
       viewBox="0 0 20 20"
-      // style={{
-      //   position: 'absolute',
-      //   top: '8px',
-      //   left: '76px',
-      //   width: '18px',
-      //   height: '18px',
-      // }}
     >
       <path
         stroke="#FFFFFF"

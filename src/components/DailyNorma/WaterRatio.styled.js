@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import bottleTablet from '../../images/dailyBottle/bottleTablet.png';
-import botleMain from '../../images/dailyBottle/BotleMain.png';
 
 export const RangeWrapper = styled.div`
   margin-bottom: 40px;
@@ -100,12 +98,6 @@ export const StyledRangeInput = styled.input`
     width: 360px;
   }
 `;
-// img
-export const BottleImage = styled.img`
-  @media only screen and (min-width: 768px) {
-    display: none;
-  }
-`;
 
 export const Svg = styled.svg`
   position: absolute;
@@ -124,12 +116,8 @@ export const Svg = styled.svg`
 `;
 
 export const Wrp = styled.section`
-  /* background-image: url(${botleMain});
-  background-repeat: no-repeat;
-  @media only screen and (min-width: 768px) {
-    background-image: url(${botleMain});
-  }
   @media only screen and (min-width: 1440px) {
-    background-image: url(${botleMain});
-  } */
+    /* just for test */
+    width: 600px;
+  }
 `;
