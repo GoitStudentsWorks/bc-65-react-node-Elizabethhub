@@ -1,5 +1,4 @@
 // import { useState } from 'react';
-import ModalAddWater from '../ModalAddWater/ModalAddWater';
 import {
   AddBtnWrapper,
   Amount,
@@ -15,7 +14,12 @@ import DeleteSvg from '../../images/svg/svgToday/DeleteSvg';
 import SvgGlass from '../../images/svg/svgToday/GlassSvg';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalIsOpen } from '../../store/water/selectors';
-import { changeModalAddForm } from '../../store/water/waterSlice';
+import {
+  changeModalAddForm,
+  changeModalEditForm,
+} from '../../store/water/waterSlice';
+import ModalWater from '../ModalWater/ModalWater';
+
 const TodayElement = () => {
   const isModalOpen = useSelector(modalIsOpen);
   const dispatch = useDispatch();
@@ -41,7 +45,11 @@ const TodayElement = () => {
                   <Time>{item.hours} PM</Time>
                 </InfoWrapper>
                 <BtnWrapper>
-                  <div>
+                  <div
+                    onClick={() => {
+                      dispatch(changeModalEditForm(true));
+                    }}
+                  >
                     <EditSvg />
                   </div>
                   <div>
@@ -64,7 +72,6 @@ const TodayElement = () => {
           </button>
         </AddBtnWrapper>
 
-        {isModalOpen && <ModalAddWater />}
       </ListWrapper>
     </>
   );

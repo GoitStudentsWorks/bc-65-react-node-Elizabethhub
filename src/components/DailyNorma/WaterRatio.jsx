@@ -12,7 +12,7 @@ import AddSvg from '../../images/svg/AddSvg';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalIsOpen } from '../../store/water/selectors';
 import { changeModalAddForm } from '../../store/water/waterSlice';
-import ModalAddWater from '../ModalAddWater/ModalAddWater';
+import ModalWater from '../ModalWater/ModalWater';
 const WaterRatio = () => {
   const isModalOpen = useSelector(modalIsOpen);
   const dispatch = useDispatch();
@@ -43,7 +43,7 @@ const WaterRatio = () => {
         Add Water
       </RangeButton>
       <AddSvg />
-      {isModalOpen && <ModalAddWater />}
+      {isModalOpen && <ModalWater />}
     </RangeWrapper>
   );
 };

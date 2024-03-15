@@ -1,16 +1,20 @@
 import SvgPlus from '../../images/svg/svgModal/SvgPlus.jsx';
 import SvgMinus from '../../images/svg/svgModal/SvgMinus.jsx';
+import SvgGlass from '../../images/svg/svgToday/GlassSvg.jsx';
 import {
-  StyledModalAddInput,
   StyledModalAddSave,
   StyledModalAddTime,
   StyledModalAddTracker,
   StyledModalAddValue,
   StyledModalForm,
-} from './ModalAddWaterStyled.js';
+} from '../ModalAddWater/ModalAddWaterStyled.js';
+import {
+  StyledModalEditInput,
+  StyledModalEditStat,
+} from './ModalEditWater.styled.js';
 import { useState } from 'react';
 
-const ModalAddWater = () => {
+const ModalEditWater = () => {
   const [counter, setCounter] = useState(50);
 
   const MIN_VALUE = 0;
@@ -33,7 +37,12 @@ const ModalAddWater = () => {
   };
   return (
     <StyledModalForm onSubmit={onSubmit}>
-      <h3>Choose a value:</h3>
+      <StyledModalEditStat>
+        <SvgGlass />
+        <span>{`${counter}ml`}</span>
+        <p>7:00 AM</p>
+      </StyledModalEditStat>
+      <h3>Correct entered data:</h3>
       <p>Amount of water:</p>
 
       <StyledModalAddTracker>
@@ -48,16 +57,12 @@ const ModalAddWater = () => {
 
       <StyledModalAddTime>
         <p>Recording time:</p>
-        <StyledModalAddInput
-          type="number"
-          // id="time"
-          placeholder="7:00"
-          name="time"
-        />
+        <StyledModalEditInput type="number" placeholder="7:00" name="time" />
       </StyledModalAddTime>
+
       <StyledModalAddValue>
         <h3>Enter the value of the water used:</h3>
-        <StyledModalAddInput
+        <StyledModalEditInput
           type="number"
           id="ml"
           placeholder="50"
@@ -73,4 +78,4 @@ const ModalAddWater = () => {
   );
 };
 
-export default ModalAddWater;
+export default ModalEditWater;

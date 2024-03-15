@@ -27,7 +27,6 @@ export const StyledModalAddWrapper = styled.div`
   padding: 24px 12px 24px 12px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   @media only screen and (min-width: 768px) {
     width: 704px;
@@ -43,7 +42,15 @@ export const StyledModalAddWrapper = styled.div`
     text-align: start;
     font-size: 26px;
     font-weight: 500;
-    margin-bottom: 24px; 
+    margin-bottom: 24px;
+  }
+`;
+
+export const StyledModalForm = styled.form`
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
   h3 {
     color: var(--black);
@@ -122,43 +129,26 @@ export const StyledModalAddTracker = styled.div`
 
 export const StyledModalAddTime = styled.div`
   margin-bottom: 24px;
-
-  input {
-    width: 120px;
-    border-radius: 6px;
-    border: 1px solid var(--primary-mediumblue);
-    padding: 12px 10px 12px 10px;
-    &::placeholder {
-      color: var(--blue);
-      font-size: 16px;
-    }
-    @media only screen and (min-width: 768px) {
-      width: 656px;
-    }
-    @media only screen and (min-width: 1280px) {
-      width: 544px;
-    }
-  }
 `;
 export const StyledModalAddValue = styled.div`
   margin-bottom: 24px;
   gap: 16px;
+`;
 
-  input {
-    width: 120px;
-    border-radius: 6px;
-    border: 1px solid var(--primary-mediumblue);
-    padding: 12px 10px 12px 10px;
-    &::placeholder {
-      color: var(--blue);
-      font-size: 16px;
-    }
-    @media only screen and (min-width: 768px) {
-      width: 656px;
-    }
-    @media only screen and (min-width: 1280px) {
-      width: 544px;
-    }
+export const StyledModalAddInput = styled.input`
+  width: 120px;
+  border-radius: 6px;
+  border: 1px solid var(--primary-mediumblue);
+  padding: 12px 10px 12px 10px;
+  &::placeholder {
+    color: var(--blue);
+    font-size: 16px;
+  }
+  @media only screen and (min-width: 768px) {
+    width: 656px;
+  }
+  @media only screen and (min-width: 1280px) {
+    width: 544px;
   }
 `;
 
