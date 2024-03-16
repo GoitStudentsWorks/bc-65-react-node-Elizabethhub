@@ -51,3 +51,35 @@ export const StyledModalEditInput = styled.input`
     width: 544px;
   }
 `;
+
+export const ModalEditDateWrap = styled.div`
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  input {
+    width: 256px;
+    border-radius: 6px;
+    border: 1px solid var(--primary-mediumblue);
+    padding: 12px 10px 12px 10px;
+    color: var(--blue);
+    &::placeholder {
+      color: var(--blue);
+      font-size: 16px;
+    }
+    &:hover,
+    &:focus {
+      color: var(--blue);
+      border: 1px solid var(--primary-mediumblue);
+      outline: transparent;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 544px;
+    }
+    @media only screen and (min-width: 1280px) {
+      width: 544px;
+    }
+  }
+`;

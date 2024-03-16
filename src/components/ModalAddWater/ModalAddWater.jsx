@@ -1,32 +1,23 @@
 import SvgPlus from '../../images/svg/svgModal/SvgPlus.jsx';
 import SvgMinus from '../../images/svg/svgModal/SvgMinus.jsx';
 import {
+  ModalAddDateWrap,
   StyledModalAddInput,
   StyledModalAddSave,
   StyledModalAddTime,
   StyledModalAddTracker,
   StyledModalAddValue,
   StyledModalForm,
+  TimeGlobalStyles,
 } from './ModalAddWaterStyled.js';
 import { useState } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import useCounter from '../../helpers/modalHandleUpdate.js';
 
 const ModalAddWater = () => {
-  const [counter, setCounter] = useState(50);
-
-  const MIN_VALUE = 0;
-  const MAX_VALUE = 1500;
-
-  const handleClickTracker = () => {
-    if (counter > MIN_VALUE) {
-      setCounter(counter - 50);
-    }
-  };
-
-  const handleClickCounter = () => {
-    if (counter < MAX_VALUE) {
-      setCounter(counter + 50);
-    }
-  };
+  const { counter, handleUpdate } = useCounter(0);
+  const [time, setTime] = useState(new Date());
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -37,31 +28,55 @@ const ModalAddWater = () => {
       <p>Amount of water:</p>
 
       <StyledModalAddTracker>
-        <button type="button" onClick={handleClickTracker}>
+        <button
+          type="button"
+          name="decrement"
+          onClick={handleUpdate}
+          disabled={counter === 0}
+        >
           <SvgMinus size="24" />
         </button>
         <span>{`${counter}ml`}</span>
-        <button type="button" onClick={handleClickCounter}>
+        <button type="button" name="increment" onClick={handleUpdate}>
           <SvgPlus size="24" />
         </button>
       </StyledModalAddTracker>
 
       <StyledModalAddTime>
         <p>Recording time:</p>
-        {/* TODO: change to time format */}
-        <StyledModalAddInput
+        <ModalAddDateWrap>
+          {/* <label> */}
+          <DatePicker
+            selected={time}
+            onChange={(date) => {
+              setTime(date);
+            }}
+            showTimeSelect
+            showTimeSelectOnly
+            timeIntervals={5}
+            dateFormat="HH:mm"
+            timeFormat="HH:mm"
+            minTime={new Date(2024, 1, 1, 0, 0)}
+            maxTime={new Date()}
+            timeZone="UTC"
+          />
+          <TimeGlobalStyles />
+          {/* </label> */}
+        </ModalAddDateWrap>
+
+        {/* <StyledModalAddInput
           type="number"
-          // id="time"
           placeholder="7:00"
           name="time"
-        />
+        /> */}
       </StyledModalAddTime>
       <StyledModalAddValue>
         <h3>Enter the value of the water used:</h3>
         <StyledModalAddInput
           type="number"
-          id="ml"
-          placeholder="50"
+          placeholder={`${counter}ml`}
+          min="1"
+          max="5000"
           name="value"
         />
       </StyledModalAddValue>
