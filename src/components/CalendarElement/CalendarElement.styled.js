@@ -77,11 +77,14 @@ export const DayStyles = styled.li`
   gap: 4px;
   text-align: center;
   font-weight: 400;
+  cursor: pointer;
   letter-spacing: 0em;
 
-  cursor: pointer;
   span {
     display: block;
+    &.today {
+      border: 2px solid #ef5050;
+    }
   }
   .day {
     width: 32px;

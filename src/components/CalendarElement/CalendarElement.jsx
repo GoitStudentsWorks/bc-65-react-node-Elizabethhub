@@ -42,6 +42,15 @@ const CalendarElement = () => {
     monthData.push({ day, percentage: 100 });
   }
 
+  const isToday = (day) => {
+    const today = new Date();
+    return (
+      day === today.getDate() &&
+      currentDate.getMonth() === today.getMonth() &&
+      currentDate.getFullYear() === today.getFullYear()
+    );
+  };
+
   return (
     <ContentWrapperCalendar>
       <HeadingWrapper>
@@ -77,7 +86,9 @@ const CalendarElement = () => {
               dispatch(changeShowDaysStats(true));
             }}
           >
-            <span className="day">{item.day}</span>
+            <span className={`day ${isToday(item.day) ? 'today' : ''}`}>
+              {item.day}
+            </span>
             <span className="percentage">{item.percentage}%</span>
           </DayStyles>
         ))}
