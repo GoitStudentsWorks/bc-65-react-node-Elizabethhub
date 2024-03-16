@@ -1,5 +1,9 @@
 import SvgIconMobail from '../../images/svg/svgIcon/SvgIconMobail';
-import { HeaderDivButtonContainer, HeaderDivContainer } from './HeaderStyled';
+import {
+  HeaderDivButtonContainer,
+  HeaderDivContainer,
+  HeaderLink,
+} from './HeaderStyled';
 
 import { Link } from 'react-router-dom';
 import HeaderModal from './HeaderModal';
@@ -12,9 +16,9 @@ const Header = () => {
         </Link>
 
         <HeaderDivButtonContainer>
-          <Link to="/signin" style={{ textDecoration: 'none' }}>
+          <HeaderLink to="/signin" style={{ textDecoration: 'none' }}>
             Sign in
-          </Link>
+          </HeaderLink>
           <HeaderModal />
         </HeaderDivButtonContainer>
       </HeaderDivContainer>
