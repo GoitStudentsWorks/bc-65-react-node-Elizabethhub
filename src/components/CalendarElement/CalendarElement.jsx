@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import {
-  DivContentWrapper,
-  DivHeadingWrapper,
-  DivMonthSwitcher,
-  LiDayStyles,
+  ContentWrapperCalendar,
+  HeadingWrapper,
+  MonthSwitcher,
+  DayStyles,
   MonthHeading,
-  UlMonth,
+  MonthList,
 } from './CalendarElement.styled';
 import ArrowLeftCalendarSvg from '../../images/svg/svgCalendar/ArrowLeftCalendarSvg';
 import ArrowRightCalendarSvg from '../../images/svg/svgCalendar/ArrowRightCalendarSvg';
@@ -43,10 +43,10 @@ const CalendarElement = () => {
   }
 
   return (
-    <DivContentWrapper>
-      <DivHeadingWrapper>
+    <ContentWrapperCalendar>
+      <HeadingWrapper>
         <MonthHeading>Month</MonthHeading>
-        <DivMonthSwitcher>
+        <MonthSwitcher>
           <button
             className="arrow"
             onClick={() => changeMonth('back')}
@@ -55,7 +55,7 @@ const CalendarElement = () => {
             <ArrowLeftCalendarSvg />
           </button>
           <p className="month__name">
-            {currentDate.toLocaleString('en-us', { month: 'long' })}&nbsp;
+            {currentDate.toLocaleString('en-us', { month: 'long' })},&nbsp;
             {currentDate.getFullYear()}
           </p>
           <button
@@ -65,13 +65,13 @@ const CalendarElement = () => {
           >
             <ArrowRightCalendarSvg />
           </button>
-        </DivMonthSwitcher>
-      </DivHeadingWrapper>
+        </MonthSwitcher>
+      </HeadingWrapper>
 
-      <UlMonth>
+      <MonthList>
         {showDaysStats && <DaysGeneralStats />}
         {monthData.map((item) => (
-          <LiDayStyles
+          <DayStyles
             key={item.day}
             onClick={() => {
               dispatch(changeShowDaysStats(true));
@@ -79,10 +79,10 @@ const CalendarElement = () => {
           >
             <span className="day">{item.day}</span>
             <span className="percentage">{item.percentage}%</span>
-          </LiDayStyles>
+          </DayStyles>
         ))}
-      </UlMonth>
-    </DivContentWrapper>
+      </MonthList>
+    </ContentWrapperCalendar>
   );
 };
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const DivContentWrapper = styled.div`
+export const ContentWrapperCalendar = styled.div`
   width: 100%;
 `;
 
@@ -18,14 +18,14 @@ export const MonthHeading = styled.h3`
   }
 `;
 
-export const DivHeadingWrapper = styled.div`
+export const HeadingWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
   align-items: center;
 `;
 
-export const DivMonthSwitcher = styled.div`
+export const MonthSwitcher = styled.div`
   display: flex;
   align-items: center;
   gap: 12px;
@@ -52,7 +52,7 @@ export const DivMonthSwitcher = styled.div`
   }
 `;
 
-export const UlMonth = styled.ul`
+export const MonthList = styled.ul`
   position: relative;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -70,7 +70,7 @@ export const UlMonth = styled.ul`
   }
 `;
 
-export const LiDayStyles = styled.li`
+export const DayStyles = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
