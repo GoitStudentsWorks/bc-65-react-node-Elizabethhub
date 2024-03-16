@@ -46,6 +46,10 @@ export const HeaderModalContainer = styled.div`
     opacity 0.3s ease,
     top 0.3s ease;
   z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
 `;
 
 export const HeaderModalLogOutContainer = styled.div`
@@ -133,4 +137,23 @@ export const SpanLogOut = styled.span`
 export const SpanLogOutQuestion = styled.span`
   font-size: 18px;
   font-weight: 500;
+`;
+export const HeaderModalButton = styled.button`
+  display: flex;
+  gap: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  height: 20px;
+`;
+
+export const HeaderModalButtonSpan = styled.span`
+  font-weight: 400;
+  font-size: 16px;
+
+  color: #407bff;
 `;
