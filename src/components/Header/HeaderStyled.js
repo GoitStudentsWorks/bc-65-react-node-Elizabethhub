@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderDivContainer = styled.div`
@@ -38,4 +39,10 @@ export const HeaderButton = styled.button`
   background: none;
   outline: none;
   cursor: pointer;
+`;
+export const HeaderLink = styled(NavLink)`
+  font-weight: 400;
+  font-size: 18px;
+
+  color: #407bff;
 `;
