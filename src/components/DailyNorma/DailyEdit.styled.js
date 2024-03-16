@@ -12,10 +12,10 @@ export const DailyWrapper = styled.div`
   width: 164px;
   height: 74px;
   @media only screen and (min-width: 768px) {
-    margin-bottom: 326px;
+    margin-bottom: -45px;
   }
   @media only screen and (min-width: 1440px) {
-    margin-bottom: 466px;
+    margin-bottom: -65px;
   }
 `;
 
