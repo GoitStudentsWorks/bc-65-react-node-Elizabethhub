@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-export const HomeContauner = styled.div`
+export const HomeContainer = styled.div`
   margin-bottom: 40px;
 
   @media screen and (min-width: 768px) {

@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import Header from '../Header/Header.jsx';
 import { Container, Main } from './Layout.styled.js';
-import { BackgraundContainer } from './BackgraundContainerStyled.js';
+import { BackgraundContainer } from './BackgraundContainer.styled.js';
 
 const Layout = () => {
   return (

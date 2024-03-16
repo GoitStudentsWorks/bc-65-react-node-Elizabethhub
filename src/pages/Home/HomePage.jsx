@@ -1,16 +1,16 @@
 import DailyNorma from '../../components/DailyNorma/DailyNorma';
 
 import WaterCalendar from '../../components/WaterCalendar/WaterCalendar';
-import { HomeContauner } from './HomePageStyled';
+import { HomeContainer } from './HomePage.styled';
 
 const HomePage = () => {
   return (
     <>
       {/* <DivImgContainer /> */}
-      <HomeContauner>
+      <HomeContainer>
         <DailyNorma />
         <WaterCalendar />
-      </HomeContauner>
+      </HomeContainer>
     </>
   );
 };

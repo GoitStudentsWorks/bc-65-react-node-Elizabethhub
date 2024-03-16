@@ -3,7 +3,7 @@ import {
   HeaderDivButtonContainer,
   HeaderDivContainer,
   HeaderLink,
-} from './HeaderStyled';
+} from './Header.styled';
 
 import { Link } from 'react-router-dom';
 import HeaderModal from './HeaderModal';

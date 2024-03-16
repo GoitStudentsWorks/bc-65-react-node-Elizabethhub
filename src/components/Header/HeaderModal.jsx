@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { HeaderButton } from './HeaderStyled';
+import { HeaderButton } from './Header.styled';
 import HeaderSVGPhoto from '../../images/svg/svgheader/HeaderSVGPhoto';
 import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
 
