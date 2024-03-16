@@ -3,7 +3,7 @@ import DailyEdit from './DailyEdit';
 import WaterRatio from './WaterRatio';
 
 import { Wrp } from './WaterRatio.styled';
-import BottleMobile from '../../images/svg/svgDailyNorma/BottleMobile';
+import BottleMobile from '../../images/svg/svgDailyNorma/bottleMobile';
 import BottleTablet from '../../images/svg/svgDailyNorma/BottleTablet';
 import BottleDesctop from '../../images/svg/svgDailyNorma/BottleDesctop';
 
