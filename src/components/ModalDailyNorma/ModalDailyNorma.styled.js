@@ -138,6 +138,7 @@ export const StyledInputBox = styled.div`
     width: 100%;
     border-radius: 6px;
     border: 1px solid var(--primary-mediumblue);
+    color: var(--blue);
     padding: 12px 10px 12px 10px;
     margin-top: 8px;
     margin-bottom: 16px;
@@ -145,13 +146,22 @@ export const StyledInputBox = styled.div`
       color: var(--blue);
       font-size: 16px;
     }
-
+    &:hover,
+    &:focus {
+      color: var(--blue);
+      border: 1px solid var(--primary-mediumblue);
+      outline: transparent;
+    }
     @media only screen and (min-width: 768px) {
       width: 656px;
     }
     @media only screen and (min-width: 1280px) {
       width: 544px;
     }
+  }
+  input[type='radio']:focus {
+    outline: none;
+    box-shadow: none;
   }
   .no-margin {
     margin-bottom: 0;

@@ -1,10 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalIsOpen } from '../../store/water/selectors.js';
+import { isModalDayNorm } from '../../store/water/selectors';
 import { changeModalClose } from '../../store/water/waterSlice.js';
 import { genderDescription, radioInputs, textData } from './heper.js';
 import {
-  ClickAwayListener,
   FormControlLabel,
   Radio,
   RadioGroup,
@@ -23,6 +22,7 @@ import SvgRadioChecked from '../../images/svg/svgModal/SvgRadioChecked.jsx';
 import SvgRadio from '../../images/svg/svgModal/SvgRadio.jsx';
 
 const ModalDailyNorma = () => {
+  const isModalOpen = useSelector(isModalDayNorm);
   const dispatch = useDispatch();
 
   //***NOTE  */ radio buttons state and handling ***//
@@ -35,13 +35,22 @@ const ModalDailyNorma = () => {
   };
   // const isDisabled = oldDataType === value;
 
-  const isModalOpen = useSelector(modalIsOpen);
-
   const clickBackdrop = (e) => {
     if (e.target === e.currentTarget) {
       dispatch(changeModalClose(false));
     }
   };
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        dispatch(changeModalClose(false));
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [dispatch]);
+
   const handleMassInput = (e) => {
     const inputQuery = e.target.value;
     setMassQuery(inputQuery);
@@ -58,8 +67,8 @@ const ModalDailyNorma = () => {
   const { hint, time, rate, weight, waterAmount, howMuch } = textData;
 
   return (
-    <StyledBackdrop open={isModalOpen} onClick={clickBackdrop}>
-      <ClickAwayListener onClickAway={clickBackdrop}>
+    isModalOpen && (
+      <StyledBackdrop open={isModalOpen} onClick={clickBackdrop}>
         <StyledWrapper>
           <h2>My daily norma</h2>
           <StyledCross
@@ -106,6 +115,7 @@ const ModalDailyNorma = () => {
               justifyContent: 'flex-start',
               padding: 0,
               marginBottom: 10,
+              paddingLeft: 5,
             }}
           >
             {radioInputs.map((radioItem, idx) => {
@@ -117,6 +127,10 @@ const ModalDailyNorma = () => {
                     <Radio
                       checkedIcon={<SvgRadioChecked></SvgRadioChecked>}
                       icon={<SvgRadio></SvgRadio>}
+                      style={{
+                        padding: 7,
+                        // &:focus:outline: 'none',
+                      }}
                     />
                   }
                   label={radioItem.label}
@@ -159,8 +173,8 @@ const ModalDailyNorma = () => {
           </StyledInputBox>
           <SaveButton type="button">Save</SaveButton>
         </StyledWrapper>
-      </ClickAwayListener>
-    </StyledBackdrop>
+      </StyledBackdrop>
+    )
   );
 };
 
