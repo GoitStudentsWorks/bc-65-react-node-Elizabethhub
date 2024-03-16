@@ -8,6 +8,7 @@ function BottleTablet() {
       height="386"
       fill="none"
       viewBox="0 0 518 386"
+      className="svg-bottle"
     >
       <g clipPath="url(#clip0_115_2238)">
         <path

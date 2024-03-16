@@ -116,7 +116,7 @@ export const Svg = styled.svg`
 `;
 
 export const Wrp = styled.section`
-  svg {
+  .svg-bottle {
     position: relative;
     z-index: -1;
   }

@@ -8,6 +8,7 @@ function BottleMobile() {
       height="208"
       fill="none"
       viewBox="0 0 280 208"
+      className="svg-bottle"
     >
       <g clipPath="url(#clip0_115_2737)">
         <path

@@ -8,6 +8,7 @@ function BottleDesctop() {
       height="548"
       fill="none"
       viewBox="0 0 739 548"
+      className="svg-bottle"
     >
       <g clipPath="url(#clip0_2_4)">
         <path
