@@ -48,6 +48,7 @@ export const DivMonthSwitcher = styled.div`
     letter-spacing: 0em;
     text-align: center;
     color: #407bff;
+    width: 120px;
   }
 `;
 
