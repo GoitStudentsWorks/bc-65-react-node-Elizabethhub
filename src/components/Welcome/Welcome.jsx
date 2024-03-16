@@ -19,9 +19,9 @@ import {
   Welcomeh1,
   Welcomeh2,
   Welcomeh3,
-} from './WelcomStyled';
+} from './Welcome.styled';
 
-const Welcom = () => {
+const Welcome = () => {
   return (
     <>
       <DivImgContainerWelcome />
@@ -85,4 +85,4 @@ const Welcom = () => {
   );
 };
 
-export default Welcom;
+export default Welcome;
