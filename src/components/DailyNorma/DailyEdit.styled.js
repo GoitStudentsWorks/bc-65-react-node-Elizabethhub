@@ -12,10 +12,10 @@ export const DailyWrapper = styled.div`
   width: 164px;
   height: 74px;
   @media only screen and (min-width: 768px) {
-    margin-bottom: 326px;
+    margin-bottom: -45px;
   }
   @media only screen and (min-width: 1440px) {
-    margin-bottom: 466px;
+    margin-bottom: -65px;
   }
 `;
 
@@ -44,4 +44,6 @@ export const DailyEditButton = styled.button`
   background: transparent;
   border: none;
   color: #8baeff;
+  position: relative;
+  z-index: 1;
 `;

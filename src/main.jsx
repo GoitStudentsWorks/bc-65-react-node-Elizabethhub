@@ -8,7 +8,7 @@ import { persistor, store } from './store/store.js';
 import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <BrowserRouter basename="/byte-my-water-app">
+  <BrowserRouter basename="/byte-my-water-app/">
     <Provider store={store}>
       <PersistGate persistor={persistor}>
         <App />
