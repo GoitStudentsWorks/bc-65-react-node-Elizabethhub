@@ -116,6 +116,10 @@ export const Svg = styled.svg`
 `;
 
 export const Wrp = styled.section`
+  svg {
+    position: relative;
+    z-index: -1;
+  }
   @media only screen and (min-width: 1440px) {
     /* just for test */
     width: 600px;
