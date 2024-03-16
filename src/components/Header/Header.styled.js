@@ -14,7 +14,6 @@ export const HeaderDivButtonContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  gap: 9px;
 `;
 export const HeaderImg = styled.img`
   border-radius: 100%;
@@ -42,6 +41,6 @@ export const HeaderButton = styled.button`
 export const HeaderLink = styled(NavLink)`
   font-weight: 400;
   font-size: 18px;
-
+  padding-right: 9px;
   color: #407bff;
 `;

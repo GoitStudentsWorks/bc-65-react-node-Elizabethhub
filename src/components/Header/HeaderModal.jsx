@@ -5,6 +5,7 @@ import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
 
 import {
   Backdrop,
+  ButtonCancel,
   ButtonLogOut,
   DivButtonLogOut,
   DivHeaderModalContainer,
@@ -82,7 +83,7 @@ const HeaderModal = () => {
               Do you really want to leave?
             </SpanLogOutQuestion>
             <DivButtonLogOut>
-              <ButtonLogOut onClick={LogOutHeaderModal}>Cancel</ButtonLogOut>
+              <ButtonCancel onClick={LogOutHeaderModal}>Cancel</ButtonCancel>
               <ButtonLogOut>Log out</ButtonLogOut>
             </DivButtonLogOut>
           </HeaderModalLogOutContainer>

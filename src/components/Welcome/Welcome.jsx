@@ -10,6 +10,7 @@ import {
   TabletWoterDivImg,
   WelcomeDivCantainer,
   WelcomeLi,
+  WelcomeLiSpan,
   WelcomeNavLink,
   WelcomeUl,
   WelcomeWhyDrinkDivCantainer,
@@ -40,15 +41,15 @@ const Welcome = () => {
           <WelcomeUl>
             <WelcomeLi>
               <SvgHabit />
-              <span>Habit drive</span>
+              <WelcomeLiSpan>Habit drive</WelcomeLiSpan>
             </WelcomeLi>
             <WelcomeLi>
               <SvgView />
-              <span>View statistics</span>
+              <WelcomeLiSpan>View statistics</WelcomeLiSpan>
             </WelcomeLi>
             <WelcomeLi>
               <SvgPersonal />
-              <span>Personal rate setting</span>
+              <WelcomeLiSpan>Personal rate setting</WelcomeLiSpan>
             </WelcomeLi>
           </WelcomeUl>
 

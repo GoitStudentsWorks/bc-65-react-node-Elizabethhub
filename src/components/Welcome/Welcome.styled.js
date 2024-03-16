@@ -51,6 +51,9 @@ export const Welcomeh1 = styled.h1`
   @media only screen and (min-width: 768px) {
     width: 100%;
   }
+  @media only screen and (min-width: 1440px) {
+    font-size: 36px;
+  }
 `;
 export const Welcomeh2 = styled.h2`
   width: 220px;
@@ -61,6 +64,9 @@ export const Welcomeh2 = styled.h2`
   @media only screen and (min-width: 768px) {
     width: 100%;
   }
+  @media only screen and (min-width: 1440px) {
+    font-size: 26px;
+  }
 `;
 export const Welcomeh3 = styled.h3`
   font-weight: 500;
@@ -68,6 +74,17 @@ export const Welcomeh3 = styled.h3`
   padding-bottom: 12px;
   @media only screen and (min-width: 768px) {
     width: 100%;
+  }
+  @media only screen and (min-width: 1440px) {
+  }
+`;
+
+export const WelcomeLiSpan = styled.span`
+  font-size: 16px;
+
+  @media only screen and (min-width: 768px) {
+  }
+  @media only screen and (min-width: 1440px) {
   }
 `;
 
@@ -79,6 +96,10 @@ export const WelcomeUl = styled.ul`
   @media only screen and (min-width: 768px) {
     flex-direction: row;
     width: 100%;
+    justify-content: space-between;
+  }
+  @media only screen and (min-width: 1440px) {
+    flex-direction: column;
   }
 `;
 
@@ -159,6 +180,9 @@ export const WelcomeNavLink = styled(NavLink)`
     max-width: 336px;
     padding: 13px;
   }
+  @media only screen and (min-width: 1440px) {
+    max-width: 384px;
+  }
 `;
 
 export const TryTrackerDivContainer = styled.div`
@@ -186,8 +210,8 @@ export const TabletWoterDivImg = styled.div`
   }
 
   position: absolute;
-  left: 50%;
-  top: 36%;
+  left: 51%;
+  top: 43%;
   z-index: -1;
   @media only screen and (min-width: 1440px) {
     display: none;
@@ -201,6 +225,6 @@ export const DesctopWoterDivImg = styled.div`
 
   position: absolute;
   left: 71%;
-  top: 39%;
+  top: 61%;
   z-index: -1;
 `;
