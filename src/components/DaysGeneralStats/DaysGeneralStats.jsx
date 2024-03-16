@@ -1,3 +1,4 @@
+import SvgCross from '../../images/svg/svgModal/SvgCross';
 import { DayStatsContainer, UpperElem } from './DaysGeneralStats.styled';
 
 const DaysGeneralStats = () => {
@@ -8,6 +9,7 @@ const DaysGeneralStats = () => {
           <span>5, </span>
           <span>Marth</span>
         </p>
+        <SvgCross />
       </UpperElem>
       <p>
         Daily norma : <span>1,5 L</span>

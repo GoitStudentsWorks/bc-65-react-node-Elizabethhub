@@ -5,7 +5,7 @@ export const DayStatsContainer = styled.div`
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000;
+  z-index: 2;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -41,6 +41,7 @@ export const DayStatsContainer = styled.div`
 export const UpperElem = styled.div`
   display: flex;
   width: 100%;
+  justify-content: space-between;
 
   p {
     color: #407bff;
