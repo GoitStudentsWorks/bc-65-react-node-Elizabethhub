@@ -8,6 +8,8 @@ const waterSlice = createSlice({
       modalDeleteOpen: false,
       modalAddForm: false,
       modalEditForm: false,
+      isModalDayNorm: false,
+      modalDayNorma: false,
       modalDeleteForm: false,
     },
     isLoading: false,
@@ -17,6 +19,8 @@ const waterSlice = createSlice({
       state.modal.modalIsOpen = payload;
       state.modal.modalAddForm = payload;
       state.modal.modalEditForm = payload;
+      state.modal.isModalDayNorm = payload;
+      state.modal.modalDayNorma = payload;
       state.modal.modalDeleteForm = payload;
       state.modal.modalDeleteOpen = payload;
     },
@@ -32,16 +36,20 @@ const waterSlice = createSlice({
       state.modal.modalDeleteOpen = payload;
       state.modal.modalDeleteForm = payload;
     },
-    extraReducers: (builder) => {
-      // builder.addCase();
+    changeModalDailyNorma: (state, { payload }) => {
+      state.modal.isModalDayNorm = payload;
+      state.modal.modalDayNorma = payload;
     },
+    // extraReducers: (builder) => {
+    //   // builder.addCase();
+    // },
   },
 });
-
 export const waterReducer = waterSlice.reducer;
 export const {
   changeModalAddForm,
   changeModalClose,
   changeModalEditForm,
+  changeModalDailyNorma,
   changeModalDeleteForm,
 } = waterSlice.actions;
