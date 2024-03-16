@@ -27,13 +27,17 @@ import {
 } from './CalendarElement.styled';
 
 const MonthHeader = () => {
+  function changeDirection(comand) {
+    console.log(comand);
+  }
+
   return (
     <DivHeadingWrapper>
       <MonthHeading>Month</MonthHeading>
       <DivMonthSwitcher>
         <button
           className="arrow"
-          //   onClick={() => changeDirection('back')}
+          onClick={() => changeDirection('back')}
           type="button"
         >
           <ArrowLeftCalendarSvg />
@@ -41,7 +45,7 @@ const MonthHeader = () => {
         <p className="month__name">March, 2024</p>
         <button
           className="arrow"
-          //   onClick={() => changeDirection('forward')}
+          onClick={() => changeDirection('forward')}
           type="button"
         >
           <ArrowRightCalendarSvg />
