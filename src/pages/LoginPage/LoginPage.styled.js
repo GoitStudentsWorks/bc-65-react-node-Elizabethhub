@@ -29,4 +29,5 @@ export const SvgContainer = styled.div`
 
 export const ErrorSpan = styled.span`
   color: var(--primary-red);
+  font-size: 14px;
 `;

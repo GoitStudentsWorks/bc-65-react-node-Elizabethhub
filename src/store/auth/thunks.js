@@ -1,0 +1,59 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { api } from '../../api/api';
+import { clearToken, setToken } from '../../helpers/Auth/setToken';
+
+export const signUpThunk = createAsyncThunk(
+  'auth/signUp',
+  async (body, thunkAPI) => {
+    try {
+      const { data } = await api.post('/api/users/register', body);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+export const signInThunk = createAsyncThunk(
+  'auth/signIn',
+  async (body, thunkAPI) => {
+    try {
+      const { data } = await api.post('/api/users/login', body);
+      if (data) {
+        setToken(data.token);
+      }
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const currentThunk = createAsyncThunk(
+  '/api/users/current',
+  async (_, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+
+      if (token) {
+        setToken(token);
+      }
+
+      const { data } = await api('/api/users/current');
+      return data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const logoutThunk = createAsyncThunk(
+  '/api/users/logout',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await api.post('/api/users/logout');
+      clearToken();
+      return data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

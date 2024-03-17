@@ -21,12 +21,19 @@ import SettingModal from '../SettingModal/SettingModal';
 import SettingSVG from '../../images/svg/svgheader/SettingSVG';
 import ClouseSVG from '../../images/svg/svgheader/ClouseSVG';
 import HeaderButtonRotateSVG from '../../images/svg/svgheader/HeaderButtonRotateSVG';
+import { useDispatch } from 'react-redux';
+import { logoutThunk } from '../../store/auth/thunks';
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const HeaderModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHeaderModalOpen, setIsHeaderModalOpen] = useState(false);
   const [isHeaderModalLogOut, setIsHeaderModalLogOut] = useState(false);
   const [isBackdropVisible, setIsBackdropVisible] = useState(false);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -39,8 +46,6 @@ const HeaderModal = () => {
   const toggleHeaderModal = () => {
     setIsHeaderModalOpen((prevState) => !prevState);
     setIsBackdropVisible((prevState) => !prevState);
-
-    console.log();
   };
 
   const LogOutHeaderModal = () => {
@@ -48,6 +53,17 @@ const HeaderModal = () => {
     setIsHeaderModalOpen(false);
     setIsBackdropVisible(false);
   };
+
+  function handleLogout() {
+    dispatch(logoutThunk())
+      .unwrap()
+      .then(() => {
+        navigate('/signin');
+        toast.info('Exit successful!');
+        LogOutHeaderModal();
+      })
+      .catch(() => toast.error('Ooops... Something went wrong!'));
+  }
 
   return (
     <>
@@ -84,7 +100,7 @@ const HeaderModal = () => {
             </SpanLogOutQuestion>
             <DivButtonLogOut>
               <ButtonCancel onClick={LogOutHeaderModal}>Cancel</ButtonCancel>
-              <ButtonLogOut>Log out</ButtonLogOut>
+              <ButtonLogOut onClick={handleLogout}>Log out</ButtonLogOut>
             </DivButtonLogOut>
           </HeaderModalLogOutContainer>
         </DivTest>
