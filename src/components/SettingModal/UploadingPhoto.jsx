@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import defaultImage from './PhotoInput.jpg';
-import SVGInput from './SVGTEST';
+// import SVGInput from './SVGInput';
 import PersonIcon from './SVG/PersonIcon';
+import Upload from './SVG/Upload';
 
 const InputImg = styled.img`
   width: 80px;
@@ -40,7 +41,7 @@ const PInput = styled.p`
   color: #407bff;
 `;
 
-const TestPhoto = () => {
+const UploadingPhoto = ({ register }) => {
   const [imageSrc, setImageSrc] = useState(defaultImage);
 
   const handleFileChange = (event) => {
@@ -60,6 +61,8 @@ const TestPhoto = () => {
   return (
     <InputContainer htmlFor="fileInput">
       <HiddenInput
+        {...register('photo')}
+        name="photo"
         id="fileInput"
         type="file"
         accept="image/*"
@@ -68,17 +71,18 @@ const TestPhoto = () => {
       {imageSrc !== defaultImage ? (
         <DivIconInput>
           <InputImg src={imageSrc} alt="Uploaded image" />
-          <PInput>Фотографія завантажена</PInput>
+          <PInput>Photo uploaded</PInput>
         </DivIconInput>
       ) : (
         <DivIconInput>
           {/* <InputImg src={defaultImage} alt="Default image" /> */}
           <PersonIcon />
-          <SVGInput />
+          <Upload />
+          <PInput>Upload a photo</PInput>
         </DivIconInput>
       )}
     </InputContainer>
   );
 };
 
-export default TestPhoto;
+export default UploadingPhoto;
