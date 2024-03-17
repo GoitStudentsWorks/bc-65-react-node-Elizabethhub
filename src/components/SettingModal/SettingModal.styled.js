@@ -158,8 +158,6 @@ export const BlockWrap2452 = styled.div`
 `;
 
 export const FildsTitle = styled.h2`
-  /* margin-top: 24px; */
-  /* margin-bottom: 12px; */
   font-size: 18px;
   font-weight: 500;
   line-height: 1.11;
@@ -171,10 +169,6 @@ export const RadioGroup = styled.div`
 `;
 
 export const BigLabel = styled.label`
-  /* display: flex;
-  flex-direction: column; */
-  /* margin-top: 24px; */
-  /* margin-bottom: 8px; */
   font-size: 18px;
   font-weight: 500;
   line-height: 1.11;
@@ -182,11 +176,7 @@ export const BigLabel = styled.label`
   color: var(--black);
 `;
 export const GenderLabel = styled.label`
-  /* display: flex; */
-  /* flex-direction: column; */
   position: relative;
-  /* margin-top: 12px; */
-  /* margin-bottom: 8px; */
   margin-right: 24px;
   font-size: 16px;
   font-weight: 400;
@@ -196,12 +186,6 @@ export const GenderLabel = styled.label`
 `;
 
 export const SmallLabel = styled.label`
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* position: relative; */
-  /* margin-top: 12px; */
-  /* margin-bottom: 8px; */
-  /* margin-right: 24px; */
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
@@ -209,43 +193,16 @@ export const SmallLabel = styled.label`
   color: var(--black);
 `;
 export const Radio = styled.input`
-  /* display: flex;
-  flex-direction: column; */
   margin-right: 8px;
-  /* border-color: blue; */
-  /* font-size: 16px;
-  font-weight: 400;
-  line-height: 1.25;
-  font-family: 'Roboto', sans-serif;
-  color: #2f2f2f; */
 `;
 export const RadioWrap = styled.div`
   position: absolute;
-  top: 2px;
+  top: 0px;
   left: 0px;
-  /* margin-right: 8px;
-  border-color: blue; */
-  /* font-size: 16px;
-  font-weight: 400;
-  line-height: 1.25;
-  font-family: 'Roboto', sans-serif;
-  color: #2f2f2f; */
 `;
-// export const RadioMan = styled.div`
-//   position: absolute;
-//   top: 0px;
-//   left: 0px;
-//   margin-right: 8px;
-//   border-color: blue;
-//   font-size: 16px;
-//   font-weight: 400;
-//   line-height: 1.25;
-//   font-family: 'Roboto', sans-serif;
-//   color: #2f2f2f;
-// `;
+
 export const InputFild = styled.input`
-  /* margin-bottom: 12px; */
-  border: 1px solid #d7e3ff;
+  border: 1px solid var(--primary-mediumblue);
   border-radius: 6px;
   padding: 12px 10px;
   width: 100%;
@@ -264,9 +221,6 @@ export const InputFild = styled.input`
     line-height: 1.25;
     font-family: 'Roboto', sans-serif;
     color: var(--modal-light-blue);
-    /* &:focus {
-      caret-color: #2f2f2f;
-    } */
   }
 
   @media only screen and (min-width: 1440px) {
@@ -347,8 +301,6 @@ export const SaveButton = styled.button`
     height: 44px;
     align-self: flex-end;
   }
-  /* @media only screen and (min-width: 1440px) {
-  } */
 `;
 
 export const ErrorSpan = styled.span`
@@ -358,14 +310,3 @@ export const ErrorSpan = styled.span`
   line-height: 1.29;
   font-family: 'Roboto', sans-serif;
 `;
-// export const ErrorText = styled.p`
-//   color: #ff868d;
-
-//   font-size: 14px;
-//   padding-left: 30px;
-//   display: block;
-//   height: 14px;
-//   @media only screen and (max-width: 555px) {
-//     font-size: 12px;
-//   }
-// `;

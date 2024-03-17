@@ -26,9 +26,9 @@ import {
   GenderLabel,
   ErrorSpan,
 } from './SettingModal.styled';
-import SvgClose from './SVG/Close';
-import RadioChecked from './SVG/RadioChecked';
-import RadioUnChecked from './SVG/RadioUnChecked';
+import SvgClose from '../../images/SettingModal/Close';
+import RadioChecked from '../../images/SettingModal/RadioChecked';
+import RadioUnChecked from '../../images/SettingModal/RadioUnChecked';
 import UploadingPhoto from './UploadingPhoto';
 import { useForm } from 'react-hook-form';
 import OpenPassEye from '../../images/AuthImg/OpenPassEye';
