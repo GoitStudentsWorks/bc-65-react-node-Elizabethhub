@@ -1,29 +1,99 @@
-import { DivContentWrapper } from './CalendarElement.styled';
-import MonthCalendar from './MonthCalendar';
-import MonthHeader from './MothHeader';
+import { useState } from 'react';
+import {
+  ContentWrapperCalendar,
+  HeadingWrapper,
+  MonthSwitcher,
+  DayStyles,
+  MonthHeading,
+  MonthList,
+} from './CalendarElement.styled';
+import ArrowLeftCalendarSvg from '../../images/svg/svgCalendar/ArrowLeftCalendarSvg';
+import ArrowRightCalendarSvg from '../../images/svg/svgCalendar/ArrowRightCalendarSvg';
+import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
+import { useDispatch, useSelector } from 'react-redux';
+import { showDaysGenStats } from '../../store/water/selectors';
+import { changeShowDaysStats } from '../../store/water/waterSlice';
 
 const CalendarElement = () => {
-  const today = new Date();
-  console.log(' today: ', today);
-  const currentMonth = today.getMonth();
-  console.log('currentMonth: ', currentMonth);
+  const showDaysStats = useSelector(showDaysGenStats);
+  const dispatch = useDispatch();
+  const [currentDate, setCurrentDate] = useState(new Date());
+
+  const changeMonth = (direction) => {
+    setCurrentDate((prevDate) => {
+      const newDate = new Date(prevDate);
+      if (direction === 'back') {
+        newDate.setMonth(prevDate.getMonth() - 1);
+      } else {
+        newDate.setMonth(prevDate.getMonth() + 1);
+      }
+      return newDate;
+    });
+  };
+
   const daysInMonth = new Date(
-    today.getFullYear(),
-    currentMonth + 1,
+    currentDate.getFullYear(),
+    currentDate.getMonth() + 1,
     0
   ).getDate();
-  console.log('daysInMonth: ', daysInMonth);
 
-  let monthData = [];
+  const monthData = [];
   for (let day = 1; day <= daysInMonth; day++) {
     monthData.push({ day, percentage: 100 });
   }
 
+  const isToday = (day) => {
+    const today = new Date();
+    return (
+      day === today.getDate() &&
+      currentDate.getMonth() === today.getMonth() &&
+      currentDate.getFullYear() === today.getFullYear()
+    );
+  };
+
   return (
-    <DivContentWrapper>
-      <MonthHeader currentMonth={currentMonth} />
-      <MonthCalendar monthData={monthData} />
-    </DivContentWrapper>
+    <ContentWrapperCalendar>
+      <HeadingWrapper>
+        <MonthHeading>Month</MonthHeading>
+        <MonthSwitcher>
+          <button
+            className="arrow"
+            onClick={() => changeMonth('back')}
+            type="button"
+          >
+            <ArrowLeftCalendarSvg />
+          </button>
+          <p className="month__name">
+            {currentDate.toLocaleString('en-us', { month: 'long' })},&nbsp;
+            {currentDate.getFullYear()}
+          </p>
+          <button
+            className="arrow"
+            onClick={() => changeMonth('forward')}
+            type="button"
+          >
+            <ArrowRightCalendarSvg />
+          </button>
+        </MonthSwitcher>
+      </HeadingWrapper>
+
+      <MonthList>
+        {showDaysStats && <DaysGeneralStats />}
+        {monthData.map((item) => (
+          <DayStyles
+            key={item.day}
+            onClick={() => {
+              dispatch(changeShowDaysStats(true));
+            }}
+          >
+            <span className={`day ${isToday(item.day) ? 'today' : ''}`}>
+              {item.day}
+            </span>
+            <span className="percentage">{item.percentage}%</span>
+          </DayStyles>
+        ))}
+      </MonthList>
+    </ContentWrapperCalendar>
   );
 };
 
