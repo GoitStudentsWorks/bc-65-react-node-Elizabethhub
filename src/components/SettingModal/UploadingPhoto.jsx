@@ -40,7 +40,6 @@ const UploadingPhoto = ({ register }) => {
   const [imageSrc, setImageSrc] = useState('');
 
   const handleFileChange = (event) => {
-    console.log(event);
     const file = event.target.files[0];
     const reader = new FileReader();
 
