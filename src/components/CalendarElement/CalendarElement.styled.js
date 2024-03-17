@@ -7,14 +7,14 @@ export const ContentWrapperCalendar = styled.div`
 export const MonthHeading = styled.h3`
   font-size: 24px;
   font-weight: 500;
-  line-height: 30px;
+  line-height: 1.25;
   letter-spacing: 0em;
   text-align: left;
   color: #2f2f2f;
 
   @media screen and (min-width: 768px) {
     font-size: 26px;
-    line-height: 32px;
+    line-height: 1.23;
   }
 `;
 
@@ -79,12 +79,12 @@ export const DayStyles = styled.li`
   font-weight: 400;
   cursor: pointer;
   letter-spacing: 0em;
+  &.today {
+    border: 4px solid #ef5050;
+  }
 
   span {
     display: block;
-    &.today {
-      border: 2px solid #ef5050;
-    }
   }
   .day {
     width: 32px;
@@ -96,14 +96,14 @@ export const DayStyles = styled.li`
     border-radius: 50%;
     border: none;
 
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 14px;
+    line-height: 1.29;
 
     @media screen and (min-width: 768px) {
       width: 34px;
       height: 34px;
-      font-size: 14px;
-      line-height: 18px;
+      font-size: 16px;
+      line-height: 1.25;
     }
   }
   .percentage {

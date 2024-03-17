@@ -85,10 +85,9 @@ const CalendarElement = () => {
             onClick={() => {
               dispatch(changeShowDaysStats(true));
             }}
+            className={`${isToday(item.day) ? 'today' : ''}`}
           >
-            <span className={`day ${isToday(item.day) ? 'today' : ''}`}>
-              {item.day}
-            </span>
+            <span className="day">{item.day}</span>
             <span className="percentage">{item.percentage}%</span>
           </DayStyles>
         ))}

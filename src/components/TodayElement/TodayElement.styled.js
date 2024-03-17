@@ -5,7 +5,9 @@ export const ListWrapper = styled.div`
 
   h2 {
     color: #2f2f2f;
-    margin-bottom: 16px;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.23;
 
     @media screen and (min-width: 768px) {
       font-size: 26px;
