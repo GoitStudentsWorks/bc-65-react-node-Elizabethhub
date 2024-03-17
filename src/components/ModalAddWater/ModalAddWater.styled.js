@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export const StyledModalAddBackdrop = styled.div`
   position: fixed;
@@ -98,6 +99,7 @@ export const StyledModalAddTracker = styled.div`
 
   button {
     border: 1px solid var(--modal-light-blue);
+    outline: transparent;
     border-radius: 30px;
     width: 44px;
     height: 44px;
@@ -140,9 +142,16 @@ export const StyledModalAddInput = styled.input`
   border-radius: 6px;
   border: 1px solid var(--primary-mediumblue);
   padding: 12px 10px 12px 10px;
+  color: var(--blue);
   &::placeholder {
     color: var(--blue);
     font-size: 16px;
+  }
+  &:hover,
+  &:focus {
+    color: var(--blue);
+    border: 1px solid var(--primary-mediumblue);
+    outline: transparent;
   }
   @media only screen and (min-width: 768px) {
     width: 656px;
@@ -199,3 +208,101 @@ export const StyledModalAddSave = styled.div`
     }
   }
 `;
+
+export const ModalAddDateWrap = styled.div`
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  input {
+    width: 120px;
+    border-radius: 6px;
+    border: 1px solid var(--primary-mediumblue);
+    padding: 12px 10px 12px 10px;
+    color: var(--blue);
+    &::placeholder {
+      color: var(--blue);
+      font-size: 16px;
+    }
+    &:hover,
+    &:focus {
+      color: var(--blue);
+      border: 1px solid var(--primary-mediumblue);
+      outline: transparent;
+    }
+    @media only screen and (min-width: 768px) {
+      width: 656px;
+    }
+    @media only screen and (min-width: 1280px) {
+      width: 544px;
+    }
+  }
+`;
+
+export const TimeGlobalStyles = createGlobalStyle`
+  .react-datepicker-wrapper {
+    position: relative;
+     width: 100%;
+  }
+
+.react-datepicker__triangle {
+    visibility: hidden;
+  }
+
+.react-datepicker.react-datepicker--time-only {
+    position: absolute;
+    font-size: 12px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-1%, -10%);
+    width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary-mediumblue);
+    border-radius: 10px;
+    border:1px solid var(--modal-light-blue);
+    color:var(--blue);
+  }
+
+.react-datepicker__header.react-datepicker__header--time.react-datepicker__header--time--only{
+  background-color: var(--blue);
+  color:var(--white);
+}
+.react-datepicker__header .react-datepicker-time__header{
+  color:var(--white);
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar {
+  width: 12px;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-track {
+  background-color: var(--primary-mediumblue);
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
+  background-color: var(--white);
+  border-radius: 6px;
+    background: var(--white);
+    border: solid 1px var(--blue);
+    height: 20px;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected{
+  background-color: var(--blue) !important;
+    color: var(--white);
+    font-weight: bold;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover{
+      padding-left: 16px;
+      border-left: 2px solid var(--primary-orange);
+      transition: all 0.3s ease;
+}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item{
+  transition: all 0.5s ease;
+}
+  `;

@@ -46,6 +46,10 @@ export const HeaderModalContainer = styled.div`
     opacity 0.3s ease,
     top 0.3s ease;
   z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
 `;
 
 export const HeaderModalLogOutContainer = styled.div`
@@ -82,7 +86,7 @@ export const DivHeaderModalContainer = styled.div`
   position: relative;
 `;
 export const ButtonHeaderModalCancel = styled.button``;
-export const ButtonLogOut = styled.button`
+export const ButtonCancel = styled.button`
   background: #d7e3ff;
   border: none;
   border-radius: 10px;
@@ -99,24 +103,57 @@ export const ButtonLogOut = styled.button`
     color 0.3s;
 
   &:hover {
-    background: #ef5050;
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-    color: #fff;
+    color: #407bff;
   }
 
   &:focus {
     outline: none;
-    background: #ef5050;
+
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-    color: #fff;
+    color: #407bff;
   }
 
   &:active {
-    background: #ef5050;
     box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.34);
-    color: #fff;
+    color: #407bff;
   }
 `;
+
+export const ButtonLogOut = styled.button`
+  background: #d7e3ff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 30px;
+  width: 160px;
+  height: 44px;
+  font-weight: 500;
+  font-size: 18px;
+  text-align: center;
+  color: #fff;
+  background: #ef5050;
+  transition:
+    background 0.3s,
+    box-shadow 0.3s,
+    color 0.3s;
+
+  &:hover {
+    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  }
+
+  &:focus {
+    outline: none;
+
+    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  }
+
+  &:active {
+    box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.34);
+  }
+`;
+
+// background: #ef5050;
+
 export const DivTest = styled.div`
   /* display: none; */
 `;
@@ -133,4 +170,23 @@ export const SpanLogOut = styled.span`
 export const SpanLogOutQuestion = styled.span`
   font-size: 18px;
   font-weight: 500;
+`;
+export const HeaderModalButton = styled.button`
+  display: flex;
+  gap: 8px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  height: 20px;
+`;
+
+export const HeaderModalButtonSpan = styled.span`
+  font-weight: 400;
+  font-size: 16px;
+
+  color: #407bff;
 `;

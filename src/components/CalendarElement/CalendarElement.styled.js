@@ -22,6 +22,7 @@ export const DivHeadingWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
 `;
 
 export const DivMonthSwitcher = styled.div`
@@ -33,7 +34,6 @@ export const DivMonthSwitcher = styled.div`
     border: none;
     padding: 0;
     width: 14px;
-    height: 14px;
     cursor: pointer;
     transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
