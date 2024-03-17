@@ -1,8 +1,8 @@
 const PersonIcon = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="33%"
-    height="33%"
+    width="80"
+    height="80"
     fill="none"
     viewBox="0 0 24 24"
     {...props}

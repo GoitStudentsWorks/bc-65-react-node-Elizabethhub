@@ -2,8 +2,8 @@
 const Upload = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width={16}
-    height={16}
+    width={14}
+    height={14}
     fill="none"
     {...props}
   >
@@ -11,7 +11,7 @@ const Upload = (props) => (
       stroke="#407BFF"
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="M2 11v1.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V11M5 5l3-3m0 0 3 3M8 2v9"
+      d="M1 10v1.5A1.5 1.5 0 0 0 2.5 13h9a1.5 1.5 0 0 0 1.5-1.5V10M4 4l3-3m0 0 3 3M7 1v9"
     />
   </svg>
 );
