@@ -22,6 +22,8 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useState } from 'react';
 import OpenPassEye from '../../images/AuthImg/OpenPassEye';
+import { useDispatch } from 'react-redux';
+import { signInThunk } from '../../store/auth/thunks';
 
 const schema = yup
   .object({
@@ -44,6 +46,8 @@ const LoginPage = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
   const [eyePass, setEyePass] = useState(false);
 
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -55,7 +59,7 @@ const LoginPage = () => {
   });
 
   function submit(data) {
-    console.log(data);
+    dispatch(signInThunk(data));
   }
 
   function showPass() {
