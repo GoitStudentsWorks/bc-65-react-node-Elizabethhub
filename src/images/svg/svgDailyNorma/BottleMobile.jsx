@@ -1,8 +1,9 @@
 import React from 'react';
+import { BottleMobileSvg } from '../../../components/DailyNorma/WaterRatio.styled';
 
 function BottleMobile() {
   return (
-    <svg
+    <BottleMobileSvg
       xmlns="http://www.w3.org/2000/svg"
       width="280"
       height="208"
@@ -90,7 +91,7 @@ function BottleMobile() {
           <path fill="#fff" d="M0 0H280V208H0z"></path>
         </clipPath>
       </defs>
-    </svg>
+    </BottleMobileSvg>
   );
 }
 
