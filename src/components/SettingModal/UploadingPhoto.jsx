@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import defaultImage from './PhotoInput.jpg';
-// import SVGInput from './SVGInput';
-import PersonIcon from './SVG/PersonIcon';
-import Upload from './SVG/Upload';
+import PersonIcon from '../../images/SettingModal/PersonIcon';
+import Upload from '../../images/SettingModal/Upload';
 
 const InputImg = styled.img`
   width: 80px;
@@ -15,7 +13,6 @@ const InputContainer = styled.label`
   position: relative;
   display: inline-block;
   cursor: pointer;
-  /* margin-top: 50px; */
 `;
 
 const HiddenInput = styled.input`
@@ -27,10 +24,8 @@ const HiddenInput = styled.input`
 `;
 
 const DivIconInput = styled.div`
-  /* display: flex; */
   display: flex;
   flex-direction: row;
-  /* justify-content: center; */
   align-items: center;
   gap: 8px;
 `;
@@ -42,10 +37,9 @@ const PInput = styled.p`
 `;
 
 const UploadingPhoto = ({ register }) => {
-  const [imageSrc, setImageSrc] = useState(defaultImage);
+  const [imageSrc, setImageSrc] = useState('');
 
   const handleFileChange = (event) => {
-    console.log(event);
     const file = event.target.files[0];
     const reader = new FileReader();
 
@@ -68,14 +62,13 @@ const UploadingPhoto = ({ register }) => {
         accept="image/*"
         onChange={handleFileChange}
       />
-      {imageSrc !== defaultImage ? (
+      {imageSrc !== '' ? (
         <DivIconInput>
           <InputImg src={imageSrc} alt="Uploaded image" />
           <PInput>Photo uploaded</PInput>
         </DivIconInput>
       ) : (
         <DivIconInput>
-          {/* <InputImg src={defaultImage} alt="Default image" /> */}
           <PersonIcon />
           <Upload />
           <PInput>Upload a photo</PInput>
