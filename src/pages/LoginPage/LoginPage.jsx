@@ -24,6 +24,8 @@ import { useState } from 'react';
 import OpenPassEye from '../../images/AuthImg/OpenPassEye';
 import { useDispatch } from 'react-redux';
 import { signInThunk } from '../../store/auth/thunks';
+import { useNavigate } from 'react-router';
+import { toast } from 'react-toastify';
 
 const schema = yup
   .object({
@@ -46,6 +48,8 @@ const LoginPage = () => {
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
   const [eyePass, setEyePass] = useState(false);
 
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const {
@@ -59,7 +63,13 @@ const LoginPage = () => {
   });
 
   function submit(data) {
-    dispatch(signInThunk(data));
+    dispatch(signInThunk(data))
+      .unwrap()
+      .then((res) => {
+        toast.success(`Welcome ${res.user.username}`);
+        navigate('/home');
+      })
+      .catch((err) => toast.error(err));
   }
 
   function showPass() {
