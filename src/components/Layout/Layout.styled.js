@@ -21,6 +21,11 @@ export const Container = styled.div`
     padding: 0 112px;
   }
 `;
+
+export const Main = styled.main`
+  margin-top: 20px;
+`;
+
 export const DivImgContainer = styled.div`
   z-index: -1;
   position: fixed;

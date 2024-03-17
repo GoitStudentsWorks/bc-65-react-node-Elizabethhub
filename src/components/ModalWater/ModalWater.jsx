@@ -12,7 +12,7 @@ import {
   StyledModalAddBackdrop,
   StyledModalAddClose,
   StyledModalAddWrapper,
-} from '../ModalAddWater/ModalAddWaterStyled.js';
+} from '../ModalAddWater/ModalAddWater.styled.js';
 import ModalEditWater from '../ModalEditWater/ModalEditWater.jsx';
 
 const ModalWater = () => {

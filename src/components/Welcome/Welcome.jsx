@@ -10,6 +10,7 @@ import {
   TabletWoterDivImg,
   WelcomeDivCantainer,
   WelcomeLi,
+  WelcomeLiSpan,
   WelcomeNavLink,
   WelcomeUl,
   WelcomeWhyDrinkDivCantainer,
@@ -19,9 +20,9 @@ import {
   Welcomeh1,
   Welcomeh2,
   Welcomeh3,
-} from './WelcomStyled';
+} from './Welcome.styled';
 
-const Welcom = () => {
+const Welcome = () => {
   return (
     <>
       <DivImgContainerWelcome />
@@ -40,15 +41,15 @@ const Welcom = () => {
           <WelcomeUl>
             <WelcomeLi>
               <SvgHabit />
-              <span>Habit drive</span>
+              <WelcomeLiSpan>Habit drive</WelcomeLiSpan>
             </WelcomeLi>
             <WelcomeLi>
               <SvgView />
-              <span>View statistics</span>
+              <WelcomeLiSpan>View statistics</WelcomeLiSpan>
             </WelcomeLi>
             <WelcomeLi>
               <SvgPersonal />
-              <span>Personal rate setting</span>
+              <WelcomeLiSpan>Personal rate setting</WelcomeLiSpan>
             </WelcomeLi>
           </WelcomeUl>
 
@@ -85,4 +86,4 @@ const Welcom = () => {
   );
 };
 
-export default Welcom;
+export default Welcome;

@@ -1,20 +1,26 @@
 import { useState } from 'react';
-import { HeaderButton } from './HeaderStyled';
+import { HeaderButton } from './Header.styled';
 import HeaderSVGPhoto from '../../images/svg/svgheader/HeaderSVGPhoto';
 import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
 
 import {
   Backdrop,
+  ButtonCancel,
   ButtonLogOut,
   DivButtonLogOut,
   DivHeaderModalContainer,
   DivTest,
+  HeaderModalButton,
+  HeaderModalButtonSpan,
   HeaderModalContainer,
   HeaderModalLogOutContainer,
   SpanLogOut,
   SpanLogOutQuestion,
 } from './HeaderModalStyled';
 import SettingModal from '../SettingModal/SettingModal';
+import SettingSVG from '../../images/svg/svgheader/SettingSVG';
+import ClouseSVG from '../../images/svg/svgheader/ClouseSVG';
+import HeaderButtonRotateSVG from '../../images/svg/svgheader/HeaderButtonRotateSVG';
 
 const HeaderModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,7 +45,7 @@ const HeaderModal = () => {
 
   const LogOutHeaderModal = () => {
     setIsHeaderModalLogOut((prevState) => !prevState);
-
+    setIsHeaderModalOpen(false);
     setIsBackdropVisible(false);
   };
 
@@ -54,12 +60,18 @@ const HeaderModal = () => {
       )}
       <HeaderButton onClick={toggleHeaderModal}>
         <HeaderSVGPhoto />
-        <HeaderButtonSVG />
+        {isHeaderModalOpen ? <HeaderButtonRotateSVG /> : <HeaderButtonSVG />}
       </HeaderButton>
       <DivHeaderModalContainer>
         <HeaderModalContainer $visible={isHeaderModalOpen}>
-          <button onClick={openModal}>Setting</button>
-          <button onClick={LogOutHeaderModal}>Close</button>
+          <HeaderModalButton onClick={openModal}>
+            <SettingSVG />
+            <HeaderModalButtonSpan>Setting</HeaderModalButtonSpan>
+          </HeaderModalButton>
+          <HeaderModalButton onClick={LogOutHeaderModal}>
+            <ClouseSVG />
+            <HeaderModalButtonSpan>Log out</HeaderModalButtonSpan>
+          </HeaderModalButton>
         </HeaderModalContainer>
       </DivHeaderModalContainer>
       {isHeaderModalLogOut && (
@@ -71,7 +83,7 @@ const HeaderModal = () => {
               Do you really want to leave?
             </SpanLogOutQuestion>
             <DivButtonLogOut>
-              <ButtonLogOut onClick={LogOutHeaderModal}>Cancel</ButtonLogOut>
+              <ButtonCancel onClick={LogOutHeaderModal}>Cancel</ButtonCancel>
               <ButtonLogOut>Log out</ButtonLogOut>
             </DivButtonLogOut>
           </HeaderModalLogOutContainer>
