@@ -18,7 +18,7 @@ export const RangeInputTitl = styled.p`
 export const RangePercentWrap = styled.div`
   display: flex;
   align-items: center;
-  gap: 97px;
+  justify-content: space-between;
   @media only screen and (min-width: 768px) {
     gap: 128px;
   }
@@ -47,13 +47,17 @@ export const RangeSpanLine = styled.span`
 
 export const RangeButton = styled.button`
   margin-top: 16px;
-  width: 280px;
+  /* width: 280px; */
+  width: 100%;
   height: 36px;
   border: none;
   background-color: #407bff;
   color: #ffffff;
   border-radius: 10px;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 13px;
   @media only screen and (min-width: 768px) {
     width: 336px;
     height: 44px;
@@ -66,10 +70,13 @@ export const RangeButton = styled.button`
   }
 `;
 
+export const Svg = styled.svg``;
+
 export const StyledRangeInput = styled.input`
   -webkit-appearance: none;
-  width: 256px;
-  height: 14px;
+  /* width: 256px; */
+  width: 100%;
+  height: 8px;
   border-radius: 10px;
   border: 1px;
 
@@ -99,22 +106,6 @@ export const StyledRangeInput = styled.input`
   }
 `;
 
-export const Svg = styled.svg`
-  position: absolute;
-  top: 8px;
-  left: 76px;
-  width: 18px;
-  height: 18px;
-  @media only screen and (min-width: 768px) {
-    top: 12px;
-    left: 105px;
-  }
-  @media only screen and (min-width: 1440px) {
-    top: 13px;
-    left: 23px;
-  }
-`;
-
 export const Wrp = styled.section`
   .svg-bottle {
     position: relative;
@@ -123,5 +114,11 @@ export const Wrp = styled.section`
   @media only screen and (min-width: 1440px) {
     /* just for test */
     width: 600px;
+  }
+`;
+
+export const BottleMobileSvg = styled.svg`
+  @media only screen and (max-width: 768px) {
+    width: 100%;
   }
 `;
