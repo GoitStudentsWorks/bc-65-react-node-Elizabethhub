@@ -64,8 +64,13 @@ const CalendarElement = () => {
     }
   }
 
+  const rootElement = document.getElementById('root');
+  rootElement.addEventListener('click', (event) => {
+    closeDayStat(event);
+  });
+
   return (
-    <ContentWrapperCalendar onClick={() => closeDayStat(event)}>
+    <ContentWrapperCalendar>
       <HeadingWrapper>
         <MonthHeading>Month</MonthHeading>
         <MonthSwitcher>
