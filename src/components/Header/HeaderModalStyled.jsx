@@ -239,12 +239,5 @@ export const HeaderUserName = styled.span`
   padding-right: 8px;
 `;
 
-export const Test1 = styled.div`
-  position: absolute;
-`;
-export const Test2 = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  z-index: 999;
-`;
+export const Test1 = styled.div``;
+export const Test2 = styled.div``;

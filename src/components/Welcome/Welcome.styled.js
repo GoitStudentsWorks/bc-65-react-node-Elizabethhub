@@ -30,7 +30,8 @@ export const DivImgContainerWelcome = styled.div`
 export const WelcomeDivCantainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 165px;
+
+  gap: 40px;
   @media only screen and (min-width: 768px) {
     gap: 60px;
   }
