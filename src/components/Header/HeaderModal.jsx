@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { HeaderButton } from './Header.styled';
 import HeaderSVGPhoto from '../../images/svg/svgheader/HeaderSVGPhoto';
 import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
@@ -111,27 +111,24 @@ const HeaderModal = () => {
           </HeaderModalButton>
         </HeaderModalContainer>
       </DivHeaderModalContainer>
-      {isHeaderModalLogOut && (
-        <>
+
+      <>
+        <Test1 $visible={isHeaderModalLogOut}>
           <Backdrop onClick={LogOutHeaderModal} $visible={isBackdropVisible} />
-          <Test1>
-            <Test2>
-              <HeaderModalLogOutContainer $visible={isHeaderModalLogOut}>
-                <SpanLogOut>Log out</SpanLogOut>
-                <SpanLogOutQuestion>
-                  Do you really want to leave?
-                </SpanLogOutQuestion>
-                <DivButtonLogOut>
-                  <ButtonLogOut onClick={LogOutHeaderModal}>
-                    Cancel
-                  </ButtonLogOut>
-                  <ButtonLogOut onClick={handleLogout}>Log out</ButtonLogOut>
-                </DivButtonLogOut>
-              </HeaderModalLogOutContainer>
-            </Test2>
-          </Test1>
-        </>
-      )}
+          <Test2>
+            <HeaderModalLogOutContainer $visible={isHeaderModalLogOut}>
+              <SpanLogOut>Log out</SpanLogOut>
+              <SpanLogOutQuestion>
+                Do you really want to leave?
+              </SpanLogOutQuestion>
+              <DivButtonLogOut>
+                <ButtonLogOut onClick={LogOutHeaderModal}>Cancel</ButtonLogOut>
+                <ButtonLogOut onClick={handleLogout}>Log out</ButtonLogOut>
+              </DivButtonLogOut>
+            </HeaderModalLogOutContainer>
+          </Test2>
+        </Test1>
+      </>
     </>
   );
 };
