@@ -35,3 +35,12 @@ export const parserToNumber = (str) => {
   const toPoint = str.split(',').join('.');
   return +toPoint;
 };
+
+export function handleInput(e, setterFunction) {
+  const letterLimit = e.target.name === 'mass' ? 6 : 4;
+  const inputQuery = e.target.value;
+  const regex = /^-?[0-9]*\.?[0-9]*$/;
+  if (regex.test(inputQuery)) {
+    setterFunction(inputQuery.replace(/^0(?=\d)/g, '').slice(0, letterLimit));
+  }
+}

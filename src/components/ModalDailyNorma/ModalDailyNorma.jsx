@@ -7,6 +7,7 @@ import {
 } from '../../store/water/waterSlice.js';
 import {
   genderDescription,
+  handleInput,
   parserToNumber,
   radioInputs,
   textData,
@@ -23,6 +24,7 @@ import {
 import SvgCross from '../../images/svg/svgModal/SvgCross';
 import SvgRadioChecked from '../../images/svg/svgModal/SvgRadioChecked.jsx';
 import SvgRadio from '../../images/svg/svgModal/SvgRadio.jsx';
+import FormulaField from './FormulaField.jsx';
 
 const ModalDailyNorma = () => {
   const isModalOpen = useSelector(isModalDayNorm);
@@ -32,11 +34,7 @@ const ModalDailyNorma = () => {
   const [massQuery, setMassQuery] = useState('');
   const [timeQuery, setTimeQuery] = useState('');
   const [waterQuery, setWaterQuery] = useState('');
-
   const [volume, setVolume] = useState('');
-  const handleGenderChange = (event) => {
-    setGenderValue(event.target.value);
-  };
 
   const clickBackdrop = (e) => {
     if (e.target === e.currentTarget) {
@@ -57,26 +55,19 @@ const ModalDailyNorma = () => {
     };
   }, [dispatch, isModalOpen]);
 
+  const handleGenderChange = (event) => {
+    setGenderValue(event.target.value);
+  };
   const handleMassInput = (e) => {
-    const inputQuery = e.target.value;
-    const regex = /^-?[0-9]*\.?[0-9]*$/;
-    if (regex.test(inputQuery)) {
-      setMassQuery(inputQuery.replace(/^0(?=\d)/g, '').slice(0, 4));
-    }
+    handleInput(e, setMassQuery);
   };
 
   const handleTimeInput = (e) => {
-    const inputQuery = e.target.value;
-    const regex = /^-?[0-9]*\.?[0-9]*$/;
-    if (regex.test(inputQuery)) {
-      setTimeQuery(inputQuery.replace(/^0(?=\d)/g, '').slice(0, 4));
-    }
+    handleInput(e, setTimeQuery);
   };
+
   const handleWaterInput = (e) => {
-    const regex = /^-?[0-9]*\.?[0-9]*$/;
-    if (regex.test(e.target.value)) {
-      setWaterQuery(e.target.value.replace(/^0(?=\d)/g, '').slice(0, 4));
-    }
+    handleInput(e, setWaterQuery);
   };
 
   useEffect(() => {
@@ -84,7 +75,8 @@ const ModalDailyNorma = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [massQuery, timeQuery, genderValue]);
 
-  const { hint, time, rate, weight, waterAmount, howMuch } = textData;
+  const { time, weight, waterAmount, howMuch } = textData;
+
   const calculateVolume = () => {
     let volume = 0;
     genderDescription.forEach((genderData) => {
@@ -111,26 +103,7 @@ const ModalDailyNorma = () => {
           >
             <SvgCross />
           </StyledCross>
-          <div>
-            <ul>
-              {genderDescription.map((genderData) => {
-                const { gender, massRate, timeRate } = genderData;
-
-                return (
-                  <li className="formula" key={`${gender}+${massRate}`}>
-                    <p>
-                      For {gender}:
-                      <span>{` V=(M*${massRate}) + (T*${timeRate})`}</span>
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <p className="hint">
-            <span className="star">*</span> {hint}
-          </p>
-          <h3>{rate}</h3>
+          <FormulaField />
           <RadioGroup
             row
             aria-labelledby="radio-buttons"
@@ -176,6 +149,7 @@ const ModalDailyNorma = () => {
             <p className="no-margin">{weight}</p>
             <input
               type="text"
+              name="mass"
               value={massQuery}
               onChange={handleMassInput}
               placeholder="0"
@@ -185,6 +159,7 @@ const ModalDailyNorma = () => {
             <p className="no-margin">{time}</p>
             <input
               type="text"
+              name="time"
               value={timeQuery}
               onChange={handleTimeInput}
               placeholder="0"
@@ -198,6 +173,7 @@ const ModalDailyNorma = () => {
             <h3>{howMuch}</h3>
             <input
               type="text"
+              name="waterVolume"
               value={waterQuery}
               onChange={handleWaterInput}
               placeholder="0"
