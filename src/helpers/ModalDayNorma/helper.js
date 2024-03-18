@@ -44,3 +44,17 @@ export function handleInput(e, setterFunction) {
     setterFunction(inputQuery.replace(/^0(?=\d)/g, '').slice(0, letterLimit));
   }
 }
+
+export const calculateVolume = (massQuery, timeQuery, genderValue) => {
+  let volume = 0;
+  genderDescription.forEach((genderData) => {
+    const { gender, massRate, timeRate } = genderData;
+    if (genderValue === gender) {
+      volume =
+        +massQuery * parserToNumber(massRate) +
+        +timeQuery * parserToNumber(timeRate);
+    }
+  });
+  const result = volume ? volume.toFixed(1) : volume;
+  return result;
+};

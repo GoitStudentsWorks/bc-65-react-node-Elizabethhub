@@ -81,6 +81,13 @@ export const StyledWrapper = styled.div`
     font-size: 12px;
     line-height: 16px;
   }
+  .radioGroup {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+    margin-bottom: 10px;
+    padding-left: 5;
+  }
 `;
 export const SaveButton = styled.button`
   width: 256px;

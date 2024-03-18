@@ -6,25 +6,21 @@ import {
   changeDayNorma,
 } from '../../store/water/waterSlice.js';
 import {
-  genderDescription,
+  calculateVolume,
   handleInput,
-  parserToNumber,
-  radioInputs,
   textData,
-} from '../../helpers/ModalDayNorma/heper.js';
-import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
+} from '../../helpers/ModalDayNorma/helper.js';
 import {
   SaveButton,
   StyledBackdrop,
   StyledCross,
-  StyledInputBox,
   StyledRequiredLitres,
   StyledWrapper,
 } from './ModalDailyNorma.styled.js';
 import SvgCross from '../../images/svg/svgModal/SvgCross';
-import SvgRadioChecked from '../../images/svg/svgModal/SvgRadioChecked.jsx';
-import SvgRadio from '../../images/svg/svgModal/SvgRadio.jsx';
 import FormulaField from './FormulaField.jsx';
+import RadioGroupComponent from './RadioGroup.jsx';
+import InputBox from './InputBox.jsx';
 
 const ModalDailyNorma = () => {
   const isModalOpen = useSelector(isModalDayNorm);
@@ -41,6 +37,7 @@ const ModalDailyNorma = () => {
       dispatch(changeModalClose(false));
     }
   };
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -54,6 +51,11 @@ const ModalDailyNorma = () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [dispatch, isModalOpen]);
+
+  useEffect(() => {
+    setVolume(calculateVolume(massQuery, timeQuery, genderValue));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [massQuery, timeQuery, genderValue]);
 
   const handleGenderChange = (event) => {
     setGenderValue(event.target.value);
@@ -70,26 +72,14 @@ const ModalDailyNorma = () => {
     handleInput(e, setWaterQuery);
   };
 
-  useEffect(() => {
-    setVolume(calculateVolume());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [massQuery, timeQuery, genderValue]);
+  const handleSaveBtn = () => {
+    dispatch(changeDayNorma(waterQuery));
+    setTimeout(() => {
+      dispatch(changeModalClose(false));
+    }, 300);
+  };
 
   const { time, weight, waterAmount, howMuch } = textData;
-
-  const calculateVolume = () => {
-    let volume = 0;
-    genderDescription.forEach((genderData) => {
-      const { gender, massRate, timeRate } = genderData;
-      if (genderValue === gender) {
-        volume =
-          +massQuery * parserToNumber(massRate) +
-          +timeQuery * parserToNumber(timeRate);
-      }
-    });
-    const result = volume ? volume.toFixed(1) : volume;
-    return result;
-  };
 
   return (
     isModalOpen && (
@@ -104,90 +94,33 @@ const ModalDailyNorma = () => {
             <SvgCross />
           </StyledCross>
           <FormulaField />
-          <RadioGroup
-            row
-            aria-labelledby="radio-buttons"
-            defaultValue={'woman'}
-            name="radio-buttons-group"
-            value={genderValue}
-            onChange={handleGenderChange}
-            sx={{
-              '& .MuiTypography-root': {
-                fontSize: 16,
-                color: 'var(--black)',
-              },
-            }}
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              padding: 0,
-              marginBottom: 10,
-              paddingLeft: 5,
-            }}
-          >
-            {radioInputs.map((radioItem, idx) => {
-              return (
-                <FormControlLabel
-                  value={radioItem.value}
-                  control={
-                    <Radio
-                      checkedIcon={<SvgRadioChecked></SvgRadioChecked>}
-                      icon={<SvgRadio></SvgRadio>}
-                      style={{
-                        padding: 7,
-                      }}
-                    />
-                  }
-                  label={radioItem.label}
-                  checked={genderValue === radioItem.value}
-                  key={`${idx}+${radioItem.value}`}
-                />
-              );
-            })}
-          </RadioGroup>
-          <StyledInputBox>
-            <p className="no-margin">{weight}</p>
-            <input
-              type="text"
-              name="mass"
-              value={massQuery}
-              onChange={handleMassInput}
-              placeholder="0"
-            />
-          </StyledInputBox>
-          <StyledInputBox>
-            <p className="no-margin">{time}</p>
-            <input
-              type="text"
-              name="time"
-              value={timeQuery}
-              onChange={handleTimeInput}
-              placeholder="0"
-            />
-          </StyledInputBox>
+          <RadioGroupComponent
+            genderValue={genderValue}
+            handleGenderChange={handleGenderChange}
+          />
+          <InputBox
+            paragrName={weight}
+            inputName={'mass'}
+            inputValue={massQuery}
+            handler={handleMassInput}
+          />
+          <InputBox
+            paragrName={time}
+            inputName={'time'}
+            inputValue={timeQuery}
+            handler={handleTimeInput}
+          />
           <StyledRequiredLitres>
             <p>{waterAmount}</p>
             <span>{volume || 1.8} L</span>
           </StyledRequiredLitres>
-          <StyledInputBox>
-            <h3>{howMuch}</h3>
-            <input
-              type="text"
-              name="waterVolume"
-              value={waterQuery}
-              onChange={handleWaterInput}
-              placeholder="0"
-            />
-          </StyledInputBox>
-          <SaveButton
-            type="button"
-            onClick={() => {
-              dispatch(changeDayNorma(waterQuery));
-              setTimeout(() => {
-                dispatch(changeModalClose(false));
-              }, 500);
-            }}
-          >
+          <InputBox
+            paragrName={howMuch}
+            inputName={'waterVolume'}
+            inputValue={waterQuery}
+            handler={handleWaterInput}
+          />
+          <SaveButton type="button" onClick={handleSaveBtn}>
             Save
           </SaveButton>
         </StyledWrapper>
