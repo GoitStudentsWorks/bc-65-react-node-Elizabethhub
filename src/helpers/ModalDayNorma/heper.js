@@ -11,7 +11,7 @@ export const radioInputs = [
 
 export const genderDescription = [
   {
-    gender: 'girl',
+    gender: 'woman',
     massRate: '0,03',
     timeRate: '0,4',
   },

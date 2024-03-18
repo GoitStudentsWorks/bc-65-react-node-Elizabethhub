@@ -34,10 +34,10 @@ const ModalDailyNorma = () => {
   const [massQuery, setMassQuery] = useState('');
   const [timeQuery, setTimeQuery] = useState('');
   const [waterQuery, setWaterQuery] = useState('');
+  const [volume, setVolume] = useState('1.8');
   const handleGenderChange = (event) => {
     setValue(event.target.value);
   };
-  // const isDisabled = oldDataType === value;
 
   const clickBackdrop = (e) => {
     if (e.target === e.currentTarget) {
@@ -61,17 +61,35 @@ const ModalDailyNorma = () => {
   const handleMassInput = (e) => {
     const inputQuery = e.target.value;
     setMassQuery(inputQuery);
+    setVolume(calculateVolume());
   };
   const handleTimeInput = (e) => {
     const inputQuery = e.target.value;
     setTimeQuery(inputQuery);
+    setVolume(calculateVolume());
   };
   const handleWaterInput = (e) => {
     const inputQuery = e.target.value;
     setWaterQuery(inputQuery);
+    setVolume(calculateVolume());
   };
 
   const { hint, time, rate, weight, waterAmount, howMuch } = textData;
+  const calculateVolume = () => {
+    let volume = 0;
+    genderDescription.forEach((genderData) => {
+      const { gender, massRate, timeRate } = genderData;
+      console.log('gender, massRate, timeRate', gender, massRate, timeRate);
+      console.log('massQuery, timeQuery', massQuery, timeQuery);
+      if (value === gender) {
+        volume =
+          parseInt(massQuery, 10) * parseInt(massRate, 10) +
+          parseInt(timeQuery, 10) * parseInt(timeRate, 10);
+      }
+    });
+    console.log('volume', volume);
+    return volume;
+  };
 
   return (
     isModalOpen && (
@@ -89,6 +107,7 @@ const ModalDailyNorma = () => {
             <ul>
               {genderDescription.map((genderData) => {
                 const { gender, massRate, timeRate } = genderData;
+
                 return (
                   <li className="formula" key={`${gender}+${massRate}`}>
                     <p>
@@ -107,7 +126,7 @@ const ModalDailyNorma = () => {
           <RadioGroup
             row
             aria-labelledby="radio-buttons"
-            defaultValue="woman"
+            defaultValue={'woman'}
             name="radio-buttons-group"
             value={value}
             onChange={handleGenderChange}
@@ -128,7 +147,6 @@ const ModalDailyNorma = () => {
             {radioInputs.map((radioItem, idx) => {
               return (
                 <FormControlLabel
-                  // disabled={oldDataType === radioItem.value}
                   value={radioItem.value}
                   control={
                     <Radio
@@ -167,7 +185,7 @@ const ModalDailyNorma = () => {
           </StyledInputBox>
           <StyledRequiredLitres>
             <p>{waterAmount}</p>
-            <span>1.8 L</span>
+            <span>{volume} L</span>
           </StyledRequiredLitres>
           <StyledInputBox>
             <h3>{howMuch}</h3>
