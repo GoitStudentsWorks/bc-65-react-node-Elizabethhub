@@ -29,10 +29,20 @@ const ModalDeleteWater = () => {
         dispatch(changeModalClose(false));
       }
     };
+
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+
     document.addEventListener('keydown', handleKeyDown);
 
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [dispatch]);
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [dispatch, isModalOpen]);
 
   const onSubmit = (e) => {
     e.preventDefault();

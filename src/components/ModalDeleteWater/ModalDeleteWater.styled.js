@@ -19,7 +19,6 @@ export const StyledModalDeleteBackdrop = styled.div`
 export const StyledModalDeleteWrapper = styled.div`
   position: relative;
   border-radius: 10px;
-  backdrop-filter: blur(50px);
   background: var(--white);
   background-size: 130% 130%;
   background-position: center;
