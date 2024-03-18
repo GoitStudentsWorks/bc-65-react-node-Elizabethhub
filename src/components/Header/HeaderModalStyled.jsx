@@ -22,15 +22,6 @@ const fadeOut = keyframes`
   }
 `;
 
-const fadeAnimation = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.5;
-  }
-`;
-
 export const HeaderModalContainer = styled.div`
   border-radius: 10px;
   padding: 16px;
@@ -73,7 +64,7 @@ export const HeaderModalLogOutContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-
+  /* visibility: hidden; */
   @media only screen and (min-width: 768px) {
     width: 76.8%;
     max-width: 592px;
@@ -84,16 +75,37 @@ export const HeaderModalLogOutContainer = styled.div`
     /* Додайте аналогічні стилі, як для мобільних пристроїв */
   }
 `;
+
+const BackdropfadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const BackdropfadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 10;
   opacity: ${(props) => (props.$visible ? '1' : '0')};
-  animation: ${fadeAnimation} 0.5s ease forwards;
+
+  animation: ${(props) => (props.$visible ? BackdropfadeOut : BackdropfadeIn)}
+    1.5s ease forwards;
 `;
 export const DivHeaderModalContainer = styled.div`
   position: relative;
@@ -133,6 +145,30 @@ export const ButtonCancel = styled.button`
   }
 `;
 
+const hoverAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
+const clickAnimation = keyframes`
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
+`;
+
 export const ButtonLogOut = styled.button`
   background: #d7e3ff;
   border: none;
@@ -147,16 +183,19 @@ export const ButtonLogOut = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 
   transition:
     background 0.3s,
     box-shadow 0.3s,
-    color 0.3s;
+    color 0.3s,
+    transform 0.3s;
 
   &:hover {
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
     background: #ef5050;
     color: #fff;
+    animation: ${hoverAnimation} 0.5s ease infinite;
   }
 
   &:focus {
@@ -170,6 +209,7 @@ export const ButtonLogOut = styled.button`
     box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.34);
     background: #ef5050;
     color: #fff;
+    animation: ${clickAnimation} 0.2s ease;
   }
 
   @media only screen and (min-width: 768px) {
@@ -236,5 +276,20 @@ export const HeaderUserName = styled.span`
   padding-right: 8px;
 `;
 
-export const Test1 = styled.div``;
+const fadeOutAnimation = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+export const Test1 = styled.div`
+  opacity: ${(props) => (props.$visible ? '1' : '0')};
+  pointer-events: ${(props) => (props.$visible ? 'auto' : 'none')};
+  transition: opacity 2s ease;
+  animation: ${(props) => (props.$visible ? 'none' : fadeOutAnimation)} 0.3s
+    ease forwards;
+  visibility: ${(props) => (props.$visible ? 'visible' : 'hidden')};
+`;
 export const Test2 = styled.div``;
