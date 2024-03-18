@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isModalDayNorm } from '../../store/water/selectors';
 import { changeModalClose } from '../../store/water/waterSlice.js';
-import { genderDescription, radioInputs, textData } from './heper.js';
+import {
+  genderDescription,
+  radioInputs,
+  textData,
+} from '../../helpers/ModalDayNorma/heper.js';
 import {
   FormControlLabel,
   Radio,
@@ -46,10 +50,13 @@ const ModalDailyNorma = () => {
         dispatch(changeModalClose(false));
       }
     };
+    document.body.style.overflow = isModalOpen ? 'hidden' : 'auto';
     document.addEventListener('keydown', handleKeyDown);
-
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [dispatch]);
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [dispatch, isModalOpen]);
 
   const handleMassInput = (e) => {
     const inputQuery = e.target.value;
