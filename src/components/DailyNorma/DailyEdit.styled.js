@@ -46,4 +46,5 @@ export const DailyEditButton = styled.button`
   color: #8baeff;
   position: relative;
   z-index: 1;
+  outline: transparent;
 `;

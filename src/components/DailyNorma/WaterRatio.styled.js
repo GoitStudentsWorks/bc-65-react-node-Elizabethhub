@@ -58,6 +58,7 @@ export const RangeButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 13px;
+  outline: transparent;
   @media only screen and (min-width: 768px) {
     width: 336px;
     height: 44px;

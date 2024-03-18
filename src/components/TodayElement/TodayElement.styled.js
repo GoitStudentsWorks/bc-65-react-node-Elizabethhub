@@ -99,6 +99,7 @@ export const AddBtnWrapper = styled.div`
     border: none;
     background-color: transparent;
     padding: 0;
+    outline: transparent;
     span {
       color: #407bff;
       font-size: 16px;
