@@ -51,8 +51,21 @@ const CalendarElement = () => {
     );
   };
 
+  function closeDayStat(event) {
+    const element = event.target;
+    const parent = element.parentNode;
+
+    if (parent.classList.contains('li-day')) {
+      console.log('show');
+      dispatch(changeShowDaysStats(true));
+    } else {
+      console.log('close');
+      dispatch(changeShowDaysStats(false));
+    }
+  }
+
   return (
-    <ContentWrapperCalendar>
+    <ContentWrapperCalendar onClick={() => closeDayStat(event)}>
       <HeadingWrapper>
         <MonthHeading>Month</MonthHeading>
         <MonthSwitcher>
@@ -82,10 +95,7 @@ const CalendarElement = () => {
         {monthData.map((item) => (
           <DayStyles
             key={item.day}
-            onClick={() => {
-              dispatch(changeShowDaysStats(true));
-            }}
-            className={`${isToday(item.day) ? 'today' : ''}`}
+            className={`li-day ${isToday(item.day) ? 'today' : ''}`}
           >
             <span className="day">{item.day}</span>
             <span className="percentage">{item.percentage}%</span>
