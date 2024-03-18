@@ -7,7 +7,31 @@ import {
 
 import { Link } from 'react-router-dom';
 import HeaderModal from './HeaderModal';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../store/auth/selectors';
+import { HeaderUserName } from './HeaderModalStyled';
+import { useEffect, useState } from 'react';
+
 const Header = () => {
+  const user = useSelector(selectUser);
+
+  const [nameUser, setNameUser] = useState('');
+
+  useEffect(() => {
+    if (user) {
+      user?.username
+        ? setNameUser(cutUserName(user?.username))
+        : setNameUser(cutUserName(user?.user?.username));
+    }
+  }, [user, user?.user?.username, user?.username]);
+
+  function cutUserName(name) {
+    if (name.startsWith('User')) {
+      return name.slice(0, 4);
+    }
+    return name;
+  }
+
   return (
     <>
       <HeaderDivContainer>
@@ -16,9 +40,16 @@ const Header = () => {
         </Link>
 
         <HeaderDivButtonContainer>
-          <HeaderLink to="/signin" style={{ textDecoration: 'none' }}>
-            Sign in
-          </HeaderLink>
+          {user ? (
+            <>
+              <HeaderUserName>{nameUser}</HeaderUserName>
+            </>
+          ) : (
+            <HeaderLink to="/signin" style={{ textDecoration: 'none' }}>
+              Sign in
+            </HeaderLink>
+          )}
+
           <HeaderModal />
         </HeaderDivButtonContainer>
       </HeaderDivContainer>

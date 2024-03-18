@@ -1,39 +1,50 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HeaderButton } from './Header.styled';
 import HeaderSVGPhoto from '../../images/svg/svgheader/HeaderSVGPhoto';
 import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
 
 import {
   Backdrop,
-  ButtonCancel,
   ButtonLogOut,
   DivButtonLogOut,
   DivHeaderModalContainer,
-  DivTest,
   HeaderModalButton,
   HeaderModalButtonSpan,
   HeaderModalContainer,
   HeaderModalLogOutContainer,
   SpanLogOut,
   SpanLogOutQuestion,
+  Test1,
+  UserIMG,
 } from './HeaderModalStyled';
 import SettingModal from '../SettingModal/SettingModal';
 import SettingSVG from '../../images/svg/svgheader/SettingSVG';
 import ClouseSVG from '../../images/svg/svgheader/ClouseSVG';
 import HeaderButtonRotateSVG from '../../images/svg/svgheader/HeaderButtonRotateSVG';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logoutThunk } from '../../store/auth/thunks';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
+import { selectUser } from '../../store/auth/selectors';
 
 const HeaderModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHeaderModalOpen, setIsHeaderModalOpen] = useState(false);
   const [isHeaderModalLogOut, setIsHeaderModalLogOut] = useState(false);
   const [isBackdropVisible, setIsBackdropVisible] = useState(false);
+  const [imageUser, setImageUser] = useState('');
+  const user = useSelector(selectUser);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      user?.avatarURL
+        ? setImageUser(user?.avatarURL)
+        : setImageUser(user?.user?.avatarURL);
+    }
+  }, [user, user?.user?.avatarURL, user?.avatarURL]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -74,10 +85,20 @@ const HeaderModal = () => {
           <SettingModal onClose={closeModal} />
         </div>
       )}
-      <HeaderButton onClick={toggleHeaderModal}>
+      {user ? (
+        <>
+          <HeaderButton onClick={toggleHeaderModal}>
+            <UserIMG src={imageUser} alt="User Avatar" />
+            {isHeaderModalOpen ? (
+              <HeaderButtonRotateSVG />
+            ) : (
+              <HeaderButtonSVG />
+            )}
+          </HeaderButton>
+        </>
+      ) : (
         <HeaderSVGPhoto />
-        {isHeaderModalOpen ? <HeaderButtonRotateSVG /> : <HeaderButtonSVG />}
-      </HeaderButton>
+      )}
       <DivHeaderModalContainer>
         <HeaderModalContainer $visible={isHeaderModalOpen}>
           <HeaderModalButton onClick={openModal}>
@@ -91,19 +112,21 @@ const HeaderModal = () => {
         </HeaderModalContainer>
       </DivHeaderModalContainer>
       {isHeaderModalLogOut && (
-        <DivTest>
+        <>
           <Backdrop onClick={LogOutHeaderModal} $visible={isBackdropVisible} />
-          <HeaderModalLogOutContainer $visible={isHeaderModalLogOut}>
-            <SpanLogOut>Log out</SpanLogOut>
-            <SpanLogOutQuestion>
-              Do you really want to leave?
-            </SpanLogOutQuestion>
-            <DivButtonLogOut>
-              <ButtonCancel onClick={LogOutHeaderModal}>Cancel</ButtonCancel>
-              <ButtonLogOut onClick={handleLogout}>Log out</ButtonLogOut>
-            </DivButtonLogOut>
-          </HeaderModalLogOutContainer>
-        </DivTest>
+          <Test1>
+            <HeaderModalLogOutContainer $visible={isHeaderModalLogOut}>
+              <SpanLogOut>Log out</SpanLogOut>
+              <SpanLogOutQuestion>
+                Do you really want to leave?
+              </SpanLogOutQuestion>
+              <DivButtonLogOut>
+                <ButtonLogOut onClick={LogOutHeaderModal}>Cancel</ButtonLogOut>
+                <ButtonLogOut onClick={handleLogout}>Log out</ButtonLogOut>
+              </DivButtonLogOut>
+            </HeaderModalLogOutContainer>
+          </Test1>
+        </>
       )}
     </>
   );

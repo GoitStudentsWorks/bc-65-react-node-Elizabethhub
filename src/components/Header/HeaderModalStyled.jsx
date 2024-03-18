@@ -55,12 +55,13 @@ export const HeaderModalContainer = styled.div`
 export const HeaderModalLogOutContainer = styled.div`
   border-radius: 10px;
   padding: 32px 24px;
-  width: 592px;
-  height: 208px;
+  width: 90%;
+  max-width: 100%;
+  height: 260px;
   background: #fff;
   position: fixed;
-  top: 30%;
-  left: 30%;
+  top: 11%;
+  left: 5%;
   /* transform: translate(-50%, -50%); */
   /* opacity: ${(props) => (props.$visible ? '1' : '0')};  */
   opacity: ${(props) => (props.$visible ? '1' : '0')};
@@ -70,7 +71,26 @@ export const HeaderModalLogOutContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
+
+  @media only screen and (min-width: 768px) {
+    top: 20%;
+
+    left: 11%;
+    width: 76.8%;
+
+    max-width: 592px;
+    height: 208px;
+  }
+  @media only screen and (min-width: 1440px) {
+    top: 30%;
+    left: 30%;
+  }
 `;
+
+export const Test1 = styled.div`
+  display: flex;
+`;
+
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;
@@ -125,13 +145,16 @@ export const ButtonLogOut = styled.button`
   border: none;
   border-radius: 10px;
   padding: 10px 30px;
-  width: 160px;
-  height: 44px;
+  width: 232px;
+  height: 36px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
-  color: #fff;
-  background: #ef5050;
+  color: #407bff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   transition:
     background 0.3s,
     box-shadow 0.3s,
@@ -139,28 +162,42 @@ export const ButtonLogOut = styled.button`
 
   &:hover {
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+    background: #ef5050;
+    color: #fff;
   }
 
   &:focus {
     outline: none;
-
+    background: #ef5050;
+    color: #fff;
     box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   }
 
   &:active {
     box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.34);
+    background: #ef5050;
+    color: #fff;
+  }
+
+  @media only screen and (min-width: 768px) {
+    width: 160px;
+    height: 44px;
+    font-size: 18px;
   }
 `;
 
 // background: #ef5050;
 
-export const DivTest = styled.div`
-  /* display: none; */
-`;
-
 export const DivButtonLogOut = styled.div`
   display: flex;
   gap: 24px;
+  align-items: center;
+  flex-direction: column;
+  @media only screen and (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
 `;
 
 export const SpanLogOut = styled.span`
@@ -189,4 +226,19 @@ export const HeaderModalButtonSpan = styled.span`
   font-size: 16px;
 
   color: #407bff;
+`;
+
+export const UserIMG = styled.img`
+  width: 28px;
+  height: 28px;
+  border-radius: 100%;
+`;
+
+export const HeaderUserName = styled.span`
+  font-weight: 400;
+  font-size: 18px;
+
+  text-align: right;
+  color: #2f2f2f;
+  padding-right: 8px;
 `;
