@@ -20,7 +20,14 @@ function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<WelcomePage />} />
+        <Route
+          path="/"
+          element={
+            <PublicRoute>
+              <WelcomePage />
+            </PublicRoute>
+          }
+        />
         <Route
           path="/home"
           element={
