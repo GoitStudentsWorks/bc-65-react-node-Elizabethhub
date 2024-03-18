@@ -64,7 +64,7 @@ export const HeaderModalLogOutContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 24px;
-  /* visibility: hidden; */
+
   @media only screen and (min-width: 768px) {
     width: 76.8%;
     max-width: 592px;
@@ -72,7 +72,6 @@ export const HeaderModalLogOutContainer = styled.div`
   }
 
   @media only screen and (min-width: 1440px) {
-    /* Додайте аналогічні стилі, як для мобільних пристроїв */
   }
 `;
 
@@ -218,8 +217,6 @@ export const ButtonLogOut = styled.button`
     font-size: 18px;
   }
 `;
-
-// background: #ef5050;
 
 export const DivButtonLogOut = styled.div`
   display: flex;
