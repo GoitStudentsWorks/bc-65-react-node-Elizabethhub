@@ -95,7 +95,8 @@ const ModalDailyNorma = () => {
           +timeQuery * parserToNumber(timeRate);
       }
     });
-    return volume.toFixed(2);
+    const result = volume ? volume.toFixed(1) : volume;
+    return result;
   };
 
   return (
