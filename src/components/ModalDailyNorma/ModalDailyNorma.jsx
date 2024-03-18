@@ -28,11 +28,11 @@ const ModalDailyNorma = () => {
   const isModalOpen = useSelector(isModalDayNorm);
   const dispatch = useDispatch();
 
-  //***NOTE  */ radio buttons state and handling ***//
   const [genderValue, setGenderValue] = useState('woman');
   const [massQuery, setMassQuery] = useState('');
   const [timeQuery, setTimeQuery] = useState('');
   const [waterQuery, setWaterQuery] = useState('');
+
   const [volume, setVolume] = useState('');
   const handleGenderChange = (event) => {
     setGenderValue(event.target.value);
@@ -59,13 +59,19 @@ const ModalDailyNorma = () => {
 
   const handleMassInput = (e) => {
     const inputQuery = e.target.value;
-    setMassQuery(inputQuery);
-  };
-  const handleTimeInput = (e) => {
-    const inputQuery = e.target.value;
-    setTimeQuery(inputQuery);
+    const regex = /^-?[0-9]*\.?[0-9]*$/;
+    if (regex.test(inputQuery)) {
+      setMassQuery(inputQuery.replace(/^0(?=\d)/g, '').slice(0, 4));
+    }
   };
 
+  const handleTimeInput = (e) => {
+    const inputQuery = e.target.value;
+    const regex = /^-?[0-9]*\.?[0-9]*$/;
+    if (regex.test(inputQuery)) {
+      setTimeQuery(inputQuery.replace(/^0(?=\d)/g, '').slice(0, 4));
+    }
+  };
   const handleWaterInput = (e) => {
     const regex = /^-?[0-9]*\.?[0-9]*$/;
     if (regex.test(e.target.value)) {
