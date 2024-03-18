@@ -94,7 +94,9 @@ const CalendarElement = () => {
       </HeadingWrapper>
 
       <MonthList>
-        {showDaysStats && <DaysGeneralStats monthData={monthData} />}
+        {showDaysStats && (
+          <DaysGeneralStats monthData={monthData} currentDate={currentDate} />
+        )}
         {monthData.map((item) => (
           <DayStyles
             key={item.day}

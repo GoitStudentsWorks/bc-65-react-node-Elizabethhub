@@ -1,6 +1,6 @@
 import { DayStatsContainer, UpperElem } from './DaysGeneralStats.styled';
 
-const DaysGeneralStats = ({ monthData }) => {
+const DaysGeneralStats = ({ monthData, currentDate }) => {
   console.log('monthData: ', monthData);
 
   return (
@@ -8,7 +8,7 @@ const DaysGeneralStats = ({ monthData }) => {
       <UpperElem>
         <p>
           <span>5, </span>
-          <span>Marth</span>
+          <span>{currentDate.toLocaleString('en-us', { month: 'long' })}</span>
         </p>
       </UpperElem>
       <p>
