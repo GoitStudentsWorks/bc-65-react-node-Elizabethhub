@@ -10,6 +10,11 @@ import {
   handleInput,
   textData,
 } from '../../helpers/ModalDayNorma/helper.js';
+import SvgCross from '../../images/svg/svgModal/SvgCross';
+import FormulaField from './FormulaField.jsx';
+import RadioGroupComponent from './RadioGroup.jsx';
+import InputBox from './InputBox.jsx';
+import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
 import {
   SaveButton,
   StyledBackdrop,
@@ -17,10 +22,6 @@ import {
   StyledRequiredLitres,
   StyledWrapper,
 } from './ModalDailyNorma.styled.js';
-import SvgCross from '../../images/svg/svgModal/SvgCross';
-import FormulaField from './FormulaField.jsx';
-import RadioGroupComponent from './RadioGroup.jsx';
-import InputBox from './InputBox.jsx';
 
 const ModalDailyNorma = () => {
   const isModalOpen = useSelector(isModalDayNorm);
@@ -32,11 +33,7 @@ const ModalDailyNorma = () => {
   const [waterQuery, setWaterQuery] = useState('');
   const [volume, setVolume] = useState('');
 
-  const clickBackdrop = (e) => {
-    if (e.target === e.currentTarget) {
-      dispatch(changeModalClose(false));
-    }
-  };
+  const clickBackdrop = useClickBackdrop();
 
   useEffect(() => {
     const handleKeyDown = (e) => {
