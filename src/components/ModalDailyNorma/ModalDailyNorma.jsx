@@ -30,7 +30,7 @@ const ModalDailyNorma = () => {
   const dispatch = useDispatch();
 
   //***NOTE  */ radio buttons state and handling ***//
-  const [value, setValue] = useState('girl');
+  const [value, setValue] = useState('woman');
   const [massQuery, setMassQuery] = useState('');
   const [timeQuery, setTimeQuery] = useState('');
   const [waterQuery, setWaterQuery] = useState('');
