@@ -3,22 +3,22 @@ import styled, { keyframes } from 'styled-components';
 const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(-100%);
+    top: -50%;
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    top: 50%;
   }
 `;
 
 const fadeOut = keyframes`
   from {
     opacity: 1;
-    transform: translateY(0);
+    top: 50%;
   }
   to {
     opacity: 0;
-    transform: translateY(-100%);
+    top: -50%;
   }
 `;
 
@@ -60,33 +60,30 @@ export const HeaderModalLogOutContainer = styled.div`
   height: 260px;
   background: #fff;
   position: fixed;
-  top: 11%;
-  left: 5%;
-  /* transform: translate(-50%, -50%); */
-  /* opacity: ${(props) => (props.$visible ? '1' : '0')};  */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   opacity: ${(props) => (props.$visible ? '1' : '0')};
-  animation: ${(props) => (props.$visible ? fadeIn : fadeOut)} 1.5s ease;
-
+  visibility: ${(props) => (props.$visible ? 'visible' : 'hidden')};
+  transition:
+    opacity 0.5s,
+    visibility 0.5s;
+  animation: ${(props) => (props.$visible ? fadeIn : fadeOut)} 0.9s;
   z-index: 999;
   display: flex;
   flex-direction: column;
   gap: 24px;
 
   @media only screen and (min-width: 768px) {
-    top: 20%;
-
-    left: 11%;
     width: 76.8%;
-
     max-width: 592px;
     height: 208px;
   }
+
   @media only screen and (min-width: 1440px) {
-    top: 30%;
-    left: 30%;
+    /* Додайте аналогічні стилі, як для мобільних пристроїв */
   }
 `;
-
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;
