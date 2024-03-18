@@ -1,6 +1,8 @@
 import { DayStatsContainer, UpperElem } from './DaysGeneralStats.styled';
 
-const DaysGeneralStats = () => {
+const DaysGeneralStats = ({ monthData }) => {
+  console.log('monthData: ', monthData);
+
   return (
     <DayStatsContainer>
       <UpperElem>

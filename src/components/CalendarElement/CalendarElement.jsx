@@ -56,10 +56,8 @@ const CalendarElement = () => {
     const parent = element.parentNode;
 
     if (parent.classList.contains('li-day')) {
-      console.log('show');
       dispatch(changeShowDaysStats(true));
     } else {
-      console.log('close');
       dispatch(changeShowDaysStats(false));
     }
   }
@@ -96,7 +94,7 @@ const CalendarElement = () => {
       </HeadingWrapper>
 
       <MonthList>
-        {showDaysStats && <DaysGeneralStats />}
+        {showDaysStats && <DaysGeneralStats monthData={monthData} />}
         {monthData.map((item) => (
           <DayStyles
             key={item.day}
