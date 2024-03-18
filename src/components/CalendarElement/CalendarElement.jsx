@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ContentWrapperCalendar,
   HeadingWrapper,
@@ -63,6 +63,17 @@ const CalendarElement = () => {
       dispatch(changeShowDaysStats(false));
     }
   }
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        dispatch(changeShowDaysStats(false));
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [dispatch]);
 
   const rootElement = document.getElementById('root');
   rootElement.addEventListener('click', (event) => {
