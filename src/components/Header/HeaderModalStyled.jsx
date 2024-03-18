@@ -87,10 +87,6 @@ export const HeaderModalLogOutContainer = styled.div`
   }
 `;
 
-export const Test1 = styled.div`
-  display: flex;
-`;
-
 export const Backdrop = styled.div`
   position: fixed;
   top: 0;
@@ -241,4 +237,14 @@ export const HeaderUserName = styled.span`
   text-align: right;
   color: #2f2f2f;
   padding-right: 8px;
+`;
+
+export const Test1 = styled.div`
+  position: absolute;
+`;
+export const Test2 = styled.div`
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
 `;

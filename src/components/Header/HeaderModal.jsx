@@ -15,6 +15,7 @@ import {
   SpanLogOut,
   SpanLogOutQuestion,
   Test1,
+  Test2,
   UserIMG,
 } from './HeaderModalStyled';
 import SettingModal from '../SettingModal/SettingModal';
@@ -33,17 +34,17 @@ const HeaderModal = () => {
   const [isHeaderModalLogOut, setIsHeaderModalLogOut] = useState(false);
   const [isBackdropVisible, setIsBackdropVisible] = useState(false);
   const [imageUser, setImageUser] = useState('');
-  const userSelect = useSelector(selectUser);
+  const userProfile = useSelector(selectUser);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userSelect) {
-      userSelect?.avatarURL;
-      setImageUser(userSelect.avatarURL);
+    if (userProfile) {
+      userProfile?.avatarURL;
+      setImageUser(userProfile.avatarURL);
     }
-  }, [userSelect, userSelect?.avatarURL]);
+  }, [userProfile, userProfile?.avatarURL]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -84,7 +85,7 @@ const HeaderModal = () => {
           <SettingModal onClose={closeModal} />
         </div>
       )}
-      {userSelect ? (
+      {userProfile ? (
         <>
           <HeaderButton onClick={toggleHeaderModal}>
             <UserIMG src={imageUser} alt="User Avatar" />
@@ -114,16 +115,20 @@ const HeaderModal = () => {
         <>
           <Backdrop onClick={LogOutHeaderModal} $visible={isBackdropVisible} />
           <Test1>
-            <HeaderModalLogOutContainer $visible={isHeaderModalLogOut}>
-              <SpanLogOut>Log out</SpanLogOut>
-              <SpanLogOutQuestion>
-                Do you really want to leave?
-              </SpanLogOutQuestion>
-              <DivButtonLogOut>
-                <ButtonLogOut onClick={LogOutHeaderModal}>Cancel</ButtonLogOut>
-                <ButtonLogOut onClick={handleLogout}>Log out</ButtonLogOut>
-              </DivButtonLogOut>
-            </HeaderModalLogOutContainer>
+            <Test2>
+              <HeaderModalLogOutContainer $visible={isHeaderModalLogOut}>
+                <SpanLogOut>Log out</SpanLogOut>
+                <SpanLogOutQuestion>
+                  Do you really want to leave?
+                </SpanLogOutQuestion>
+                <DivButtonLogOut>
+                  <ButtonLogOut onClick={LogOutHeaderModal}>
+                    Cancel
+                  </ButtonLogOut>
+                  <ButtonLogOut onClick={handleLogout}>Log out</ButtonLogOut>
+                </DivButtonLogOut>
+              </HeaderModalLogOutContainer>
+            </Test2>
           </Test1>
         </>
       )}

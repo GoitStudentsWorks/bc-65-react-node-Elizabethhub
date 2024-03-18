@@ -13,15 +13,15 @@ import { HeaderUserName } from './HeaderModalStyled';
 import { useEffect, useState } from 'react';
 
 const Header = () => {
-  const userSelect = useSelector(selectUser);
+  const userProfile = useSelector(selectUser);
 
   const [nameUser, setNameUser] = useState('');
 
   useEffect(() => {
-    if (userSelect) {
-      setNameUser(cutUserName(userSelect.username));
+    if (userProfile) {
+      setNameUser(cutUserName(userProfile.username));
     }
-  }, [userSelect, userSelect?.username]);
+  }, [userProfile, userProfile?.username]);
 
   function cutUserName(name) {
     if (name.startsWith('User')) {
@@ -38,7 +38,7 @@ const Header = () => {
         </Link>
 
         <HeaderDivButtonContainer>
-          {userSelect ? (
+          {userProfile ? (
             <>
               <HeaderUserName>{nameUser}</HeaderUserName>
             </>
