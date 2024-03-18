@@ -12,36 +12,30 @@ import {
   StyledModalDeleteForm,
   StyledModalDeleteWrapper,
 } from './ModalDeleteWater.styled.js';
+import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
+import useKeyDown from '../../hooks/modalCloseEsc.js';
 
 const ModalDeleteWater = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
 
   const dispatch = useDispatch();
 
-  const clickBackdrop = (e) => {
-    if (e.target === e.currentTarget) {
-      dispatch(changeModalClose(false));
-    }
-  };
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape') {
-        dispatch(changeModalClose(false));
-      }
-    };
+  const clickBackdrop = useClickBackdrop();
 
+  useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
     }
 
-    document.addEventListener('keydown', handleKeyDown);
-
     return () => {
       document.body.style.overflow = 'auto';
-      document.removeEventListener('keydown', handleKeyDown);
     };
+  }, [isModalOpen]);
+
+  useKeyDown(() => {
+    dispatch(changeModalClose(false));
   }, [dispatch, isModalOpen]);
 
   const onSubmit = (e) => {
