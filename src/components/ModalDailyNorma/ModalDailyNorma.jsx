@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { isModalDayNorm } from '../../store/water/selectors';
-import { changeModalClose } from '../../store/water/waterSlice.js';
+import {
+  changeModalClose,
+  changeDayNorma,
+} from '../../store/water/waterSlice.js';
 import {
   genderDescription,
+  parserToNumber,
   radioInputs,
   textData,
 } from '../../helpers/ModalDayNorma/heper.js';
-import {
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  // Modal,
-} from '@mui/material';
+import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
 import {
   SaveButton,
   StyledBackdrop,
@@ -30,13 +29,13 @@ const ModalDailyNorma = () => {
   const dispatch = useDispatch();
 
   //***NOTE  */ radio buttons state and handling ***//
-  const [value, setValue] = useState('woman');
+  const [genderValue, setGenderValue] = useState('woman');
   const [massQuery, setMassQuery] = useState('');
   const [timeQuery, setTimeQuery] = useState('');
   const [waterQuery, setWaterQuery] = useState('');
-  const [volume, setVolume] = useState('1.8');
+  const [volume, setVolume] = useState('');
   const handleGenderChange = (event) => {
-    setValue(event.target.value);
+    setGenderValue(event.target.value);
   };
 
   const clickBackdrop = (e) => {
@@ -61,34 +60,36 @@ const ModalDailyNorma = () => {
   const handleMassInput = (e) => {
     const inputQuery = e.target.value;
     setMassQuery(inputQuery);
-    setVolume(calculateVolume());
   };
   const handleTimeInput = (e) => {
     const inputQuery = e.target.value;
     setTimeQuery(inputQuery);
-    setVolume(calculateVolume());
   };
+
   const handleWaterInput = (e) => {
-    const inputQuery = e.target.value;
-    setWaterQuery(inputQuery);
-    setVolume(calculateVolume());
+    const regex = /^-?[0-9]*\.?[0-9]*$/;
+    if (regex.test(e.target.value)) {
+      setWaterQuery(e.target.value.replace(/^0(?=\d)/g, '').slice(0, 4));
+    }
   };
+
+  useEffect(() => {
+    setVolume(calculateVolume());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [massQuery, timeQuery, genderValue]);
 
   const { hint, time, rate, weight, waterAmount, howMuch } = textData;
   const calculateVolume = () => {
     let volume = 0;
     genderDescription.forEach((genderData) => {
       const { gender, massRate, timeRate } = genderData;
-      console.log('gender, massRate, timeRate', gender, massRate, timeRate);
-      console.log('massQuery, timeQuery', massQuery, timeQuery);
-      if (value === gender) {
+      if (genderValue === gender) {
         volume =
-          parseInt(massQuery, 10) * parseInt(massRate, 10) +
-          parseInt(timeQuery, 10) * parseInt(timeRate, 10);
+          +massQuery * parserToNumber(massRate) +
+          +timeQuery * parserToNumber(timeRate);
       }
     });
-    console.log('volume', volume);
-    return volume;
+    return volume.toFixed(2);
   };
 
   return (
@@ -128,7 +129,7 @@ const ModalDailyNorma = () => {
             aria-labelledby="radio-buttons"
             defaultValue={'woman'}
             name="radio-buttons-group"
-            value={value}
+            value={genderValue}
             onChange={handleGenderChange}
             sx={{
               '& .MuiTypography-root': {
@@ -154,12 +155,11 @@ const ModalDailyNorma = () => {
                       icon={<SvgRadio></SvgRadio>}
                       style={{
                         padding: 7,
-                        // &:focus:outline: 'none',
                       }}
                     />
                   }
                   label={radioItem.label}
-                  checked={value === radioItem.value}
+                  checked={genderValue === radioItem.value}
                   key={`${idx}+${radioItem.value}`}
                 />
               );
@@ -185,7 +185,7 @@ const ModalDailyNorma = () => {
           </StyledInputBox>
           <StyledRequiredLitres>
             <p>{waterAmount}</p>
-            <span>{volume} L</span>
+            <span>{volume || 1.8} L</span>
           </StyledRequiredLitres>
           <StyledInputBox>
             <h3>{howMuch}</h3>
@@ -196,7 +196,17 @@ const ModalDailyNorma = () => {
               placeholder="0"
             />
           </StyledInputBox>
-          <SaveButton type="button">Save</SaveButton>
+          <SaveButton
+            type="button"
+            onClick={() => {
+              dispatch(changeDayNorma(waterQuery));
+              setTimeout(() => {
+                dispatch(changeModalClose(false));
+              }, 500);
+            }}
+          >
+            Save
+          </SaveButton>
         </StyledWrapper>
       </StyledBackdrop>
     )

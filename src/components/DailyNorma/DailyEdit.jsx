@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { isModalDayNorm } from '../../store/water/selectors';
+import { isModalDayNorm, dayNorma } from '../../store/water/selectors';
 import { changeModalDailyNorma } from '../../store/water/waterSlice';
 import ModalDailyNorma from '../ModalDailyNorma/ModalDailyNorma';
 import {
@@ -12,6 +12,7 @@ import {
 
 const DailyEdit = () => {
   const isModalOpen = useSelector(isModalDayNorm);
+  const dayNormaValue = useSelector(dayNorma);
   const dispatch = useDispatch();
 
   return (
@@ -19,7 +20,7 @@ const DailyEdit = () => {
       {isModalOpen && <ModalDailyNorma />}
       <DailyTittle>My daily norma</DailyTittle>
       <DailyWrapperEdit>
-        <DailyLiter>1.5 L</DailyLiter>
+        <DailyLiter>{dayNormaValue} L</DailyLiter>
         <DailyEditButton
           type="button"
           onClick={() => {
