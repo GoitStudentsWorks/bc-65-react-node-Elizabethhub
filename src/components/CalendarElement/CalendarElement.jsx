@@ -54,7 +54,9 @@ const CalendarElement = () => {
   function closeDayStat(event) {
     const element = event.target;
     const parent = element.parentNode;
-
+    if (!parent) {
+      return;
+    }
     if (parent.classList.contains('li-day')) {
       dispatch(changeShowDaysStats(true));
     } else {
