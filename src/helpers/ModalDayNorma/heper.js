@@ -11,7 +11,7 @@ export const radioInputs = [
 
 export const genderDescription = [
   {
-    gender: 'girl',
+    gender: 'woman',
     massRate: '0,03',
     timeRate: '0,4',
   },
@@ -29,4 +29,9 @@ export const textData = {
   weight: 'Your weight in kilograms:',
   waterAmount: 'The required amount of water in liters per day:',
   howMuch: 'Write down how much water you will drink:',
+};
+
+export const parserToNumber = (str) => {
+  const toPoint = str.split(',').join('.');
+  return +toPoint;
 };
