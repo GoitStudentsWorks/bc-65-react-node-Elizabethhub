@@ -19,7 +19,6 @@ export const StyledBackdrop = styled.div`
 export const StyledWrapper = styled.div`
   position: relative;
   border-radius: 10px;
-  backdrop-filter: blur(50px);
   background: var(--white);
   background-size: 130% 130%;
   background-position: center;
