@@ -20,7 +20,6 @@ export const StyledModalAddBackdrop = styled.div`
 export const StyledModalAddWrapper = styled.div`
   position: relative;
   border-radius: 10px;
-  backdrop-filter: blur(50px);
   background: var(--white);
   background-size: 130% 130%;
   background-position: center;

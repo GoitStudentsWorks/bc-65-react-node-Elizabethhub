@@ -28,7 +28,7 @@ const ModalEditWater = () => {
     e.preventDefault();
   };
 
-  const formattedTime = format(time, 'HH:mm');
+  const formattedTime = format(time, 'hh:mm a');
 
   return (
     <StyledModalForm onSubmit={onSubmit}>
