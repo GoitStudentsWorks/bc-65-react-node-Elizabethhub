@@ -56,16 +56,19 @@ const CalendarElement = () => {
     const parent = element.parentNode;
 
     if (parent.classList.contains('li-day')) {
-      console.log('show');
       dispatch(changeShowDaysStats(true));
     } else {
-      console.log('close');
       dispatch(changeShowDaysStats(false));
     }
   }
 
+  const rootElement = document.getElementById('root');
+  rootElement.addEventListener('click', (event) => {
+    closeDayStat(event);
+  });
+
   return (
-    <ContentWrapperCalendar onClick={() => closeDayStat(event)}>
+    <ContentWrapperCalendar>
       <HeadingWrapper>
         <MonthHeading>Month</MonthHeading>
         <MonthSwitcher>
@@ -91,7 +94,9 @@ const CalendarElement = () => {
       </HeadingWrapper>
 
       <MonthList>
-        {showDaysStats && <DaysGeneralStats />}
+        {showDaysStats && (
+          <DaysGeneralStats monthData={monthData} currentDate={currentDate} />
+        )}
         {monthData.map((item) => (
           <DayStyles
             key={item.day}
