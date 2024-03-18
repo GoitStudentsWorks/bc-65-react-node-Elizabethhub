@@ -26,8 +26,8 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(signInThunk.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.token = payload?.token;
+        state.user = payload.user;
+        state.token = payload.token;
         state.isLoading = false;
       })
       .addCase(signInThunk.rejected, (state, { payload }) => {
