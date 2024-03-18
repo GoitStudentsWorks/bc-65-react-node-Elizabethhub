@@ -33,18 +33,17 @@ const HeaderModal = () => {
   const [isHeaderModalLogOut, setIsHeaderModalLogOut] = useState(false);
   const [isBackdropVisible, setIsBackdropVisible] = useState(false);
   const [imageUser, setImageUser] = useState('');
-  const user = useSelector(selectUser);
+  const userSelect = useSelector(selectUser);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
-      user?.avatarURL
-        ? setImageUser(user?.avatarURL)
-        : setImageUser(user?.user?.avatarURL);
+    if (userSelect) {
+      userSelect?.avatarURL;
+      setImageUser(userSelect.avatarURL);
     }
-  }, [user, user?.user?.avatarURL, user?.avatarURL]);
+  }, [userSelect, userSelect?.avatarURL]);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -85,7 +84,7 @@ const HeaderModal = () => {
           <SettingModal onClose={closeModal} />
         </div>
       )}
-      {user ? (
+      {userSelect ? (
         <>
           <HeaderButton onClick={toggleHeaderModal}>
             <UserIMG src={imageUser} alt="User Avatar" />
