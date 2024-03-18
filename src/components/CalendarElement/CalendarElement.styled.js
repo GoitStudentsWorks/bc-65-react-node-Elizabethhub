@@ -80,7 +80,7 @@ export const DayStyles = styled.li`
   cursor: pointer;
   letter-spacing: 0em;
   &.today {
-    border: 4px solid #ef5050;
+    background-color: lightblue;
   }
 
   span {
