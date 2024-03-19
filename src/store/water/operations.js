@@ -18,7 +18,6 @@ export const fetchAllWaterThunk = createAsyncThunk(
   async (_, thunkApi) => {
     try {
       const { data } = await api.get('water/');
-      console.log(data);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

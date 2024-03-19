@@ -18,33 +18,41 @@ import {
   changeModalDeleteForm,
   changeModalEditForm,
 } from '../../store/water/waterSlice';
-import { modalDeleteOpen } from '../../store/water/selectors';
+import {
+  modalDeleteOpen,
+  selectorWaterToday,
+} from '../../store/water/selectors.js';
 import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
+import { useEffect } from 'react';
+import { fetchAllWaterThunk } from '../../store/water/operations.js';
+import { selectUser } from '../../store/auth/selectors.js';
 
 const TodayElement = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
+  const isUser = useSelector(selectUser);
+
+  const waterTodayList = useSelector(selectorWaterToday);
 
   const dispatch = useDispatch();
 
-  let waterArr = [
-    { id: 1, amount: 250, hours: '11:00' },
-    { id: 2, amount: 350, hours: '10:00' },
-    { id: 3, amount: 200, hours: '11:00' },
-    { id: 4, amount: 150, hours: '10:00' },
-  ];
+  useEffect(() => {
+    if (isUser) {
+      dispatch(fetchAllWaterThunk());
+    }
+  }, [dispatch, isUser]);
 
   return (
     <>
       <ListWrapper>
         <h2>Today</h2>
         <StyledList>
-          {waterArr.map((item) => {
+          {waterTodayList.map((item) => {
             return (
-              <ListItem key={item.id}>
+              <ListItem id={item._id} key={item._id}>
                 <InfoWrapper>
                   <SvgGlass />
-                  <Amount>{item.amount} ml</Amount>
-                  <Time>{item.hours} PM</Time>
+                  <Amount>{item.milliliters} ml</Amount>
+                  <Time>{item.time} PM</Time>
                 </InfoWrapper>
                 <BtnWrapper>
                   <div
