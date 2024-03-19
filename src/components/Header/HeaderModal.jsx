@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HeaderButton } from './Header.styled';
 import HeaderSVGPhoto from '../../images/svg/svgheader/HeaderSVGPhoto';
 import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
@@ -38,6 +38,14 @@ const HeaderModal = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isModalOpen || isHeaderModalOpen || isHeaderModalLogOut) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [isModalOpen, isHeaderModalOpen, isHeaderModalLogOut]);
 
   useEffect(() => {
     if (userProfile) {

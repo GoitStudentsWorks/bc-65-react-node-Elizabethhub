@@ -14,6 +14,10 @@ import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useCounter from '../../hooks/modalHandleUpdate.js';
+import { useDispatch } from 'react-redux';
+import { addWaterThunk } from '../../store/water/operations.js';
+import { changeModalClose } from '../../store/water/waterSlice.js';
+import { toast } from 'react-toastify';
 
 const ModalAddWater = () => {
   const { counter, handleUpdate } = useCounter(0);
@@ -21,8 +25,23 @@ const ModalAddWater = () => {
   const [manualValue, setManualValue] = useState('');
   const [inputFocused, setInputFocused] = useState(false);
 
+  const dispatch = useDispatch();
+
   const onSubmit = (e) => {
     e.preventDefault();
+    const water = {
+      milliliters: e.target.elements.value.value,
+      time,
+    };
+    dispatch(addWaterThunk(water))
+      .unwrap()
+      .then(() => {
+        dispatch(changeModalClose(false));
+        toast.success('Water note was successfuly added');
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   const handleManualValueChange = (e) => {

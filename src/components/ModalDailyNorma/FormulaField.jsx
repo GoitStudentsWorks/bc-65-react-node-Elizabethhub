@@ -1,7 +1,7 @@
 import {
   genderDescription,
   textData,
-} from '../../helpers/ModalDayNorma/heper.js';
+} from '../../helpers/ModalDayNorma/helper.js';
 
 export default function FormulaField() {
   const { hint, rate } = textData;

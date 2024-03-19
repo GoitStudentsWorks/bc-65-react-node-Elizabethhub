@@ -20,6 +20,7 @@ export const SvgContainer = styled.div`
     position: absolute;
     right: -5%;
     top: 0;
+    z-index: -1;
   }
   @media only screen and (min-width: 1280px) {
     position: static;
