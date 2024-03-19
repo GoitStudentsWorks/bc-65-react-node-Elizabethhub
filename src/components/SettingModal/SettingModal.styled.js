@@ -4,14 +4,15 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 40px 20px;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--modal-backdrop);
   z-index: 1200;
+  overflow-y: hidden;
 
   @media only screen and (min-width: 768px) {
     padding: 40px 32px;
@@ -31,10 +32,10 @@ export const Modal = styled.div`
 
   @media only screen and (min-width: 768px) {
     padding: 32px 24px;
-    min-width: 704px;
+    max-width: 704px;
   }
   @media only screen and (min-width: 1440px) {
-    width: 1008px;
+    max-width: 1008px;
     min-height: 592px;
   }
 `;
