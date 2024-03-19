@@ -30,13 +30,13 @@ export const HeaderModalContainer = styled.div`
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
   background: #fff;
   position: absolute;
-  top: ${(props) => (props.$visible ? '35px' : '-100px')};
+  top: ${(props) => (props.$visible ? '35px' : '-200px')};
   right: 0px;
   opacity: ${(props) => (props.$visible ? '1' : '0')};
   transition:
     opacity 0.3s ease,
     top 0.3s ease;
-  z-index: 999;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   justify-content: center;
