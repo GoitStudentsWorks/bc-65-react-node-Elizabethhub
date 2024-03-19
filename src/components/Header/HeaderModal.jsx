@@ -40,6 +40,26 @@ const HeaderModal = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'Escape') {
+        if (isModalOpen) {
+          closeModal();
+        } else if (isHeaderModalOpen) {
+          toggleHeaderModal();
+        } else if (isHeaderModalLogOut) {
+          LogOutHeaderModal();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyPress);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [isModalOpen, isHeaderModalOpen, isHeaderModalLogOut]);
+
+  useEffect(() => {
     if (isModalOpen || isHeaderModalOpen || isHeaderModalLogOut) {
       document.body.style.overflow = 'hidden';
     } else {
