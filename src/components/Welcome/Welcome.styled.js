@@ -108,6 +108,9 @@ export const WelcomeLi = styled.li`
   display: flex;
   gap: 8px;
   align-items: center;
+  @media only screen and (min-width: 768px) {
+    width: 224px;
+  }
 `;
 
 export const WelcomeButton = styled.button`
@@ -129,7 +132,6 @@ export const WelcomeButton = styled.button`
 export const WelcomeWhyDrinkLi = styled.li`
   position: relative;
   list-style: none;
-  margin-bottom: 8px;
 
   &::before {
     content: '';
@@ -201,6 +203,9 @@ export const WelcomeWhyDrinkH3 = styled.h3`
   }
 `;
 export const WelcomeWhyDrinkUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   padding-left: 20px;
   @media only screen and (min-width: 768px) {
   }
@@ -210,9 +215,9 @@ export const TabletWoterDivImg = styled.div`
     display: none;
   }
 
-  position: absolute;
-  left: 51%;
-  top: 43%;
+  position: fixed;
+  left: 58%;
+  top: 48%;
   z-index: -1;
   @media only screen and (min-width: 1440px) {
     display: none;
