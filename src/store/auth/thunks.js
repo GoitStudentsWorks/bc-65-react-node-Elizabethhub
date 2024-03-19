@@ -57,3 +57,25 @@ export const logoutThunk = createAsyncThunk(
     }
   }
 );
+
+export const updateAvatarThunk = createAsyncThunk(
+  'user/updateAvatar',
+  async (body, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+
+      if (token) {
+        setToken(token);
+      }
+      // api.defaults.headers.contentType = 'multipart/form-data';
+      const { data } = await api.patch('users/avatars', body, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+        },
+      });
+      return data;
+    } catch (error) {
+      thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
