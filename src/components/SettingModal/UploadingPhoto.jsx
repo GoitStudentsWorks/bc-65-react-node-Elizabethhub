@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PersonIcon from '../../images/SettingModal/PersonIcon';
 import Upload from '../../images/SettingModal/Upload';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../store/auth/selectors';
 
 const InputImg = styled.img`
   width: 80px;
@@ -38,6 +40,18 @@ const PInput = styled.p`
 
 const UploadingPhoto = ({ register }) => {
   const [imageSrc, setImageSrc] = useState('');
+  const user = useSelector(selectUser);
+
+  useEffect(() => {
+    if (user && user.avatarURL) {
+      let avatarURL = user.avatarURL;
+
+      if (avatarURL.startsWith('avatars')) {
+        avatarURL = `https://byte-water-back.onrender.com/${avatarURL}`;
+      }
+      setImageSrc(avatarURL);
+    }
+  }, [user]);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -55,8 +69,8 @@ const UploadingPhoto = ({ register }) => {
   return (
     <InputContainer htmlFor="fileInput">
       <HiddenInput
-        {...register('photo')}
-        name="photo"
+        {...register('avatarURL')}
+        name="avatarURL"
         id="fileInput"
         type="file"
         accept="image/*"
