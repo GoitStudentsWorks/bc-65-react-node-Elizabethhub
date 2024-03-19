@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { dayNorma, isModalDayNorm } from '../../store/water/selectors';
+import { editDailyNormaThunk } from '../../store/water/operations.js';
 import {
   changeModalClose,
   changeDayNorma,
@@ -10,11 +12,11 @@ import {
   handleInput,
   textData,
 } from '../../helpers/ModalDayNorma/helper.js';
+import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
 import SvgCross from '../../images/svg/svgModal/SvgCross';
 import FormulaField from './FormulaField.jsx';
 import RadioGroupComponent from './RadioGroup.jsx';
 import InputBox from './InputBox.jsx';
-import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
 import {
   SaveButton,
   StyledBackdrop,
@@ -23,8 +25,6 @@ import {
   StyledWrapper,
   StyledInputBox,
 } from './ModalDailyNorma.styled.js';
-import { editDailyNormaThunk } from '../../store/water/operations.js';
-import { toast } from 'react-toastify';
 
 const ModalDailyNorma = () => {
   const isModalOpen = useSelector(isModalDayNorm);
@@ -113,7 +113,7 @@ const ModalDailyNorma = () => {
           <InputBox
             paragrName={weight}
             inputName={'mass'}
-            min={'40'}
+            min={waterQuery ? false : '40'}
             max={'300'}
             inputValue={massQuery}
             handler={handleMassInput}
@@ -134,7 +134,7 @@ const ModalDailyNorma = () => {
             <input
               type="number"
               name="waterVolume"
-              min="1"
+              min="<1"
               max="5"
               value={waterQuery}
               onChange={handleWaterInput}
