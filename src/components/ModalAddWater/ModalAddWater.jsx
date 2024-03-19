@@ -45,7 +45,13 @@ const ModalAddWater = () => {
   };
 
   const handleManualValueChange = (e) => {
-    const value = e.target.value;
+    let value = e.target.value;
+    if (
+      value !== '' &&
+      (isNaN(value) || parseInt(value) > 5000 || parseInt(value) < 1)
+    ) {
+      value = '5000';
+    }
     setManualValue(value);
   };
 
