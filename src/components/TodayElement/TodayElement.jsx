@@ -41,6 +41,15 @@ const TodayElement = () => {
     }
   }, [dispatch, isUser]);
 
+  function formatDate(date) {
+    if (date) {
+      const newDate = new Date(date);
+      const hour = newDate.getHours();
+      const minute = newDate.getMinutes();
+      return `${hour}:${minute}`;
+    }
+  }
+
   return (
     <>
       <ListWrapper>
@@ -52,7 +61,8 @@ const TodayElement = () => {
                 <InfoWrapper>
                   <SvgGlass />
                   <Amount>{item.milliliters} ml</Amount>
-                  <Time>{item.time} PM</Time>
+                  <Time>{formatDate(item.time)} PM</Time>
+                  {/* <Time>{console.log(item.time)} PM</Time> */}
                 </InfoWrapper>
                 <BtnWrapper>
                   <div

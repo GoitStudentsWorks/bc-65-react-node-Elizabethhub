@@ -16,7 +16,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import useCounter from '../../hooks/modalHandleUpdate.js';
 import { useDispatch } from 'react-redux';
 import { addWaterThunk } from '../../store/water/operations.js';
-import { changeModalClose } from '../../store/water/waterSlice.js';
+import {
+  changeModalClose,
+  changeTodayList,
+} from '../../store/water/waterSlice.js';
 import { toast } from 'react-toastify';
 
 const ModalAddWater = () => {
@@ -27,14 +30,23 @@ const ModalAddWater = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    // const currentTime = new Date();
+
     const water = {
       milliliters: e.target.elements.value.value,
-      time,
+      time: time,
     };
+
+    // const water = {
+    //   milliliters: e.target.elements.value.value,
+    //   time,
+    // };
     dispatch(addWaterThunk(water))
       .unwrap()
       .then(() => {
         dispatch(changeModalClose(false));
+        dispatch(changeTodayList({ ...water, _id: crypto.randomUUID() }));
         toast.success('Water note was successfuly added');
       })
       .catch((error) => {

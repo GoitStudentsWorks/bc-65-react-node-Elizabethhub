@@ -31,7 +31,20 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [
+          FLUSH,
+          REHYDRATE,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
+          'waterSlice/changeTodayList',
+        ],
+
+        // Ignore these field paths in all actions
+        ignoredActionPaths: ['meta.arg', 'payload.time'],
+        // Ignore these paths in the state
+        ignoredPaths: ['waterSlice.waterTodayList'],
       },
     }),
 });
