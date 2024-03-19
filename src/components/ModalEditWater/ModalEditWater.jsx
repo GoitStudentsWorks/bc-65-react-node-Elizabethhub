@@ -19,21 +19,43 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useCounter from '../../hooks/modalHandleUpdate.js';
 import { format } from 'date-fns';
+import { useDispatch } from 'react-redux';
+import { editWaterThunk } from '../../store/water/operations.js';
+import { changeModalClose } from '../../store/water/waterSlice.js';
+import { toast } from 'react-toastify';
 
-const ModalEditWater = () => {
+const ModalEditWater = ({ waterItem }) => {
   const [time, setTime] = useState(new Date());
   const { counter, handleUpdate } = useCounter(0);
   const [manualValue, setManualValue] = useState('');
   const [inputFocused, setInputFocused] = useState(false);
+  const [valueSource, setValueSource] = useState('default');
 
-  const onSubmit = (e) => {
+  const dispatch = useDispatch();
+
+  const onSubmit = async (e) => {
     e.preventDefault();
+
+    const updatedWater = {
+      milliliters: parseInt(manualValue),
+      time,
+    };
+    dispatch(editWaterThunk({ id: waterItem._id, water: updatedWater }))
+      .unwrap()
+      .then(() => {
+        dispatch(changeModalClose(false));
+        toast.success('Water note was successfully edited');
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
-  const formattedTime = format(time, 'hh:mm a');
+  const formattedTime = format(waterItem?.time, 'hh:mm a');
 
   const handleManualValueChange = (e) => {
     let value = e.target.value;
+    setValueSource('manual');
     if (
       value !== '' &&
       (isNaN(value) || parseInt(value) > 5000 || parseInt(value) < 1)
@@ -41,6 +63,24 @@ const ModalEditWater = () => {
       value = '5000';
     }
     setManualValue(value);
+  };
+
+  const getDisplayValue = () => {
+    if (waterItem) {
+      switch (valueSource) {
+        case 'manual':
+          return manualValue
+            ? `${manualValue}ml`
+            : `${waterItem.milliliters}ml`;
+        case 'counter':
+          return `${counter}ml`;
+        default:
+          return `${waterItem.milliliters}ml`;
+      }
+    } else {
+      toast.error('This record does not exist');
+      return `${counter}ml`;
+    }
   };
 
   const handleInputBlur = () => {
@@ -65,7 +105,7 @@ const ModalEditWater = () => {
     <StyledModalForm onSubmit={onSubmit}>
       <StyledModalEditStat>
         <SvgGlass />
-        <span>{displayValue}</span>
+        <span>{getDisplayValue()}</span>
         <p>{formattedTime}</p>
       </StyledModalEditStat>
       <h3>Correct entered data:</h3>
@@ -111,6 +151,8 @@ const ModalEditWater = () => {
         <h3>Enter the value of the water used:</h3>
         <StyledModalEditInput
           type="number"
+          // type="text"
+          // pattern="[0-9]*"
           placeholder={`${counter}`}
           min="1"
           max="5000"

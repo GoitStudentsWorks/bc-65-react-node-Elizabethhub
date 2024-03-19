@@ -17,6 +17,7 @@ import {
   changeModalAddForm,
   changeModalDeleteForm,
   changeModalEditForm,
+  changeModalId,
 } from '../../store/water/waterSlice';
 import {
   modalDeleteOpen,
@@ -26,6 +27,7 @@ import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
 import { useEffect } from 'react';
 import { fetchAllWaterThunk } from '../../store/water/operations.js';
 import { selectUser } from '../../store/auth/selectors.js';
+import { format } from 'date-fns';
 
 const TodayElement = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
@@ -41,14 +43,14 @@ const TodayElement = () => {
     }
   }, [dispatch, isUser]);
 
-  function formatDate(date) {
-    if (date) {
-      const newDate = new Date(date);
-      const hour = newDate.getHours();
-      const minute = newDate.getMinutes();
-      return `${hour}:${minute}`;
-    }
-  }
+  // function formatDate(date) {
+  //   if (date) {
+  //     const newDate = new Date(date);
+  //     const hour = newDate.getHours();
+  //     const minute = newDate.getMinutes();
+  //     return `${hour}:${minute}`;
+  //   }
+  // }
 
   return (
     <>
@@ -61,13 +63,14 @@ const TodayElement = () => {
                 <InfoWrapper>
                   <SvgGlass />
                   <Amount>{item.milliliters} ml</Amount>
-                  <Time>{formatDate(item.time)} PM</Time>
+                  <Time>{format(item.time, 'hh:mm a')}</Time>
                   {/* <Time>{console.log(item.time)} PM</Time> */}
                 </InfoWrapper>
                 <BtnWrapper>
                   <div
                     onClick={() => {
                       dispatch(changeModalEditForm(true));
+                      dispatch(changeModalId(item._id));
                     }}
                   >
                     <EditSvg />
