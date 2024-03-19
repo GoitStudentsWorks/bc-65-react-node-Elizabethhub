@@ -74,7 +74,7 @@ const ModalEditWater = () => {
         >
           <SvgMinus size="24" />
         </button>
-        <span>{`${counter}ml`}</span>
+        <span>{displayValue ? displayValue : `${counter}ml`}</span>
         <button type="button" name="increment" onClick={handleUpdate}>
           <SvgPlus size="24" />
         </button>
