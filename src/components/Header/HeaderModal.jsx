@@ -60,7 +60,7 @@ const HeaderModal = () => {
   }, [isModalOpen, isHeaderModalOpen, isHeaderModalLogOut]);
 
   useEffect(() => {
-    if (isModalOpen || isHeaderModalOpen || isHeaderModalLogOut) {
+    if (isModalOpen || isHeaderModalLogOut) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'auto';
@@ -68,11 +68,15 @@ const HeaderModal = () => {
   }, [isModalOpen, isHeaderModalOpen, isHeaderModalLogOut]);
 
   useEffect(() => {
-    if (userProfile) {
-      userProfile?.avatarURL;
-      setImageUser(userProfile.avatarURL);
+    if (userProfile && userProfile.avatarURL) {
+      let avatarURL = userProfile.avatarURL;
+
+      if (avatarURL.startsWith('avatars')) {
+        avatarURL = `https://byte-water-back.onrender.com/${avatarURL}`;
+      }
+      setImageUser(avatarURL);
     }
-  }, [userProfile, userProfile?.avatarURL]);
+  }, [userProfile]);
 
   const openModal = () => {
     setIsModalOpen(true);
