@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isModalDayNorm } from '../../store/water/selectors';
+import { dayNorma, isModalDayNorm } from '../../store/water/selectors';
 import {
   changeModalClose,
   changeDayNorma,
@@ -21,17 +21,22 @@ import {
   StyledCross,
   StyledRequiredLitres,
   StyledWrapper,
+  StyledInputBox,
 } from './ModalDailyNorma.styled.js';
+import { editDailyNormaThunk } from '../../store/water/operations.js';
+import { toast } from 'react-toastify';
 
 const ModalDailyNorma = () => {
   const isModalOpen = useSelector(isModalDayNorm);
+  const dayNormaValue = useSelector(dayNorma);
   const dispatch = useDispatch();
 
   const [genderValue, setGenderValue] = useState('woman');
-  const [massQuery, setMassQuery] = useState('');
-  const [timeQuery, setTimeQuery] = useState('');
+  const [massQuery, setMassQuery] = useState(0);
+  const [timeQuery, setTimeQuery] = useState(0);
+  const [volume, setVolume] = useState(0);
   const [waterQuery, setWaterQuery] = useState('');
-  const [volume, setVolume] = useState('');
+  const { time, weight, waterAmount, howMuch } = textData;
 
   const clickBackdrop = useClickBackdrop();
 
@@ -50,7 +55,9 @@ const ModalDailyNorma = () => {
   }, [dispatch, isModalOpen]);
 
   useEffect(() => {
-    setVolume(calculateVolume(massQuery, timeQuery, genderValue));
+    const calculatedVolume = calculateVolume(massQuery, timeQuery, genderValue);
+    const parsedVolume = parseFloat(calculatedVolume);
+    setVolume((isNaN(parsedVolume) ? 0 : parsedVolume) || dayNormaValue / 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [massQuery, timeQuery, genderValue]);
 
@@ -69,19 +76,27 @@ const ModalDailyNorma = () => {
     handleInput(e, setWaterQuery);
   };
 
-  const handleSaveBtn = () => {
-    dispatch(changeDayNorma(waterQuery));
-    setTimeout(() => {
-      dispatch(changeModalClose(false));
-    }, 300);
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const finalValue = waterQuery * 1000 || volume * 1000;
+    dispatch(editDailyNormaThunk({ dailyNorma: finalValue }))
+      .unwrap()
+      .then(() => {
+        dispatch(changeDayNorma(finalValue));
+        setTimeout(() => {
+          dispatch(changeModalClose(false));
+        }, 300);
+        toast.success('Daily norma was successfuly added');
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
-
-  const { time, weight, waterAmount, howMuch } = textData;
 
   return (
     isModalOpen && (
       <StyledBackdrop open={isModalOpen} onClick={clickBackdrop}>
-        <StyledWrapper>
+        <StyledWrapper onSubmit={onSubmit}>
           <h2>My daily norma</h2>
           <StyledCross
             onClick={() => {
@@ -98,28 +113,36 @@ const ModalDailyNorma = () => {
           <InputBox
             paragrName={weight}
             inputName={'mass'}
+            min={'40'}
+            max={'300'}
             inputValue={massQuery}
             handler={handleMassInput}
           />
           <InputBox
             paragrName={time}
+            max={'24'}
             inputName={'time'}
             inputValue={timeQuery}
             handler={handleTimeInput}
           />
           <StyledRequiredLitres>
             <p>{waterAmount}</p>
-            <span>{volume || 1.8} L</span>
+            <span>{volume.toFixed(1)} L</span>
           </StyledRequiredLitres>
-          <InputBox
-            paragrName={howMuch}
-            inputName={'waterVolume'}
-            inputValue={waterQuery}
-            handler={handleWaterInput}
-          />
-          <SaveButton type="button" onClick={handleSaveBtn}>
-            Save
-          </SaveButton>
+          <h3>{howMuch}</h3>
+          <StyledInputBox>
+            <input
+              type="number"
+              name="waterVolume"
+              min="1"
+              max="5"
+              value={waterQuery}
+              onChange={handleWaterInput}
+              placeholder={`${volume}`}
+              required={volume > 0 ? waterQuery : true}
+            />
+          </StyledInputBox>
+          <SaveButton type="submit">Save</SaveButton>
         </StyledWrapper>
       </StyledBackdrop>
     )

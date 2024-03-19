@@ -20,7 +20,7 @@ const DailyEdit = () => {
       {isModalOpen && <ModalDailyNorma />}
       <DailyTittle>My daily norma</DailyTittle>
       <DailyWrapperEdit>
-        <DailyLiter>{dayNormaValue} L</DailyLiter>
+        <DailyLiter>{(dayNormaValue / 1000).toFixed(1)} L</DailyLiter>
         <DailyEditButton
           type="button"
           onClick={() => {

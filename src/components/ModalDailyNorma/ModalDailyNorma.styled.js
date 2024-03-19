@@ -16,7 +16,12 @@ export const StyledBackdrop = styled.div`
   width: 100%;
 `;
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.form`
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   position: relative;
   border-radius: 10px;
   background: var(--white);

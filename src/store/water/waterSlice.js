@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchAllWaterThunk } from './operations';
+import { currentThunk, signInThunk } from '../auth/thunks';
 
 const waterSlice = createSlice({
   name: 'waterSlice',
@@ -14,7 +15,7 @@ const waterSlice = createSlice({
       modalDeleteForm: false,
     },
     daysGenStats: false,
-    dayNorma: 1.5,
+    dayNorma: null,
     isLoading: false,
     waterTodayList: [],
   },
@@ -61,6 +62,12 @@ const waterSlice = createSlice({
       })
       .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
         state.error = payload;
+      })
+      .addCase(signInThunk.fulfilled, (state, { payload }) => {
+        state.dayNorma = payload.user.dailyNorma;
+      })
+      .addCase(currentThunk.fulfilled, (state, { payload }) => {
+        state.dayNorma = payload.dailyNorma;
       });
   },
 });
