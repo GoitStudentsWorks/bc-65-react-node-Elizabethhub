@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from '../../configAxios/configAxios';
+import { api } from '../../api/api';
 
 export const addWaterThunk = createAsyncThunk(
-  'addWater',
-  async (water, thunkApi) => {
+  'water/addWater',
+  async (body, thunkApi) => {
     try {
-      const { data } = await api.post('/api/home', water);
+      const { data } = await api.post('water/addWater', body);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -14,11 +14,23 @@ export const addWaterThunk = createAsyncThunk(
 );
 
 export const fetchAllWaterThunk = createAsyncThunk(
-  'fetchAll',
+  'water/getAllWater',
   async (_, thunkApi) => {
     try {
-      const { data } = await api.get('/api/home');
+      const { data } = await api.get('water/');
       console.log(data);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editWaterThunk = createAsyncThunk(
+  'water/editWater',
+  async ({ id, water }, thunkApi) => {
+    try {
+      const { data } = await api.put(`water/${id}`, water);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
