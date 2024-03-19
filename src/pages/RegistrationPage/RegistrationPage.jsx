@@ -22,7 +22,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import OpenPassEye from '../../images/AuthImg/OpenPassEye';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { signUpThunk } from '../../store/auth/thunks';
+import { signInThunk, signUpThunk } from '../../store/auth/thunks';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 
@@ -65,8 +65,15 @@ const RegistrationPage = () => {
     dispatch(signUpThunk({ email, password }))
       .unwrap()
       .then(() => {
-        toast.success('Sign up done!\nPlease login!');
-        navigate('/signin');
+        toast.success('Sign up done!');
+        dispatch(signInThunk({ email, password }))
+          .unwrap()
+          .then(() => {
+            navigate('/home');
+          })
+          .catch((err) => {
+            toast.error(err);
+          });
       })
 
       .catch(() => toast.error('Ooops... Something went wrong!'));
