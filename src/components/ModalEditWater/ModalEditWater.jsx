@@ -33,7 +33,13 @@ const ModalEditWater = () => {
   const formattedTime = format(time, 'hh:mm a');
 
   const handleManualValueChange = (e) => {
-    const value = e.target.value;
+    let value = e.target.value;
+    if (
+      value !== '' &&
+      (isNaN(value) || parseInt(value) > 5000 || parseInt(value) < 1)
+    ) {
+      value = '5000';
+    }
     setManualValue(value);
   };
 
@@ -74,7 +80,7 @@ const ModalEditWater = () => {
         >
           <SvgMinus size="24" />
         </button>
-        <span>{`${counter}ml`}</span>
+        <span>{displayValue ? displayValue : `${counter}ml`}</span>
         <button type="button" name="increment" onClick={handleUpdate}>
           <SvgPlus size="24" />
         </button>
