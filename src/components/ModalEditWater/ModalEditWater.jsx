@@ -14,7 +14,7 @@ import {
   StyledModalEditInput,
   StyledModalEditStat,
 } from './ModalEditWater.styled.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useCounter from '../../hooks/modalHandleUpdate.js';
@@ -23,6 +23,8 @@ import { format } from 'date-fns';
 const ModalEditWater = () => {
   const [time, setTime] = useState(new Date());
   const { counter, handleUpdate } = useCounter(0);
+  const [manualValue, setManualValue] = useState('');
+  const [inputFocused, setInputFocused] = useState(false);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -30,11 +32,34 @@ const ModalEditWater = () => {
 
   const formattedTime = format(time, 'hh:mm a');
 
+  const handleManualValueChange = (e) => {
+    const value = e.target.value;
+    setManualValue(value);
+  };
+
+  const handleInputBlur = () => {
+    setInputFocused(false);
+  };
+
+  const handleInputFocus = () => {
+    setInputFocused(true);
+  };
+
+  useEffect(() => {
+    setManualValue(`${counter}`);
+  }, [counter]);
+
+  const displayValue = inputFocused
+    ? `${counter}ml`
+    : manualValue !== ''
+    ? `${manualValue}ml`
+    : `${counter}ml`;
+
   return (
     <StyledModalForm onSubmit={onSubmit}>
       <StyledModalEditStat>
         <SvgGlass />
-        <span>{`${counter}ml`}</span>
+        <span>{displayValue}</span>
         <p>{formattedTime}</p>
       </StyledModalEditStat>
       <h3>Correct entered data:</h3>
@@ -74,22 +99,26 @@ const ModalEditWater = () => {
           />
           <TimeGlobalStyles />
         </ModalEditDateWrap>
-        {/* <StyledModalEditInput type="number" placeholder="7:00" name="time" /> */}
       </StyledModalAddTime>
 
       <StyledModalAddValue>
         <h3>Enter the value of the water used:</h3>
         <StyledModalEditInput
           type="number"
-          placeholder={`${counter}ml`}
+          placeholder={`${counter}`}
           min="1"
           max="5000"
           name="value"
+          value={manualValue}
+          onChange={handleManualValueChange}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          required
         />
       </StyledModalAddValue>
 
       <StyledModalAddSave>
-        <span>{`${counter}ml`}</span>
+        <span>{displayValue}</span>
         <button type="submit">Save</button>
       </StyledModalAddSave>
     </StyledModalForm>
