@@ -86,7 +86,7 @@ const ModalDailyNorma = () => {
         setTimeout(() => {
           dispatch(changeModalClose(false));
         }, 300);
-        toast.success('Daily norma changed');
+        toast.success('Daily norma successfully updated');
       })
       .catch((error) => {
         toast.error(error);
