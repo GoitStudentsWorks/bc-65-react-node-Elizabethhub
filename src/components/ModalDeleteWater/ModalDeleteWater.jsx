@@ -1,7 +1,7 @@
 import SvgCross from '../../images/svg/svgModal/SvgCross.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { modalDeleteOpen } from '../../store/water/selectors.js';
-import { changeModalClose } from '../../store/water/waterSlice.js';
+import { changeModalClose, deleteWater } from '../../store/water/waterSlice.js';
 import { useEffect } from 'react';
 import {
   StyledModalCancelBtn,
@@ -17,7 +17,7 @@ import useKeyDown from '../../hooks/modalCloseEsc.js';
 import { deleteWaterThunk } from '../../store/water/operations.js';
 import { toast } from 'react-toastify';
 
-const ModalDeleteWater = ({ waterItem }) => {
+const ModalDeleteWater = ({waterItem}) => {
   const isModalOpen = useSelector(modalDeleteOpen);
 
   const dispatch = useDispatch();
@@ -28,13 +28,15 @@ const ModalDeleteWater = ({ waterItem }) => {
     dispatch(deleteWaterThunk(waterItem?._id))
       .unwrap()
       .then(() => {
+        // dispatch(deleteWater(waterItem._id))
         dispatch(changeModalClose(false));
-        toast.success('Water note was successfully deleted');
+        // toast.success('Water note was successfully deleted');
       })
       .catch((error) => {
         toast.error(error);
       });
   };
+  // console.log(waterItem);
 
   const clickBackdrop = useClickBackdrop();
 

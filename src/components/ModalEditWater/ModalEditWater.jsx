@@ -25,11 +25,12 @@ import { changeModalClose } from '../../store/water/waterSlice.js';
 import { toast } from 'react-toastify';
 
 const ModalEditWater = ({ waterItem }) => {
-  const [time, setTime] = useState(new Date());
-  const { counter, handleUpdate } = useCounter(0);
+  const [time, setTime] = useState(new Date(waterItem?.time));
+  const { counter, handleUpdate } = useCounter(waterItem?.milliliters);
   const [manualValue, setManualValue] = useState('');
   const [inputFocused, setInputFocused] = useState(false);
   const [valueSource, setValueSource] = useState('default');
+  const [formattedTime, setFormattedTime] = useState(format(time, 'hh:mm a'));
 
   const dispatch = useDispatch();
 
@@ -52,8 +53,6 @@ const ModalEditWater = ({ waterItem }) => {
       });
   };
 
-  const formattedTime = format(waterItem?.time, 'hh:mm a');
-
   const handleManualValueChange = (e) => {
     let value = e.target.value;
     setValueSource('manual');
@@ -66,23 +65,23 @@ const ModalEditWater = ({ waterItem }) => {
     setManualValue(value);
   };
 
-  const getDisplayValue = () => {
-    if (waterItem) {
-      switch (valueSource) {
-        case 'manual':
-          return manualValue
-            ? `${manualValue}ml`
-            : `${waterItem?.milliliters}ml`;
-        case 'counter':
-          return `${counter}ml`;
-        default:
-          return `${waterItem?.milliliters}ml`;
-      }
-    } else {
-      toast.error('This record does not exist');
-      return `${counter}ml`;
-    }
-  };
+  // const getDisplayValue = () => {
+  //   if (waterItem) {
+  //     switch (valueSource) {
+  //       case 'manual':
+  //         return manualValue
+  //           ? `${manualValue}ml`
+  //           : `${waterItem?.milliliters}ml`;
+  //       case 'counter':
+  //         return `${counter}ml`;
+  //       default:
+  //         return `${waterItem?.milliliters}ml`;
+  //     }
+  //   } else {
+  //     toast.error('This record does not exist');
+  //     return `${counter}ml`;
+  //   }
+  // };
 
   const handleInputBlur = () => {
     setInputFocused(false);
@@ -106,7 +105,7 @@ const ModalEditWater = ({ waterItem }) => {
     <StyledModalForm onSubmit={onSubmit}>
       <StyledModalEditStat>
         <SvgGlass />
-        <span>{getDisplayValue()}</span>
+        <span>{displayValue ? displayValue : `${counter}ml`}</span>
         <p>{formattedTime}</p>
       </StyledModalEditStat>
       <h3>Correct entered data:</h3>
@@ -134,6 +133,10 @@ const ModalEditWater = ({ waterItem }) => {
             selected={time}
             onChange={(date) => {
               setTime(date);
+            }}
+            onBlur={() => {
+              const formattedTime = format(time, 'hh:mm a');
+              setFormattedTime(formattedTime);
             }}
             showTimeSelect
             showTimeSelectOnly
