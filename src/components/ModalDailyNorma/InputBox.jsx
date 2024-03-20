@@ -13,7 +13,7 @@ export default function InputBox({
       <p className="no-margin">{paragrName}</p>
       <input
         type="number"
-        min={min}
+        min={min !== false ? min : undefined}
         max={max}
         name={inputName}
         value={inputValue}

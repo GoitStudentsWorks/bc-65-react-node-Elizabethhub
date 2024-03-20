@@ -71,7 +71,7 @@ const waterSlice = createSlice({
         state.dayNorma = payload.user.dailyNorma;
       })
       .addCase(currentThunk.fulfilled, (state, { payload }) => {
-        state.dayNorma = payload.dailyNorma;
+        state.dayNorma = payload?.dailyNorma;
       });
   },
 });
