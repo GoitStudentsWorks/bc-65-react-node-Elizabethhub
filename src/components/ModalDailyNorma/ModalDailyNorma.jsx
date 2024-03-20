@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { dayNorma, isModalDayNorm } from '../../store/water/selectors';
+import { isModalDayNorm } from '../../store/water/selectors';
+import { selectUser } from '../../store/auth/selectors.js';
 import { editDailyNormaThunk } from '../../store/water/operations.js';
-import {
-  changeModalClose,
-  changeDayNorma,
-} from '../../store/water/waterSlice.js';
+import { changeModalClose } from '../../store/water/waterSlice.js';
+import { changeDayNorma } from '../../store/auth/slice.js';
 import {
   calculateVolume,
   handleInput,
@@ -27,9 +26,10 @@ import {
 } from './ModalDailyNorma.styled.js';
 
 const ModalDailyNorma = () => {
-  const isModalOpen = useSelector(isModalDayNorm);
-  const dayNormaValue = useSelector(dayNorma);
   const dispatch = useDispatch();
+  const isModalOpen = useSelector(isModalDayNorm);
+  const userObject = useSelector(selectUser);
+  const dayNormaValue = userObject?.dailyNorma;
 
   const [genderValue, setGenderValue] = useState('woman');
   const [massQuery, setMassQuery] = useState(0);
@@ -89,7 +89,14 @@ const ModalDailyNorma = () => {
         toast.success('Daily norma successfully updated');
       })
       .catch((error) => {
-        toast.error(error);
+        if (error.response) {
+          // If the error has a response, it means it's an Axios error
+          const errorMessage = error.response.data.message;
+          toast.error(errorMessage);
+        } else {
+          // If there's no response, handle other types of errors
+          toast.error('An error occurred. Please try again.');
+        }
       });
   };
 
@@ -135,7 +142,7 @@ const ModalDailyNorma = () => {
               type="number"
               name="waterVolume"
               min="<1"
-              max="5"
+              max="15"
               value={waterQuery}
               onChange={handleWaterInput}
               placeholder={`${volume}`}
