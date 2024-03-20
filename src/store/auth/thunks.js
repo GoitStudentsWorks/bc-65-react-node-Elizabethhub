@@ -67,14 +67,15 @@ export const updateAvatarThunk = createAsyncThunk(
       if (token) {
         setToken(token);
       }
-      // api.defaults.headers.contentType = 'multipart/form-data';
       const { data } = await api.patch('users/avatars', body, {
         headers: {
           'Content-type': 'multipart/form-data',
         },
       });
+      console.log(data);
       return data;
     } catch (error) {
+      console.log(error.message);
       thunkAPI.rejectWithValue(error.message);
     }
   }
