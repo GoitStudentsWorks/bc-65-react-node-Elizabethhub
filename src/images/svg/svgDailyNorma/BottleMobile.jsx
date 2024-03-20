@@ -1,7 +1,8 @@
 import React from 'react';
 import { BottleMobileSvg } from '../../../components/DailyNorma/WaterRatio.styled';
-
+import { useTheme } from 'styled-components';
 function BottleMobile() {
+  const theme = useTheme();
   return (
     <BottleMobileSvg
       xmlns="http://www.w3.org/2000/svg"
@@ -13,7 +14,7 @@ function BottleMobile() {
     >
       <g clipPath="url(#clip0_115_2737)">
         <path
-          fill="#F5F5F5"
+          fill={theme.BottleSVG}
           d="M140 208c59.966 0 108.578-2.829 108.578-6.319 0-3.49-48.612-6.319-108.578-6.319s-108.578 2.829-108.578 6.319c0 3.49 48.612 6.319 108.578 6.319z"
         ></path>
         <path

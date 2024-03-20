@@ -149,7 +149,8 @@ export const StyledInputBox = styled.div`
     width: 100%;
     border-radius: 6px;
     border: 1px solid var(--primary-mediumblue);
-    color: var(--blue);
+    background-color: ${(props) => props.theme.formInputBackground};
+    color: ${(props) => props.theme.formInputColor};
     padding: 12px 10px 12px 10px;
     margin-top: 8px;
     margin-bottom: 16px;

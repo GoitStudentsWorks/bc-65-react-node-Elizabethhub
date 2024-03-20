@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/auth/selectors';
 import { HeaderUserName } from './HeaderModalStyled';
 import { useEffect, useState } from 'react';
+import DivSetting from './DivSetting';
 
 const Header = () => {
   const userProfile = useSelector(selectUser);
@@ -36,7 +37,7 @@ const Header = () => {
         <Link to="/" style={{ textDecoration: 'none' }}>
           <SvgIconMobail />
         </Link>
-
+        <DivSetting />
         <HeaderDivButtonContainer>
           {userProfile ? (
             <>

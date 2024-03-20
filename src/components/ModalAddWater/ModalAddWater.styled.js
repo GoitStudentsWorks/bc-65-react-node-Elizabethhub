@@ -141,7 +141,8 @@ export const StyledModalAddInput = styled.input`
   border-radius: 6px;
   border: 1px solid var(--primary-mediumblue);
   padding: 12px 10px 12px 10px;
-  color: var(--blue);
+  background-color: ${(props) => props.theme.formInputBackground};
+  color: ${(props) => props.theme.formInputColor};
   &::placeholder {
     color: var(--blue);
     font-size: 16px;
@@ -220,7 +221,8 @@ export const ModalAddDateWrap = styled.div`
     border-radius: 6px;
     border: 1px solid var(--primary-mediumblue);
     padding: 12px 10px 12px 10px;
-    color: var(--blue);
+    background-color: ${(props) => props.theme.formInputBackground};
+    color: ${(props) => props.theme.formInputColor};
     &::placeholder {
       color: var(--blue);
       font-size: 16px;
