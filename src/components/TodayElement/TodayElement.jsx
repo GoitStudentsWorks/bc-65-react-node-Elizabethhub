@@ -21,6 +21,7 @@ import {
 } from '../../store/water/waterSlice';
 import {
   modalDeleteOpen,
+  modalId,
   selectorWaterToday,
 } from '../../store/water/selectors.js';
 import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
@@ -32,6 +33,7 @@ import { format } from 'date-fns';
 const TodayElement = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
   const isUser = useSelector(selectUser);
+  const id = useSelector(modalId);
 
   const waterTodayList = useSelector(selectorWaterToday);
 
@@ -42,15 +44,6 @@ const TodayElement = () => {
       dispatch(fetchAllWaterThunk());
     }
   }, [dispatch, isUser]);
-
-  // function formatDate(date) {
-  //   if (date) {
-  //     const newDate = new Date(date);
-  //     const hour = newDate.getHours();
-  //     const minute = newDate.getMinutes();
-  //     return `${hour}:${minute}`;
-  //   }
-  // }
 
   return (
     <>
@@ -98,7 +91,11 @@ const TodayElement = () => {
             <span>Add water</span>
           </button>
         </AddBtnWrapper>
-        {isModalOpen && <ModalDeleteWater />}
+        {isModalOpen && (
+          <ModalDeleteWater
+            waterItem={waterTodayList.find((item) => item._id !== id)}
+          />
+        )}
       </ListWrapper>
     </>
   );

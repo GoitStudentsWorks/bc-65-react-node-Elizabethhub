@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAllWaterThunk } from './operations';
+import { deleteWaterThunk, fetchAllWaterThunk } from './operations';
+import { toast } from 'react-toastify';
 
 const waterSlice = createSlice({
   name: 'waterSlice',
@@ -53,6 +54,11 @@ const waterSlice = createSlice({
     changeModalId: (state, { payload }) => {
       state.modal.modalId = payload;
     },
+    deleteWater: (state, action) => {
+      state.waterTodayList = state.waterTodayList.filter(
+        (waterItem) => waterItem.id !== action.payload
+      );
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -61,6 +67,12 @@ const waterSlice = createSlice({
       })
       .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
         state.error = payload;
+      })
+      .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {
+        state.waterTodayList = state.waterTodayList.filter(
+          (waterItem) => waterItem._id !== payload.id
+        );
+        toast.success('Water note was successfully deleted');
       });
   },
 });
@@ -74,4 +86,5 @@ export const {
   changeShowDaysStats,
   changeTodayList,
   changeModalId,
+  deleteWater,
 } = waterSlice.actions;
