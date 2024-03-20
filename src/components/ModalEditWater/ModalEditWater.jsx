@@ -40,7 +40,8 @@ const ModalEditWater = ({ waterItem }) => {
       milliliters: parseInt(manualValue),
       time,
     };
-    dispatch(editWaterThunk({ id: waterItem._id, water: updatedWater }))
+
+    dispatch(editWaterThunk({ id: waterItem?._id, water: updatedWater }))
       .unwrap()
       .then(() => {
         dispatch(changeModalClose(false));
@@ -71,11 +72,11 @@ const ModalEditWater = ({ waterItem }) => {
         case 'manual':
           return manualValue
             ? `${manualValue}ml`
-            : `${waterItem.milliliters}ml`;
+            : `${waterItem?.milliliters}ml`;
         case 'counter':
           return `${counter}ml`;
         default:
-          return `${waterItem.milliliters}ml`;
+          return `${waterItem?.milliliters}ml`;
       }
     } else {
       toast.error('This record does not exist');
