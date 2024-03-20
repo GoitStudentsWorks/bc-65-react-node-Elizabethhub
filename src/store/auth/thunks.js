@@ -79,3 +79,28 @@ export const updateAvatarThunk = createAsyncThunk(
     }
   }
 );
+export const forgotThunk = createAsyncThunk(
+  'user/forgotPassword',
+  async (body, thunkAPI) => {
+    try {
+      const { data } = await api.post('users/forgot-password', body);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+export const updatePasswordThunk = createAsyncThunk(
+  'user/updatePassword',
+  async ({ tempCode, newPassword }, thunkAPI) => {
+    try {
+      const { data } = await api.post(
+        `users/update-password/${tempCode.tempCode}`,
+        { newPassword }
+      );
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

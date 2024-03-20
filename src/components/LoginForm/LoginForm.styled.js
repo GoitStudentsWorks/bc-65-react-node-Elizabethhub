@@ -105,6 +105,8 @@ export const LoginLink = styled(Link)`
   &:focus {
     color: var(--primary-orange);
   }
+
+  margin-right: 10px;
 `;
 export const PassShowBtn = styled.button`
   background-color: transparent;
