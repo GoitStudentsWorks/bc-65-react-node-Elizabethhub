@@ -43,6 +43,18 @@ export const deleteWaterThunk = createAsyncThunk(
     try {
       await api.delete(`water/${id}`);
       return id;
+         } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editDailyNormaThunk = createAsyncThunk(
+  'water/editDailyNorma',
+  async (body, thunkApi) => {
+    try {
+      const { data } = await api.patch(`/users/`, body);
+      return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }

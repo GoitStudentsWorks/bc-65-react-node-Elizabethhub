@@ -5,16 +5,16 @@ export default function InputBox({
   inputName,
   inputValue,
   handler,
+  min = '0',
+  max,
 }) {
   return (
     <StyledInputBox>
-      {inputName === 'waterVolume' ? (
-        <h3>{paragrName}</h3>
-      ) : (
-        <p className="no-margin">{paragrName}</p>
-      )}
+      <p className="no-margin">{paragrName}</p>
       <input
-        type="text"
+        type="number"
+        min={min}
+        max={max}
         name={inputName}
         value={inputValue}
         onChange={handler}
