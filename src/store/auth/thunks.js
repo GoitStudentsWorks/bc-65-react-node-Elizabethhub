@@ -41,7 +41,7 @@ export const currentThunk = createAsyncThunk(
       const { data } = await api('users/current');
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -53,7 +53,7 @@ export const logoutThunk = createAsyncThunk(
       clearToken();
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -76,7 +76,7 @@ export const updateAvatarThunk = createAsyncThunk(
       return data;
     } catch (error) {
       console.log(error.message);
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

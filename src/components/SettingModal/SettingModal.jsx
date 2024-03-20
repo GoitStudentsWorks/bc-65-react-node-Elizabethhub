@@ -124,22 +124,22 @@ const SettingModal = ({ onClose }) => {
   });
 
   function submit(data) {
-    const formData = new FormData();
-    formData.append('avatarURL', data.avatarURL[0]);
-    dispatch(updateAvatarThunk(formData))
+    // const formData = new FormData();
+    // formData.append('avatarURL', data.avatarURL[0]);
+    dispatch(updateAvatarThunk(data))
       .unwrap()
       .then((res) => {
-        // console.log(res);
-        if (!res) {
-          throw errors;
-        }
+        console.log(res);
+        // if (!res) {
+        //   throw errors;
+        // }
         toast.success(`Your avatar has been saved successfully`);
         onClose();
       })
       .catch((err) => toast.error(err));
     // console.log(formData);
 
-    // console.log(data);
+    console.log(data);
   }
 
   function showPass() {
