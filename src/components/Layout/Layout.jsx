@@ -11,24 +11,44 @@ import {
 } from '../Header/ThemeStyled/Theme.styled.jsx';
 
 import { ThemeProvider } from 'styled-components';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Switch from '../Header/ThemeStyled/SwitchTheme/Switch.jsx';
 
 const Layout = () => {
-  const [theme, setTheme] = useState('light');
+  const storedTheme = localStorage.getItem('theme');
+  const [theme, setTheme] = useState(storedTheme || 'light');
   const isDarkTheme = theme === 'dark';
+
   const toggleTheme = () => {
-    setTheme(isDarkTheme ? 'light' : 'dark');
+    const newTheme = isDarkTheme ? 'light' : 'dark';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
   };
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme && storedTheme !== theme) {
+        setTheme(storedTheme);
+      }
+    };
+
+    window.addEventListener('storage', handleStorageChange);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+    };
+  }, [theme]);
+
   return (
     <>
       <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
         <GlobalStyles />
         <StyledApp>
           <Switch toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
-          {/* <BackgraundContainer /> */}
           <header>
             <Container>
+              {/* <BackgraundContainer /> */}
               <Header />
             </Container>
           </header>
