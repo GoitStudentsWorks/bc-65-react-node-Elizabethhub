@@ -13,6 +13,7 @@ const waterSlice = createSlice({
       isModalDayNorm: false,
       modalDayNorma: false,
       modalDeleteForm: false,
+      modalId: '',
     },
     daysGenStats: false,
     dayNorma: null,
@@ -54,6 +55,9 @@ const waterSlice = createSlice({
     changeTodayList: (state, { payload }) => {
       state.waterTodayList.push(payload);
     },
+    changeModalId: (state, { payload }) => {
+      state.modal.modalId = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -81,4 +85,5 @@ export const {
   changeShowDaysStats,
   changeDayNorma,
   changeTodayList,
+  changeModalId,
 } = waterSlice.actions;

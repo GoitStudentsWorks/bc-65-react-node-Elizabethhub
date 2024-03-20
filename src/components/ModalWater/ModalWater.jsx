@@ -4,6 +4,8 @@ import {
   modalIsAdd,
   modalIsEdit,
   modalIsOpen,
+  selectorWaterToday,
+  modalId,
 } from '../../store/water/selectors.js';
 import { changeModalClose } from '../../store/water/waterSlice.js';
 import { useEffect } from 'react';
@@ -21,6 +23,8 @@ const ModalWater = () => {
   const isModalOpen = useSelector(modalIsOpen);
   const isModalAdd = useSelector(modalIsAdd);
   const isModalEdit = useSelector(modalIsEdit);
+  const waterTodayList = useSelector(selectorWaterToday);
+  const id = useSelector(modalId);
 
   const dispatch = useDispatch();
 
@@ -56,7 +60,7 @@ const ModalWater = () => {
             <SvgCross />
           </StyledModalAddClose>
 
-          {isModalEdit && <ModalEditWater />}
+          {isModalEdit && <ModalEditWater waterItem={waterTodayList.find(item => item._id === id)} />}
           {isModalAdd && <ModalAddWater />}
         </StyledModalAddWrapper>
       </StyledModalAddBackdrop>

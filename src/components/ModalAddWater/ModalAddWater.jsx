@@ -33,23 +33,17 @@ const ModalAddWater = () => {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    // const currentTime = new Date();
-
     const water = {
       milliliters: e.target.elements.value.value,
       time: time,
     };
 
-    // const water = {
-    //   milliliters: e.target.elements.value.value,
-    //   time,
-    // };
     dispatch(addWaterThunk(water))
       .unwrap()
       .then(() => {
         dispatch(changeModalClose(false));
         dispatch(changeTodayList({ ...water, _id: crypto.randomUUID() }));
-        toast.success('Water note was successfuly added');
+        toast.success('Water note was successfully added');
       })
       .catch((error) => {
         toast.error(error);

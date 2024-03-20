@@ -36,6 +36,19 @@ export const editWaterThunk = createAsyncThunk(
     }
   }
 );
+
+export const deleteWaterThunk = createAsyncThunk(
+  'water/deleteWater',
+  async (id, thunkApi) => {
+    try {
+      await api.delete(`water/${id}`);
+      return id;
+         } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const editDailyNormaThunk = createAsyncThunk(
   'water/editDailyNorma',
   async (body, thunkApi) => {
