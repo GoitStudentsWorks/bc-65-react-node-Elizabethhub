@@ -9,6 +9,8 @@ import PublicRoute from '../../routes/PublicRoute';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { currentThunk } from '../../store/auth/thunks';
+import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword';
+import UpdatePassword from '../../pages/UpdatePassword/UpdatePassword';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,6 +51,22 @@ function App() {
           element={
             <PublicRoute>
               <RegistrationPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <PublicRoute>
+              <ForgotPassword />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/update-password/:tempCode"
+          element={
+            <PublicRoute>
+              <UpdatePassword />
             </PublicRoute>
           }
         />
