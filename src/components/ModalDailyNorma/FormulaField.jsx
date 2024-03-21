@@ -9,7 +9,6 @@ export default function FormulaField() {
   const { hint, rate } = textData;
 
   const getSpanStyle = () => {
-    console.log('i18n.language === uk', i18n.language === 'uk');
     return {
       fontSize:
         i18n.language === 'uk' && window.innerWidth <= 767 ? '16px' : '18px',
