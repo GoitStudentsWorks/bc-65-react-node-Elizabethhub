@@ -16,10 +16,12 @@ import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
 import useKeyDown from '../../hooks/modalCloseEsc.js';
 import { deleteWaterThunk } from '../../store/water/operations.js';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const ModalDeleteWater = ({ waterItem }) => {
   const isModalOpen = useSelector(modalDeleteOpen);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -58,7 +60,7 @@ const ModalDeleteWater = ({ waterItem }) => {
     isModalOpen && (
       <StyledModalDeleteBackdrop open={isModalOpen} onClick={clickBackdrop}>
         <StyledModalDeleteWrapper>
-          <h2>Delete entry</h2>
+          <h2>{t('deleteEntry')}</h2>
 
           <StyledModalDeleteClose
             onClick={() => {
@@ -69,15 +71,17 @@ const ModalDeleteWater = ({ waterItem }) => {
           </StyledModalDeleteClose>
 
           <StyledModalDeleteForm onSubmit={onSubmit}>
-            <p>Are you sure you want to delete the entry?</p>
+            <p>{t('areYouSureYouWantToDeleteTheEntry')}</p>
             <StyledModalDeleteButtons>
-              <StyledModalDeleteBtn type="submit">Delete</StyledModalDeleteBtn>
+              <StyledModalDeleteBtn type="submit">
+                {t('delete')}
+              </StyledModalDeleteBtn>
               <StyledModalCancelBtn
                 onClick={() => {
                   dispatch(changeModalClose(false));
                 }}
               >
-                Cancel
+                {t('cancel')}
               </StyledModalCancelBtn>
             </StyledModalDeleteButtons>
           </StyledModalDeleteForm>

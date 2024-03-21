@@ -29,7 +29,7 @@ import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
 const LoginPage = () => {
-  const { t } = useTranslation(); // Перемістіть useTranslation сюди
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });

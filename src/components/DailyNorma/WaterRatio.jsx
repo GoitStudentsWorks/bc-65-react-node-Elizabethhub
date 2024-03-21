@@ -15,15 +15,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeModalAddForm } from '../../store/water/waterSlice';
 import ModalWater from '../ModalWater/ModalWater';
 import { modalIsOpen } from '../../store/water/selectors';
+import { useTranslation } from 'react-i18next';
 
 const WaterRatio = () => {
+  const { t } = useTranslation();
   const isModalOpen = useSelector(modalIsOpen);
   const dispatch = useDispatch();
 
   return (
     <RangeWrapper>
       <div>
-        <RangeInputTitl>Today</RangeInputTitl>
+        <RangeInputTitl>{t('today')}</RangeInputTitl>
         <InputComponent />
         <RangePercentWrap>
           <RangePercent>
@@ -46,7 +48,7 @@ const WaterRatio = () => {
         }}
       >
         <AddSvg />
-        Add Water
+        {t('addWater')}
       </RangeButton>
       {isModalOpen && <ModalWater />}
     </RangeWrapper>

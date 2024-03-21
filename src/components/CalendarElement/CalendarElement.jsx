@@ -13,8 +13,10 @@ import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import { useDispatch, useSelector } from 'react-redux';
 import { showDaysGenStats } from '../../store/water/selectors';
 import { changeShowDaysStats } from '../../store/water/waterSlice';
+import { useTranslation } from 'react-i18next';
 
 const CalendarElement = () => {
+  const { t } = useTranslation();
   const showDaysStats = useSelector(showDaysGenStats);
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -83,7 +85,7 @@ const CalendarElement = () => {
   return (
     <ContentWrapperCalendar>
       <HeadingWrapper>
-        <MonthHeading>Month</MonthHeading>
+        <MonthHeading>{t('month')}</MonthHeading>
         <MonthSwitcher>
           <button
             className="arrow"

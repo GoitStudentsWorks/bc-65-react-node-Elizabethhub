@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import { DayStatsContainer, UpperElem } from './DaysGeneralStats.styled';
 
 const DaysGeneralStats = ({ monthData, currentDate }) => {
+  const { t } = useTranslation();
   console.log('monthData: ', monthData);
 
   return (
@@ -12,13 +14,13 @@ const DaysGeneralStats = ({ monthData, currentDate }) => {
         </p>
       </UpperElem>
       <p>
-        Daily norma : <span>1,5 L</span>
+        {t('dailyNorma')} : <span>1,5 L</span>
       </p>
       <p>
-        Fulfillment of the daily norm : <span>100%</span>
+        {t('fulfillmentOfTheDailyNorm')} : <span>100%</span>
       </p>
       <p>
-        How many servings of water : <span>6</span>
+        {t('howManyServingsOfWater')} : <span>6</span>
       </p>
     </DayStatsContainer>
   );

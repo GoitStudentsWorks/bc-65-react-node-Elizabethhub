@@ -27,8 +27,10 @@ import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
 import { useEffect } from 'react';
 import { fetchAllWaterThunk } from '../../store/water/operations.js';
 import { format } from 'date-fns';
+import { useTranslation } from 'react-i18next';
 
 const TodayElement = () => {
+  const { t } = useTranslation();
   const isModalOpen = useSelector(modalDeleteOpen);
   const id = useSelector(modalId);
   const waterTodayList = useSelector(selectorWaterToday);
@@ -41,7 +43,7 @@ const TodayElement = () => {
   return (
     <>
       <ListWrapper>
-        <h2>Today</h2>
+        <h2>{t('today')}</h2>
         <StyledList>
           {waterTodayList.map((item) => {
             return (
@@ -82,7 +84,7 @@ const TodayElement = () => {
             }}
           >
             <span>+</span>
-            <span>Add water</span>
+            <span>{t('addwater')}</span>
           </button>
         </AddBtnWrapper>
         {isModalOpen && (
