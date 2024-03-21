@@ -16,6 +16,7 @@ const waterSlice = createSlice({
     daysGenStats: false,
     isLoading: false,
     waterTodayList: [],
+    waterPercentageToday: 0,
   },
   reducers: {
     changeModalClose: (state, { payload }) => {
@@ -49,6 +50,9 @@ const waterSlice = createSlice({
     },
     changeModalId: (state, { payload }) => {
       state.modal.modalId = payload;
+    },
+    updateWaterPercentage: (state, { payload }) => {
+      state.waterPercentageToday = payload;
     },
     deleteWater: (state, action) => {
       state.waterTodayList = state.waterTodayList.filter(
@@ -84,6 +88,7 @@ export const {
   changeShowDaysStats,
   changeTodayList,
   changeModalId,
+  updateWaterPercentage,
   deleteWater,
   editWater,
 } = waterSlice.actions;
