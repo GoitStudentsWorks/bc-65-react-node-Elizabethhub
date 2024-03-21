@@ -95,7 +95,7 @@ const CalendarElement = () => {
             <ArrowLeftCalendarSvg />
           </button>
           <p className="month__name">
-            {currentDate.toLocaleString('en-us', { month: 'long' })},&nbsp;
+            {t(currentDate.toLocaleString('en-us', { month: 'long' }))},&nbsp;
             {currentDate.getFullYear()}
           </p>
           <button

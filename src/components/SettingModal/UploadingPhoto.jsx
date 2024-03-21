@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../store/auth/selectors';
 import { updateAvatarThunk } from '../../store/auth/thunks';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const InputImg = styled.img`
   width: 80px;
@@ -43,7 +44,7 @@ const PInput = styled.p`
 const UploadingPhoto = ({ register }) => {
   const [imageSrc, setImageSrc] = useState('');
   const user = useSelector(selectUser);
-
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -93,7 +94,7 @@ const UploadingPhoto = ({ register }) => {
       {imageSrc !== '' ? (
         <DivIconInput>
           <InputImg src={imageSrc} alt="Uploaded image" />
-          <PInput>Photo uploaded</PInput>
+          <PInput>{t('photoUploaded')}</PInput>
         </DivIconInput>
       ) : (
         <DivIconInput>
