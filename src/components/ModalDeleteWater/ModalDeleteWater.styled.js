@@ -35,7 +35,7 @@ export const StyledModalDeleteWrapper = styled.div`
   }
 
   h2 {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 26px;
     font-weight: 500;
@@ -50,7 +50,7 @@ export const StyledModalDeleteForm = styled.form`
     margin: 0;
   }
   p {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-weight: 500;
     font-size: 18px;
@@ -124,7 +124,7 @@ export const StyledModalCancelBtn = styled.button`
   width: 232px;
   border-radius: 10px;
   padding: 8px 30px 8px 30px;
-  background-color: var(--primary-mediumblue);
+
   border: none;
   outline: transparent;
 
@@ -132,7 +132,8 @@ export const StyledModalCancelBtn = styled.button`
   font-size: 16px;
   align-items: center;
   justify-content: center;
-  color: var(--blue);
+  background: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.buttonColor};
 
   transition: all 0.5s ease;
   cursor: pointer;

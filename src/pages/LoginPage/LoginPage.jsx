@@ -26,23 +26,10 @@ import { useDispatch } from 'react-redux';
 import { signInThunk } from '../../store/auth/thunks';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
-
-const schema = yup
-  .object({
-    email: yup
-      .string()
-      .email('Please write valid email')
-      .matches(/^(?!.*@[^,]*,)/)
-      .required('Email is required'),
-    password: yup
-      .string()
-      .min(8, 'Password must be at least 8 characters')
-      .max(64)
-      .required('Password is required'),
-  })
-  .required();
+import { useTranslation } from 'react-i18next';
 
 const LoginPage = () => {
+  const { t } = useTranslation(); // Перемістіть useTranslation сюди
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
@@ -58,7 +45,22 @@ const LoginPage = () => {
 
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(
+      yup
+        .object({
+          email: yup
+            .string()
+            .email(t('emailValidation'))
+            .matches(/^(?!.*@[^,]*,)/, t('emailPattern'))
+            .required(t('emailRequired')),
+          password: yup
+            .string()
+            .min(8, t('passwordLength'))
+            .max(64)
+            .required(t('passwordRequired')),
+        })
+        .required()
+    ),
     mode: 'onChange',
   });
 
@@ -73,7 +75,7 @@ const LoginPage = () => {
   }
 
   function showPass() {
-    eyePass ? setEyePass(false) : setEyePass(true);
+    setEyePass((prev) => !prev);
   }
 
   return (
@@ -86,10 +88,10 @@ const LoginPage = () => {
           errors={errors}
         >
           <Loginlabel>
-            Enter your email
+            {t('enteryouremail')}
             <LoginInput
               type="text"
-              placeholder="E-mail"
+              placeholder={t('eMail')}
               name="email"
               required
               {...register('email')}
@@ -97,10 +99,10 @@ const LoginPage = () => {
             <ErrorSpan>{errors?.email?.message}</ErrorSpan>
           </Loginlabel>
           <Loginlabel>
-            Enter your password
+            {t('enterYourPassword')}
             <LoginInput
               type={eyePass ? 'text' : 'password'}
-              placeholder="Password"
+              placeholder={t('password')}
               name="password"
               required
               {...register('password')}
@@ -110,7 +112,7 @@ const LoginPage = () => {
               {eyePass ? <OpenPassEye /> : <PassEye />}
             </PassShowBtn>
           </Loginlabel>
-          <LoginBtn type="submit">Sign In</LoginBtn>
+          <LoginBtn type="submit">{t('signIn')}</LoginBtn>
         </AuthForm>
         <SvgContainer>
           {isMobile && <BottleSVG />}
@@ -121,5 +123,4 @@ const LoginPage = () => {
     </StyledSection>
   );
 };
-
 export default LoginPage;
