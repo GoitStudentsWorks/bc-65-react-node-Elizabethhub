@@ -75,7 +75,7 @@ export const Svg = styled.svg``;
 
 export const StyledRangeInput = styled.input`
   -webkit-appearance: none;
-  /* width: 256px; */
+
   width: 100%;
   height: 8px;
   border-radius: 10px;

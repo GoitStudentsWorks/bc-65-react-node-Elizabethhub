@@ -215,6 +215,8 @@ export const InputFild = styled.input`
   font-family: 'Roboto', sans-serif;
   color: var(--blue);
   caret-color: var(--black);
+  background-color: ${(props) => props.theme.formInputBackground};
+  color: ${(props) => props.theme.formInputColor};
   outline: none;
   &::placeholder {
     font-size: 16px;
@@ -286,13 +288,14 @@ export const SaveButton = styled.button`
   max-width: 392px;
   height: 36px;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  background: #407bff;
+
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  color: var(--white);
+  background: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.buttonColor};
 
   @media only screen and (min-width: 768px) {
     font-size: 18px;
