@@ -21,6 +21,8 @@ const AuthForm = ({ children, on, handleSubmit, submit, errors }) => {
         {children}
       </StyledLoginForm>
       <LoginLink to={path}>{on ? t('signUp') : t('signIn')}</LoginLink>
+
+      {on && <LoginLink to="/forgot-password">Forgot password?</LoginLink>}
     </FormWrapper>
   );
 };

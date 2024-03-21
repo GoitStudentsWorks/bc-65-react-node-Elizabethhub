@@ -60,7 +60,11 @@ const ModalWater = () => {
             <SvgCross />
           </StyledModalAddClose>
 
-          {isModalEdit && <ModalEditWater waterItem={waterTodayList.find(item => item._id === id)} />}
+          {isModalEdit && (
+            <ModalEditWater
+              waterItem={waterTodayList.find((item) => item._id === id)}
+            />
+          )}
           {isModalAdd && <ModalAddWater />}
         </StyledModalAddWrapper>
       </StyledModalAddBackdrop>

@@ -11,6 +11,8 @@ import { useEffect } from 'react';
 import { currentThunk } from '../../store/auth/thunks';
 import Loader from '../Loader/Loader';
 import ErrorPage from '../Loader/ErrorPage';
+import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword';
+import UpdatePassword from '../../pages/UpdatePassword/UpdatePassword';
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +56,22 @@ function App() {
             element={
               <PublicRoute>
                 <RegistrationPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/forgot-password"
+            element={
+              <PublicRoute>
+                <ForgotPassword />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/update-password/:tempCode"
+            element={
+              <PublicRoute>
+                <UpdatePassword />
               </PublicRoute>
             }
           />

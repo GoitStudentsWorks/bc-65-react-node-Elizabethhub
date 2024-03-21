@@ -36,7 +36,7 @@ import PassEye from '../../images/AuthImg/PassEye';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../store/auth/selectors';
 import { updateAvatarThunk } from '../../store/auth/thunks';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const schema = yup.object({
   name: yup.string().max(32, 'Name must contain a maximum of 32 characters'),
@@ -126,18 +126,20 @@ const SettingModal = ({ onClose }) => {
   function submit(data) {
     const formData = new FormData();
     formData.append('avatarURL', data.avatarURL[0]);
-    dispatch(updateAvatarThunk(formData));
+    dispatch(updateAvatarThunk(formData))
+      .unwrap()
+      .then((res) => {
+        // console.log(res);
+        if (!res) {
+          throw errors;
+        }
+        toast.success(`Your avatar has been saved successfully`);
+        onClose();
+      })
+      .catch((err) => toast.error(err));
+    // console.log(formData);
 
-    console.log(formData);
-
-    console.log(data);
-    // dispatch(updateAvatarThunk(data))
-    //   .unwrap()
-    //   .then((res) => {
-    //     toast.success(`${res.user.username} your avater has been chsanged`);
-    //     // navigate('/home');
-    //   })
-    //   .catch((err) => toast.error(err));
+    // console.log(data);
   }
 
   function showPass() {
@@ -177,11 +179,7 @@ const SettingModal = ({ onClose }) => {
           <SvgClose />
         </CloseButton>
         <ModalTitle>Setting</ModalTitle>
-        <Form
-          onSubmit={handleSubmit(submit)}
-          // encType="multipart/form-data"
-          $errors={errors}
-        >
+        <Form onSubmit={handleSubmit(submit)} $errors={errors}>
           <BlockWrap8>
             <BigLabel htmlFor="avatarURL">Your photo</BigLabel>
             <UploadingPhoto id="avatarURL" register={register} />
@@ -235,7 +233,6 @@ const SettingModal = ({ onClose }) => {
                       type="text"
                       id="name"
                       placeholder="Your name"
-                      // onChange={handleInputChange}
                       defaultValue={user?.username}
                     />
                   </BlockWrap8>
