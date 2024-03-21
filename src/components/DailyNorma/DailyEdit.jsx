@@ -13,18 +13,31 @@ import { selectUser } from '../../store/auth/selectors';
 import { useTranslation } from 'react-i18next';
 
 const DailyEdit = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const isModalOpen = useSelector(isModalDayNorm);
   const userObject = useSelector(selectUser);
   const dayNormaValue = userObject?.dailyNorma;
 
+  const getParagraphStyle = () => {
+    return {
+      marginLeft: i18n.language === 'uk' ? '5px' : '20px',
+    };
+  };
+  const getFontStyle = () => {
+    return {
+      fontSize: i18n.language === 'uk' ? '17px' : '22px',
+    };
+  };
+
   return (
     <DailyWrapper>
       {isModalOpen && <ModalDailyNorma />}
       <DailyTittle>{t('mydailynorma')}</DailyTittle>
-      <DailyWrapperEdit>
-        <DailyLiter>{(dayNormaValue / 1000).toFixed(1)} L</DailyLiter>
+      <DailyWrapperEdit style={getParagraphStyle()}>
+        <DailyLiter style={getFontStyle()}>
+          {(dayNormaValue / 1000).toFixed(1)} L
+        </DailyLiter>
         <DailyEditButton
           type="button"
           onClick={() => {
