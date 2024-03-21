@@ -37,6 +37,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../store/auth/selectors';
 import { updateUserThunk } from '../../store/auth/thunks';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const schema = yup.object({
   name: yup.string().max(32, 'Name must contain a maximum of 32 characters'),
@@ -102,6 +103,7 @@ const schema = yup.object({
 // });
 
 const SettingModal = ({ onClose }) => {
+  const { t } = useTranslation();
   const user = useSelector(selectUser);
   // const [imageUser, setImageUser] = useState('');
   // const [name, setName] = useState('');
@@ -211,17 +213,17 @@ const SettingModal = ({ onClose }) => {
         <CloseButton onClick={onClose}>
           <SvgClose />
         </CloseButton>
-        <ModalTitle>Setting</ModalTitle>
+        <ModalTitle>{t('setting')}</ModalTitle>
         <Form onSubmit={handleSubmit(submit)} $errors={errors}>
           <BlockWrap8>
-            <BigLabel htmlFor="avatarURL">Your photo</BigLabel>
+            <BigLabel htmlFor="avatarURL">{t('yourPhoto')}</BigLabel>
             <UploadingPhoto id="avatarURL" register={register} />
           </BlockWrap8>
 
           <ExternalBlockWrap24>
             <BlockWrap2452>
               <BlockWrap12>
-                <FildsTitle>Your gender identity</FildsTitle>
+                <FildsTitle>{t('yourGenderIdentity')}</FildsTitle>
                 <RadioGroup>
                   <GenderLabel>
                     <RadioWrap>
@@ -239,7 +241,7 @@ const SettingModal = ({ onClose }) => {
                       onChange={handleChange}
                       defaultChecked
                     />
-                    Woman
+                    {t('woman')}
                   </GenderLabel>
                   <GenderLabel>
                     <RadioWrap>
@@ -252,14 +254,14 @@ const SettingModal = ({ onClose }) => {
                       value="man"
                       onChange={handleChange}
                     />
-                    Man
+                    {t('man')}
                   </GenderLabel>
                 </RadioGroup>
               </BlockWrap12>
               <InternalBlockWrap24>
                 <div>
                   <BlockWrap8>
-                    <BigLabel htmlFor="name">Your name</BigLabel>
+                    <BigLabel htmlFor="name">{t('yourName')}</BigLabel>
                     <InputFild
                       {...register('name')}
                       name="name"
@@ -273,7 +275,7 @@ const SettingModal = ({ onClose }) => {
                 </div>
                 <div>
                   <BlockWrap8>
-                    <BigLabel htmlFor="email">E-mail</BigLabel>
+                    <BigLabel htmlFor="email">{t('email')}</BigLabel>
                     <InputFild
                       {...register('email')}
                       name="email"
@@ -289,10 +291,10 @@ const SettingModal = ({ onClose }) => {
             </BlockWrap2452>
 
             <BlockWrap12>
-              <FildsTitle>Password</FildsTitle>
+              <FildsTitle>{t('passwords')}</FildsTitle>
               <BlockWrap8>
                 <SmallLabel htmlFor="oldPassword">
-                  Outdated password:
+                  {t('outdatedPassword')}
                 </SmallLabel>
                 <PasswordWrap>
                   <InputPassword
@@ -300,7 +302,7 @@ const SettingModal = ({ onClose }) => {
                     name="oldPassword"
                     type={eyePass ? 'text' : 'password'}
                     id="oldPassword"
-                    placeholder="Password"
+                    placeholder={t('passwords')}
                     // onChange={handleInputChange}
                     // value={oldPassword}
                   />
@@ -312,14 +314,16 @@ const SettingModal = ({ onClose }) => {
               </BlockWrap8>
 
               <BlockWrap8>
-                <SmallLabel htmlFor="newPassword">New Password:</SmallLabel>
+                <SmallLabel htmlFor="newPassword">
+                  {t('newPassword')}
+                </SmallLabel>
                 <PasswordWrap>
                   <InputPassword
                     {...register('newPassword')}
                     name="newPassword"
                     type={eyePass ? 'text' : 'password'}
                     id="newPassword"
-                    placeholder="Password"
+                    placeholder={t('passwords')}
                   />
                   <ErrorSpan>{errors.newPassword?.message}</ErrorSpan>
                   <PassShowBtn type="button" onClick={showPass}>
@@ -330,7 +334,7 @@ const SettingModal = ({ onClose }) => {
 
               <BlockWrap8>
                 <SmallLabel htmlFor="confirmPassword">
-                  Repeat new password:
+                  {t('repeatNewPassword')}
                 </SmallLabel>
                 <PasswordWrap>
                   <InputPassword
@@ -338,7 +342,7 @@ const SettingModal = ({ onClose }) => {
                     name="confirmPassword"
                     type={eyePass ? 'text' : 'password'}
                     id="confirmPassword"
-                    placeholder="Password"
+                    placeholder={t('passwords')}
                   />
                   <ErrorSpan>{errors.confirmPassword?.message}</ErrorSpan>
                   <PassShowBtn type="button" onClick={showPass}>
@@ -349,7 +353,7 @@ const SettingModal = ({ onClose }) => {
             </BlockWrap12>
           </ExternalBlockWrap24>
 
-          <SaveButton type="submit">Save</SaveButton>
+          <SaveButton type="submit">{t('save')}</SaveButton>
         </Form>
       </Modal>
     </Overlay>
