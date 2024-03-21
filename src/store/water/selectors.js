@@ -10,3 +10,6 @@ export const modalId = (state) => state.waterSlice.modal?.modalId;
 export const showDaysGenStats = (state) => state.waterSlice.daysGenStats;
 
 export const selectorWaterToday = (state) => state.waterSlice.waterTodayList;
+
+export const selectorWaterInfo = (state) =>
+  state.waterSlice.waterPercentageToday;

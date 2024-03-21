@@ -1,6 +1,6 @@
 import SvgCross from '../../images/svg/svgModal/SvgCross.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalDeleteOpen } from '../../store/water/selectors.js';
+import { modalDeleteOpen, modalId } from '../../store/water/selectors.js';
 import { changeModalClose, deleteWater } from '../../store/water/waterSlice.js';
 import { useEffect } from 'react';
 import {
@@ -18,20 +18,21 @@ import { deleteWaterThunk } from '../../store/water/operations.js';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
-const ModalDeleteWater = ({ waterItem }) => {
+const ModalDeleteWater = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
+  const id = useSelector(modalId);
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(deleteWaterThunk(waterItem?._id))
+    dispatch(deleteWaterThunk(id))
       .unwrap()
       .then(() => {
-        dispatch(deleteWater(waterItem._id));
+        dispatch(deleteWater(id));
         dispatch(changeModalClose(false));
-        // toast.success('Water note was successfully deleted');
+        toast.success('Water note was successfully deleted');
       })
       .catch((error) => {
         toast.error(error);

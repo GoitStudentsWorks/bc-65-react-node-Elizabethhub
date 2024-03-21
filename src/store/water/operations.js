@@ -27,9 +27,9 @@ export const fetchAllWaterThunk = createAsyncThunk(
 
 export const editWaterThunk = createAsyncThunk(
   'water/editWater',
-  async ({ id, water }, thunkApi) => {
+  async ({ id, milliliters, time }, thunkApi) => {
     try {
-      const { data } = await api.put(`water/${id}`, water);
+      const { data } = await api.put(`water/${id}`, { milliliters, time });
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);

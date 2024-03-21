@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { StyledRangeInput } from './WaterRatio.styled';
+import { useSelector } from 'react-redux';
+import { selectorWaterInfo } from '../../store/water/selectors';
 
 const InputComponent = () => {
-  const [value, setValue] = useState(0);
+  const percentageRangeValue = useSelector(selectorWaterInfo);
 
-  useEffect(() => {
-    const rangeValue = 0;
-    setValue(rangeValue);
-  }, []);
+  console.log(percentageRangeValue);
 
   return (
     <>
-      <StyledRangeInput type="range" min={0} max={100} value={value} readOnly />
+      <StyledRangeInput
+        type="range"
+        min={0}
+        max={100}
+        value={percentageRangeValue >= 100 ? 100 : percentageRangeValue}
+        readOnly
+      />
     </>
   );
 };
