@@ -75,7 +75,7 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateAvatarThunk.fulfilled, (state, { payload }) => {
-        state.user = payload?.user;
+        state.user.avatarURL = payload.avatarURL;
         state.isLoading = false;
       })
       .addCase(updateAvatarThunk.rejected, (state, { payload }) => {
@@ -86,7 +86,7 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(updateUserThunk.fulfilled, (state, { payload }) => {
-        state.user = payload?.user;
+        state.user = payload;
         state.isLoading = false;
       })
       .addCase(updateUserThunk.rejected, (state, { payload }) => {

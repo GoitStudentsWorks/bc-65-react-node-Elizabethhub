@@ -12,7 +12,7 @@ export const Overlay = styled.div`
   padding: 40px 20px;
   background: var(--modal-backdrop);
   z-index: 1200;
-  overflow-y: hidden;
+  overflow: auto;
 
   @media only screen and (min-width: 768px) {
     padding: 40px 32px;
@@ -30,7 +30,6 @@ export const Modal = styled.div`
   width: 100%;
   min-width: 280px;
   background: ${(props) => props.theme.modalCantainerBackground};
-  overflow: auto;
 
   @media only screen and (min-width: 768px) {
     padding: 32px 24px;
