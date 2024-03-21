@@ -26,6 +26,10 @@ import { useTranslation } from 'react-i18next';
 const CalendarElement = () => {
   const { t } = useTranslation();
   const showDaysStats = useSelector(showDaysGenStats);
+  const userDailyWater = useSelector(selectDailyWater);
+  const waterTodayList = useSelector(selectorWaterToday);
+  const currentDayPercent = useSelector(selectorWaterInfo);
+  const hero = useSelector(selectUser);
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -90,6 +94,20 @@ const CalendarElement = () => {
     closeDayStat(event);
   });
 
+  useEffect(() => {
+    if (hero) {
+      const totalDrinkToday = waterTodayList.reduce(
+        (accumulator, currentValue) => {
+          return Number(accumulator) + Number(currentValue.milliliters);
+        },
+        0
+      );
+
+      const percentage = Math.round((totalDrinkToday / userDailyWater) * 100);
+      dispatch(updateWaterPercentage(percentage));
+    }
+  }, [dispatch, hero, userDailyWater, waterTodayList]);
+
   return (
     <ContentWrapperCalendar>
       <HeadingWrapper>
@@ -126,7 +144,9 @@ const CalendarElement = () => {
             className={`li-day ${isToday(item.day) ? 'today' : ''}`}
           >
             <span className="day">{item.day}</span>
-            <span className="percentage">{item.percentage}%</span>
+            <span className="percentage">
+              {currentDayPercent >= 100 ? 100 : currentDayPercent}%
+            </span>
           </DayStyles>
         ))}
       </MonthList>
