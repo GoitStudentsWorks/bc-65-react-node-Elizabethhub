@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAllWaterThunk } from './operations';
-import { currentThunk, signInThunk } from '../auth/thunks';
+import { deleteWaterThunk, fetchAllWaterThunk } from './operations';
+import { toast } from 'react-toastify';
 
 const waterSlice = createSlice({
   name: 'waterSlice',
@@ -12,11 +12,9 @@ const waterSlice = createSlice({
       modalEditForm: false,
       isModalDayNorm: false,
       modalDayNorma: false,
-      modalDeleteForm: false,
       modalId: '',
     },
     daysGenStats: false,
-    dayNorma: null,
     isLoading: false,
     waterTodayList: [],
     waterPercentageToday: 0,
@@ -28,7 +26,6 @@ const waterSlice = createSlice({
       state.modal.modalEditForm = payload;
       state.modal.isModalDayNorm = payload;
       state.modal.modalDayNorma = payload;
-      state.modal.modalDeleteForm = payload;
       state.modal.modalDeleteOpen = payload;
     },
     changeModalAddForm: (state, { payload }) => {
@@ -41,7 +38,6 @@ const waterSlice = createSlice({
     },
     changeModalDeleteForm: (state, { payload }) => {
       state.modal.modalDeleteOpen = payload;
-      state.modal.modalDeleteForm = payload;
     },
     changeModalDailyNorma: (state, { payload }) => {
       state.modal.isModalDayNorm = payload;
@@ -49,9 +45,6 @@ const waterSlice = createSlice({
     },
     changeShowDaysStats: (state, { payload }) => {
       state.daysGenStats = payload;
-    },
-    changeDayNorma: (state, { payload }) => {
-      state.dayNorma = payload;
     },
     changeTodayList: (state, { payload }) => {
       state.waterTodayList.push(payload);
@@ -62,20 +55,25 @@ const waterSlice = createSlice({
     updateWaterPercentage: (state, { payload }) => {
       state.waterPercentageToday = payload;
     },
+    deleteWater: (state, action) => {
+      state.waterTodayList = state.waterTodayList.filter(
+        (waterItem) => waterItem._id !== action.payload
+      );
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllWaterThunk.fulfilled, (state, { payload }) => {
-        state.waterTodayList.push(...payload);
+        state.waterTodayList = payload;
       })
       .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
         state.error = payload;
       })
-      .addCase(signInThunk.fulfilled, (state, { payload }) => {
-        state.dayNorma = payload.user.dailyNorma;
-      })
-      .addCase(currentThunk.fulfilled, (state, { payload }) => {
-        state.dayNorma = payload?.dailyNorma;
+      .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {
+        state.waterTodayList = state.waterTodayList.filter(
+          (waterItem) => waterItem._id !== payload.id
+        );
+        toast.success('Water note was successfully deleted');
       });
   },
 });
@@ -87,8 +85,8 @@ export const {
   changeModalDailyNorma,
   changeModalDeleteForm,
   changeShowDaysStats,
-  changeDayNorma,
   changeTodayList,
   changeModalId,
   updateWaterPercentage,
+  deleteWater,
 } = waterSlice.actions;

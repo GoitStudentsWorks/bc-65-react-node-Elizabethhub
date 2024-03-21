@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import DesctopWoter from '../../images/backgroundImg/backgraundSvg/DesctopWoter';
 import TabletWoter from '../../images/backgroundImg/backgraundSvg/TabletWoter';
 import SvgHabit from '../../images/svg/svgWelcome/SvgHabit';
@@ -23,9 +24,11 @@ import {
 } from './Welcome.styled';
 
 const Welcome = () => {
+  const { t } = useTranslation();
+
   return (
     <>
-      <DivImgContainerWelcome />
+      {/* <DivImgContainerWelcome /> */}
       <TabletWoterDivImg>
         <TabletWoter />
       </TabletWoterDivImg>
@@ -35,7 +38,7 @@ const Welcome = () => {
 
       <WelcomeDivCantainer>
         <div>
-          <Welcomeh1>Water consumption tracker</Welcomeh1>
+          <Welcomeh1>{t('waterconsumptiontracker')}</Welcomeh1>
           <Welcomeh2>Record daily water intake and track</Welcomeh2>
           <Welcomeh3>Tracker Benefits</Welcomeh3>
           <WelcomeUl>

@@ -17,6 +17,11 @@ const authSlice = createSlice({
     error: null,
     token: '',
   },
+  reducers: {
+    changeDayNorma: (state, { payload }) => {
+      state.user.dailyNorma = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signUpThunk.pending, (state) => {
@@ -100,3 +105,4 @@ const authSlice = createSlice({
 });
 
 export const authReducer = authSlice.reducer;
+export const { changeDayNorma } = authSlice.actions;
