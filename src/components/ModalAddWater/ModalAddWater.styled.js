@@ -20,7 +20,8 @@ export const StyledModalAddBackdrop = styled.div`
 export const StyledModalAddWrapper = styled.div`
   position: relative;
   border-radius: 10px;
-  background: var(--white);
+  background: ${(props) => props.theme.modalCantainerBackground};
+  color: ${(props) => props.theme.colorBody};
   background-size: 130% 130%;
   background-position: center;
   width: 280px;
@@ -38,7 +39,7 @@ export const StyledModalAddWrapper = styled.div`
   }
 
   h2 {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 26px;
     font-weight: 500;
@@ -53,14 +54,14 @@ export const StyledModalForm = styled.form`
     margin: 0;
   }
   h3 {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 16px;
   }
   p {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 16px;
     margin-bottom: 12px;
@@ -187,9 +188,10 @@ export const StyledModalAddSave = styled.div`
     width: 256px;
     border-radius: 10px;
     padding: 8px 30px 8px 30px;
-    background-color: var(--blue);
+
     box-shadow: var(--modal-add-shadow);
-    color: var(--white);
+    background: ${(props) => props.theme.buttonBackground};
+    color: ${(props) => props.theme.buttonColor};
     border: none;
     outline: transparent;
     transition: all 0.5s ease;

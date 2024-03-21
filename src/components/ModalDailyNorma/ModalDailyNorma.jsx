@@ -24,8 +24,10 @@ import {
   StyledWrapper,
   StyledInputBox,
 } from './ModalDailyNorma.styled.js';
+import { useTranslation } from 'react-i18next';
 
 const ModalDailyNorma = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const isModalOpen = useSelector(isModalDayNorm);
   const userObject = useSelector(selectUser);
@@ -104,7 +106,7 @@ const ModalDailyNorma = () => {
     isModalOpen && (
       <StyledBackdrop open={isModalOpen} onClick={clickBackdrop}>
         <StyledWrapper onSubmit={onSubmit}>
-          <h2>My daily norma</h2>
+          <h2>{t('mydailynorma')}</h2>
           <StyledCross
             onClick={() => {
               dispatch(changeModalClose(false));

@@ -26,9 +26,10 @@ export const Modal = styled.div`
   padding: 32px 12px;
   position: relative;
   border-radius: 10px;
-  background: rgb(255, 255, 255);
+  /* background: rgb(255, 255, 255); */
   width: 100%;
   min-width: 280px;
+  background: ${(props) => props.theme.modalCantainerBackground};
 
   @media only screen and (min-width: 768px) {
     padding: 32px 24px;

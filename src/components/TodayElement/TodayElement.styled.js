@@ -4,7 +4,7 @@ export const ListWrapper = styled.div`
   width: 100%;
 
   h2 {
-    color: #2f2f2f;
+    color: ${(props) => props.theme.colorBody};
     font-weight: 500;
     font-size: 24px;
     line-height: 1.23;
@@ -59,7 +59,7 @@ export const Amount = styled.p`
 `;
 
 export const Time = styled.p`
-  color: #2f2f2f;
+  color: ${(props) => props.theme.colorBody};
   font-size: 12px;
   line-height: 2;
 `;

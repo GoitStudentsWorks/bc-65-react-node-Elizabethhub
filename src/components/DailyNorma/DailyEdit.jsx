@@ -10,8 +10,10 @@ import {
   DailyWrapperEdit,
 } from './DailyEdit.styled';
 import { selectUser } from '../../store/auth/selectors';
+import { useTranslation } from 'react-i18next';
 
 const DailyEdit = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const isModalOpen = useSelector(isModalDayNorm);
   const userObject = useSelector(selectUser);
@@ -20,7 +22,7 @@ const DailyEdit = () => {
   return (
     <DailyWrapper>
       {isModalOpen && <ModalDailyNorma />}
-      <DailyTittle>My daily norma</DailyTittle>
+      <DailyTittle>{t('mydailynorma')}</DailyTittle>
       <DailyWrapperEdit>
         <DailyLiter>{(dayNormaValue / 1000).toFixed(1)} L</DailyLiter>
         <DailyEditButton
@@ -29,7 +31,7 @@ const DailyEdit = () => {
             dispatch(changeModalDailyNorma(true));
           }}
         >
-          Edit
+          {t('edit')}
         </DailyEditButton>
       </DailyWrapperEdit>
     </DailyWrapper>

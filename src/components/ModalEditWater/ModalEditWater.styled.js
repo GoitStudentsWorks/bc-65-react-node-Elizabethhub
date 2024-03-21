@@ -17,7 +17,7 @@ export const StyledModalEditStat = styled.div`
   }
   p {
     font-size: 12px;
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     margin: 0;
   }
   @media only screen and (min-width: 768px) {

@@ -21,18 +21,21 @@ import {
 } from '../../store/water/waterSlice';
 import {
   modalDeleteOpen,
-  modalId,
   selectorWaterToday,
 } from '../../store/water/selectors.js';
 import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
 import { useEffect } from 'react';
 import { fetchAllWaterThunk } from '../../store/water/operations.js';
 import { format } from 'date-fns';
+
 import { selectUser } from '../../store/auth/selectors.js';
 
+import { useTranslation } from 'react-i18next';
+
+
 const TodayElement = () => {
+  const { t } = useTranslation();
   const isModalOpen = useSelector(modalDeleteOpen);
-  const id = useSelector(modalId);
   const waterTodayList = useSelector(selectorWaterToday);
   const isUser = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -46,7 +49,7 @@ const TodayElement = () => {
   return (
     <>
       <ListWrapper>
-        <h2>Today</h2>
+        <h2>{t('today')}</h2>
         <StyledList>
           {waterTodayList.lenght === 0 && (
             <EmptyListMessage>No notes yet</EmptyListMessage>
@@ -58,7 +61,6 @@ const TodayElement = () => {
                   <SvgGlass />
                   <Amount>{item.milliliters} ml</Amount>
                   <Time>{format(item.time, 'hh:mm a')}</Time>
-                  {/* <Time>{console.log(item.time)} PM</Time> */}
                 </InfoWrapper>
                 <BtnWrapper>
                   <div
@@ -73,6 +75,7 @@ const TodayElement = () => {
                     onClick={() => {
                       dispatch(changeModalId(item._id));
                       dispatch(changeModalDeleteForm(true));
+                      dispatch(changeModalId(item._id));
                     }}
                   >
                     <DeleteSvg />
@@ -90,14 +93,10 @@ const TodayElement = () => {
             }}
           >
             <span>+</span>
-            <span>Add water</span>
+            <span>{t('addwater')}</span>
           </button>
         </AddBtnWrapper>
-        {isModalOpen && (
-          <ModalDeleteWater
-            waterItem={waterTodayList.find((item) => item._id === id)}
-          />
-        )}
+        {isModalOpen && <ModalDeleteWater />}
       </ListWrapper>
     </>
   );

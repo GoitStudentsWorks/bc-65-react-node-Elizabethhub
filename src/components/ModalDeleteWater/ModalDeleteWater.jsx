@@ -1,6 +1,6 @@
 import SvgCross from '../../images/svg/svgModal/SvgCross.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalDeleteOpen } from '../../store/water/selectors.js';
+import { modalDeleteOpen, modalId } from '../../store/water/selectors.js';
 import { changeModalClose, deleteWater } from '../../store/water/waterSlice.js';
 import { useEffect } from 'react';
 import {
@@ -16,20 +16,23 @@ import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
 import useKeyDown from '../../hooks/modalCloseEsc.js';
 import { deleteWaterThunk } from '../../store/water/operations.js';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
-const ModalDeleteWater = ({ waterItem }) => {
+const ModalDeleteWater = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
+  const id = useSelector(modalId);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(deleteWaterThunk(waterItem?._id))
+    dispatch(deleteWaterThunk(id))
       .unwrap()
       .then(() => {
-        dispatch(deleteWater(waterItem._id));
+        dispatch(deleteWater(id));
         dispatch(changeModalClose(false));
-        // toast.success('Water note was successfully deleted');
+        toast.success('Water note was successfully deleted');
       })
       .catch((error) => {
         toast.error(error);
@@ -58,7 +61,7 @@ const ModalDeleteWater = ({ waterItem }) => {
     isModalOpen && (
       <StyledModalDeleteBackdrop open={isModalOpen} onClick={clickBackdrop}>
         <StyledModalDeleteWrapper>
-          <h2>Delete entry</h2>
+          <h2>{t('deleteEntry')}</h2>
 
           <StyledModalDeleteClose
             onClick={() => {
@@ -69,15 +72,17 @@ const ModalDeleteWater = ({ waterItem }) => {
           </StyledModalDeleteClose>
 
           <StyledModalDeleteForm onSubmit={onSubmit}>
-            <p>Are you sure you want to delete the entry?</p>
+            <p>{t('areYouSureYouWantToDeleteTheEntry')}</p>
             <StyledModalDeleteButtons>
-              <StyledModalDeleteBtn type="submit">Delete</StyledModalDeleteBtn>
+              <StyledModalDeleteBtn type="submit">
+                {t('delete')}
+              </StyledModalDeleteBtn>
               <StyledModalCancelBtn
                 onClick={() => {
                   dispatch(changeModalClose(false));
                 }}
               >
-                Cancel
+                {t('cancel')}
               </StyledModalCancelBtn>
             </StyledModalDeleteButtons>
           </StyledModalDeleteForm>
