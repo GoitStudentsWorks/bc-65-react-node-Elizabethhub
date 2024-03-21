@@ -12,3 +12,6 @@ export const showDaysGenStats = (state) => state.waterSlice.daysGenStats;
 export const dayNorma = (state) => state.waterSlice.dayNorma;
 
 export const selectorWaterToday = (state) => state.waterSlice.waterTodayList;
+
+export const selectorWaterInfo = (state) =>
+  state.waterSlice.waterPercentageToday;

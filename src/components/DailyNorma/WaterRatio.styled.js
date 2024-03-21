@@ -8,7 +8,7 @@ export const RangeWrapper = styled.div`
   }
 `;
 
-export const RangeInputTitl = styled.p`
+export const RangeInputTitle = styled.p`
   font-size: 18px;
   line-height: 24px;
   color: #407bff;
@@ -75,7 +75,7 @@ export const Svg = styled.svg``;
 
 export const StyledRangeInput = styled.input`
   -webkit-appearance: none;
-  /* width: 256px; */
+  width: 256px;
   width: 100%;
   height: 8px;
   border-radius: 10px;
@@ -100,10 +100,12 @@ export const StyledRangeInput = styled.input`
   }
 
   @media only screen and (min-width: 768px) {
-    width: 325px;
+    width: 310px;
+    margin-left: 6px;
   }
   @media only screen and (min-width: 1440px) {
-    width: 360px;
+    width: 363px;
+    margin-left: 6px;
   }
 `;
 

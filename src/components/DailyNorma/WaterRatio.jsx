@@ -1,11 +1,10 @@
-import React from 'react';
 import {
+  RangeWrapper,
   RangeButton,
-  RangeInputTitl,
   RangePercent,
   RangePercentWrap,
   RangeSpanLine,
-  RangeWrapper,
+  RangeInputTitle,
 } from './WaterRatio.styled';
 import AddSvg from '../../images/svg/svgDailyNorma/AddSvg';
 
@@ -23,7 +22,7 @@ const WaterRatio = () => {
   return (
     <RangeWrapper>
       <div>
-        <RangeInputTitl>Today</RangeInputTitl>
+        <RangeInputTitle>Today</RangeInputTitle>
         <InputComponent />
         <RangePercentWrap>
           <RangePercent>

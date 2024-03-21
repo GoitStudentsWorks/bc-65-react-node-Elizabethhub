@@ -118,3 +118,11 @@ export const AddBtnWrapper = styled.div`
     }
   }
 `;
+
+export const EmptyListMessage = styled.h3`
+  color: #407bff;
+  text-align: center;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.23;
+`;

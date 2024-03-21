@@ -3,6 +3,7 @@ import {
   AddBtnWrapper,
   Amount,
   BtnWrapper,
+  EmptyListMessage,
   InfoWrapper,
   ListItem,
   ListWrapper,
@@ -43,20 +44,14 @@ const TodayElement = () => {
     }
   }, [dispatch, isUser]);
 
-  // function formatDate(date) {
-  //   if (date) {
-  //     const newDate = new Date(date);
-  //     const hour = newDate.getHours();
-  //     const minute = newDate.getMinutes();
-  //     return `${hour}:${minute}`;
-  //   }
-  // }
-
   return (
     <>
       <ListWrapper>
         <h2>Today</h2>
         <StyledList>
+          {waterTodayList.lenght === 0 && (
+            <EmptyListMessage>No notes yet</EmptyListMessage>
+          )}
           {waterTodayList.map((item) => {
             return (
               <ListItem id={item._id} key={item._id}>
