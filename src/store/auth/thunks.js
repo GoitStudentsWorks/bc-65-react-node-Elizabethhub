@@ -80,6 +80,26 @@ export const updateAvatarThunk = createAsyncThunk(
     }
   }
 );
+export const updateUserThunk = createAsyncThunk(
+  'user/updateUser',
+  async (body, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.token;
+
+      if (token) {
+        setToken(token);
+      }
+      console.log(body);
+      const { data } = await api.patch('users/update-user', body);
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const forgotThunk = createAsyncThunk(
   'user/forgotPassword',
   async (body, thunkAPI) => {

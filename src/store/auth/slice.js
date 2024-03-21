@@ -7,6 +7,7 @@ import {
   signUpThunk,
   updateAvatarThunk,
   updatePasswordThunk,
+  updateUserThunk,
 } from './thunks';
 
 const authSlice = createSlice({
@@ -78,6 +79,17 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(updateAvatarThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+      })
+      .addCase(updateUserThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserThunk.fulfilled, (state, { payload }) => {
+        state.user = payload?.user;
+        state.isLoading = false;
+      })
+      .addCase(updateUserThunk.rejected, (state, { payload }) => {
         state.error = payload;
         state.isLoading = false;
       })
