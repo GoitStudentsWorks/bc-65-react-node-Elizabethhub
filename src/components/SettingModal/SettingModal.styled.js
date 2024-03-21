@@ -46,7 +46,7 @@ export const ModalTitle = styled.h1`
   font-weight: 500;
   line-height: 1.23;
   font-family: 'Roboto', sans-serif;
-  color: var(--black);
+
   margin-bottom: 24px;
 `;
 
@@ -164,7 +164,6 @@ export const FildsTitle = styled.h2`
   font-weight: 500;
   line-height: 1.11;
   font-family: 'Roboto', sans-serif;
-  color: var(--black);
 `;
 export const RadioGroup = styled.div`
   display: flex;
@@ -175,7 +174,6 @@ export const BigLabel = styled.label`
   font-weight: 500;
   line-height: 1.11;
   font-family: 'Roboto', sans-serif;
-  color: var(--black);
 `;
 export const GenderLabel = styled.label`
   position: relative;
@@ -184,7 +182,6 @@ export const GenderLabel = styled.label`
   font-weight: 400;
   line-height: 1.25;
   font-family: 'Roboto', sans-serif;
-  color: var(--black);
 `;
 
 export const SmallLabel = styled.label`
@@ -192,7 +189,6 @@ export const SmallLabel = styled.label`
   font-weight: 400;
   line-height: 1.25;
   font-family: 'Roboto', sans-serif;
-  color: var(--black);
 `;
 export const Radio = styled.input`
   margin-right: 8px;
