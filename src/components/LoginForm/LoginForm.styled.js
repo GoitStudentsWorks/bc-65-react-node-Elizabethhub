@@ -61,7 +61,8 @@ export const LoginInput = styled.input`
   border-radius: 6px;
   border: 1px solid var(--primary-mediumblue);
   outline: none;
-  color: var(--blue);
+  background-color: ${(props) => props.theme.formInputBackground};
+  color: ${(props) => props.theme.formInputColor};
 
   &::placeholder {
     color: var(--primary-blue);
@@ -80,15 +81,16 @@ export const Loginlabel = styled.label`
 `;
 export const LoginBtn = styled.button`
   margin-bottom: 16px;
-  background-color: var(--blue);
+
   border: 1px solid var(--blue);
-  color: var(--white);
+
   padding: 8px 30px;
   border-radius: 10px;
 
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
   transition: all 0.4s;
-
+  background: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.buttonColor};
   &:hover,
   &:focus {
     box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.54);
@@ -105,6 +107,8 @@ export const LoginLink = styled(Link)`
   &:focus {
     color: var(--primary-orange);
   }
+
+  margin-right: 10px;
 `;
 export const PassShowBtn = styled.button`
   background-color: transparent;

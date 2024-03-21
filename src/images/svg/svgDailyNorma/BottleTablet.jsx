@@ -1,6 +1,8 @@
 import React from 'react';
+import { useTheme } from 'styled-components';
 
 function BottleTablet() {
+  const theme = useTheme();
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +14,7 @@ function BottleTablet() {
     >
       <g clipPath="url(#clip0_115_2238)">
         <path
-          fill="#F5F5F5"
+          fill={theme.BottleSVG}
           d="M259 386c110.937 0 200.87-5.25 200.87-11.727 0-6.476-89.933-11.727-200.87-11.727-110.938 0-200.87 5.251-200.87 11.727C58.13 380.75 148.062 386 259 386z"
         ></path>
         <path

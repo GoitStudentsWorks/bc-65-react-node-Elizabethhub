@@ -14,31 +14,89 @@ import {
   StyledModalEditInput,
   StyledModalEditStat,
 } from './ModalEditWater.styled.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useCounter from '../../hooks/modalHandleUpdate.js';
 import { format } from 'date-fns';
+import { useDispatch } from 'react-redux';
+import { editWaterThunk } from '../../store/water/operations.js';
+import { changeModalClose, editWater } from '../../store/water/waterSlice.js';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
-const ModalEditWater = () => {
-  const [time, setTime] = useState(new Date());
-  const { counter, handleUpdate } = useCounter(0);
+const ModalEditWater = ({ waterItem }) => {
+  const { t } = useTranslation();
+  const [time, setTime] = useState(new Date(waterItem?.time));
+  const { counter, handleUpdate } = useCounter(waterItem?.milliliters);
+  const [manualValue, setManualValue] = useState('');
+  const [inputFocused, setInputFocused] = useState(false);
+  const [valueSource, setValueSource] = useState('default');
+  const [formattedTime, setFormattedTime] = useState(format(time, 'hh:mm a'));
 
-  const onSubmit = (e) => {
+  const dispatch = useDispatch();
+
+  const onSubmit = async (e) => {
     e.preventDefault();
+
+    const updatedWater = {
+      ...waterItem,
+      milliliters: parseInt(manualValue),
+      time,
+    };
+    console.log(waterItem);
+
+    dispatch(editWaterThunk({ id: waterItem?._id, ...updatedWater }))
+      .unwrap()
+      .then(() => {
+        dispatch(editWater({ id: waterItem?._id, ...updatedWater }));
+        dispatch(changeModalClose(false));
+        toast.success('Water note was successfully edited');
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
-  const formattedTime = format(time, 'HH:mm');
+  const handleManualValueChange = (e) => {
+    let value = e.target.value;
+    setValueSource('manual');
+    if (
+      value !== '' &&
+      (isNaN(value) || parseInt(value) > 5000 || parseInt(value) < 1)
+    ) {
+      value = '5000';
+    }
+    setManualValue(value);
+  };
+
+  const handleInputBlur = () => {
+    setInputFocused(false);
+  };
+
+  const handleInputFocus = () => {
+    setInputFocused(true);
+  };
+
+  useEffect(() => {
+    setManualValue(`${counter}`);
+  }, [counter]);
+
+  const displayValue = inputFocused
+    ? `${counter}ml`
+    : manualValue !== ''
+    ? `${manualValue}ml`
+    : `${counter}ml`;
 
   return (
     <StyledModalForm onSubmit={onSubmit}>
       <StyledModalEditStat>
         <SvgGlass />
-        <span>{`${counter}ml`}</span>
+        <span>{displayValue ? displayValue : `${counter}ml`}</span>
         <p>{formattedTime}</p>
       </StyledModalEditStat>
-      <h3>Correct entered data:</h3>
-      <p>Amount of water:</p>
+      <h3>{t('correctEnteredData')}</h3>
+      <p>{t('amountOfWater')}</p>
 
       <StyledModalAddTracker>
         <button
@@ -49,19 +107,23 @@ const ModalEditWater = () => {
         >
           <SvgMinus size="24" />
         </button>
-        <span>{`${counter}ml`}</span>
+        <span>{displayValue ? displayValue : `${counter}ml`}</span>
         <button type="button" name="increment" onClick={handleUpdate}>
           <SvgPlus size="24" />
         </button>
       </StyledModalAddTracker>
 
       <StyledModalAddTime>
-        <p>Recording time:</p>
+        <p>{t('recordingTime')}</p>
         <ModalEditDateWrap>
           <DatePicker
             selected={time}
             onChange={(date) => {
               setTime(date);
+            }}
+            onBlur={() => {
+              const formattedTime = format(time, 'hh:mm a');
+              setFormattedTime(formattedTime);
             }}
             showTimeSelect
             showTimeSelectOnly
@@ -74,23 +136,29 @@ const ModalEditWater = () => {
           />
           <TimeGlobalStyles />
         </ModalEditDateWrap>
-        {/* <StyledModalEditInput type="number" placeholder="7:00" name="time" /> */}
       </StyledModalAddTime>
 
       <StyledModalAddValue>
-        <h3>Enter the value of the water used:</h3>
+        <h3>{t('enterTheValueOfTheWaterUsed')}</h3>
         <StyledModalEditInput
           type="number"
-          placeholder={`${counter}ml`}
+          // type="text"
+          // pattern="[0-9]*"
+          placeholder={`${counter}`}
           min="1"
           max="5000"
           name="value"
+          value={manualValue}
+          onChange={handleManualValueChange}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          required
         />
       </StyledModalAddValue>
 
       <StyledModalAddSave>
-        <span>{`${counter}ml`}</span>
-        <button type="submit">Save</button>
+        <span>{displayValue}</span>
+        <button type="submit">{t('save')}</button>
       </StyledModalAddSave>
     </StyledModalForm>
   );

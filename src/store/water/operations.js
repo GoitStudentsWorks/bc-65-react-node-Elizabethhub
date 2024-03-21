@@ -1,11 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { api } from '../../configAxios/configAxios';
+import { api } from '../../api/api';
 
 export const addWaterThunk = createAsyncThunk(
-  'addWater',
-  async (water, thunkApi) => {
+  'water/addWater',
+  async (body, thunkApi) => {
     try {
-      const { data } = await api.post('/api/home', water);
+      const { data } = await api.post('water/addWater', body);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -14,14 +14,49 @@ export const addWaterThunk = createAsyncThunk(
 );
 
 export const fetchAllWaterThunk = createAsyncThunk(
-  'fetchAll',
+  'water/getAllWater',
   async (_, thunkApi) => {
     try {
-      const { data } = await api.get('/api/home');
-      console.log(data);
+      const { data } = await api.get('water/');
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editWaterThunk = createAsyncThunk(
+  'water/editWater',
+  async ({ id, milliliters, time }, thunkApi) => {
+    try {
+      const { data } = await api.put(`water/${id}`, { milliliters, time });
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const deleteWaterThunk = createAsyncThunk(
+  'water/deleteWater',
+  async (id, thunkApi) => {
+    try {
+      await api.delete(`water/${id}`);
+      return id;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editDailyNormaThunk = createAsyncThunk(
+  'water/editDailyNorma',
+  async (body, thunkApi) => {
+    try {
+      const { data } = await api.patch(`/users/`, body);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error);
     }
   }
 );

@@ -30,7 +30,8 @@ export const DivImgContainerWelcome = styled.div`
 export const WelcomeDivCantainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 165px;
+
+  gap: 40px;
   @media only screen and (min-width: 768px) {
     gap: 60px;
   }
@@ -107,6 +108,9 @@ export const WelcomeLi = styled.li`
   display: flex;
   gap: 8px;
   align-items: center;
+  @media only screen and (min-width: 768px) {
+    width: 224px;
+  }
 `;
 
 export const WelcomeButton = styled.button`
@@ -128,7 +132,6 @@ export const WelcomeButton = styled.button`
 export const WelcomeWhyDrinkLi = styled.li`
   position: relative;
   list-style: none;
-  margin-bottom: 8px;
 
   &::before {
     content: '';
@@ -148,7 +151,7 @@ export const WelcomeWhyDrinkDivCantainer = styled.div`
   padding: 32px 24px;
 
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
-  background: #ecf2ff;
+  background: ${(props) => props.theme.welcomeWhyDrinkDivCantainerBackground};
   max-width: 380px;
   margin-bottom: 20px;
   @media only screen and (min-width: 768px) {
@@ -168,13 +171,15 @@ export const WelcomeNavLink = styled(NavLink)`
   width: 100%;
 
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  background: #407bff;
 
   font-weight: 500;
   font-size: 16px;
 
   text-align: center;
-  color: #fff;
+
+  background: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.buttonColor};
+
   border: none;
   @media only screen and (min-width: 768px) {
     max-width: 336px;
@@ -200,6 +205,9 @@ export const WelcomeWhyDrinkH3 = styled.h3`
   }
 `;
 export const WelcomeWhyDrinkUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   padding-left: 20px;
   @media only screen and (min-width: 768px) {
   }
@@ -209,9 +217,9 @@ export const TabletWoterDivImg = styled.div`
     display: none;
   }
 
-  position: absolute;
-  left: 51%;
-  top: 43%;
+  position: fixed;
+  left: 58%;
+  top: 48%;
   z-index: -1;
   @media only screen and (min-width: 1440px) {
     display: none;

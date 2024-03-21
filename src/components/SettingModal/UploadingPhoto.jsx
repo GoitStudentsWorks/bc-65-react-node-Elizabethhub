@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import PersonIcon from '../../images/SettingModal/PersonIcon';
 import Upload from '../../images/SettingModal/Upload';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../store/auth/selectors';
+import { updateAvatarThunk } from '../../store/auth/thunks';
+import { toast } from 'react-toastify';
 
 const InputImg = styled.img`
   width: 80px;
@@ -38,6 +42,20 @@ const PInput = styled.p`
 
 const UploadingPhoto = ({ register }) => {
   const [imageSrc, setImageSrc] = useState('');
+  const user = useSelector(selectUser);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (user && user.avatarURL) {
+      let avatarURL = user.avatarURL;
+
+      if (avatarURL.startsWith('avatars')) {
+        avatarURL = `https://byte-water-back.onrender.com/${avatarURL}`;
+      }
+      setImageSrc(avatarURL);
+    }
+  }, [user]);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -50,13 +68,23 @@ const UploadingPhoto = ({ register }) => {
     if (file) {
       reader.readAsDataURL(file);
     }
+
+    const formData = new FormData();
+    formData.append('avatarURL', file);
+    dispatch(updateAvatarThunk(formData))
+      .unwrap()
+      .then((res) => {
+        console.log(res);
+        toast.success(`Your avatar has been saved successfully`);
+      })
+      .catch((err) => toast.error(err));
   };
 
   return (
     <InputContainer htmlFor="fileInput">
       <HiddenInput
-        {...register('photo')}
-        name="photo"
+        {...register('avatarURL')}
+        name="avatarURL"
         id="fileInput"
         type="file"
         accept="image/*"

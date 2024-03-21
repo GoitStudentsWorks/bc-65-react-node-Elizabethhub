@@ -5,12 +5,17 @@ export const DailyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #ecf2ff;
+
   border-radius: 10px;
   padding-top: 8px;
   gap: 12px;
   width: 164px;
   height: 74px;
+
+  background-color: ${(props) => props.theme.dailyWrapperBackground};
+  border: ${(props) => props.theme.dailyWrapperBorder};
+  box-shadow: ${(props) => props.theme.dailyWrapperBoxShadow};
+
   @media only screen and (min-width: 768px) {
     margin-bottom: -45px;
   }
@@ -46,4 +51,5 @@ export const DailyEditButton = styled.button`
   color: #8baeff;
   position: relative;
   z-index: 1;
+  outline: transparent;
 `;

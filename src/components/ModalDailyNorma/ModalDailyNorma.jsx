@@ -1,76 +1,112 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { isModalDayNorm } from '../../store/water/selectors';
+import { selectUser } from '../../store/auth/selectors.js';
+import { editDailyNormaThunk } from '../../store/water/operations.js';
 import { changeModalClose } from '../../store/water/waterSlice.js';
-import { genderDescription, radioInputs, textData } from './heper.js';
+import { changeDayNorma } from '../../store/auth/slice.js';
 import {
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  // Modal,
-} from '@mui/material';
+  calculateVolume,
+  handleInput,
+  textData,
+} from '../../helpers/ModalDayNorma/helper.js';
+import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
+import SvgCross from '../../images/svg/svgModal/SvgCross';
+import FormulaField from './FormulaField.jsx';
+import RadioGroupComponent from './RadioGroup.jsx';
+import InputBox from './InputBox.jsx';
 import {
   SaveButton,
   StyledBackdrop,
   StyledCross,
-  StyledInputBox,
   StyledRequiredLitres,
   StyledWrapper,
+  StyledInputBox,
 } from './ModalDailyNorma.styled.js';
-import SvgCross from '../../images/svg/svgModal/SvgCross';
-import SvgRadioChecked from '../../images/svg/svgModal/SvgRadioChecked.jsx';
-import SvgRadio from '../../images/svg/svgModal/SvgRadio.jsx';
+import { useTranslation } from 'react-i18next';
 
 const ModalDailyNorma = () => {
-  const isModalOpen = useSelector(isModalDayNorm);
+  const { t } = useTranslation();
   const dispatch = useDispatch();
+  const isModalOpen = useSelector(isModalDayNorm);
+  const userObject = useSelector(selectUser);
+  const dayNormaValue = userObject?.dailyNorma;
 
-  //***NOTE  */ radio buttons state and handling ***//
-  const [value, setValue] = useState('woman');
-  const [massQuery, setMassQuery] = useState('');
-  const [timeQuery, setTimeQuery] = useState('');
+  const [genderValue, setGenderValue] = useState('woman');
+  const [massQuery, setMassQuery] = useState(0);
+  const [timeQuery, setTimeQuery] = useState(0);
+  const [volume, setVolume] = useState(0);
   const [waterQuery, setWaterQuery] = useState('');
-  const handleGenderChange = (event) => {
-    setValue(event.target.value);
-  };
-  // const isDisabled = oldDataType === value;
+  const { time, weight, waterAmount, howMuch } = textData;
 
-  const clickBackdrop = (e) => {
-    if (e.target === e.currentTarget) {
-      dispatch(changeModalClose(false));
-    }
-  };
+  const clickBackdrop = useClickBackdrop();
+
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         dispatch(changeModalClose(false));
       }
     };
+    document.body.style.overflow = isModalOpen ? 'hidden' : 'auto';
     document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [dispatch, isModalOpen]);
 
-    return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [dispatch]);
+  useEffect(() => {
+    const calculatedVolume = calculateVolume(massQuery, timeQuery, genderValue);
+    const parsedVolume = parseFloat(calculatedVolume);
+    setVolume((isNaN(parsedVolume) ? 0 : parsedVolume) || dayNormaValue / 1000);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [massQuery, timeQuery, genderValue]);
 
+  const handleGenderChange = (event) => {
+    setGenderValue(event.target.value);
+  };
   const handleMassInput = (e) => {
-    const inputQuery = e.target.value;
-    setMassQuery(inputQuery);
-  };
-  const handleTimeInput = (e) => {
-    const inputQuery = e.target.value;
-    setTimeQuery(inputQuery);
-  };
-  const handleWaterInput = (e) => {
-    const inputQuery = e.target.value;
-    setWaterQuery(inputQuery);
+    handleInput(e, setMassQuery);
   };
 
-  const { hint, time, rate, weight, waterAmount, howMuch } = textData;
+  const handleTimeInput = (e) => {
+    handleInput(e, setTimeQuery);
+  };
+
+  const handleWaterInput = (e) => {
+    handleInput(e, setWaterQuery);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const finalValue = waterQuery * 1000 || volume * 1000;
+    dispatch(editDailyNormaThunk({ dailyNorma: finalValue }))
+      .unwrap()
+      .then(() => {
+        dispatch(changeDayNorma(finalValue));
+        setTimeout(() => {
+          dispatch(changeModalClose(false));
+        }, 300);
+        toast.success('Daily norma successfully updated');
+      })
+      .catch((error) => {
+        if (error.response) {
+          // If the error has a response, it means it's an Axios error
+          const errorMessage = error.response.data.message;
+          toast.error(errorMessage);
+        } else {
+          // If there's no response, handle other types of errors
+          toast.error('An error occurred. Please try again.');
+        }
+      });
+  };
 
   return (
     isModalOpen && (
       <StyledBackdrop open={isModalOpen} onClick={clickBackdrop}>
-        <StyledWrapper>
-          <h2>My daily norma</h2>
+        <StyledWrapper onSubmit={onSubmit}>
+          <h2>{t('mydailynorma')}</h2>
           <StyledCross
             onClick={() => {
               dispatch(changeModalClose(false));
@@ -78,100 +114,44 @@ const ModalDailyNorma = () => {
           >
             <SvgCross />
           </StyledCross>
-          <div>
-            <ul>
-              {genderDescription.map((genderData) => {
-                const { gender, massRate, timeRate } = genderData;
-                return (
-                  <li className="formula" key={`${gender}+${massRate}`}>
-                    <p>
-                      For {gender}:
-                      <span>{` V=(M*${massRate}) + (T*${timeRate})`}</span>
-                    </p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-          <p className="hint">
-            <span className="star">*</span> {hint}
-          </p>
-          <h3>{rate}</h3>
-          <RadioGroup
-            row
-            aria-labelledby="radio-buttons"
-            defaultValue="woman"
-            name="radio-buttons-group"
-            value={value}
-            onChange={handleGenderChange}
-            sx={{
-              '& .MuiTypography-root': {
-                fontSize: 16,
-                color: 'var(--black)',
-              },
-            }}
-            style={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              padding: 0,
-              marginBottom: 10,
-              paddingLeft: 5,
-            }}
-          >
-            {radioInputs.map((radioItem, idx) => {
-              return (
-                <FormControlLabel
-                  // disabled={oldDataType === radioItem.value}
-                  value={radioItem.value}
-                  control={
-                    <Radio
-                      checkedIcon={<SvgRadioChecked></SvgRadioChecked>}
-                      icon={<SvgRadio></SvgRadio>}
-                      style={{
-                        padding: 7,
-                        // &:focus:outline: 'none',
-                      }}
-                    />
-                  }
-                  label={radioItem.label}
-                  checked={value === radioItem.value}
-                  key={`${idx}+${radioItem.value}`}
-                />
-              );
-            })}
-          </RadioGroup>
-          <StyledInputBox>
-            <p className="no-margin">{weight}</p>
-            <input
-              type="text"
-              value={massQuery}
-              onChange={handleMassInput}
-              placeholder="0"
-            />
-          </StyledInputBox>
-          <StyledInputBox>
-            <p className="no-margin">{time}</p>
-            <input
-              type="text"
-              value={timeQuery}
-              onChange={handleTimeInput}
-              placeholder="0"
-            />
-          </StyledInputBox>
+          <FormulaField />
+          <RadioGroupComponent
+            genderValue={genderValue}
+            handleGenderChange={handleGenderChange}
+          />
+          <InputBox
+            paragrName={weight}
+            inputName={'mass'}
+            min={waterQuery ? false : '40'}
+            max={'300'}
+            inputValue={massQuery}
+            handler={handleMassInput}
+          />
+          <InputBox
+            paragrName={time}
+            max={'24'}
+            inputName={'time'}
+            inputValue={timeQuery}
+            handler={handleTimeInput}
+          />
           <StyledRequiredLitres>
             <p>{waterAmount}</p>
-            <span>1.8 L</span>
+            <span>{volume.toFixed(1)} L</span>
           </StyledRequiredLitres>
+          <h3>{howMuch}</h3>
           <StyledInputBox>
-            <h3>{howMuch}</h3>
             <input
-              type="text"
+              type="number"
+              name="waterVolume"
+              min="<1"
+              max="15"
               value={waterQuery}
               onChange={handleWaterInput}
-              placeholder="0"
+              placeholder={`${volume}`}
+              required={volume > 0 ? waterQuery : true}
             />
           </StyledInputBox>
-          <SaveButton type="button">Save</SaveButton>
+          <SaveButton type="submit">Save</SaveButton>
         </StyledWrapper>
       </StyledBackdrop>
     )

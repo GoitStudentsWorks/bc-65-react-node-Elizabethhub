@@ -8,7 +8,7 @@ export const RangeWrapper = styled.div`
   }
 `;
 
-export const RangeInputTitl = styled.p`
+export const RangeInputTitle = styled.p`
   font-size: 18px;
   line-height: 24px;
   color: #407bff;
@@ -51,13 +51,14 @@ export const RangeButton = styled.button`
   width: 100%;
   height: 36px;
   border: none;
-  background-color: #407bff;
-  color: #ffffff;
+  background: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.buttonColor};
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 13px;
+  outline: transparent;
   @media only screen and (min-width: 768px) {
     width: 336px;
     height: 44px;
@@ -74,8 +75,7 @@ export const Svg = styled.svg``;
 
 export const StyledRangeInput = styled.input`
   -webkit-appearance: none;
-  /* width: 256px; */
-  width: 100%;
+  width: 256px;
   height: 8px;
   border-radius: 10px;
   border: 1px;
@@ -99,10 +99,12 @@ export const StyledRangeInput = styled.input`
   }
 
   @media only screen and (min-width: 768px) {
-    width: 325px;
+    width: 310px;
+    margin-left: 6px;
   }
   @media only screen and (min-width: 1440px) {
-    width: 360px;
+    width: 363px;
+    margin-left: 6px;
   }
 `;
 

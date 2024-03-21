@@ -11,7 +11,7 @@ export const radioInputs = [
 
 export const genderDescription = [
   {
-    gender: 'girl',
+    gender: 'woman',
     massRate: '0,03',
     timeRate: '0,4',
   },
@@ -29,4 +29,32 @@ export const textData = {
   weight: 'Your weight in kilograms:',
   waterAmount: 'The required amount of water in liters per day:',
   howMuch: 'Write down how much water you will drink:',
+};
+
+export const parserToNumber = (str) => {
+  const toPoint = str.split(',').join('.');
+  return +toPoint;
+};
+
+export function handleInput(e, setterFunction) {
+  const letterLimit = e.target.name === 'mass' ? 6 : 4;
+  const inputQuery = e.target.value;
+  const regex = /^-?[0-9]*\.?[0-9]*$/;
+  if (regex.test(inputQuery)) {
+    setterFunction(inputQuery.replace(/^0(?=\d)/g, '').slice(0, letterLimit));
+  }
+}
+
+export const calculateVolume = (massQuery, timeQuery, genderValue) => {
+  let volume = 0;
+  genderDescription.forEach((genderData) => {
+    const { gender, massRate, timeRate } = genderData;
+    if (genderValue === gender) {
+      volume =
+        +massQuery * parserToNumber(massRate) +
+        +timeQuery * parserToNumber(timeRate);
+    }
+  });
+  const result = volume ? volume.toFixed(1) : volume;
+  return result;
 };

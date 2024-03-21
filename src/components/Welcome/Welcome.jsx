@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import DesctopWoter from '../../images/backgroundImg/backgraundSvg/DesctopWoter';
 import TabletWoter from '../../images/backgroundImg/backgraundSvg/TabletWoter';
 import SvgHabit from '../../images/svg/svgWelcome/SvgHabit';
@@ -6,7 +7,6 @@ import SvgView from '../../images/svg/svgWelcome/SvgView';
 
 import {
   DesctopWoterDivImg,
-  DivImgContainerWelcome,
   TabletWoterDivImg,
   WelcomeDivCantainer,
   WelcomeLi,
@@ -23,9 +23,11 @@ import {
 } from './Welcome.styled';
 
 const Welcome = () => {
+  const { t } = useTranslation();
+
   return (
     <>
-      <DivImgContainerWelcome />
+      {/* <DivImgContainerWelcome /> */}
       <TabletWoterDivImg>
         <TabletWoter />
       </TabletWoterDivImg>
@@ -35,49 +37,45 @@ const Welcome = () => {
 
       <WelcomeDivCantainer>
         <div>
-          <Welcomeh1>Water consumption tracker</Welcomeh1>
-          <Welcomeh2>Record daily water intake and track</Welcomeh2>
-          <Welcomeh3>Tracker Benefits</Welcomeh3>
+          <Welcomeh1>{t('waterconsumptiontracker')}</Welcomeh1>
+          <Welcomeh2>{t('recorddailywaterintakeandtrack')}</Welcomeh2>
+          <Welcomeh3>{t('trackerBenefits')}</Welcomeh3>
           <WelcomeUl>
             <WelcomeLi>
               <SvgHabit />
-              <WelcomeLiSpan>Habit drive</WelcomeLiSpan>
+              <WelcomeLiSpan>{t('habitDrive')}</WelcomeLiSpan>
             </WelcomeLi>
             <WelcomeLi>
               <SvgView />
-              <WelcomeLiSpan>View statistics</WelcomeLiSpan>
+              <WelcomeLiSpan>{t('viewStatistics')}</WelcomeLiSpan>
             </WelcomeLi>
             <WelcomeLi>
               <SvgPersonal />
-              <WelcomeLiSpan>Personal rate setting</WelcomeLiSpan>
+              <WelcomeLiSpan>{t('personalRateSetting')}</WelcomeLiSpan>
             </WelcomeLi>
           </WelcomeUl>
 
           <WelcomeNavLink to="/signin" style={{ textDecoration: 'none' }}>
-            Try tracker
+            {t('tryTracker')}
           </WelcomeNavLink>
         </div>
         <WelcomeWhyDrinkDivCantainer>
-          <WelcomeWhyDrinkH3>Why drink water</WelcomeWhyDrinkH3>
+          <WelcomeWhyDrinkH3>{t('whyDrinkWater')}</WelcomeWhyDrinkH3>
           <WelcomeWhyDrinkUl>
+            <WelcomeWhyDrinkLi>{t('supplyOfNutrients')}</WelcomeWhyDrinkLi>
+            <WelcomeWhyDrinkLi>{t('providingOxygen')}</WelcomeWhyDrinkLi>
             <WelcomeWhyDrinkLi>
-              Supply of nutrients to all organs
-            </WelcomeWhyDrinkLi>
-            <WelcomeWhyDrinkLi>Providing oxygen to the lungs</WelcomeWhyDrinkLi>
-            <WelcomeWhyDrinkLi>
-              Maintaining the work of the heart
+              {t('maintainingHeartFunction')}
             </WelcomeWhyDrinkLi>
             <WelcomeWhyDrinkLi>
-              Release of processed substances
+              {t('releaseOfProcessedSubstances')}
+            </WelcomeWhyDrinkLi>
+            <WelcomeWhyDrinkLi>{t('ensuringStability')}</WelcomeWhyDrinkLi>
+            <WelcomeWhyDrinkLi>
+              {t('maintainingNormalTemperature')}
             </WelcomeWhyDrinkLi>
             <WelcomeWhyDrinkLi>
-              Ensuring the stability of the internal environment
-            </WelcomeWhyDrinkLi>
-            <WelcomeWhyDrinkLi>
-              Maintaining within the normal temperature
-            </WelcomeWhyDrinkLi>
-            <WelcomeWhyDrinkLi>
-              Maintaining an immune system capable of resisting disease
+              {t('maintainingImmuneSystem')}
             </WelcomeWhyDrinkLi>
           </WelcomeWhyDrinkUl>
         </WelcomeWhyDrinkDivCantainer>

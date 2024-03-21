@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import {
   FormWrapper,
   Heading2,
@@ -6,10 +7,11 @@ import {
 } from './LoginForm.styled';
 
 const AuthForm = ({ children, on, handleSubmit, submit, errors }) => {
+  const { t } = useTranslation();
   const path = on ? `/signup` : '/signin';
   return (
     <FormWrapper>
-      <Heading2>{on ? 'Sign In' : 'Sign Up'}</Heading2>
+      <Heading2>{on ? t('signIn') : t('signUp')}</Heading2>
       <StyledLoginForm
         onSubmit={handleSubmit(submit)}
         $errorEmail={errors?.email}
@@ -18,7 +20,9 @@ const AuthForm = ({ children, on, handleSubmit, submit, errors }) => {
       >
         {children}
       </StyledLoginForm>
-      <LoginLink to={path}>{on ? 'Sign Up' : 'Sign In'}</LoginLink>
+      <LoginLink to={path}>{on ? t('signUp') : t('signIn')}</LoginLink>
+
+      {on && <LoginLink to="/forgot-password">{t('forgotPassword')}</LoginLink>}
     </FormWrapper>
   );
 };

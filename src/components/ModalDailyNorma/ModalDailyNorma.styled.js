@@ -16,10 +16,14 @@ export const StyledBackdrop = styled.div`
   width: 100%;
 `;
 
-export const StyledWrapper = styled.div`
+export const StyledWrapper = styled.form`
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
   position: relative;
   border-radius: 10px;
-  backdrop-filter: blur(50px);
   background: var(--white);
   background-size: 130% 130%;
   background-position: center;
@@ -27,6 +31,7 @@ export const StyledWrapper = styled.div`
   padding: 24px 12px 24px 12px;
   display: flex;
   flex-direction: column;
+  background: ${(props) => props.theme.modalCantainerBackground};
 
   @media only screen and (min-width: 768px) {
     width: 704px;
@@ -42,7 +47,7 @@ export const StyledWrapper = styled.div`
   }
 
   h2 {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 26px;
     font-weight: 500;
@@ -50,20 +55,20 @@ export const StyledWrapper = styled.div`
     margin-bottom: 24px;
   }
   h3 {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 10px;
   }
   p {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 16px;
     margin-bottom: 12px;
   }
   span {
-    color: var(--blue);
+    color: ${(props) => props.theme.colorBody};
     font-size: 18px;
     font-weight: 400;
     line-height: 24px;
@@ -81,6 +86,13 @@ export const StyledWrapper = styled.div`
   .star {
     font-size: 12px;
     line-height: 16px;
+  }
+  .radioGroup {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+    margin-bottom: 10px;
+    padding-left: 5;
   }
 `;
 export const SaveButton = styled.button`
@@ -138,7 +150,8 @@ export const StyledInputBox = styled.div`
     width: 100%;
     border-radius: 6px;
     border: 1px solid var(--primary-mediumblue);
-    color: var(--blue);
+    background-color: ${(props) => props.theme.formInputBackground};
+    color: ${(props) => props.theme.formInputColor};
     padding: 12px 10px 12px 10px;
     margin-top: 8px;
     margin-bottom: 16px;

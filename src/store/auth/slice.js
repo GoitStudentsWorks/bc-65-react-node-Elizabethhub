@@ -1,5 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { currentThunk, logoutThunk, signInThunk, signUpThunk } from './thunks';
+import {
+  currentThunk,
+  forgotThunk,
+  logoutThunk,
+  signInThunk,
+  signUpThunk,
+  updateAvatarThunk,
+  updatePasswordThunk,
+} from './thunks';
 
 const authSlice = createSlice({
   name: 'Auth',
@@ -8,6 +16,11 @@ const authSlice = createSlice({
     isLoading: false,
     error: null,
     token: '',
+  },
+  reducers: {
+    changeDayNorma: (state, { payload }) => {
+      state.user.dailyNorma = payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -26,8 +39,8 @@ const authSlice = createSlice({
         state.isLoading = true;
       })
       .addCase(signInThunk.fulfilled, (state, { payload }) => {
-        state.user = payload;
-        state.token = payload?.token;
+        state.user = payload.user;
+        state.token = payload.token;
         state.isLoading = false;
       })
       .addCase(signInThunk.rejected, (state, { payload }) => {
@@ -56,8 +69,40 @@ const authSlice = createSlice({
       .addCase(logoutThunk.rejected, (state, { payload }) => {
         state.error = payload;
         state.isLoading = false;
+      })
+      .addCase(updateAvatarThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateAvatarThunk.fulfilled, (state, { payload }) => {
+        state.user = payload?.user;
+        state.isLoading = false;
+      })
+      .addCase(updateAvatarThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+      })
+      .addCase(forgotThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(forgotThunk.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(forgotThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
+      })
+      .addCase(updatePasswordThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updatePasswordThunk.fulfilled, (state) => {
+        state.isLoading = false;
+      })
+      .addCase(updatePasswordThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.isLoading = false;
       });
   },
 });
 
 export const authReducer = authSlice.reducer;
+export const { changeDayNorma } = authSlice.actions;

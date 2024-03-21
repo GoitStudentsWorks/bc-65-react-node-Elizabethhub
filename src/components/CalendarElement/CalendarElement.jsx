@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   ContentWrapperCalendar,
   HeadingWrapper,
@@ -11,11 +11,31 @@ import ArrowLeftCalendarSvg from '../../images/svg/svgCalendar/ArrowLeftCalendar
 import ArrowRightCalendarSvg from '../../images/svg/svgCalendar/ArrowRightCalendarSvg';
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import { useDispatch, useSelector } from 'react-redux';
+
+import {
+  selectorWaterInfo,
+  selectorWaterToday,
+  showDaysGenStats,
+} from '../../store/water/selectors.js';
+import {
+  changeShowDaysStats,
+  updateWaterPercentage,
+} from '../../store/water/waterSlice';
+import { selectDailyWater, selectUser } from '../../store/auth/selectors.js';
+
 import { showDaysGenStats } from '../../store/water/selectors';
 import { changeShowDaysStats } from '../../store/water/waterSlice';
+import { useTranslation } from 'react-i18next';
+
 
 const CalendarElement = () => {
+  const { t } = useTranslation();
   const showDaysStats = useSelector(showDaysGenStats);
+  const userDailyWater = useSelector(selectDailyWater);
+  const waterTodayList = useSelector(selectorWaterToday);
+  const currentDayPercent = useSelector(selectorWaterInfo);
+  const hero = useSelector(selectUser);
+
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -51,10 +71,53 @@ const CalendarElement = () => {
     );
   };
 
+  function closeDayStat(event) {
+    const element = event.target;
+    const parent = element.parentNode;
+    if (!parent) {
+      return;
+    }
+    if (parent.classList.contains('li-day')) {
+      dispatch(changeShowDaysStats(true));
+    } else {
+      dispatch(changeShowDaysStats(false));
+    }
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        dispatch(changeShowDaysStats(false));
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [dispatch]);
+
+  const rootElement = document.getElementById('root');
+  rootElement.addEventListener('click', (event) => {
+    closeDayStat(event);
+  });
+
+  useEffect(() => {
+    if (hero) {
+      const totalDrinkToday = waterTodayList.reduce(
+        (accumulator, currentValue) => {
+          return Number(accumulator) + Number(currentValue.milliliters);
+        },
+        0
+      );
+
+      const percentage = Math.round((totalDrinkToday / userDailyWater) * 100);
+      dispatch(updateWaterPercentage(percentage));
+    }
+  }, [dispatch, hero, userDailyWater, waterTodayList]);
+
   return (
     <ContentWrapperCalendar>
       <HeadingWrapper>
-        <MonthHeading>Month</MonthHeading>
+        <MonthHeading>{t('month')}</MonthHeading>
         <MonthSwitcher>
           <button
             className="arrow"
@@ -78,17 +141,18 @@ const CalendarElement = () => {
       </HeadingWrapper>
 
       <MonthList>
-        {showDaysStats && <DaysGeneralStats />}
+        {showDaysStats && (
+          <DaysGeneralStats monthData={monthData} currentDate={currentDate} />
+        )}
         {monthData.map((item) => (
           <DayStyles
             key={item.day}
-            onClick={() => {
-              dispatch(changeShowDaysStats(true));
-            }}
-            className={`${isToday(item.day) ? 'today' : ''}`}
+            className={`li-day ${isToday(item.day) ? 'today' : ''}`}
           >
             <span className="day">{item.day}</span>
-            <span className="percentage">{item.percentage}%</span>
+            <span className="percentage">
+              {currentDayPercent >= 100 ? 100 : currentDayPercent}%
+            </span>
           </DayStyles>
         ))}
       </MonthList>

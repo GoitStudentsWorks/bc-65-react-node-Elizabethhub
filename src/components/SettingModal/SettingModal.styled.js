@@ -4,14 +4,15 @@ export const Overlay = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 40px 20px;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--modal-backdrop);
   z-index: 1200;
+  overflow-y: hidden;
 
   @media only screen and (min-width: 768px) {
     padding: 40px 32px;
@@ -25,16 +26,17 @@ export const Modal = styled.div`
   padding: 32px 12px;
   position: relative;
   border-radius: 10px;
-  background: rgb(255, 255, 255);
+  /* background: rgb(255, 255, 255); */
   width: 100%;
   min-width: 280px;
+  background: ${(props) => props.theme.modalCantainerBackground};
 
   @media only screen and (min-width: 768px) {
     padding: 32px 24px;
-    min-width: 704px;
+    max-width: 704px;
   }
   @media only screen and (min-width: 1440px) {
-    width: 1008px;
+    max-width: 1008px;
     min-height: 592px;
   }
 `;
@@ -214,6 +216,8 @@ export const InputFild = styled.input`
   font-family: 'Roboto', sans-serif;
   color: var(--blue);
   caret-color: var(--black);
+  background-color: ${(props) => props.theme.formInputBackground};
+  color: ${(props) => props.theme.formInputColor};
   outline: none;
   &::placeholder {
     font-size: 16px;
@@ -285,13 +289,14 @@ export const SaveButton = styled.button`
   max-width: 392px;
   height: 36px;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  background: #407bff;
+
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  color: var(--white);
+  background: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.buttonColor};
 
   @media only screen and (min-width: 768px) {
     font-size: 18px;

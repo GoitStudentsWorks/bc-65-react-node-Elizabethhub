@@ -1,11 +1,10 @@
-import React from 'react';
 import {
+  RangeWrapper,
   RangeButton,
-  RangeInputTitl,
   RangePercent,
   RangePercentWrap,
   RangeSpanLine,
-  RangeWrapper,
+  RangeInputTitle,
 } from './WaterRatio.styled';
 import AddSvg from '../../images/svg/svgDailyNorma/AddSvg';
 
@@ -15,15 +14,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeModalAddForm } from '../../store/water/waterSlice';
 import ModalWater from '../ModalWater/ModalWater';
 import { modalIsOpen } from '../../store/water/selectors';
+import { useTranslation } from 'react-i18next';
 
 const WaterRatio = () => {
+  const { t } = useTranslation();
   const isModalOpen = useSelector(modalIsOpen);
   const dispatch = useDispatch();
 
   return (
     <RangeWrapper>
       <div>
-        <RangeInputTitl>Today</RangeInputTitl>
+
+        <RangeInputTitle>{t('today')}</RangeInputTitle>
+
         <InputComponent />
         <RangePercentWrap>
           <RangePercent>
@@ -46,7 +49,7 @@ const WaterRatio = () => {
         }}
       >
         <AddSvg />
-        Add Water
+        {t('addWater')}
       </RangeButton>
       {isModalOpen && <ModalWater />}
     </RangeWrapper>

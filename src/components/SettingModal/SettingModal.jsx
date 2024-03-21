@@ -33,42 +33,86 @@ import UploadingPhoto from './UploadingPhoto';
 import { useForm } from 'react-hook-form';
 import OpenPassEye from '../../images/AuthImg/OpenPassEye';
 import PassEye from '../../images/AuthImg/PassEye';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../store/auth/selectors';
+import { updateAvatarThunk } from '../../store/auth/thunks';
+import { toast } from 'react-toastify';
 
-const schema = yup
-  .object({
-    name: yup
-      .string()
-      .max(32, 'Name must contain a maximum of 32 characters')
-      .required('Name is required'),
-    email: yup
-      .string()
-      .email('Please write valid email')
-      .matches(/^(?!.*@[^,]*,)/)
-      .required('Email is required'),
-    oldPassword: yup
-      .string()
-      .min(8, 'Password must be at least 8 characters')
-      .max(64)
-      .required('Password is required'),
-    newPassword: yup
-      .string()
-      .min(8, 'Password must be at least 8 characters')
-      .max(64)
-      .required('Password is required'),
+const schema = yup.object({
+  name: yup.string().max(32, 'Name must contain a maximum of 32 characters'),
+  // .required('Name is required')
+  email: yup
+    .string()
+    .email('Please write valid email')
+    .matches(/^(?!.*@[^,]*,)/)
+    .required('Email is required'),
+  oldPassword: yup
+    .string()
 
-    confirmPassword: yup
-      .string()
-      .oneOf(
-        [yup.ref('newPassword'), null],
-        "Passwords don't match, please try again."
-      )
-      .min(8, 'Password must be at least 8 characters')
-      .required('Confirm password is required'),
-  })
-  .required();
+    // .min(8, 'Password must be at least 8 characters')
+    .max(64),
+
+  // .required('Password is required')
+  newPassword: yup
+    .string()
+    // .min(8, 'Password must be at least 8 characters')
+    .max(64),
+  // .required('Password is required')
+  confirmPassword: yup
+    .string()
+    .oneOf(
+      [yup.ref('newPassword'), null],
+      "Passwords don't match, please try again."
+    ),
+  // .min(8, 'Password must be at least 8 characters')
+  // .required('Confirm password is required')
+});
+
+// const schema = yup.object({
+//   name: yup
+//     .string()
+//     .max(32, 'Name must contain a maximum of 32 characters')
+//     .required('Name is required'),
+//   email: yup
+//     .string()
+//     .email('Please write valid email')
+//     .matches(/^(?!.*@[^,]*,)/)
+//     .required('Email is required'),
+//   oldPassword: yup
+//     .string()
+//     .nullable()
+//     .when('oldPassword', {
+//       is: (val) => val && val.length > 0,
+//       then: yup.string().min(8, 'Password must be at least 8 characters').max(64),
+//     }),
+//   newPassword: yup
+//     .string()
+//     .nullable()
+//     .when('newPassword', {
+//       is: (val) => val && val.length > 0,
+//       then: yup.string().min(8, 'Password must be at least 8 characters').max(64),
+//     }),
+//   confirmPassword: yup
+//     .string()
+//     .nullable()
+//     .oneOf(
+//       [yup.ref('newPassword'), null],
+//       "Passwords don't match, please try again."
+//     ),
+// });
 
 const SettingModal = ({ onClose }) => {
+  const user = useSelector(selectUser);
+  // const [imageUser, setImageUser] = useState('');
+  // const [name, setName] = useState('');
+  // const [newEmail, setNewEmail] = useState(email || '');
+  // const [oldPassword, setoldPassword] = useState('');
+
+  // const userProfile = useSelector(selectUser);
+
   const [eyePass, setEyePass] = useState(false);
+
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -80,7 +124,22 @@ const SettingModal = ({ onClose }) => {
   });
 
   function submit(data) {
-    console.log(data);
+    const formData = new FormData();
+    formData.append('avatarURL', data.avatarURL[0]);
+    dispatch(updateAvatarThunk(formData))
+      .unwrap()
+      .then((res) => {
+        // console.log(res);
+        if (!res) {
+          throw errors;
+        }
+        toast.success(`Your avatar has been saved successfully`);
+        onClose();
+      })
+      .catch((err) => toast.error(err));
+    // console.log(formData);
+
+    // console.log(data);
   }
 
   function showPass() {
@@ -99,6 +158,20 @@ const SettingModal = ({ onClose }) => {
     setValue(event.target.value);
   };
 
+  // const handleInputChange = ({ target }) => {
+  //   if (target.name === 'name') {
+  //     setName(target.value);
+  //   }
+  //   if (target.name === 'email') {
+  //     setNewEmail(target.value);
+  //   }
+  //   if (target.name === 'oldPassword') {
+  //     setoldPassword(target.value);
+  //   }
+
+  //   console.log(target.value);
+  // };
+
   return (
     <Overlay onClick={handleClick}>
       <Modal>
@@ -106,14 +179,10 @@ const SettingModal = ({ onClose }) => {
           <SvgClose />
         </CloseButton>
         <ModalTitle>Setting</ModalTitle>
-        <Form
-          onSubmit={handleSubmit(submit)}
-          encType="multipart/form-data"
-          $errors={errors}
-        >
+        <Form onSubmit={handleSubmit(submit)} $errors={errors}>
           <BlockWrap8>
-            <BigLabel htmlFor="photo">Your photo</BigLabel>
-            <UploadingPhoto id="photo" register={register} />
+            <BigLabel htmlFor="avatarURL">Your photo</BigLabel>
+            <UploadingPhoto id="avatarURL" register={register} />
           </BlockWrap8>
 
           <ExternalBlockWrap24>
@@ -164,6 +233,7 @@ const SettingModal = ({ onClose }) => {
                       type="text"
                       id="name"
                       placeholder="Your name"
+                      defaultValue={user?.username}
                     />
                   </BlockWrap8>
                   <ErrorSpan>{errors.name?.message}</ErrorSpan>
@@ -177,6 +247,7 @@ const SettingModal = ({ onClose }) => {
                       type="email"
                       id="email"
                       placeholder="E-mail"
+                      defaultValue={user?.email}
                     />
                   </BlockWrap8>
                   <ErrorSpan>{errors.email?.message}</ErrorSpan>
@@ -197,6 +268,8 @@ const SettingModal = ({ onClose }) => {
                     type={eyePass ? 'text' : 'password'}
                     id="oldPassword"
                     placeholder="Password"
+                    // onChange={handleInputChange}
+                    // value={oldPassword}
                   />
                   <ErrorSpan>{errors.oldPassword?.message}</ErrorSpan>
                   <PassShowBtn type="button" onClick={showPass}>

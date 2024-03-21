@@ -10,22 +10,81 @@ import {
   StyledModalForm,
   TimeGlobalStyles,
 } from './ModalAddWater.styled.js';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useCounter from '../../hooks/modalHandleUpdate.js';
+import { useDispatch } from 'react-redux';
+import {
+  addWaterThunk,
+  fetchAllWaterThunk,
+} from '../../store/water/operations.js';
+import { changeModalClose } from '../../store/water/waterSlice.js';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const ModalAddWater = () => {
+  const { t } = useTranslation();
   const { counter, handleUpdate } = useCounter(0);
   const [time, setTime] = useState(new Date());
+  const [manualValue, setManualValue] = useState('');
+  const [inputFocused, setInputFocused] = useState(false);
+
+  const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
+
+    const water = {
+      milliliters: e.target.elements.value.value,
+      time: time,
+    };
+
+    dispatch(addWaterThunk(water))
+      .unwrap()
+      .then(() => {
+        dispatch(changeModalClose(false));
+        dispatch(fetchAllWaterThunk());
+        toast.success('Water note was successfully added');
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
+
+  const handleManualValueChange = (e) => {
+    let value = e.target.value;
+    if (
+      value !== '' &&
+      (isNaN(value) || parseInt(value) > 5000 || parseInt(value) < 1)
+    ) {
+      value = '5000';
+    }
+    setManualValue(value);
+  };
+
+  const handleInputBlur = () => {
+    setInputFocused(false);
+  };
+
+  const handleInputFocus = () => {
+    setInputFocused(true);
+  };
+
+  useEffect(() => {
+    setManualValue(`${counter}`);
+  }, [counter]);
+
+  const displayValue = inputFocused
+    ? `${counter}ml`
+    : manualValue !== ''
+    ? `${manualValue}ml`
+    : `${counter}ml`;
+
   return (
     <StyledModalForm onSubmit={onSubmit}>
-      <h3>Choose a value:</h3>
-      <p>Amount of water:</p>
+      <h3>{t('chooseAvalue')}</h3>
+      <p>{t('amountOfWater')}</p>
 
       <StyledModalAddTracker>
         <button
@@ -36,16 +95,15 @@ const ModalAddWater = () => {
         >
           <SvgMinus size="24" />
         </button>
-        <span>{`${counter}ml`}</span>
+        <span>{displayValue ? displayValue : `${counter}ml`}</span>
         <button type="button" name="increment" onClick={handleUpdate}>
           <SvgPlus size="24" />
         </button>
       </StyledModalAddTracker>
 
       <StyledModalAddTime>
-        <p>Recording time:</p>
+        <p>{t('recordingTime')}</p>
         <ModalAddDateWrap>
-          {/* <label> */}
           <DatePicker
             selected={time}
             onChange={(date) => {
@@ -61,29 +119,27 @@ const ModalAddWater = () => {
             timeZone="UTC"
           />
           <TimeGlobalStyles />
-          {/* </label> */}
         </ModalAddDateWrap>
-
-        {/* <StyledModalAddInput
-          type="number"
-          placeholder="7:00"
-          name="time"
-        /> */}
       </StyledModalAddTime>
       <StyledModalAddValue>
-        <h3>Enter the value of the water used:</h3>
+        <h3>{t('enterTheValueOfTheWaterUsed')}</h3>
         <StyledModalAddInput
           type="number"
-          placeholder={`${counter}ml`}
+          placeholder={`${counter}`}
           min="1"
           max="5000"
           name="value"
+          value={manualValue}
+          onChange={handleManualValueChange}
+          onFocus={handleInputFocus}
+          onBlur={handleInputBlur}
+          required
         />
       </StyledModalAddValue>
 
       <StyledModalAddSave>
-        <span>{`${counter}ml`}</span>
-        <button type="submit">Save</button>
+        <span>{displayValue}</span>
+        <button type="submit">{t('save')}</button>
       </StyledModalAddSave>
     </StyledModalForm>
   );

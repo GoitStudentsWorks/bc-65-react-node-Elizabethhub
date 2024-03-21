@@ -10,7 +10,7 @@ export const MonthHeading = styled.h3`
   line-height: 1.25;
   letter-spacing: 0em;
   text-align: left;
-  color: #2f2f2f;
+  color: ${(props) => props.theme.colorBody};
 
   @media screen and (min-width: 768px) {
     font-size: 26px;
@@ -80,7 +80,7 @@ export const DayStyles = styled.li`
   cursor: pointer;
   letter-spacing: 0em;
   &.today {
-    border: 4px solid #ef5050;
+    background-color: lightblue;
   }
 
   span {
@@ -92,7 +92,7 @@ export const DayStyles = styled.li`
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #fff;
+    background: ${(props) => props.theme.dayStylesDayBackground};
     border-radius: 50%;
     border: none;
 
@@ -109,6 +109,6 @@ export const DayStyles = styled.li`
   .percentage {
     font-size: 10px;
     line-height: 16px;
-    color: #9ebbff;
+    color: ${(props) => props.theme.dayStylesDayPercentage};
   }
 `;
