@@ -35,7 +35,7 @@ import OpenPassEye from '../../images/AuthImg/OpenPassEye';
 import PassEye from '../../images/AuthImg/PassEye';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../store/auth/selectors';
-import { updateAvatarThunk } from '../../store/auth/thunks';
+import { updateUserThunk } from '../../store/auth/thunks';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
@@ -126,22 +126,56 @@ const SettingModal = ({ onClose }) => {
   });
 
   function submit(data) {
-    const formData = new FormData();
-    formData.append('avatarURL', data.avatarURL[0]);
-    dispatch(updateAvatarThunk(formData))
+    console.log(data);
+    delete data.oldPassword;
+    delete data.avatarURL;
+    delete data.confirmPassword;
+
+    if (data.name === '') {
+      delete data.name;
+    } else {
+      data.username = data.name;
+      console.log(data.username);
+      delete data.name;
+    }
+
+    if (data.newPassword === '') {
+      delete data.newPassword;
+    }
+    // else {
+    //   data.password = data.newPassword;
+    // }
+    // const newData = {};
+    // const keys = Object.keys(data);
+    // const values = Object.values(data);
+    // console.log(Object.values(data));
+    // console.log(Object.keys(data));
+    // for (let i = 0; i < keys.length; i++) {
+    //   if (values[i] !== '') {
+    //     newData.keys[i] = values[i];
+    //   }
+    // }
+    // console.log(newData);
+    // for (const key in data) {
+    //   console.log(data[key]);
+    //   // data.key = data[key];
+    //   if (data[key] !== '') {
+    //     console.log(data[key]);
+    //   }
+    // return data;
+    console.log(data);
+    dispatch(updateUserThunk(data))
       .unwrap()
-      .then((res) => {
+      .then(() => {
         // console.log(res);
-        if (!res) {
-          throw errors;
-        }
-        toast.success(`Your avatar has been saved successfully`);
+        // if (!res) {
+        //   throw errors;
+        // }
+        toast.success(`Your changes has been saved successfully`);
         onClose();
       })
       .catch((err) => toast.error(err));
     // console.log(formData);
-
-    // console.log(data);
   }
 
   function showPass() {
@@ -172,7 +206,6 @@ const SettingModal = ({ onClose }) => {
   //   }
 
   //   console.log(target.value);
-  // };
 
   return (
     <Overlay onClick={handleClick}>
