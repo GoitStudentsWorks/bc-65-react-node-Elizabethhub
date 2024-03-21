@@ -19,7 +19,6 @@ import { toast } from 'react-toastify';
 
 const ModalDeleteWater = ({ waterItem }) => {
   const isModalOpen = useSelector(modalDeleteOpen);
-  console.log('waterItem in modal', waterItem);
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
@@ -36,7 +35,6 @@ const ModalDeleteWater = ({ waterItem }) => {
         toast.error(error);
       });
   };
-  // console.log(waterItem);
 
   const clickBackdrop = useClickBackdrop();
 

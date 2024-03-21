@@ -12,7 +12,6 @@ const waterSlice = createSlice({
       modalEditForm: false,
       isModalDayNorm: false,
       modalDayNorma: false,
-      modalDeleteForm: false,
       modalId: '',
     },
     daysGenStats: false,
@@ -26,7 +25,6 @@ const waterSlice = createSlice({
       state.modal.modalEditForm = payload;
       state.modal.isModalDayNorm = payload;
       state.modal.modalDayNorma = payload;
-      state.modal.modalDeleteForm = payload;
       state.modal.modalDeleteOpen = payload;
     },
     changeModalAddForm: (state, { payload }) => {
@@ -39,7 +37,6 @@ const waterSlice = createSlice({
     },
     changeModalDeleteForm: (state, { payload }) => {
       state.modal.modalDeleteOpen = payload;
-      // state.modal.modalDeleteForm = payload;
     },
     changeModalDailyNorma: (state, { payload }) => {
       state.modal.isModalDayNorm = payload;
@@ -49,17 +46,12 @@ const waterSlice = createSlice({
       state.daysGenStats = payload;
     },
     changeTodayList: (state, { payload }) => {
-      console.log('state', state);
-      console.log('payload', payload);
       state.waterTodayList.push(payload);
     },
     changeModalId: (state, { payload }) => {
-      console.log('state', state);
-      console.log('payload', payload);
       state.modal.modalId = payload;
     },
     deleteWater: (state, action) => {
-      console.log('action', action);
       state.waterTodayList = state.waterTodayList.filter(
         (waterItem) => waterItem._id !== action.payload
       );
@@ -73,13 +65,10 @@ const waterSlice = createSlice({
       .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
         state.error = payload;
       })
-
       .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {
-        state.waterTodayList = state.waterTodayList.filter((waterItem) => {
-          console.log('waterItem._id', waterItem._id);
-          console.log('payload.id', payload.id);
-          return waterItem._id !== payload.id;
-        });
+        state.waterTodayList = state.waterTodayList.filter(
+          (waterItem) => waterItem._id !== payload.id
+        );
         toast.success('Water note was successfully deleted');
       });
   },

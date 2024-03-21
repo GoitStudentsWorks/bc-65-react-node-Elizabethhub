@@ -19,10 +19,7 @@ import {
   addWaterThunk,
   fetchAllWaterThunk,
 } from '../../store/water/operations.js';
-import {
-  changeModalClose,
-  // changeTodayList,
-} from '../../store/water/waterSlice.js';
+import { changeModalClose } from '../../store/water/waterSlice.js';
 import { toast } from 'react-toastify';
 
 const ModalAddWater = () => {
@@ -46,7 +43,6 @@ const ModalAddWater = () => {
       .then(() => {
         dispatch(changeModalClose(false));
         dispatch(fetchAllWaterThunk());
-        // dispatch(changeTodayList({ ...water, _id: crypto.randomUUID() }));
         toast.success('Water note was successfully added');
       })
       .catch((error) => {

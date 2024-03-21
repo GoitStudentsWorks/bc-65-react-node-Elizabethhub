@@ -1,4 +1,3 @@
-// import { useState } from 'react';
 import {
   AddBtnWrapper,
   Amount,
@@ -27,23 +26,16 @@ import {
 import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
 import { useEffect } from 'react';
 import { fetchAllWaterThunk } from '../../store/water/operations.js';
-import { selectUser } from '../../store/auth/selectors.js';
 import { format } from 'date-fns';
 
 const TodayElement = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
-  const isUser = useSelector(selectUser);
   const id = useSelector(modalId);
-  console.log('id', id);
   const waterTodayList = useSelector(selectorWaterToday);
-  console.log('waterTodayList', waterTodayList);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('WORK?');
-    if (isUser) {
-      dispatch(fetchAllWaterThunk());
-    }
+    dispatch(fetchAllWaterThunk());
   }, [dispatch]);
 
   return (
@@ -95,11 +87,7 @@ const TodayElement = () => {
         </AddBtnWrapper>
         {isModalOpen && (
           <ModalDeleteWater
-            waterItem={waterTodayList.find((item) => {
-              console.log('item', item);
-              console.log('id', id);
-              return item._id === id;
-            })}
+            waterItem={waterTodayList.find((item) => item._id === id)}
           />
         )}
       </ListWrapper>
