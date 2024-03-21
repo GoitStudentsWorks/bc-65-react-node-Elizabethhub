@@ -15,7 +15,14 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export const ThemeStyledButton = styled.button``;
+export const ThemeStyledButton = styled.button`
+  background: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.buttonColor};
+  /* Контейнер */
+  background: ${(props) => props.theme.modalCantainerBackground};
+  background: ${(props) => props.theme.dayStylesDayBackground};
+  box-shadow: ${(props) => props.theme.modalCantainerBoxShadow};
+`;
 
 export const darkTheme = {
   body: '#1c1c1c',
@@ -36,6 +43,14 @@ export const darkTheme = {
   dailyWrapperBorder: '1px solid #1f2438;',
   dailyWrapperBackground: '#1c1d26;',
   dailyWrapperBoxShadow: '0 4px 14px 0 rgba(0, 0, 0, 0.2);',
+
+  divCantainerBackground: '#1f2438;',
+
+  modalCantainerBackground: '#1f2438;',
+  modalCantainerBoxShadow: '0 4px 14px 0 rgba(0, 0, 0, 0.2);',
+
+  dayStylesDayBackground: '#1c1d26;',
+  dayStylesDayPercentage: '#2f3875;;',
 };
 
 export const lightTheme = {
@@ -57,4 +72,12 @@ export const lightTheme = {
   dailyWrapperBorder: '1px solid #ecf2ff',
   dailyWrapperBackground: '#fff;',
   dailyWrapperBoxShadow: '0 4px 8px 0 rgba(158, 187, 255, 0.12);',
+
+  divCantainerBackground: '#ECF2FF;',
+
+  modalCantainerBackground: '#fff;',
+  modalCantainerBoxShadow: '0px 4px 4px 0px rgba(64, 123, 255, 0.3);',
+
+  dayStylesDayBackground: '#fff;',
+  dayStylesDayPercentage: '#9ebbff;',
 };

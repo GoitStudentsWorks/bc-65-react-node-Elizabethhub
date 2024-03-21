@@ -27,8 +27,10 @@ import { logoutThunk } from '../../store/auth/thunks';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { selectUser } from '../../store/auth/selectors';
+import { useTranslation } from 'react-i18next';
 
 const HeaderModal = () => {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHeaderModalOpen, setIsHeaderModalOpen] = useState(false);
   const [isHeaderModalLogOut, setIsHeaderModalLogOut] = useState(false);
@@ -135,11 +137,11 @@ const HeaderModal = () => {
         <HeaderModalContainer $visible={isHeaderModalOpen}>
           <HeaderModalButton onClick={openModal}>
             <SettingSVG />
-            <HeaderModalButtonSpan>Setting</HeaderModalButtonSpan>
+            <HeaderModalButtonSpan>{t('setting')}</HeaderModalButtonSpan>
           </HeaderModalButton>
           <HeaderModalButton onClick={LogOutHeaderModal}>
             <ClouseSVG />
-            <HeaderModalButtonSpan>Log out</HeaderModalButtonSpan>
+            <HeaderModalButtonSpan>{t('logOut')}</HeaderModalButtonSpan>
           </HeaderModalButton>
         </HeaderModalContainer>
       </DivHeaderModalContainer>
@@ -149,13 +151,17 @@ const HeaderModal = () => {
           <Backdrop onClick={LogOutHeaderModal} $visible={isBackdropVisible} />
           <Test2>
             <HeaderModalLogOutContainer $visible={isHeaderModalLogOut}>
-              <SpanLogOut>Log out</SpanLogOut>
+              <SpanLogOut>{t('logOut')}</SpanLogOut>
               <SpanLogOutQuestion>
-                Do you really want to leave?
+                {t('doYouReallyWantToLeave')}
               </SpanLogOutQuestion>
               <DivButtonLogOut>
-                <ButtonLogOut onClick={LogOutHeaderModal}>Cancel</ButtonLogOut>
-                <ButtonLogOut onClick={handleLogout}>Log out</ButtonLogOut>
+                <ButtonLogOut onClick={LogOutHeaderModal}>
+                  {t('cancel')}
+                </ButtonLogOut>
+                <ButtonLogOut onClick={handleLogout}>
+                  {t('logOut')}
+                </ButtonLogOut>
               </DivButtonLogOut>
             </HeaderModalLogOutContainer>
           </Test2>

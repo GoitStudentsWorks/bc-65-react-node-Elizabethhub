@@ -51,8 +51,8 @@ export const RangeButton = styled.button`
   width: 100%;
   height: 36px;
   border: none;
-  background-color: #407bff;
-  color: #ffffff;
+  background: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.buttonColor};
   border-radius: 10px;
   display: flex;
   align-items: center;

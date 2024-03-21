@@ -31,6 +31,7 @@ export const StyledWrapper = styled.form`
   padding: 24px 12px 24px 12px;
   display: flex;
   flex-direction: column;
+  background: ${(props) => props.theme.modalCantainerBackground};
 
   @media only screen and (min-width: 768px) {
     width: 704px;
@@ -46,7 +47,7 @@ export const StyledWrapper = styled.form`
   }
 
   h2 {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 26px;
     font-weight: 500;
@@ -54,20 +55,20 @@ export const StyledWrapper = styled.form`
     margin-bottom: 24px;
   }
   h3 {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 10px;
   }
   p {
-    color: var(--black);
+    color: ${(props) => props.theme.colorBody};
     text-align: start;
     font-size: 16px;
     margin-bottom: 12px;
   }
   span {
-    color: var(--blue);
+    color: ${(props) => props.theme.colorBody};
     font-size: 18px;
     font-weight: 400;
     line-height: 24px;
