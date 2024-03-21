@@ -68,7 +68,7 @@ export const StyledWrapper = styled.form`
     margin-bottom: 12px;
   }
   span {
-    color: ${(props) => props.theme.colorBody};
+    color: ${(props) => props.theme.formInputColor};
     font-size: 18px;
     font-weight: 400;
     line-height: 24px;
@@ -192,7 +192,6 @@ export const StyledRequiredLitres = styled.div`
   span {
     padding: 10px;
     font-weight: 700;
-    margin-right: 12px;
   }
   @media only screen and (min-width: 768px) {
     justify-content: flex-start;

@@ -135,10 +135,12 @@ const ModalDailyNorma = () => {
             handler={handleTimeInput}
           />
           <StyledRequiredLitres>
-            <p>{waterAmount}</p>
-            <span>{volume.toFixed(1)} L</span>
+            <p>{t(`${waterAmount}`)}</p>
+            <span>
+              {volume.toFixed(1)} {t(`L`)}
+            </span>
           </StyledRequiredLitres>
-          <h3>{howMuch}</h3>
+          <h3>{t(`${howMuch}`)}</h3>
           <StyledInputBox>
             <input
               type="number"
@@ -151,7 +153,7 @@ const ModalDailyNorma = () => {
               required={volume > 0 ? waterQuery : true}
             />
           </StyledInputBox>
-          <SaveButton type="submit">Save</SaveButton>
+          <SaveButton type="submit">{t('Save')}</SaveButton>
         </StyledWrapper>
       </StyledBackdrop>
     )

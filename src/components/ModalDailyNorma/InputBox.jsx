@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { StyledInputBox } from './ModalDailyNorma.styled';
 
 export default function InputBox({
@@ -8,9 +9,10 @@ export default function InputBox({
   min = '0',
   max,
 }) {
+  const { t } = useTranslation();
   return (
     <StyledInputBox>
-      <p className="no-margin">{paragrName}</p>
+      <p className="no-margin">{t(`${paragrName}`)}</p>
       <input
         type="number"
         min={min !== false ? min : undefined}

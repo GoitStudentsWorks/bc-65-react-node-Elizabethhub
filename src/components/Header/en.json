@@ -54,5 +54,16 @@
   "releaseOfProcessedSubstances": "Release of processed substances",
   "ensuringStability": "Ensuring the stability of the internal environment",
   "maintainingNormalTemperature": "Maintaining within the normal temperature",
-  "maintainingImmuneSystem": "Maintaining an immune system capable of resisting disease"
+  "maintainingImmuneSystem": "Maintaining an immune system capable of resisting disease",
+  "woman": "woman",
+  "man": "man",
+  "For": "For",
+  "V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)": "V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)",
+  "Calculate your rate:": "Calculate your rate:",
+  "Your weight in kilograms:": "Your weight in kilograms:",
+  "The required amount of water in liters per day:": "The required amount of water in liters per day:",
+  "Write down how much water you will drink:": "Write down how much water you will drink:",
+  "The time of active participation in sports or other activities with a high physical load in hours:": "The time of active participation in sports or other activities with a high physical load in hours:",
+  "L": "L",
+  "Save": "Save"
 }

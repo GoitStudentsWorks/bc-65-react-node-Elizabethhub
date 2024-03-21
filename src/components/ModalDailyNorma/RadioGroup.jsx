@@ -1,4 +1,5 @@
 import { FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 import { radioInputs } from '../../helpers/ModalDayNorma/helper.js';
 import SvgRadioChecked from '../../images/svg/svgModal/SvgRadioChecked.jsx';
 import SvgRadio from '../../images/svg/svgModal/SvgRadio.jsx';
@@ -7,6 +8,7 @@ export default function RadioGroupComponent({
   genderValue,
   handleGenderChange,
 }) {
+  const { t } = useTranslation();
   return (
     <div>
       <RadioGroup
@@ -34,10 +36,11 @@ export default function RadioGroupComponent({
                   icon={<SvgRadio></SvgRadio>}
                   style={{
                     padding: 7,
+                    marginLeft: 4,
                   }}
                 />
               }
-              label={radioItem.label}
+              label={`${t('For')} ${t(`${radioItem.value}`)}`}
               checked={genderValue === radioItem.value}
               key={`${idx}+${radioItem.value}`}
             />

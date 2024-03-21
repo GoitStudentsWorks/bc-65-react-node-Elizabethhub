@@ -2,9 +2,20 @@ import {
   genderDescription,
   textData,
 } from '../../helpers/ModalDayNorma/helper.js';
+import { useTranslation } from 'react-i18next';
 
 export default function FormulaField() {
+  const { t, i18n } = useTranslation();
   const { hint, rate } = textData;
+
+  const getSpanStyle = () => {
+    console.log('i18n.language === uk', i18n.language === 'uk');
+    return {
+      fontSize:
+        i18n.language === 'uk' && window.innerWidth <= 767 ? '16px' : '18px',
+    };
+  };
+
   return (
     <div>
       <div>
@@ -15,8 +26,10 @@ export default function FormulaField() {
             return (
               <li className="formula" key={`${gender}+${massRate}`}>
                 <p>
-                  For {gender}:
-                  <span>{` V=(M*${massRate}) + (T*${timeRate})`}</span>
+                  {t('For')} {t(`${gender}`)}:
+                  <span
+                    style={getSpanStyle()}
+                  >{` V=(M*${massRate}) + (T*${timeRate})`}</span>
                 </p>
               </li>
             );
@@ -24,9 +37,9 @@ export default function FormulaField() {
         </ul>
       </div>
       <p className="hint">
-        <span className="star">*</span> {hint}
+        <span className="star">*</span> {t(`${hint}`)}
       </p>
-      <h3>{rate}</h3>
+      <h3>{t(`${rate}`)}</h3>
     </div>
   );
 }

@@ -11,7 +11,6 @@ import ArrowLeftCalendarSvg from '../../images/svg/svgCalendar/ArrowLeftCalendar
 import ArrowRightCalendarSvg from '../../images/svg/svgCalendar/ArrowRightCalendarSvg';
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import { useDispatch, useSelector } from 'react-redux';
-
 import {
   selectorWaterInfo,
   selectorWaterToday,
@@ -22,11 +21,7 @@ import {
   updateWaterPercentage,
 } from '../../store/water/waterSlice';
 import { selectDailyWater, selectUser } from '../../store/auth/selectors.js';
-
-import { showDaysGenStats } from '../../store/water/selectors';
-import { changeShowDaysStats } from '../../store/water/waterSlice';
 import { useTranslation } from 'react-i18next';
-
 
 const CalendarElement = () => {
   const { t } = useTranslation();
