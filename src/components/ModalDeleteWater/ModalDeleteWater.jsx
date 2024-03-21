@@ -20,7 +20,6 @@ import { toast } from 'react-toastify';
 const ModalDeleteWater = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
   const id = useSelector(modalId);
-
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {

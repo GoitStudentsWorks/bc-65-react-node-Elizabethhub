@@ -269,7 +269,7 @@ export const HeaderUserName = styled.span`
   font-size: 18px;
 
   text-align: right;
-  color: #2f2f2f;
+
   padding-right: 8px;
 `;
 

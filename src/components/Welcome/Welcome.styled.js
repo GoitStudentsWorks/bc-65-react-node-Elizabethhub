@@ -151,7 +151,7 @@ export const WelcomeWhyDrinkDivCantainer = styled.div`
   padding: 32px 24px;
 
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
-  background: #ecf2ff;
+  background: ${(props) => props.theme.welcomeWhyDrinkDivCantainerBackground};
   max-width: 380px;
   margin-bottom: 20px;
   @media only screen and (min-width: 768px) {
@@ -171,13 +171,15 @@ export const WelcomeNavLink = styled(NavLink)`
   width: 100%;
 
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-  background: #407bff;
 
   font-weight: 500;
   font-size: 16px;
 
   text-align: center;
-  color: #fff;
+
+  background: ${(props) => props.theme.buttonBackground};
+  color: ${(props) => props.theme.buttonColor};
+
   border: none;
   @media only screen and (min-width: 768px) {
     max-width: 336px;

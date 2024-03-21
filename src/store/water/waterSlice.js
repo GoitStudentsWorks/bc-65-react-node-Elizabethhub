@@ -11,7 +11,6 @@ const waterSlice = createSlice({
       modalEditForm: false,
       isModalDayNorm: false,
       modalDayNorma: false,
-      modalDeleteForm: false,
       modalId: '',
     },
     daysGenStats: false,
@@ -25,7 +24,6 @@ const waterSlice = createSlice({
       state.modal.modalEditForm = payload;
       state.modal.isModalDayNorm = payload;
       state.modal.modalDayNorma = payload;
-      state.modal.modalDeleteForm = payload;
       state.modal.modalDeleteOpen = payload;
     },
     changeModalAddForm: (state, { payload }) => {
@@ -38,7 +36,6 @@ const waterSlice = createSlice({
     },
     changeModalDeleteForm: (state, { payload }) => {
       state.modal.modalDeleteOpen = payload;
-      state.modal.modalDeleteForm = payload;
     },
     changeModalDailyNorma: (state, { payload }) => {
       state.modal.isModalDayNorm = payload;
@@ -70,7 +67,7 @@ const waterSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllWaterThunk.fulfilled, (state, { payload }) => {
-        state.waterTodayList.push(...payload);
+        state.waterTodayList = payload;
       })
       .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
         state.error = payload;
