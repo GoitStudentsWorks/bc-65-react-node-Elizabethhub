@@ -30,7 +30,6 @@ const CalendarElement = () => {
   const waterTodayList = useSelector(selectorWaterToday);
   const currentDayPercent = useSelector(selectorWaterInfo);
   const hero = useSelector(selectUser);
-
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
 
@@ -122,7 +121,7 @@ const CalendarElement = () => {
             <ArrowLeftCalendarSvg />
           </button>
           <p className="month__name">
-            {currentDate.toLocaleString('en-us', { month: 'long' })},&nbsp;
+            {t(currentDate.toLocaleString('en-us', { month: 'long' }))},&nbsp;
             {currentDate.getFullYear()}
           </p>
           <button

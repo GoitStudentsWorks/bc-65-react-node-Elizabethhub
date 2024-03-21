@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Layout from '../Layout/Layout';
 import WelcomePage from '../../pages/WelcomePage/WelcomePage';
 import HomePage from '../../pages/Home/HomePage';
@@ -6,10 +6,10 @@ import LoginPage from '../../pages/LoginPage/LoginPage';
 import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
 import PrivateRoute from '../../routes/PrivateRoute';
 import PublicRoute from '../../routes/PublicRoute';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { currentThunk } from '../../store/auth/thunks';
-import Loader from '../Loader/Loader';
+
 import ErrorPage from '../Loader/ErrorPage';
 import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword';
 import UpdatePassword from '../../pages/UpdatePassword/UpdatePassword';
@@ -25,6 +25,7 @@ function App() {
     <>
       {/* {loading && <Loader />} */}
       {/* <Loader /> */}
+
       <Routes>
         <Route element={<Layout />}>
           <Route
