@@ -30,6 +30,7 @@ export const Modal = styled.div`
   width: 100%;
   min-width: 280px;
   background: ${(props) => props.theme.modalCantainerBackground};
+  overflow: auto;
 
   @media only screen and (min-width: 768px) {
     padding: 32px 24px;
