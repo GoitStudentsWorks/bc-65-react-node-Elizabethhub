@@ -28,7 +28,7 @@ export const HeaderModalContainer = styled.div`
   width: 118px;
   height: 88px;
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
-  background: #fff;
+  background: ${(props) => props.theme.modalCantainerBackground};
   position: absolute;
   top: ${(props) => (props.$visible ? '35px' : '-200px')};
   right: 0px;
@@ -49,7 +49,7 @@ export const HeaderModalLogOutContainer = styled.div`
   width: 90%;
   max-width: 100%;
   height: 260px;
-  background: #fff;
+  background: ${(props) => props.theme.modalCantainerBackground};
   position: fixed;
   top: 50%;
   left: 50%;
@@ -269,7 +269,7 @@ export const HeaderUserName = styled.span`
   font-size: 18px;
 
   text-align: right;
-  color: #2f2f2f;
+
   padding-right: 8px;
 `;
 

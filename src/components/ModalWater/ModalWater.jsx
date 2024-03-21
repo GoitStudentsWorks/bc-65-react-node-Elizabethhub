@@ -18,6 +18,7 @@ import {
 import ModalEditWater from '../ModalEditWater/ModalEditWater.jsx';
 import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
 import useKeyDown from '../../hooks/modalCloseEsc.js';
+import { useTranslation } from 'react-i18next';
 
 const ModalWater = () => {
   const isModalOpen = useSelector(modalIsOpen);
@@ -25,7 +26,7 @@ const ModalWater = () => {
   const isModalEdit = useSelector(modalIsEdit);
   const waterTodayList = useSelector(selectorWaterToday);
   const id = useSelector(modalId);
-
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const clickBackdrop = useClickBackdrop();
@@ -49,8 +50,8 @@ const ModalWater = () => {
     isModalOpen && (
       <StyledModalAddBackdrop open={isModalOpen} onClick={clickBackdrop}>
         <StyledModalAddWrapper>
-          {isModalAdd && <h2>Add water</h2>}
-          {isModalEdit && <h2>Edit the entered amount of water</h2>}
+          {isModalAdd && <h2>{t('addWater')}</h2>}
+          {isModalEdit && <h2>{t('editTheEnteredAmountOfWater')}</h2>}
 
           <StyledModalAddClose
             onClick={() => {
@@ -60,7 +61,11 @@ const ModalWater = () => {
             <SvgCross />
           </StyledModalAddClose>
 
-          {isModalEdit && <ModalEditWater waterItem={waterTodayList.find(item => item._id === id)} />}
+          {isModalEdit && (
+            <ModalEditWater
+              waterItem={waterTodayList.find((item) => item._id === id)}
+            />
+          )}
           {isModalAdd && <ModalAddWater />}
         </StyledModalAddWrapper>
       </StyledModalAddBackdrop>

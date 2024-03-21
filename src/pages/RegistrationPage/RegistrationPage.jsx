@@ -25,34 +25,52 @@ import { useDispatch } from 'react-redux';
 import { signInThunk, signUpThunk } from '../../store/auth/thunks';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
-
-const schema = yup
-  .object({
-    email: yup
-      .string()
-      .email('Please write valid email')
-      .matches(/^(?!.*@[^,]*,)/)
-      .required('Email is required'),
-    password: yup
-      .string()
-      .min(8, 'Password must be at least 8 characters')
-      .required('Password is required'),
-    repPassword: yup
-      .string()
-      .min(8, 'Password must be at least 8 characters')
-      .oneOf([yup.ref('password')], "Passwords don't match, please try again.")
-      .required('Password is required'),
-  })
-  .required('Required');
+import { useTranslation } from 'react-i18next';
 
 const RegistrationPage = () => {
+  const { t } = useTranslation();
   const isMobile = useMediaQuery({ query: '(max-width: 767px)' });
   const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1279 });
   const isDesktop = useMediaQuery({ query: '(min-width: 1280px)' });
   const [eyePass, setEyePass] = useState(false);
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
+
+  const validationMessages = {
+    email: {
+      email: t('emailValidation'),
+      matches: t('emailPattern'),
+      required: t('emailRequired'),
+    },
+    password: {
+      min: t('passwordLength'),
+      required: t('passwordRequired'),
+    },
+    repPassword: {
+      min: t('repPasswordLength'),
+      oneOf: t('repPasswordMatch'),
+      required: t('repPasswordRequired'),
+    },
+  };
+
+  const schema = yup
+    .object({
+      email: yup
+        .string()
+        .email(validationMessages.email.email)
+        .matches(/^(?!.*@[^,]*,)/, validationMessages.email.matches)
+        .required(validationMessages.email.required),
+      password: yup
+        .string()
+        .min(8, validationMessages.password.min)
+        .required(validationMessages.password.required),
+      repPassword: yup
+        .string()
+        .min(8, validationMessages.repPassword.min)
+        .oneOf([yup.ref('password')], validationMessages.repPassword.oneOf)
+        .required(validationMessages.repPassword.required),
+    })
+    .required('Required');
 
   const {
     register,
@@ -93,20 +111,20 @@ const RegistrationPage = () => {
           errors={errors}
         >
           <Loginlabel>
-            Enter your email
+            {t('enteryouremail')}
             <LoginInput
               type="text"
-              placeholder="E-mail"
+              placeholder={t('eMail')}
               name="email"
               {...register('email')}
             />
             <ErrorSpan>{errors?.email?.message}</ErrorSpan>
           </Loginlabel>
           <Loginlabel>
-            Enter your password
+            {t('enterYourPassword')}
             <LoginInput
               type={eyePass ? 'text' : 'password'}
-              placeholder="Password"
+              placeholder={t('password')}
               name="password"
               {...register('password')}
             />
@@ -116,10 +134,10 @@ const RegistrationPage = () => {
             </PassShowBtn>
           </Loginlabel>
           <Loginlabel>
-            Repeat password
+            {t('repeatpassword')}
             <LoginInput
               type={eyePass ? 'text' : 'password'}
-              placeholder="Repeat password"
+              placeholder={t('repeatpassword')}
               name="repPassword"
               {...register('repPassword')}
             />
@@ -128,7 +146,7 @@ const RegistrationPage = () => {
               {eyePass ? <OpenPassEye /> : <PassEye />}
             </PassShowBtn>
           </Loginlabel>
-          <LoginBtn type="submit">Sign Up</LoginBtn>
+          <LoginBtn type="submit">{t('signUp')}</LoginBtn>
         </AuthForm>
         <SvgContainer>
           {isMobile && <BottleSVG />}

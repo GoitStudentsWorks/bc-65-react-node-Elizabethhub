@@ -1,8 +1,8 @@
-// import { useState } from 'react';
 import {
   AddBtnWrapper,
   Amount,
   BtnWrapper,
+  EmptyListMessage,
   InfoWrapper,
   ListItem,
   ListWrapper,
@@ -26,15 +26,18 @@ import {
 import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
 import { useEffect } from 'react';
 import { fetchAllWaterThunk } from '../../store/water/operations.js';
-import { selectUser } from '../../store/auth/selectors.js';
 import { format } from 'date-fns';
 
+import { selectUser } from '../../store/auth/selectors.js';
+
+import { useTranslation } from 'react-i18next';
+
+
 const TodayElement = () => {
+  const { t } = useTranslation();
   const isModalOpen = useSelector(modalDeleteOpen);
-  const isUser = useSelector(selectUser);
-
   const waterTodayList = useSelector(selectorWaterToday);
-
+  const isUser = useSelector(selectUser);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -43,20 +46,14 @@ const TodayElement = () => {
     }
   }, [dispatch, isUser]);
 
-  // function formatDate(date) {
-  //   if (date) {
-  //     const newDate = new Date(date);
-  //     const hour = newDate.getHours();
-  //     const minute = newDate.getMinutes();
-  //     return `${hour}:${minute}`;
-  //   }
-  // }
-
   return (
     <>
       <ListWrapper>
-        <h2>Today</h2>
+        <h2>{t('today')}</h2>
         <StyledList>
+          {waterTodayList.lenght === 0 && (
+            <EmptyListMessage>No notes yet</EmptyListMessage>
+          )}
           {waterTodayList.map((item) => {
             return (
               <ListItem id={item._id} key={item._id}>
@@ -64,7 +61,6 @@ const TodayElement = () => {
                   <SvgGlass />
                   <Amount>{item.milliliters} ml</Amount>
                   <Time>{format(item.time, 'hh:mm a')}</Time>
-                  {/* <Time>{console.log(item.time)} PM</Time> */}
                 </InfoWrapper>
                 <BtnWrapper>
                   <div
@@ -77,7 +73,9 @@ const TodayElement = () => {
                   </div>
                   <div
                     onClick={() => {
+                      dispatch(changeModalId(item._id));
                       dispatch(changeModalDeleteForm(true));
+                      dispatch(changeModalId(item._id));
                     }}
                   >
                     <DeleteSvg />
@@ -95,7 +93,7 @@ const TodayElement = () => {
             }}
           >
             <span>+</span>
-            <span>Add water</span>
+            <span>{t('addwater')}</span>
           </button>
         </AddBtnWrapper>
         {isModalOpen && <ModalDeleteWater />}

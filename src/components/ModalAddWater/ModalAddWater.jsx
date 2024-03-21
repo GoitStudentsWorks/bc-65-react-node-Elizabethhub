@@ -15,14 +15,16 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import useCounter from '../../hooks/modalHandleUpdate.js';
 import { useDispatch } from 'react-redux';
-import { addWaterThunk } from '../../store/water/operations.js';
 import {
-  changeModalClose,
-  changeTodayList,
-} from '../../store/water/waterSlice.js';
+  addWaterThunk,
+  fetchAllWaterThunk,
+} from '../../store/water/operations.js';
+import { changeModalClose } from '../../store/water/waterSlice.js';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const ModalAddWater = () => {
+  const { t } = useTranslation();
   const { counter, handleUpdate } = useCounter(0);
   const [time, setTime] = useState(new Date());
   const [manualValue, setManualValue] = useState('');
@@ -42,7 +44,7 @@ const ModalAddWater = () => {
       .unwrap()
       .then(() => {
         dispatch(changeModalClose(false));
-        dispatch(changeTodayList({ ...water, _id: crypto.randomUUID() }));
+        dispatch(fetchAllWaterThunk());
         toast.success('Water note was successfully added');
       })
       .catch((error) => {
@@ -81,8 +83,8 @@ const ModalAddWater = () => {
 
   return (
     <StyledModalForm onSubmit={onSubmit}>
-      <h3>Choose a value:</h3>
-      <p>Amount of water:</p>
+      <h3>{t('chooseAvalue')}</h3>
+      <p>{t('amountOfWater')}</p>
 
       <StyledModalAddTracker>
         <button
@@ -100,7 +102,7 @@ const ModalAddWater = () => {
       </StyledModalAddTracker>
 
       <StyledModalAddTime>
-        <p>Recording time:</p>
+        <p>{t('recordingTime')}</p>
         <ModalAddDateWrap>
           <DatePicker
             selected={time}
@@ -120,7 +122,7 @@ const ModalAddWater = () => {
         </ModalAddDateWrap>
       </StyledModalAddTime>
       <StyledModalAddValue>
-        <h3>Enter the value of the water used:</h3>
+        <h3>{t('enterTheValueOfTheWaterUsed')}</h3>
         <StyledModalAddInput
           type="number"
           placeholder={`${counter}`}
@@ -137,7 +139,7 @@ const ModalAddWater = () => {
 
       <StyledModalAddSave>
         <span>{displayValue}</span>
-        <button type="submit">Save</button>
+        <button type="submit">{t('save')}</button>
       </StyledModalAddSave>
     </StyledModalForm>
   );

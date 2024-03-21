@@ -21,15 +21,18 @@ import useCounter from '../../hooks/modalHandleUpdate.js';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import { editWaterThunk } from '../../store/water/operations.js';
-import { changeModalClose } from '../../store/water/waterSlice.js';
+import { changeModalClose, editWater } from '../../store/water/waterSlice.js';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const ModalEditWater = ({ waterItem }) => {
-  const [time, setTime] = useState(new Date());
-  const { counter, handleUpdate } = useCounter(0);
+  const { t } = useTranslation();
+  const [time, setTime] = useState(new Date(waterItem?.time));
+  const { counter, handleUpdate } = useCounter(waterItem?.milliliters);
   const [manualValue, setManualValue] = useState('');
   const [inputFocused, setInputFocused] = useState(false);
   const [valueSource, setValueSource] = useState('default');
+  const [formattedTime, setFormattedTime] = useState(format(time, 'hh:mm a'));
 
   const dispatch = useDispatch();
 
@@ -37,12 +40,16 @@ const ModalEditWater = ({ waterItem }) => {
     e.preventDefault();
 
     const updatedWater = {
+      ...waterItem,
       milliliters: parseInt(manualValue),
       time,
     };
-    dispatch(editWaterThunk({ id: waterItem._id, water: updatedWater }))
+    console.log(waterItem);
+
+    dispatch(editWaterThunk({ id: waterItem?._id, ...updatedWater }))
       .unwrap()
       .then(() => {
+        dispatch(editWater({ id: waterItem?._id, ...updatedWater }));
         dispatch(changeModalClose(false));
         toast.success('Water note was successfully edited');
       })
@@ -50,8 +57,6 @@ const ModalEditWater = ({ waterItem }) => {
         toast.error(error);
       });
   };
-
-  const formattedTime = format(waterItem?.time, 'hh:mm a');
 
   const handleManualValueChange = (e) => {
     let value = e.target.value;
@@ -63,24 +68,6 @@ const ModalEditWater = ({ waterItem }) => {
       value = '5000';
     }
     setManualValue(value);
-  };
-
-  const getDisplayValue = () => {
-    if (waterItem) {
-      switch (valueSource) {
-        case 'manual':
-          return manualValue
-            ? `${manualValue}ml`
-            : `${waterItem.milliliters}ml`;
-        case 'counter':
-          return `${counter}ml`;
-        default:
-          return `${waterItem.milliliters}ml`;
-      }
-    } else {
-      toast.error('This record does not exist');
-      return `${counter}ml`;
-    }
   };
 
   const handleInputBlur = () => {
@@ -105,11 +92,11 @@ const ModalEditWater = ({ waterItem }) => {
     <StyledModalForm onSubmit={onSubmit}>
       <StyledModalEditStat>
         <SvgGlass />
-        <span>{getDisplayValue()}</span>
+        <span>{displayValue ? displayValue : `${counter}ml`}</span>
         <p>{formattedTime}</p>
       </StyledModalEditStat>
-      <h3>Correct entered data:</h3>
-      <p>Amount of water:</p>
+      <h3>{t('correctEnteredData')}</h3>
+      <p>{t('amountOfWater')}</p>
 
       <StyledModalAddTracker>
         <button
@@ -127,12 +114,16 @@ const ModalEditWater = ({ waterItem }) => {
       </StyledModalAddTracker>
 
       <StyledModalAddTime>
-        <p>Recording time:</p>
+        <p>{t('recordingTime')}</p>
         <ModalEditDateWrap>
           <DatePicker
             selected={time}
             onChange={(date) => {
               setTime(date);
+            }}
+            onBlur={() => {
+              const formattedTime = format(time, 'hh:mm a');
+              setFormattedTime(formattedTime);
             }}
             showTimeSelect
             showTimeSelectOnly
@@ -148,7 +139,7 @@ const ModalEditWater = ({ waterItem }) => {
       </StyledModalAddTime>
 
       <StyledModalAddValue>
-        <h3>Enter the value of the water used:</h3>
+        <h3>{t('enterTheValueOfTheWaterUsed')}</h3>
         <StyledModalEditInput
           type="number"
           // type="text"
@@ -167,7 +158,7 @@ const ModalEditWater = ({ waterItem }) => {
 
       <StyledModalAddSave>
         <span>{displayValue}</span>
-        <button type="submit">Save</button>
+        <button type="submit">{t('save')}</button>
       </StyledModalAddSave>
     </StyledModalForm>
   );

@@ -14,11 +14,12 @@ export const DayStatsContainer = styled.div`
   height: 188px;
   padding: 24px 13px;
   border-radius: 10px;
-  background: #fff;
-  box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
+  background: ${(props) => props.theme.modalCantainerBackground};
+
+  box-shadow: ${(props) => props.theme.modalCantainerBoxShadow};
 
   p {
-    color: #2f2f2f;
+    color: ${(props) => props.theme.colorBody};
     line-height: 1.25;
 
     span {

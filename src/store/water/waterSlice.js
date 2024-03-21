@@ -11,12 +11,12 @@ const waterSlice = createSlice({
       modalEditForm: false,
       isModalDayNorm: false,
       modalDayNorma: false,
-      modalDeleteForm: false,
       modalId: '',
     },
     daysGenStats: false,
     isLoading: false,
     waterTodayList: [],
+    waterPercentageToday: 0,
   },
   reducers: {
     changeModalClose: (state, { payload }) => {
@@ -25,7 +25,6 @@ const waterSlice = createSlice({
       state.modal.modalEditForm = payload;
       state.modal.isModalDayNorm = payload;
       state.modal.modalDayNorma = payload;
-      state.modal.modalDeleteForm = payload;
       state.modal.modalDeleteOpen = payload;
     },
     changeModalAddForm: (state, { payload }) => {
@@ -38,7 +37,6 @@ const waterSlice = createSlice({
     },
     changeModalDeleteForm: (state, { payload }) => {
       state.modal.modalDeleteOpen = payload;
-      state.modal.modalDeleteForm = payload;
     },
     changeModalDailyNorma: (state, { payload }) => {
       state.modal.isModalDayNorm = payload;
@@ -53,11 +51,27 @@ const waterSlice = createSlice({
     changeModalId: (state, { payload }) => {
       state.modal.modalId = payload;
     },
+    updateWaterPercentage: (state, { payload }) => {
+      state.waterPercentageToday = payload;
+    },
+    deleteWater: (state, action) => {
+      state.waterTodayList = state.waterTodayList.filter(
+        (waterItem) => waterItem._id !== action.payload
+      );
+    },
+    editWater: (state, action) => {
+      const index = state.waterTodayList.findIndex(
+        (el) => el._id === action.payload.id
+      );
+      if (index !== -1) {
+        state.waterTodayList[index] = action.payload;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchAllWaterThunk.fulfilled, (state, { payload }) => {
-        state.waterTodayList.push(...payload);
+        state.waterTodayList = payload;
       })
       .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
         state.error = payload;
@@ -74,4 +88,7 @@ export const {
   changeShowDaysStats,
   changeTodayList,
   changeModalId,
+  updateWaterPercentage,
+  deleteWater,
+  editWater,
 } = waterSlice.actions;

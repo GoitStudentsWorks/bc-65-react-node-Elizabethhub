@@ -11,10 +11,12 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/auth/selectors';
 import { HeaderUserName } from './HeaderModalStyled';
 import { useEffect, useState } from 'react';
+import DivSetting from './DivSetting';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const userProfile = useSelector(selectUser);
-
+  const { t } = useTranslation();
   const [nameUser, setNameUser] = useState('');
 
   useEffect(() => {
@@ -36,7 +38,7 @@ const Header = () => {
         <Link to="/" style={{ textDecoration: 'none' }}>
           <SvgIconMobail />
         </Link>
-
+        <DivSetting />
         <HeaderDivButtonContainer>
           {userProfile ? (
             <>
@@ -44,7 +46,7 @@ const Header = () => {
             </>
           ) : (
             <HeaderLink to="/signin" style={{ textDecoration: 'none' }}>
-              Sign in
+              {t('signIn')}
             </HeaderLink>
           )}
 

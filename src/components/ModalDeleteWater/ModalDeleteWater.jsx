@@ -1,7 +1,7 @@
 import SvgCross from '../../images/svg/svgModal/SvgCross.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { modalDeleteOpen } from '../../store/water/selectors.js';
-import { changeModalClose } from '../../store/water/waterSlice.js';
+import { modalDeleteOpen, modalId } from '../../store/water/selectors.js';
+import { changeModalClose, deleteWater } from '../../store/water/waterSlice.js';
 import { useEffect } from 'react';
 import {
   StyledModalCancelBtn,
@@ -14,35 +14,29 @@ import {
 } from './ModalDeleteWater.styled.js';
 import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
 import useKeyDown from '../../hooks/modalCloseEsc.js';
-// import { deleteWaterThunk } from '../../store/water/operations.js';
-// import { toast } from 'react-toastify';
+import { deleteWaterThunk } from '../../store/water/operations.js';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
 const ModalDeleteWater = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
-  // const [time, setTime] = useState(new Date());
-
+  const id = useSelector(modalId);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const onSubmit = (e) => {
     e.preventDefault();
 
-    // const response = api.get('getUserId');
-    // const id = response.data.id;
-
-    // const water = {
-    //   _id: crypto.randomUUID(),
-    //   milliliters: e.target.elements.value,
-    //   time,
-    // };
-    // dispatch(deleteWaterThunk( water ))
-    //   .unwrap()
-    //   .then(() => {
-    //     dispatch(changeTodayList({ ...water, _id: crypto.randomUUID() }));
-    //     toast.success('Water note was successfully deleted');
-    //   })
-    //   .catch((error) => {
-    //     toast.error(error);
-    //   });
+    dispatch(deleteWaterThunk(id))
+      .unwrap()
+      .then(() => {
+        dispatch(deleteWater(id));
+        dispatch(changeModalClose(false));
+        toast.success('Water note was successfully deleted');
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   const clickBackdrop = useClickBackdrop();
@@ -67,7 +61,7 @@ const ModalDeleteWater = () => {
     isModalOpen && (
       <StyledModalDeleteBackdrop open={isModalOpen} onClick={clickBackdrop}>
         <StyledModalDeleteWrapper>
-          <h2>Delete entry</h2>
+          <h2>{t('deleteEntry')}</h2>
 
           <StyledModalDeleteClose
             onClick={() => {
@@ -78,15 +72,17 @@ const ModalDeleteWater = () => {
           </StyledModalDeleteClose>
 
           <StyledModalDeleteForm onSubmit={onSubmit}>
-            <p>Are you sure you want to delete the entry?</p>
+            <p>{t('areYouSureYouWantToDeleteTheEntry')}</p>
             <StyledModalDeleteButtons>
-              <StyledModalDeleteBtn type="submit">Delete</StyledModalDeleteBtn>
+              <StyledModalDeleteBtn type="submit">
+                {t('delete')}
+              </StyledModalDeleteBtn>
               <StyledModalCancelBtn
                 onClick={() => {
                   dispatch(changeModalClose(false));
                 }}
               >
-                Cancel
+                {t('cancel')}
               </StyledModalCancelBtn>
             </StyledModalDeleteButtons>
           </StyledModalDeleteForm>
