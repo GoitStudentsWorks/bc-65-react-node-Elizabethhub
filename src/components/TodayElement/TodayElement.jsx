@@ -21,7 +21,6 @@ import {
 } from '../../store/water/waterSlice';
 import {
   modalDeleteOpen,
-  modalId,
   selectorWaterToday,
 } from '../../store/water/selectors.js';
 import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
@@ -33,7 +32,6 @@ import { format } from 'date-fns';
 const TodayElement = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
   const isUser = useSelector(selectUser);
-  const id = useSelector(modalId);
 
   const waterTodayList = useSelector(selectorWaterToday);
 
@@ -57,7 +55,6 @@ const TodayElement = () => {
                   <SvgGlass />
                   <Amount>{item.milliliters} ml</Amount>
                   <Time>{format(item.time, 'hh:mm a')}</Time>
-                  {/* <Time>{console.log(item.time)} PM</Time> */}
                 </InfoWrapper>
                 <BtnWrapper>
                   <div
@@ -71,6 +68,7 @@ const TodayElement = () => {
                   <div
                     onClick={() => {
                       dispatch(changeModalDeleteForm(true));
+                      dispatch(changeModalId(item._id));
                     }}
                   >
                     <DeleteSvg />
@@ -91,11 +89,7 @@ const TodayElement = () => {
             <span>Add water</span>
           </button>
         </AddBtnWrapper>
-        {isModalOpen && (
-          <ModalDeleteWater
-            waterItem={waterTodayList.find((item) => item._id !== id)}
-          />
-        )}
+        {isModalOpen && <ModalDeleteWater />}
       </ListWrapper>
     </>
   );
