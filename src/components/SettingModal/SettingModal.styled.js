@@ -12,7 +12,7 @@ export const Overlay = styled.div`
   padding: 40px 20px;
   background: var(--modal-backdrop);
   z-index: 1200;
-  overflow-y: hidden;
+  overflow: auto;
 
   @media only screen and (min-width: 768px) {
     padding: 40px 32px;
