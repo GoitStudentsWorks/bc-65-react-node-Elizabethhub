@@ -40,6 +40,7 @@ export const editWaterThunk = createAsyncThunk(
 export const deleteWaterThunk = createAsyncThunk(
   'water/deleteWater',
   async (id, thunkApi) => {
+    console.log('id in thunk', id);
     try {
       await api.delete(`water/${id}`);
       return id;

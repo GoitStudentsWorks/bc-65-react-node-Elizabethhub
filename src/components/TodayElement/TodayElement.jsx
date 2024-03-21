@@ -34,16 +34,17 @@ const TodayElement = () => {
   const isModalOpen = useSelector(modalDeleteOpen);
   const isUser = useSelector(selectUser);
   const id = useSelector(modalId);
-
+  console.log('id', id);
   const waterTodayList = useSelector(selectorWaterToday);
-
+  console.log('waterTodayList', waterTodayList);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log('WORK?');
     if (isUser) {
       dispatch(fetchAllWaterThunk());
     }
-  }, [dispatch, isUser]);
+  }, [dispatch]);
 
   return (
     <>
@@ -70,6 +71,7 @@ const TodayElement = () => {
                   </div>
                   <div
                     onClick={() => {
+                      dispatch(changeModalId(item._id));
                       dispatch(changeModalDeleteForm(true));
                     }}
                   >
@@ -93,7 +95,11 @@ const TodayElement = () => {
         </AddBtnWrapper>
         {isModalOpen && (
           <ModalDeleteWater
-            waterItem={waterTodayList.find((item) => item._id !== id)}
+            waterItem={waterTodayList.find((item) => {
+              console.log('item', item);
+              console.log('id', id);
+              return item._id === id;
+            })}
           />
         )}
       </ListWrapper>

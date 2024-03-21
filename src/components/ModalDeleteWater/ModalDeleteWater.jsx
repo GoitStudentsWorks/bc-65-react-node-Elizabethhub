@@ -17,9 +17,9 @@ import useKeyDown from '../../hooks/modalCloseEsc.js';
 import { deleteWaterThunk } from '../../store/water/operations.js';
 import { toast } from 'react-toastify';
 
-const ModalDeleteWater = ({waterItem}) => {
+const ModalDeleteWater = ({ waterItem }) => {
   const isModalOpen = useSelector(modalDeleteOpen);
-
+  console.log('waterItem in modal', waterItem);
   const dispatch = useDispatch();
 
   const onSubmit = (e) => {
@@ -28,7 +28,7 @@ const ModalDeleteWater = ({waterItem}) => {
     dispatch(deleteWaterThunk(waterItem?._id))
       .unwrap()
       .then(() => {
-        // dispatch(deleteWater(waterItem._id))
+        dispatch(deleteWater(waterItem._id));
         dispatch(changeModalClose(false));
         // toast.success('Water note was successfully deleted');
       })
