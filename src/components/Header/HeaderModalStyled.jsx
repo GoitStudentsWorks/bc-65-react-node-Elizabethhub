@@ -25,8 +25,7 @@ const fadeOut = keyframes`
 export const HeaderModalContainer = styled.div`
   border-radius: 10px;
   padding: 16px;
-  width: 118px;
-  height: 88px;
+
   box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.2);
   background: ${(props) => props.theme.modalCantainerBackground};
   position: absolute;
@@ -254,7 +253,7 @@ export const HeaderModalButton = styled.button`
 export const HeaderModalButtonSpan = styled.span`
   font-weight: 400;
   font-size: 16px;
-
+  white-space: nowrap;
   color: #407bff;
 `;
 

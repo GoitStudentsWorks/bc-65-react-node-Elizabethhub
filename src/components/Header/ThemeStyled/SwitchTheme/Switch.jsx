@@ -1,7 +1,16 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './Switch.css';
 import MoonIcon from './MoonIcon';
 import SunIcon from './SunIcon';
+import styled from 'styled-components';
+
+const ToggleButton = styled.button`
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+`;
 
 function Switch({ toggleTheme, isDarkTheme }) {
   const [isToggled, setIsToggled] = useState(isDarkTheme);
@@ -13,12 +22,9 @@ function Switch({ toggleTheme, isDarkTheme }) {
 
   return (
     <>
-      <MoonIcon />
-      <label className="toggle-switch">
-        <input type="checkbox" checked={isToggled} onChange={onToggle} />
-        <span className="switch" />
-      </label>
-      <SunIcon />
+      <ToggleButton className="toggle-button" onClick={onToggle}>
+        {isToggled ? <MoonIcon /> : <SunIcon />}
+      </ToggleButton>
     </>
   );
 }

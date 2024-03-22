@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import backgroundImageMobail from '../../images/backgroundHome/HomescreenTrackerowaterHovers.png';
-import backgroundImageTablet from '../../images/backgroundHome/HomeTabletImg.png';
-import backgroundImageDesktop from '../../images/backgroundHome/HomescreenTrackerofwaterhoversDesktop.jpg';
 
 export const Container = styled.div`
   max-width: 100%;
@@ -38,14 +35,4 @@ export const DivImgContainer = styled.div`
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
-
-  @media only screen and (min-width: 768px) {
-    background-image: url(${backgroundImageTablet});
-  }
-  @media only screen and (min-width: 1280px) {
-    background-image: url(${backgroundImageDesktop});
-  }
-  @media only screen and (max-width: 767px) {
-    background-image: url(${backgroundImageMobail});
-  }
 `;

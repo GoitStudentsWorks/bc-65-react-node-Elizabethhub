@@ -1,4 +1,12 @@
 import styled, { createGlobalStyle } from 'styled-components';
+import imageDesktop from '../../../images/backgroundHome/Background.png';
+import imageDesktopDark from '../../../images/backgroundHome/BackgroundDark.png';
+
+import imageTablet from '../../../images/backgroundHome/BackgroundTabletWhite.png';
+import imageMobale from '../../../images/backgroundHome/BackgroundMobale.png';
+
+import imageTabletDark from '../../../images/backgroundHome/BackgroundTabletDark.png';
+import imageMobaleDark from '../../../images/backgroundHome/BackgroundMobaleDark.png';
 
 export const StyledApp = styled.div`
   min-height: 100vh;
@@ -26,6 +34,9 @@ export const ThemeStyledButton = styled.button`
 
 export const darkTheme = {
   body: '#1c1c1c',
+  backgroundImage: `url(${imageDesktopDark})`,
+  backgroundImageMobale: `url(${imageMobaleDark})`,
+  backgroundImageTablet: `url(${imageTabletDark})`,
 
   colorBody: '#d5dff5;',
   test: '#ee1010',
@@ -55,10 +66,12 @@ export const darkTheme = {
 
 export const lightTheme = {
   body: '#fff;',
-
+  backgroundImage: `url(${imageDesktop})`,
+  backgroundImageMobale: `url(${imageMobale})`,
+  backgroundImageTablet: `url(${imageTablet})`,
   colorBody: '#2f2f2f',
   test: '#ee1010',
-  icon: '#2f2f2f',
+  icon: '#5d8ffa',
   iconHeader: '#2F2F2F',
   buttonBackground: '#407bff',
   buttonColor: '#fff',
