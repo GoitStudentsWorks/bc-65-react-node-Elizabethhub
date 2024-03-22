@@ -41,7 +41,7 @@ const PInput = styled.p`
   color: #407bff;
 `;
 
-const UploadingPhoto = ({ register }) => {
+const UploadingPhoto = () => {
   const [imageSrc, setImageSrc] = useState('');
   const user = useSelector(selectUser);
   const { t } = useTranslation();
@@ -75,7 +75,6 @@ const UploadingPhoto = ({ register }) => {
     dispatch(updateAvatarThunk(formData))
       .unwrap()
       .then((res) => {
-        console.log(res);
         toast.success(`Your avatar has been saved successfully`);
       })
       .catch((err) => toast.error(err));
@@ -84,7 +83,6 @@ const UploadingPhoto = ({ register }) => {
   return (
     <InputContainer htmlFor="fileInput">
       <HiddenInput
-        {...register('avatarURL')}
         name="avatarURL"
         id="fileInput"
         type="file"

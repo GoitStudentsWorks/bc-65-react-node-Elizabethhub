@@ -6,8 +6,6 @@ import { selectorWaterInfo } from '../../store/water/selectors';
 const InputComponent = () => {
   const percentageRangeValue = useSelector(selectorWaterInfo);
 
-  console.log(percentageRangeValue);
-
   return (
     <>
       <StyledRangeInput

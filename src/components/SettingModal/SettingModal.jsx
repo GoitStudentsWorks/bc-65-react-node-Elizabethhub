@@ -41,76 +41,26 @@ import { useTranslation } from 'react-i18next';
 
 const schema = yup.object({
   name: yup.string().max(32, 'Name must contain a maximum of 32 characters'),
-  // .required('Name is required')
   email: yup
     .string()
     .email('Please write valid email')
     .matches(/^(?!.*@[^,]*,)/)
     .required('Email is required'),
-  oldPassword: yup
-    .string()
-
-    // .min(8, 'Password must be at least 8 characters')
-    .max(64),
-
-  // .required('Password is required')
-  newPassword: yup
-    .string()
-    // .min(8, 'Password must be at least 8 characters')
-    .max(64),
-  // .required('Password is required')
+  oldPassword: yup.string(),
+  newPassword: yup.string().when('oldPassword', (oldPassword, schema) => {
+    return oldPassword[0].length > 1 ? schema.min(8).required() : schema.min(0);
+  }),
   confirmPassword: yup
     .string()
     .oneOf(
       [yup.ref('newPassword'), null],
       "Passwords don't match, please try again."
     ),
-  // .min(8, 'Password must be at least 8 characters')
-  // .required('Confirm password is required')
 });
-
-// const schema = yup.object({
-//   name: yup
-//     .string()
-//     .max(32, 'Name must contain a maximum of 32 characters')
-//     .required('Name is required'),
-//   email: yup
-//     .string()
-//     .email('Please write valid email')
-//     .matches(/^(?!.*@[^,]*,)/)
-//     .required('Email is required'),
-//   oldPassword: yup
-//     .string()
-//     .nullable()
-//     .when('oldPassword', {
-//       is: (val) => val && val.length > 0,
-//       then: yup.string().min(8, 'Password must be at least 8 characters').max(64),
-//     }),
-//   newPassword: yup
-//     .string()
-//     .nullable()
-//     .when('newPassword', {
-//       is: (val) => val && val.length > 0,
-//       then: yup.string().min(8, 'Password must be at least 8 characters').max(64),
-//     }),
-//   confirmPassword: yup
-//     .string()
-//     .nullable()
-//     .oneOf(
-//       [yup.ref('newPassword'), null],
-//       "Passwords don't match, please try again."
-//     ),
-// });
 
 const SettingModal = ({ onClose }) => {
   const { t } = useTranslation();
   const user = useSelector(selectUser);
-  // const [imageUser, setImageUser] = useState('');
-  // const [name, setName] = useState('');
-  // const [newEmail, setNewEmail] = useState(email || '');
-  // const [oldPassword, setoldPassword] = useState('');
-
-  // const userProfile = useSelector(selectUser);
 
   const [eyePass, setEyePass] = useState(false);
 
@@ -125,57 +75,24 @@ const SettingModal = ({ onClose }) => {
     resolver: yupResolver(schema),
   });
 
-  function submit(data) {
-    console.log(data);
-    delete data.oldPassword;
-    delete data.avatarURL;
-    delete data.confirmPassword;
-
-    if (data.name === '') {
-      delete data.name;
-    } else {
-      data.username = data.name;
-      console.log(data.username);
-      delete data.name;
+  function submit({ gender, email, username, oldPassword, newPassword }) {
+    const body = {
+      gender,
+      email,
+      username,
+    };
+    if (oldPassword) {
+      body.oldPassword = oldPassword;
+      body.newPassword = newPassword;
     }
 
-    if (data.newPassword === '') {
-      delete data.newPassword;
-    }
-    // else {
-    //   data.password = data.newPassword;
-    // }
-    // const newData = {};
-    // const keys = Object.keys(data);
-    // const values = Object.values(data);
-    // console.log(Object.values(data));
-    // console.log(Object.keys(data));
-    // for (let i = 0; i < keys.length; i++) {
-    //   if (values[i] !== '') {
-    //     newData.keys[i] = values[i];
-    //   }
-    // }
-    // console.log(newData);
-    // for (const key in data) {
-    //   console.log(data[key]);
-    //   // data.key = data[key];
-    //   if (data[key] !== '') {
-    //     console.log(data[key]);
-    //   }
-    // return data;
-    console.log(data);
-    dispatch(updateUserThunk(data))
+    dispatch(updateUserThunk(body))
       .unwrap()
       .then(() => {
-        // console.log(res);
-        // if (!res) {
-        //   throw errors;
-        // }
         toast.success(`Your changes has been saved successfully`);
         onClose();
       })
       .catch((err) => toast.error(err));
-    // console.log(formData);
   }
 
   function showPass() {
@@ -188,24 +105,11 @@ const SettingModal = ({ onClose }) => {
     }
   };
 
-  const [value, setValue] = useState('woman');
+  const [value, setValue] = useState(user?.gender);
 
   const handleChange = (event) => {
     setValue(event.target.value);
   };
-
-  // const handleInputChange = ({ target }) => {
-  //   if (target.name === 'name') {
-  //     setName(target.value);
-  //   }
-  //   if (target.name === 'email') {
-  //     setNewEmail(target.value);
-  //   }
-  //   if (target.name === 'oldPassword') {
-  //     setoldPassword(target.value);
-  //   }
-
-  //   console.log(target.value);
 
   return (
     <Overlay onClick={handleClick}>
@@ -217,7 +121,7 @@ const SettingModal = ({ onClose }) => {
         <Form onSubmit={handleSubmit(submit)} $errors={errors}>
           <BlockWrap8>
             <BigLabel htmlFor="avatarURL">{t('yourPhoto')}</BigLabel>
-            <UploadingPhoto id="avatarURL" register={register} />
+            <UploadingPhoto id="avatarURL" />
           </BlockWrap8>
 
           <ExternalBlockWrap24>
@@ -238,8 +142,8 @@ const SettingModal = ({ onClose }) => {
                       type="radio"
                       name="gender"
                       value="woman"
+                      defaultChecked={value === 'woman'}
                       onChange={handleChange}
-                      defaultChecked
                     />
                     {t('woman')}
                   </GenderLabel>
@@ -252,6 +156,7 @@ const SettingModal = ({ onClose }) => {
                       type="radio"
                       name="gender"
                       value="man"
+                      defaultChecked={value === 'man'}
                       onChange={handleChange}
                     />
                     {t('man')}
@@ -261,12 +166,12 @@ const SettingModal = ({ onClose }) => {
               <InternalBlockWrap24>
                 <div>
                   <BlockWrap8>
-                    <BigLabel htmlFor="name">{t('yourName')}</BigLabel>
+                    <BigLabel htmlFor="username">{t('yourName')}</BigLabel>
                     <InputFild
-                      {...register('name')}
-                      name="name"
+                      {...register('username')}
+                      name="username"
                       type="text"
-                      id="name"
+                      id="username"
                       placeholder="Your name"
                       defaultValue={user?.username}
                     />
@@ -303,8 +208,7 @@ const SettingModal = ({ onClose }) => {
                     type={eyePass ? 'text' : 'password'}
                     id="oldPassword"
                     placeholder={t('passwords')}
-                    // onChange={handleInputChange}
-                    // value={oldPassword}
+                    minLength={8}
                   />
                   <ErrorSpan>{errors.oldPassword?.message}</ErrorSpan>
                   <PassShowBtn type="button" onClick={showPass}>
@@ -324,6 +228,7 @@ const SettingModal = ({ onClose }) => {
                     type={eyePass ? 'text' : 'password'}
                     id="newPassword"
                     placeholder={t('passwords')}
+                    minLength={8}
                   />
                   <ErrorSpan>{errors.newPassword?.message}</ErrorSpan>
                   <PassShowBtn type="button" onClick={showPass}>
