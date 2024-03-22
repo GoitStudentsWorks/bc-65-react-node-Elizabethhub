@@ -33,11 +33,14 @@ export const ThemeStyledButton = styled.button`
 `;
 
 export const darkTheme = {
+  svgAddSvg: `#1C1D26`,
+  backgroundLinearGradientTo: `#2F3875`,
+  backgroundLinearGradientRight: '#2A3052',
   body: '#1c1c1c',
   backgroundImage: `url(${imageDesktopDark})`,
   backgroundImageMobale: `url(${imageMobaleDark})`,
   backgroundImageTablet: `url(${imageTabletDark})`,
-
+  rangeInputBackground: '#1c1d26;',
   colorBody: '#d5dff5;',
   test: '#ee1010',
   icon: '#d5dff5',
@@ -65,10 +68,16 @@ export const darkTheme = {
 };
 
 export const lightTheme = {
+  svgAddSvg: `#fff`,
   body: '#fff;',
   backgroundImage: `url(${imageDesktop})`,
   backgroundImageMobale: `url(${imageMobale})`,
   backgroundImageTablet: `url(${imageTablet})`,
+  rangeInputBackground: '#d5dff5;',
+
+  backgroundLinearGradientTo: `#9ebbff`,
+  backgroundLinearGradientRight: '#d7e3ff',
+
   colorBody: '#2f2f2f',
   test: '#ee1010',
   icon: '#5d8ffa',

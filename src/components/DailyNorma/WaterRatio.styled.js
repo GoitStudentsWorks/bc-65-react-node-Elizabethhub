@@ -75,15 +75,17 @@ export const Svg = styled.svg``;
 
 export const StyledRangeInput = styled.input`
   -webkit-appearance: none;
-  width: 256px;
+  width: 100%;
   height: 8px;
   border-radius: 10px;
   border: 1px;
 
   background: linear-gradient(
     to right,
-    #9ebbff ${(props) => props.value}%,
-    #d7e3ff ${(props) => props.value}%
+    ${(props) => props.theme.backgroundLinearGradientTo}
+      ${(props) => props.value + '%'},
+    ${(props) => props.theme.backgroundLinearGradientRight}
+      ${(props) => props.value + '%'}
   );
   outline: none;
   pointer-events: none;
@@ -93,7 +95,7 @@ export const StyledRangeInput = styled.input`
     width: 14px;
     height: 14px;
     border-radius: 100%;
-    background: #fff;
+    background: ${(props) => props.theme.rangeInputBackground};
     border: 1px solid #407bff;
     cursor: default;
   }
