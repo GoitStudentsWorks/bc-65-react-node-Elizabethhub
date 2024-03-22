@@ -44,7 +44,6 @@ const ModalEditWater = ({ waterItem }) => {
       milliliters: parseInt(manualValue),
       time,
     };
-    console.log(waterItem);
 
     dispatch(editWaterThunk({ id: waterItem?._id, ...updatedWater }))
       .unwrap()

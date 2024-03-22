@@ -3,7 +3,7 @@ import { DayStatsContainer, UpperElem } from './DaysGeneralStats.styled';
 
 const DaysGeneralStats = ({ monthData, currentDate }) => {
   const { t } = useTranslation();
-  console.log('monthData: ', monthData);
+
 
   return (
     <DayStatsContainer>

@@ -9,7 +9,9 @@ export const signUpThunk = createAsyncThunk(
       const { data } = await api.post('users/register', body);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
@@ -23,7 +25,9 @@ export const signInThunk = createAsyncThunk(
       }
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
@@ -41,7 +45,9 @@ export const currentThunk = createAsyncThunk(
       const { data } = await api('users/current');
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
@@ -53,7 +59,9 @@ export const logoutThunk = createAsyncThunk(
       clearToken();
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
@@ -63,7 +71,6 @@ export const updateAvatarThunk = createAsyncThunk(
   async (body, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.token;
-
       if (token) {
         setToken(token);
       }
@@ -72,11 +79,11 @@ export const updateAvatarThunk = createAsyncThunk(
           'Content-type': 'multipart/form-data',
         },
       });
-      console.log(data);
       return data;
     } catch (error) {
-      console.log(error.message);
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
@@ -89,13 +96,14 @@ export const updateUserThunk = createAsyncThunk(
       if (token) {
         setToken(token);
       }
-      console.log(body);
+
       const { data } = await api.patch('users/update-user', body);
-      console.log(data);
+
       return data;
     } catch (error) {
-      console.log(error.message);
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
@@ -107,7 +115,9 @@ export const forgotThunk = createAsyncThunk(
       const { data } = await api.post('users/forgot-password', body);
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
@@ -121,7 +131,9 @@ export const updatePasswordThunk = createAsyncThunk(
       );
       return data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(
+        error.response.data.message ?? error.message
+      );
     }
   }
 );
