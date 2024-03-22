@@ -1,15 +1,13 @@
 import { useTranslation } from 'react-i18next';
 import { DayStatsContainer, UpperElem } from './DaysGeneralStats.styled';
 
-const DaysGeneralStats = ({ monthData, currentDate }) => {
+const DaysGeneralStats = ({ monthData, currentDate, chosenDay }) => {
   const { t } = useTranslation();
-
-
   return (
-    <DayStatsContainer>
+    <DayStatsContainer $dayNumber={chosenDay}>
       <UpperElem>
         <p>
-          <span>5, </span>
+          <span>{chosenDay}, </span>
           <span>{currentDate.toLocaleString('en-us', { month: 'long' })}</span>
         </p>
       </UpperElem>

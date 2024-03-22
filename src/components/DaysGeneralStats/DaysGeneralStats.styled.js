@@ -1,10 +1,17 @@
 import styled from 'styled-components';
+import {
+  calculateBoxPositionY,
+  calculateBoxPositionX,
+} from '../../helpers/BoxPositionForStat/calculateBoxPosition.js';
 
 export const DayStatsContainer = styled.div`
   position: absolute;
   left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: -194px;
+  transform: translate(
+    -50%,
+    ${({ $dayNumber }) => `${calculateBoxPositionY($dayNumber, 'sm')}px`}
+  );
   z-index: 2;
   display: inline-flex;
   flex-direction: column;
@@ -15,7 +22,6 @@ export const DayStatsContainer = styled.div`
   padding: 24px 13px;
   border-radius: 10px;
   background: ${(props) => props.theme.modalCantainerBackground};
-
   box-shadow: ${(props) => props.theme.modalCantainerBoxShadow};
 
   p {
@@ -31,11 +37,19 @@ export const DayStatsContainer = styled.div`
   }
 
   @media screen and (min-width: 768px) {
-    /* top: -190px;
-    left: 0; */
+    top: -190px;
+    left: 0;
+    transform: translate(
+      ${({ $dayNumber }) => `${calculateBoxPositionX($dayNumber, 'md')}px`},
+      ${({ $dayNumber }) => `${calculateBoxPositionY($dayNumber, 'md')}px`}
+    );
   }
 
   @media screen and (min-width: 1440px) {
+    transform: translate(
+      ${({ $dayNumber }) => `${calculateBoxPositionX($dayNumber, 'xl')}px`},
+      ${({ $dayNumber }) => `${calculateBoxPositionY($dayNumber, 'md')}px`}
+    );
   }
 `;
 
