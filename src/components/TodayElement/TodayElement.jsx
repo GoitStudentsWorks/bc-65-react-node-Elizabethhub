@@ -47,7 +47,7 @@ const TodayElement = () => {
 
   const sortedWaterTodayList = waterTodayList
     .slice()
-    .map((item) => ({ ...item, time: new Date(item.time) })) // Parse time strings to Date objects
+    .map((item) => ({ ...item, time: new Date(item.time) })) 
     .sort((a, b) => a.time - b.time);
 
   return (
