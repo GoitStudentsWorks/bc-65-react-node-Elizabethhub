@@ -25,7 +25,7 @@ export default function FormulaField() {
             return (
               <li className="formula" key={`${gender}+${massRate}`}>
                 <p>
-                  {t('For')} {t(`${gender}`)}:
+                  {t(`For ${gender}`)}:
                   <span
                     style={getSpanStyle()}
                   >{` V=(M*${massRate}) + (T*${timeRate})`}</span>

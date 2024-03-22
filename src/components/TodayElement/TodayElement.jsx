@@ -32,7 +32,6 @@ import { selectUser } from '../../store/auth/selectors.js';
 
 import { useTranslation } from 'react-i18next';
 
-
 const TodayElement = () => {
   const { t } = useTranslation();
   const isModalOpen = useSelector(modalDeleteOpen);
@@ -46,21 +45,25 @@ const TodayElement = () => {
     }
   }, [dispatch, isUser]);
 
+  const sortedWaterTodayList = waterTodayList
+    .slice()
+    .map((item) => ({ ...item, time: new Date(item.time) })) 
+    .sort((a, b) => a.time - b.time);
+
   return (
     <>
       <ListWrapper>
         <h2>{t('today')}</h2>
         <StyledList>
-          {waterTodayList.lenght === 0 && (
+          {sortedWaterTodayList.length === 0 ? (
             <EmptyListMessage>No notes yet</EmptyListMessage>
-          )}
-          {waterTodayList.map((item) => {
-            return (
+          ) : (
+            sortedWaterTodayList.map((item) => (
               <ListItem id={item._id} key={item._id}>
                 <InfoWrapper>
                   <SvgGlass />
                   <Amount>{item.milliliters} ml</Amount>
-                  <Time>{format(item.time, 'hh:mm a')}</Time>
+                  <Time>{format(new Date(item.time), 'hh:mm a')}</Time>
                 </InfoWrapper>
                 <BtnWrapper>
                   <div
@@ -82,8 +85,8 @@ const TodayElement = () => {
                   </div>
                 </BtnWrapper>
               </ListItem>
-            );
-          })}
+            ))
+          )}
         </StyledList>
 
         <AddBtnWrapper>

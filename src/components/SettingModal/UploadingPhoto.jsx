@@ -74,7 +74,7 @@ const UploadingPhoto = () => {
     formData.append('avatarURL', file);
     dispatch(updateAvatarThunk(formData))
       .unwrap()
-      .then((res) => {
+      .then(() => {
         toast.success(`Your avatar has been saved successfully`);
       })
       .catch((err) => toast.error(err));

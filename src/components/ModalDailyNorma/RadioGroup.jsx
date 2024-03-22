@@ -64,7 +64,7 @@ function RadioGroupComponent({ genderValue, handleGenderChange }) {
                     }}
                   />
                 }
-                label={`${t('For')} ${t(`${radioItem.value}`)}`}
+                label={`${t(`For ${radioItem.value}`)}`}
                 checked={genderValue === radioItem.value}
                 key={`${idx}+${radioItem.value}`}
               />
