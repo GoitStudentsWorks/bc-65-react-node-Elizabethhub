@@ -28,6 +28,8 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { selectUser } from '../../store/auth/selectors';
 import { useTranslation } from 'react-i18next';
+import DivSetting from './language/DivSetting';
+import { useMediaQuery } from 'react-responsive';
 
 const HeaderModal = () => {
   const { t } = useTranslation();
@@ -40,7 +42,7 @@ const HeaderModal = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === 'Escape') {
@@ -143,6 +145,7 @@ const HeaderModal = () => {
             <ClouseSVG />
             <HeaderModalButtonSpan>{t('logOut')}</HeaderModalButtonSpan>
           </HeaderModalButton>
+          {!isTabletOrMobile && <DivSetting />}
         </HeaderModalContainer>
       </DivHeaderModalContainer>
 

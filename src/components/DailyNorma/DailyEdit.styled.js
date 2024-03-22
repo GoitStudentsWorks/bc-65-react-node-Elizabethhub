@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 
 export const DailyWrapper = styled.div`
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding-top: 8px;
+  padding-right: 20px;
+  padding-bottom: 8px;
+  padding-left: 20px;
 
   border-radius: 10px;
   padding-top: 8px;
   gap: 12px;
-  width: 164px;
+
   height: 74px;
 
   background-color: ${(props) => props.theme.dailyWrapperBackground};
@@ -27,8 +29,7 @@ export const DailyWrapper = styled.div`
 export const DailyWrapperEdit = styled.div`
   display: flex;
   align-items: center;
-  margin-right: auto;
-  margin-left: 20px;
+  margin: 0;
 `;
 
 export const DailyTittle = styled.p`
@@ -36,6 +37,10 @@ export const DailyTittle = styled.p`
   font-size: 18px;
   line-height: 24px;
   color: var(--primery-color-black);
+`;
+
+export const DailyWrapperContainer = styled.div`
+  display: flex;
 `;
 
 export const DailyLiter = styled.p`

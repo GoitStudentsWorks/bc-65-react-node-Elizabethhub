@@ -1,7 +1,4 @@
 import styled from 'styled-components';
-import imageMobail from '../../images/backgroundImg/Mobile.jpg';
-import imageTablet from '../../images/backgroundImg/Tablet.jpg';
-import imageDesktop from '../../images/backgroundImg/Desktop.jpg';
 
 export const BackgraundContainer = styled.div`
   z-index: -1;
@@ -13,16 +10,17 @@ export const BackgraundContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  /* background-repeat: repeat-y; */
+
+  background-position: center;
 
   @media only screen and (min-width: 768px) {
-    background-image: url(${imageTablet});
+    background-image: ${(props) => props.theme.backgroundImageTablet};
   }
   @media only screen and (min-width: 1280px) {
-    background-image: url(${imageDesktop});
+    background-image: ${(props) => props.theme.backgroundImage};
   }
   @media only screen and (max-width: 767px) {
-    background-image: url(${imageMobail});
+    background-image: ${(props) => props.theme.backgroundImageMobale};
   }
 `;

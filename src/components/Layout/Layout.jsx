@@ -44,12 +44,12 @@ const Layout = () => {
     <>
       <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
         <GlobalStyles />
+        <BackgraundContainer />
         <StyledApp>
-          <Switch toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
+          {/* <Switch toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} /> */}
           <header>
             <Container>
-              {/* <BackgraundContainer /> */}
-              <Header />
+              <Header toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
             </Container>
           </header>
           <Main>

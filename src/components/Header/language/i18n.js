@@ -1,7 +1,10 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import enTranslation from './en.json';
-import ukTranslation from './uk.json';
+import enTranslation from './Jsonlanguage/en.json';
+import ukTranslation from './Jsonlanguage/uk.json';
+import italianTranslation from './Jsonlanguage/italian.json';
+import kazakhTranslation from './Jsonlanguage/kazakh.json';
+import germanTranslation from './Jsonlanguage/german.json';
 
 i18n.use(initReactI18next).init({
   resources: {
@@ -10,6 +13,15 @@ i18n.use(initReactI18next).init({
     },
     uk: {
       translation: ukTranslation,
+    },
+    it: {
+      translation: italianTranslation,
+    },
+    kz: {
+      translation: kazakhTranslation,
+    },
+    gm: {
+      translation: germanTranslation,
     },
   },
   lng: 'en',

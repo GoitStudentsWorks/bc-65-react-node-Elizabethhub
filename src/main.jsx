@@ -5,7 +5,7 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { persistor, store } from './store/store.js';
 import { PersistGate } from 'redux-persist/integration/react';
-import i18n from './components/Header/i18n.js';
+import i18n from './components/Header/language/i18n.js';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { I18nextProvider } from 'react-i18next';

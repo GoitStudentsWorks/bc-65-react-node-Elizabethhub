@@ -7,6 +7,7 @@ import {
   DailyLiter,
   DailyTittle,
   DailyWrapper,
+  DailyWrapperContainer,
   DailyWrapperEdit,
 } from './DailyEdit.styled';
 import { selectUser } from '../../store/auth/selectors';
@@ -19,35 +20,26 @@ const DailyEdit = () => {
   const userObject = useSelector(selectUser);
   const dayNormaValue = userObject?.dailyNorma;
 
-  const getParagraphStyle = () => {
-    return {
-      marginLeft: i18n.language === 'uk' ? '5px' : '20px',
-    };
-  };
-  const getFontStyle = () => {
-    return {
-      fontSize: i18n.language === 'uk' ? '17px' : '22px',
-    };
-  };
-
   return (
-    <DailyWrapper>
+    <>
       {isModalOpen && <ModalDailyNorma />}
-      <DailyTittle>{t('mydailynorma')}</DailyTittle>
-      <DailyWrapperEdit style={getParagraphStyle()}>
-        <DailyLiter style={getFontStyle()}>
-          {(dayNormaValue / 1000).toFixed(1)} L
-        </DailyLiter>
+      <DailyWrapperContainer>
         <DailyEditButton
           type="button"
           onClick={() => {
             dispatch(changeModalDailyNorma(true));
           }}
         >
-          {t('edit')}
+          <DailyWrapper>
+            <DailyTittle>{t('mydailynorma')}</DailyTittle>
+            <DailyWrapperEdit>
+              <DailyLiter>{(dayNormaValue / 1000).toFixed(1)} L</DailyLiter>
+              <p>{t('edit')}</p>
+            </DailyWrapperEdit>
+          </DailyWrapper>
         </DailyEditButton>
-      </DailyWrapperEdit>
-    </DailyWrapper>
+      </DailyWrapperContainer>
+    </>
   );
 };
 

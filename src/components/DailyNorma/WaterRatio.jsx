@@ -24,7 +24,6 @@ const WaterRatio = () => {
   return (
     <RangeWrapper>
       <div>
-
         <RangeInputTitle>{t('today')}</RangeInputTitle>
 
         <InputComponent />
@@ -49,7 +48,7 @@ const WaterRatio = () => {
         }}
       >
         <AddSvg />
-        {t('addWater')}
+        {t('addwater')}
       </RangeButton>
       {isModalOpen && <ModalWater />}
     </RangeWrapper>

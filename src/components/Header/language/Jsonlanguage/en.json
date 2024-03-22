@@ -1,11 +1,10 @@
 {
   "chooseAvalue": "Choose a value:",
   "today": "Today",
-
   "yourPhoto": "Your photo",
   "yourGenderIdentity": "Your gender identity",
-  "woman": "Woman",
-  "man": "Man",
+  "womanUp": "Woman",
+  "manUp": "Man",
   "yourName": "Your name",
   "passwords": "Password",
   "outdatedPassword": "Outdated password:",
@@ -25,7 +24,6 @@
   "October": "October",
   "November": "November",
   "December": "December",
-
   "month": "Month",
   "setting": "Setting",
   "logOut": "Log out",
@@ -46,7 +44,7 @@
   "darkTheme": "Dark Theme",
   "mydailynorma": "My daily norma",
   "edit": "Edit",
-  "addWater": "Add Water",
+  "addWater": "Add water",
   "addwater": "Add water",
   "editTheEnteredAmountOfWater": "Edit the entered amount of water",
   "waterconsumptiontracker": "Water consumption tracker",

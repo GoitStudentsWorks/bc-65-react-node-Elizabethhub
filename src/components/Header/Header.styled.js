@@ -9,6 +9,22 @@ export const HeaderDivContainer = styled.div`
   align-items: center;
 `;
 
+export const HeaderDivSwitch = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 15px;
+`;
+
+export const HeaderDivSetting = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 15px;
+`;
+
 export const HeaderDivButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
