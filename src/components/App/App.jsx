@@ -1,8 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { Suspense, lazy, useEffect } from 'react';
 import { currentThunk } from '../../store/auth/thunks';
-
 import Layout from '../Layout/Layout';
 import PrivateRoute from '../../routes/PrivateRoute';
 import PublicRoute from '../../routes/PublicRoute';
@@ -20,6 +18,11 @@ const ForgotPassword = lazy(() =>
 const UpdatePassword = lazy(() =>
   import('../../pages/UpdatePassword/UpdatePassword')
 );
+import { useDispatch, useSelector } from 'react-redux';
+import { currentThunk } from '../../store/auth/thunks';
+import Loader from '../Loader/Loader';
+import { selectorLoadingSelectorsSlise } from '../../store/loading/LoadingSelectorsSlise';
+
 
 function App() {
   const dispatch = useDispatch();
@@ -27,13 +30,15 @@ function App() {
   useEffect(() => {
     dispatch(currentThunk());
   }, [dispatch]);
-  // const loading = useSelector((state) => state.auth.isLoading);
+
+  const loading = useSelector(selectorLoadingSelectorsSlise);
+
   return (
     <>
-      {/* {loading && <Loader />} */}
+      {loading && <Loader />}
       {/* <Loader /> */}
 
-      <Suspense fallback={<h1>Loading...</h1>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route element={<Layout />}>
             <Route

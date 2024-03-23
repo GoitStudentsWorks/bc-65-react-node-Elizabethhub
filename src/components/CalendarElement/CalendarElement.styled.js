@@ -94,7 +94,8 @@ export const DayStyles = styled.li`
     justify-content: center;
     background: ${(props) => props.theme.dayStylesDayBackground};
     border-radius: 50%;
-    border: none;
+    border: ${({ $percentage }) =>
+      $percentage < 100 ? '1px solid #FF9D43' : 'none'};
 
     font-size: 14px;
     line-height: 1.29;
