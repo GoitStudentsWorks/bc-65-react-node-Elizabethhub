@@ -6,13 +6,14 @@ import LoginPage from '../../pages/LoginPage/LoginPage';
 import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
 import PrivateRoute from '../../routes/PrivateRoute';
 import PublicRoute from '../../routes/PublicRoute';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { currentThunk } from '../../store/auth/thunks';
-
+import Loader from '../Loader/Loader';
 import ErrorPage from '../Loader/ErrorPage';
 import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword';
 import UpdatePassword from '../../pages/UpdatePassword/UpdatePassword';
+import { selectorLoadingSelectorsSlise } from '../../store/loading/LoadingSelectorsSlise';
 
 function App() {
   const dispatch = useDispatch();
@@ -20,10 +21,12 @@ function App() {
   useEffect(() => {
     dispatch(currentThunk());
   }, [dispatch]);
-  // const loading = useSelector((state) => state.auth.isLoading);
+
+  const loading = useSelector(selectorLoadingSelectorsSlise);
+
   return (
     <>
-      {/* {loading && <Loader />} */}
+      {loading && <Loader />}
       {/* <Loader /> */}
 
       <Routes>

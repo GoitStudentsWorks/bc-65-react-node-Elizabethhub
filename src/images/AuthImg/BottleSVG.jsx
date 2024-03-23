@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useTheme } from 'styled-components';
 
 const BottleSVG = (props) => {
