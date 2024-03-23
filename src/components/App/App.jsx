@@ -19,10 +19,9 @@ const UpdatePassword = lazy(() =>
   import('../../pages/UpdatePassword/UpdatePassword')
 );
 import { useDispatch, useSelector } from 'react-redux';
-import { currentThunk } from '../../store/auth/thunks';
+
 import Loader from '../Loader/Loader';
 import { selectorLoadingSelectorsSlise } from '../../store/loading/LoadingSelectorsSlise';
-
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +35,6 @@ function App() {
   return (
     <>
       {loading && <Loader />}
-      {/* <Loader /> */}
 
       <Suspense fallback={<Loader />}>
         <Routes>
