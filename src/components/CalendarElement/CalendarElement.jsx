@@ -107,7 +107,17 @@ const CalendarElement = () => {
       dispatch(updateWaterPercentage(percentage));
     }
   }, [dispatch, hero, userDailyWater, waterTodayList]);
+  //
+  const spans = document.querySelectorAll('li > .day');
 
+  const [chosenDay, setChosenDay] = useState(0);
+  for (const span of spans) {
+    span.addEventListener('click', function () {
+      const value = this.textContent;
+      setChosenDay(value);
+    });
+  }
+  //
   return (
     <ContentWrapperCalendar>
       <HeadingWrapper>
@@ -136,11 +146,16 @@ const CalendarElement = () => {
 
       <MonthList>
         {showDaysStats && (
-          <DaysGeneralStats monthData={monthData} currentDate={currentDate} />
+          <DaysGeneralStats
+            monthData={monthData}
+            currentDate={currentDate}
+            chosenDay={chosenDay}
+          />
         )}
         {monthData.map((item) => (
           <DayStyles
             key={item.day}
+            $percentage={currentDayPercent}
             className={`li-day ${isToday(item.day) ? 'today' : ''}`}
           >
             <span className="day">{item.day}</span>
