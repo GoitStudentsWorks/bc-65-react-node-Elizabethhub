@@ -12,7 +12,6 @@ import {
 
 import { ThemeProvider } from 'styled-components';
 import { useEffect, useState } from 'react';
-import Switch from '../Header/ThemeStyled/SwitchTheme/Switch.jsx';
 
 const Layout = () => {
   const storedTheme = localStorage.getItem('theme');

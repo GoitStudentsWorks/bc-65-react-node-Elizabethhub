@@ -28,7 +28,7 @@ import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import { selectUser } from '../../store/auth/selectors';
 import { useTranslation } from 'react-i18next';
-import DivSetting from './language/DivSetting';
+import DivSetting from './language/languageSelectorComponent';
 import { useMediaQuery } from 'react-responsive';
 
 const HeaderModal = () => {
