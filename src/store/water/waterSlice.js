@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchAllWaterThunk } from './operations';
+import { editDailyNormaThunk, fetchAllWaterThunk } from './operations';
 
 const waterSlice = createSlice({
   name: 'waterSlice',
@@ -74,6 +74,9 @@ const waterSlice = createSlice({
         state.waterTodayList = payload;
       })
       .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+      .addCase(editDailyNormaThunk.rejected, (state, { payload }) => {
         state.error = payload;
       });
   },
