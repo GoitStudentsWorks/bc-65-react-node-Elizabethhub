@@ -1,18 +1,25 @@
 import { Route, Routes } from 'react-router-dom';
-import Layout from '../Layout/Layout';
-import WelcomePage from '../../pages/WelcomePage/WelcomePage';
-import HomePage from '../../pages/Home/HomePage';
-import LoginPage from '../../pages/LoginPage/LoginPage';
-import RegistrationPage from '../../pages/RegistrationPage/RegistrationPage';
-import PrivateRoute from '../../routes/PrivateRoute';
-import PublicRoute from '../../routes/PublicRoute';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import { currentThunk } from '../../store/auth/thunks';
 
-import ErrorPage from '../Loader/ErrorPage';
-import ForgotPassword from '../../pages/ForgotPassword/ForgotPassword';
-import UpdatePassword from '../../pages/UpdatePassword/UpdatePassword';
+import Layout from '../Layout/Layout';
+import PrivateRoute from '../../routes/PrivateRoute';
+import PublicRoute from '../../routes/PublicRoute';
+
+const ErrorPage = lazy(() => import('../Loader/ErrorPage'));
+const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
+const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
+const RegistrationPage = lazy(() =>
+  import('../../pages/RegistrationPage/RegistrationPage')
+);
+const HomePage = lazy(() => import('../../pages/Home/HomePage'));
+const ForgotPassword = lazy(() =>
+  import('../../pages/ForgotPassword/ForgotPassword')
+);
+const UpdatePassword = lazy(() =>
+  import('../../pages/UpdatePassword/UpdatePassword')
+);
 
 function App() {
   const dispatch = useDispatch();
@@ -26,59 +33,61 @@ function App() {
       {/* {loading && <Loader />} */}
       {/* <Loader /> */}
 
-      <Routes>
-        <Route element={<Layout />}>
-          <Route
-            path="/"
-            element={
-              <PublicRoute>
-                <WelcomePage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/home"
-            element={
-              <PrivateRoute>
-                <HomePage />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/signin"
-            element={
-              <PublicRoute>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <PublicRoute>
-                <RegistrationPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/forgot-password"
-            element={
-              <PublicRoute>
-                <ForgotPassword />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/update-password/:tempCode"
-            element={
-              <PublicRoute>
-                <UpdatePassword />
-              </PublicRoute>
-            }
-          />
-        </Route>
-        <Route path="*" element={<ErrorPage />} />
-      </Routes>
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route
+              path="/"
+              element={
+                <PublicRoute>
+                  <WelcomePage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/home"
+              element={
+                <PrivateRoute>
+                  <HomePage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/signin"
+              element={
+                <PublicRoute>
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <PublicRoute>
+                  <RegistrationPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/forgot-password"
+              element={
+                <PublicRoute>
+                  <ForgotPassword />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/update-password/:tempCode"
+              element={
+                <PublicRoute>
+                  <UpdatePassword />
+                </PublicRoute>
+              }
+            />
+          </Route>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </Suspense>
     </>
   );
 }
