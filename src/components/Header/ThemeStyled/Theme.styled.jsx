@@ -30,6 +30,7 @@ export const ThemeStyledButton = styled.button`
   background: ${(props) => props.theme.modalCantainerBackground};
   background: ${(props) => props.theme.dayStylesDayBackground};
   box-shadow: ${(props) => props.theme.modalCantainerBoxShadow};
+  box-shadow: ${(props) => props.theme.backgroundTrackScroll};
 `;
 
 export const darkTheme = {
@@ -65,6 +66,9 @@ export const darkTheme = {
 
   dayStylesDayBackground: '#1c1d26;',
   dayStylesDayPercentage: '#2f3875;;',
+  borderBottomForToday: '1px solid #2A3052',
+  backgroundColorScroll: '#2F3875',
+  backgroundTrackScroll: '#2A3052',
 };
 
 export const lightTheme = {
@@ -102,4 +106,7 @@ export const lightTheme = {
 
   dayStylesDayBackground: '#fff;',
   dayStylesDayPercentage: '#9ebbff;',
+  borderBottomForToday: '1px solid #d7e3ff',
+  backgroundColorScroll: '#9ebbff',
+  backgroundTrackScroll: '#d7e3ff',
 };
