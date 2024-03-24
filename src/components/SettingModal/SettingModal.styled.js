@@ -72,7 +72,7 @@ export const Form = styled.form`
     border: 1px solid
       var(
         ${(props) =>
-          props.$errors.name ? '--primary-red' : '--primary-mediumblue'}
+          props.$errors.name ? '--primary-red' : props.theme.settingInputborder}
       );
     color: var(${(props) => (props.$errors.name ? '--primary-red' : '--blue')});
     margin-bottom: ${(props) => (props.$errors?.name ? '4px' : '0')};
@@ -81,7 +81,9 @@ export const Form = styled.form`
     border: 1px solid
       var(
         ${(props) =>
-          props.$errors.email ? '--primary-red' : '--primary-mediumblue'}
+          props.$errors.email
+            ? '--primary-red'
+            : props.theme.settingInputborder}
       );
     color: var(
       ${(props) => (props.$errors.email ? '--primary-red' : '--blue')}
@@ -92,7 +94,9 @@ export const Form = styled.form`
     border: 1px solid
       var(
         ${(props) =>
-          props.$errors.oldPassword ? '--primary-red' : '--primary-mediumblue'}
+          props.$errors.oldPassword
+            ? '--primary-red'
+            : props.theme.settingInputborder}
       );
     color: var(
       ${(props) => (props.$errors.oldPassword ? '--primary-red' : '--blue')}
@@ -103,7 +107,9 @@ export const Form = styled.form`
     border: 1px solid
       var(
         ${(props) =>
-          props.$errors.newPassword ? '--primary-red' : '--primary-mediumblue'}
+          props.$errors.newPassword
+            ? '--primary-red'
+            : props.theme.settingInputborder}
       );
     color: var(
       ${(props) => (props.$errors.newPassword ? '--primary-red' : '--blue')}
@@ -116,7 +122,7 @@ export const Form = styled.form`
         ${(props) =>
           props.$errors.confirmPassword
             ? '--primary-red'
-            : '--primary-mediumblue'}
+            : props.theme.settingInputborder}
       );
     color: var(
       ${(props) => (props.$errors.confirmPassword ? '--primary-red' : '--blue')}
@@ -182,6 +188,7 @@ export const GenderLabel = styled.label`
   font-weight: 400;
   line-height: 1.25;
   font-family: 'Roboto', sans-serif;
+  cursor: pointer;
 `;
 
 export const SmallLabel = styled.label`
@@ -200,7 +207,7 @@ export const RadioWrap = styled.div`
 `;
 
 export const InputFild = styled.input`
-  border: 1px solid var(--primary-mediumblue);
+  border: ${(props) => props.theme.settingInputborder};
   border-radius: 6px;
   padding: 12px 10px;
   width: 100%;
@@ -210,8 +217,8 @@ export const InputFild = styled.input`
   font-weight: 400;
   line-height: 1.25;
   font-family: 'Roboto', sans-serif;
-  color: var(--blue);
-  caret-color: var(--black);
+  /* color: var(--blue); */
+  caret-color: ${(props) => props.theme.formInputCaretColor};
   background-color: ${(props) => props.theme.formInputBackground};
   color: ${(props) => props.theme.formInputColor};
   outline: none;
@@ -220,7 +227,7 @@ export const InputFild = styled.input`
     font-weight: 400;
     line-height: 1.25;
     font-family: 'Roboto', sans-serif;
-    color: var(--modal-light-blue);
+    color: ${(props) => props.theme.settingInputPlaceholder};
   }
 
   @media only screen and (min-width: 1440px) {
@@ -235,7 +242,7 @@ export const PasswordWrap = styled.div`
 
 export const InputPassword = styled.input`
   position: relative;
-  border: 1px solid #d7e3ff;
+  border: ${(props) => props.theme.settingInputborder};
   border-radius: 6px;
   padding: 12px 10px;
   width: 100%;
@@ -245,15 +252,16 @@ export const InputPassword = styled.input`
   font-weight: 400;
   line-height: 1.25;
   font-family: 'Roboto', sans-serif;
-  color: var(--blue);
-  caret-color: var(--black);
+  caret-color: ${(props) => props.theme.formInputCaretColor};
+  background-color: ${(props) => props.theme.formInputBackground};
+  color: ${(props) => props.theme.formInputColor};
   outline: none;
   &::placeholder {
     font-size: 16px;
     font-weight: 400;
     line-height: 1.25;
     font-family: 'Roboto', sans-serif;
-    color: var(--modal-light-blue);
+    color: ${(props) => props.theme.settingInputPlaceholder};
   }
 
   @media only screen and (min-width: 1440px) {
