@@ -14,25 +14,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   selectMonthWaterData,
   selectorWaterInfo,
-  selectorWaterToday,
   showDaysGenStats,
 } from '../../store/water/selectors.js';
-import {
-  changeShowDaysStats,
-  updateWaterPercentage,
-} from '../../store/water/waterSlice';
-import { selectDailyWater, selectUser } from '../../store/auth/selectors.js';
+import { changeShowDaysStats } from '../../store/water/waterSlice';
 import { useTranslation } from 'react-i18next';
 import { fetchMonthWaterThunk } from '../../store/water/operations.js';
 
 const CalendarElement = () => {
   const { t } = useTranslation();
   const showDaysStats = useSelector(showDaysGenStats);
-  const userDailyWater = useSelector(selectDailyWater);
-  const waterTodayList = useSelector(selectorWaterToday);
   const currentDayPercent = useSelector(selectorWaterInfo);
   const monthWaterData = useSelector(selectMonthWaterData);
-  const hero = useSelector(selectUser);
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [chosenDay, setChosenDay] = useState(0);
@@ -69,10 +61,6 @@ const CalendarElement = () => {
     );
   };
 
-  // if (el.date) {
-  // } else {
-  // }
-
   function closeDayStat(event) {
     const element = event.target;
     const parent = element.parentNode;
@@ -102,19 +90,6 @@ const CalendarElement = () => {
     closeDayStat(event);
   });
 
-  useEffect(() => {
-    if (hero) {
-      const totalDrinkToday = waterTodayList.reduce(
-        (accumulator, currentValue) => {
-          return Number(accumulator) + Number(currentValue.milliliters);
-        },
-        0
-      );
-
-      const percentage = Math.round((totalDrinkToday / userDailyWater) * 100);
-      dispatch(updateWaterPercentage(percentage));
-    }
-  }, [dispatch, hero, userDailyWater, waterTodayList]);
   //
   const spans = document.querySelectorAll('li > .day');
 

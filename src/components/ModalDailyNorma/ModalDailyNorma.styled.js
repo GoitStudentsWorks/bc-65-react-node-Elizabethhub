@@ -7,7 +7,6 @@ export const StyledBackdrop = styled.div`
   bottom: 0;
   left: 0;
   background: var(--modal-backdrop);
-  backdrop-filter: blur(3.5px);
   z-index: 10;
   display: flex;
   justify-content: center;

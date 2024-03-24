@@ -17,7 +17,8 @@ import useCounter from '../../hooks/modalHandleUpdate.js';
 import { useDispatch } from 'react-redux';
 import {
   addWaterThunk,
-  fetchAllWaterThunk,
+  // fetchAllWaterThunk,
+  fetchTodayWaterThunk,
 } from '../../store/water/operations.js';
 import { changeModalClose } from '../../store/water/waterSlice.js';
 import { toast } from 'react-toastify';
@@ -39,12 +40,12 @@ const ModalAddWater = () => {
       milliliters: e.target.elements.value.value,
       time: time,
     };
-
+    const date = new Date().toISOString().split('T')[0];
     dispatch(addWaterThunk(water))
       .unwrap()
       .then(() => {
         dispatch(changeModalClose(false));
-        dispatch(fetchAllWaterThunk());
+        dispatch(fetchTodayWaterThunk({ date }));
         toast.success('Water note was successfully added');
       })
       .catch((error) => {
