@@ -38,7 +38,7 @@ const PInput = styled.p`
   font-weight: 500;
   font-size: 14px;
   line-height: 129%;
-  color: #407bff;
+  color: ${(props) => props.theme.formInputColor};
 `;
 
 const UploadingPhoto = () => {
