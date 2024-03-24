@@ -126,20 +126,20 @@ export const ButtonCancel = styled.button`
     color 0.3s;
 
   &:hover {
-    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-    color: #407bff;
+    box-shadow: ${(props) => props.theme.boxShodov};
+    /* color: #407bff; */
   }
 
   &:focus {
     outline: none;
 
-    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
-    color: #407bff;
+    box-shadow: ${(props) => props.theme.boxShodov};
+    /* color: #407bff; */
   }
 
   &:active {
     box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.34);
-    color: #407bff;
+    /* color: #407bff; */
   }
 `;
 
@@ -177,7 +177,9 @@ export const ButtonLogOut = styled.button`
   font-weight: 500;
   font-size: 16px;
   text-align: center;
-  color: #407bff;
+  /* color: #407bff; */
+  color: #fff;
+  background: #ef5050;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -190,24 +192,24 @@ export const ButtonLogOut = styled.button`
     transform 0.3s;
 
   &:hover {
-    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+    box-shadow: ${(props) => props.theme.boxShodov};
     background: #ef5050;
     color: #fff;
-    animation: ${hoverAnimation} 0.5s ease infinite;
+    /* animation: ${hoverAnimation} 0.5s ease infinite; */
   }
 
   &:focus {
     outline: none;
     background: #ef5050;
     color: #fff;
-    box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+    box-shadow: ${(props) => props.theme.boxShodov};
   }
 
   &:active {
     box-shadow: 0 2px 4px 0 rgba(64, 123, 255, 0.34);
     background: #ef5050;
     color: #fff;
-    animation: ${clickAnimation} 0.2s ease;
+    /* animation: ${clickAnimation} 0.2s ease; */
   }
 
   @media only screen and (min-width: 768px) {

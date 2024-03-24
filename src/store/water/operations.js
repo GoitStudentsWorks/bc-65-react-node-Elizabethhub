@@ -60,3 +60,15 @@ export const editDailyNormaThunk = createAsyncThunk(
     }
   }
 );
+
+export const fetchMonthWaterThunk = createAsyncThunk(
+  'water/getMonthWater',
+  async ({ year, month }, thunkApi) => {
+    try {
+      const { data } = await api.get(`water/month?year=${year}&month=${month}`);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

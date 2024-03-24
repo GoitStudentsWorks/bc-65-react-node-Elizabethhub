@@ -33,7 +33,8 @@ export const ForgotInput = styled.input`
   margin-top: 8px;
   padding: 12px 10px;
   border-radius: 6px;
-  border: 1px solid var(--primary-mediumblue);
+  background-color: ${(props) => props.theme.formInputBackground};
+  border: 1px solid var(${(props) => props.theme.inputOnlyColor});
   outline: none;
   color: var(--blue);
   margin-bottom: 20px;
@@ -43,7 +44,7 @@ export const ForgotInput = styled.input`
   }
 
   &::placeholder {
-    color: var(--primary-blue);
+    color: var(${(props) => props.theme.inputColorText});
     font-size: 16px;
     line-height: 20px;
   }
@@ -52,13 +53,13 @@ export const ForgotBtn = styled.button`
   margin-bottom: 16px;
   background-color: var(--blue);
   border: 1px solid var(--blue);
-  color: var(--white);
+  color: ${(props) => props.theme.buttonColor};
   padding: 8px 30px;
   border-radius: 10px;
   max-width: 150px;
   /* margin-left: auto; */
 
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  box-shadow: ${(props) => props.theme.boxShodov};
   transition: all 0.4s;
 
   &:hover,

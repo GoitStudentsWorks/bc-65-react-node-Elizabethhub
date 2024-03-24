@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Switch.css';
-import MoonIcon from './MoonIcon';
-import SunIcon from './SunIcon';
+import MoonIcon from './SwitchSvg/MoonIcon';
+import SunIcon from './SwitchSvg/SunIcon';
 import styled from 'styled-components';
 
 const ToggleButton = styled.button`
