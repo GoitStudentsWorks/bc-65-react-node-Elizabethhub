@@ -64,7 +64,11 @@ export const darkTheme = {
   modalCantainerBoxShadow: '0 4px 14px 0 rgba(0, 0, 0, 0.2);',
 
   dayStylesDayBackground: '#1c1d26;',
-  dayStylesDayPercentage: '#2f3875;;',
+  dayStylesDayPercentage: '#2f3875;',
+
+  inputOnlyColor: '--input-dark',
+  inputColorText: '--input-color-dark',
+  inputTheme: '1px solid #2f3875',
 };
 
 export const lightTheme = {
@@ -102,4 +106,8 @@ export const lightTheme = {
 
   dayStylesDayBackground: '#fff;',
   dayStylesDayPercentage: '#9ebbff;',
+
+  inputOnlyColor: '--primary-mediumblue',
+  inputColorText: '--primary-blue',
+  inputTheme: '1px solid var(--primary-mediumblue)',
 };
