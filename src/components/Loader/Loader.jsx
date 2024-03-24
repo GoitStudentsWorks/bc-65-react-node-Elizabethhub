@@ -1,16 +1,16 @@
-import React from 'react';
 import styled from 'styled-components';
-import Bubble from './Bubble';
+
+import Cup from './Cup';
 
 export const LoaderContainer = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   backdrop-filter: blur(5px);
   z-index: 9999;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,7 +19,7 @@ export const LoaderContainer = styled.div`
 const Loader = () => {
   return (
     <LoaderContainer>
-      <Bubble />
+      <Cup />
     </LoaderContainer>
   );
 };

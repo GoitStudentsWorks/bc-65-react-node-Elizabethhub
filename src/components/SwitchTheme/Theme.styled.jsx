@@ -38,7 +38,6 @@ export const ThemeStyledButton = styled.button`
   /* Контейнер */
   background: ${(props) => props.theme.backgroundWelcomeImageTablet};
   background: ${(props) => props.theme.backgroundWelcomeImageMobale};
-  box-shadow: ${(props) => props.theme.backgroundWelcomeImage};
 `;
 
 export const darkTheme = {
@@ -80,6 +79,13 @@ export const darkTheme = {
   dayStylesDayBackground: '#1c1d26;',
   dayStylesDayPercentage: '#2f3875;',
   boxShodov: '0 4px 14px 0 rgba(0, 0, 0, 0.54);',
+
+  borderBottomForToday: '1px solid #2A3052',
+  backgroundColorScroll: '#2F3875',
+  backgroundTrackScroll: '#2A3052',
+  inputOnlyColor: '--input-dark',
+  inputColorText: '--input-color-dark',
+  inputTheme: '1px solid #2f3875',
 };
 
 export const lightTheme = {
@@ -123,4 +129,12 @@ export const lightTheme = {
   dayStylesDayBackground: '#fff;',
   dayStylesDayPercentage: '#9ebbff;',
   boxShodov: '0 4px 8px 0 rgba(64, 123, 255, 0.34);',
+
+  borderBottomForToday: '1px solid #d7e3ff',
+  backgroundColorScroll: '#9ebbff',
+  backgroundTrackScroll: '#d7e3ff',
+
+  inputOnlyColor: '--primary-mediumblue',
+  inputColorText: '--primary-blue',
+  inputTheme: '1px solid var(--primary-mediumblue)',
 };

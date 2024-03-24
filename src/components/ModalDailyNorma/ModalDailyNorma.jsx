@@ -32,6 +32,7 @@ const ModalDailyNorma = () => {
   const isModalOpen = useSelector(isModalDayNorm);
   const userObject = useSelector(selectUser);
   const dayNormaValue = userObject?.dailyNorma;
+  const genderUserValue = userObject?.gender;
 
   const [genderValue, setGenderValue] = useState('woman');
   const [massQuery, setMassQuery] = useState(0);
@@ -92,11 +93,9 @@ const ModalDailyNorma = () => {
       })
       .catch((error) => {
         if (error.response) {
-          // If the error has a response, it means it's an Axios error
           const errorMessage = error.response.data.message;
           toast.error(errorMessage);
         } else {
-          // If there's no response, handle other types of errors
           toast.error('An error occurred. Please try again.');
         }
       });
@@ -116,7 +115,7 @@ const ModalDailyNorma = () => {
           </StyledCross>
           <FormulaField />
           <RadioGroupComponent
-            genderValue={genderValue}
+            genderValue={genderUserValue || genderValue}
             handleGenderChange={handleGenderChange}
           />
           <InputBox

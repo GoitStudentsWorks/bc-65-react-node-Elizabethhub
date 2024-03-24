@@ -13,4 +13,6 @@
   --modal-light-blue: #9ebbff;
   --modal-calc-shadow: 0px 2px 4px 0px rgba(64, 123, 255, 0.2);
   --modal-add-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  --input-dark: #2a3052;
+  --input-color-dark: #2f3875;
 }

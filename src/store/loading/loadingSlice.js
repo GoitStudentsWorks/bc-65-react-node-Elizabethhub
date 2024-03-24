@@ -7,6 +7,13 @@ import {
   forgotThunk,
   updatePasswordThunk,
 } from '../auth/thunks.js';
+import {
+  addWaterThunk,
+  deleteWaterThunk,
+  editDailyNormaThunk,
+  editWaterThunk,
+  fetchAllWaterThunk,
+} from '../water/operations.js';
 
 const loadingSlice = createSlice({
   name: 'loader',
@@ -22,7 +29,12 @@ const loadingSlice = createSlice({
           updateAvatarThunk.pending,
           updateUserThunk.pending,
           forgotThunk.pending,
-          updatePasswordThunk.pending
+          updatePasswordThunk.pending,
+          addWaterThunk.pending,
+          editWaterThunk.pending,
+          deleteWaterThunk.pending,
+          fetchAllWaterThunk.pending,
+          editDailyNormaThunk.pending
         ),
         (state) => {
           state.loading = true;
@@ -35,7 +47,12 @@ const loadingSlice = createSlice({
           updateAvatarThunk.rejected,
           updateUserThunk.rejected,
           forgotThunk.rejected,
-          updatePasswordThunk.rejected
+          updatePasswordThunk.rejected,
+          addWaterThunk.rejected,
+          editWaterThunk.rejected,
+          deleteWaterThunk.rejected,
+          fetchAllWaterThunk.rejected,
+          editDailyNormaThunk.rejected
         ),
         (state) => {
           state.loading = false;
@@ -48,7 +65,12 @@ const loadingSlice = createSlice({
           updateAvatarThunk.fulfilled,
           updateUserThunk.fulfilled,
           forgotThunk.fulfilled,
-          updatePasswordThunk.fulfilled
+          updatePasswordThunk.fulfilled,
+          addWaterThunk.fulfilled,
+          editWaterThunk.fulfilled,
+          deleteWaterThunk.fulfilled,
+          fetchAllWaterThunk.fulfilled,
+          editDailyNormaThunk.fulfilled
         ),
         (state) => {
           state.loading = false;
