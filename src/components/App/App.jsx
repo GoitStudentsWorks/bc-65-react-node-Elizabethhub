@@ -1,10 +1,13 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { Suspense, lazy, useEffect } from 'react';
 import { currentThunk } from '../../store/auth/thunks';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../store/auth/selectors';
 import Layout from '../Layout/Layout';
 import PrivateRoute from '../../routes/PrivateRoute';
 import PublicRoute from '../../routes/PublicRoute';
-
+import Loader from '../Loader/Loader';
+import { selectorLoadingSelectorsSlise } from '../../store/loading/LoadingSelectorsSlise';
 const ErrorPage = lazy(() => import('../Loader/ErrorPage'));
 const WelcomePage = lazy(() => import('../../pages/WelcomePage/WelcomePage'));
 const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
@@ -18,17 +21,17 @@ const ForgotPassword = lazy(() =>
 const UpdatePassword = lazy(() =>
   import('../../pages/UpdatePassword/UpdatePassword')
 );
-import { useDispatch, useSelector } from 'react-redux';
-
-import Loader from '../Loader/Loader';
-import { selectorLoadingSelectorsSlise } from '../../store/loading/LoadingSelectorsSlise';
 
 function App() {
   const dispatch = useDispatch();
-
+  const user = useSelector(selectUser);
+  const location = useLocation();
   useEffect(() => {
-    dispatch(currentThunk());
-  }, [dispatch]);
+    if (!user && location.pathname === '/home') {
+      dispatch(currentThunk());
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, location.pathname]);
 
   const loading = useSelector(selectorLoadingSelectorsSlise);
 
