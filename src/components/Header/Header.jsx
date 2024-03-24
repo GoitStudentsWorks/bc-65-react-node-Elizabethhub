@@ -7,13 +7,13 @@ import {
   HeaderLink,
 } from './Header.styled';
 
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import HeaderModal from './HeaderModal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/auth/selectors';
 import { HeaderUserName } from './HeaderModalStyled';
 import { useEffect, useState } from 'react';
-import DivSetting from './language/DivSetting';
+import DivSetting from './language/languageSelectorComponent';
 import { useTranslation } from 'react-i18next';
 import Switch from './ThemeStyled/SwitchTheme/Switch';
 import { useMediaQuery } from 'react-responsive';

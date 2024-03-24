@@ -13,7 +13,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import { waterReducer } from './water/waterSlice';
-
+import { loadingReducer } from './loading/loadingSlice';
 const persistConfig = {
   key: 'root',
   storage,
@@ -27,6 +27,7 @@ export const store = configureStore({
     auth: persistedReducer,
     //Добавляем сюда свои редьюсеры!)
     waterSlice: waterReducer,
+    loader: loadingReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
