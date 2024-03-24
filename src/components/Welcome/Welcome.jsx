@@ -7,6 +7,7 @@ import SvgView from '../../images/svg/svgWelcome/SvgView';
 
 import {
   DesctopWoterDivImg,
+  DivImgContainerWelcome,
   TabletWoterDivImg,
   WelcomeDivCantainer,
   WelcomeLi,
@@ -27,7 +28,7 @@ const Welcome = () => {
 
   return (
     <>
-      {/* <DivImgContainerWelcome /> */}
+      <DivImgContainerWelcome />
       <TabletWoterDivImg>
         <TabletWoter />
       </TabletWoterDivImg>

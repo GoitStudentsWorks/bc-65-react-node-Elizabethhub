@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import welcomebackgroundImageMobail from '../../images/backgroundWelcome/MobileBacgraund.jpg';
-import welcomebackgroundImageTablet from '../../images/backgroundWelcome/TabletMainpage.jpg';
-import welcomebackgroundImageDesctop from '../../images/backgroundWelcome/DesktopMainpage.jpg';
+
 import { NavLink } from 'react-router-dom';
 
 export const DivImgContainerWelcome = styled.div`
@@ -17,13 +15,13 @@ export const DivImgContainerWelcome = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   @media only screen and (min-width: 768px) {
-    background-image: url(${welcomebackgroundImageTablet});
+    background-image: ${(props) => props.theme.backgroundWelcomeImageTablet};
   }
   @media only screen and (min-width: 1280px) {
-    background-image: url(${welcomebackgroundImageDesctop});
+    background-image: ${(props) => props.theme.backgroundWelcomeImage};
   }
   @media only screen and (max-width: 767px) {
-    background-image: url(${welcomebackgroundImageMobail});
+    background-image: ${(props) => props.theme.backgroundWelcomeImageMobale};
   }
 `;
 
@@ -118,7 +116,7 @@ export const WelcomeButton = styled.button`
   padding: 8px 30px;
   width: 100%;
   height: 36px;
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  box-shadow: ${(props) => props.theme.boxShodov};
   background: #407bff;
 
   font-weight: 500;
@@ -170,7 +168,7 @@ export const WelcomeNavLink = styled(NavLink)`
   padding: 9px;
   width: 100%;
 
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  box-shadow: ${(props) => props.theme.boxShodov};
 
   font-weight: 500;
   font-size: 16px;

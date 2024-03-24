@@ -12,6 +12,7 @@ import ArrowRightCalendarSvg from '../../images/svg/svgCalendar/ArrowRightCalend
 import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+  selectMonthWaterData,
   selectorWaterInfo,
   selectorWaterToday,
   showDaysGenStats,
@@ -22,6 +23,7 @@ import {
 } from '../../store/water/waterSlice';
 import { selectDailyWater, selectUser } from '../../store/auth/selectors.js';
 import { useTranslation } from 'react-i18next';
+import { fetchMonthWaterThunk } from '../../store/water/operations.js';
 
 const CalendarElement = () => {
   const { t } = useTranslation();
@@ -29,9 +31,11 @@ const CalendarElement = () => {
   const userDailyWater = useSelector(selectDailyWater);
   const waterTodayList = useSelector(selectorWaterToday);
   const currentDayPercent = useSelector(selectorWaterInfo);
+  const monthWaterData = useSelector(selectMonthWaterData);
   const hero = useSelector(selectUser);
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [chosenDay, setChosenDay] = useState(0);
 
   const changeMonth = (direction) => {
     setCurrentDate((prevDate) => {
@@ -64,6 +68,10 @@ const CalendarElement = () => {
       currentDate.getFullYear() === today.getFullYear()
     );
   };
+
+  // if (el.date) {
+  // } else {
+  // }
 
   function closeDayStat(event) {
     const element = event.target;
@@ -110,7 +118,6 @@ const CalendarElement = () => {
   //
   const spans = document.querySelectorAll('li > .day');
 
-  const [chosenDay, setChosenDay] = useState(0);
   for (const span of spans) {
     span.addEventListener('click', function () {
       const value = this.textContent;
@@ -118,6 +125,15 @@ const CalendarElement = () => {
     });
   }
   //
+  console.log(monthWaterData);
+  useEffect(() => {
+    const date = new Date();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+
+    dispatch(fetchMonthWaterThunk({ year, month }));
+  }, [dispatch]);
+
   return (
     <ContentWrapperCalendar>
       <HeadingWrapper>

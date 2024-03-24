@@ -8,15 +8,16 @@ import {
 } from './Header.styled';
 
 import { Link } from 'react-router-dom';
-import HeaderModal from './HeaderModal';
+import HeaderModal from './HeaderModal/HeaderModal';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../store/auth/selectors';
-import { HeaderUserName } from './HeaderModalStyled';
+import { HeaderUserName } from './HeaderModal/HeaderModalStyled';
 import { useEffect, useState } from 'react';
-import DivSetting from './language/languageSelectorComponent';
+
 import { useTranslation } from 'react-i18next';
-import Switch from './ThemeStyled/SwitchTheme/Switch';
+import Switch from '../SwitchTheme/Switch';
 import { useMediaQuery } from 'react-responsive';
+import DivSetting from '../../language/languageSelectorComponent';
 
 const Header = ({ toggleTheme, isDarkTheme }) => {
   const userProfile = useSelector(selectUser);

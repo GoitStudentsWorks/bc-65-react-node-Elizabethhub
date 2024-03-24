@@ -29,12 +29,12 @@ export const StyledList = styled.ul`
     margin-left: 10px;
   }
   &::-webkit-scrollbar-thumb {
-    background-color: #9ebbff;
+    background-color: ${(props) => props.theme.backgroundColorScroll};
     border-radius: 8px;
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #d7e3ff;
+    background-color: ${(props) => props.theme.backgroundTrackScroll};
   }
 `;
 
@@ -42,7 +42,8 @@ export const ListItem = styled.li`
   display: flex;
   justify-content: space-between;
   padding: 10px 5px 12px 0;
-  border-bottom: 1px solid #d7e3ff;
+  border-bottom: ${(props) => props.theme.borderBottomForToday};
+  /* 2A3052 */
 `;
 
 export const InfoWrapper = styled.div`
@@ -89,7 +90,6 @@ export const AddBtnWrapper = styled.div`
   padding: 12px 0;
   display: flex;
   justify-content: start;
-  border-top: 1px solid #d7e3ff;
 
   button {
     display: flex;

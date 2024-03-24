@@ -292,7 +292,7 @@ export const SaveButton = styled.button`
   width: 100%;
   max-width: 392px;
   height: 36px;
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  box-shadow: ${(props) => props.theme.boxShodov};
 
   font-size: 16px;
   font-weight: 500;

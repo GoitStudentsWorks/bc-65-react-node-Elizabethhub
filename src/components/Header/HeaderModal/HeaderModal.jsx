@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { HeaderButton } from './Header.styled';
-import HeaderSVGPhoto from '../../images/svg/svgheader/HeaderSVGPhoto';
-import HeaderButtonSVG from '../../images/svg/svgheader/HeaderButtonSVG';
+import { HeaderButton } from '../Header.styled';
+import HeaderSVGPhoto from '../../../images/svg/svgheader/HeaderSVGPhoto';
+import HeaderButtonSVG from '../../../images/svg/svgheader/HeaderButtonSVG';
 
 import {
   Backdrop,
+  ButtonCancel,
   ButtonLogOut,
   DivButtonLogOut,
   DivHeaderModalContainer,
@@ -18,18 +19,19 @@ import {
   Test2,
   UserIMG,
 } from './HeaderModalStyled';
-import SettingModal from '../SettingModal/SettingModal';
-import SettingSVG from '../../images/svg/svgheader/SettingSVG';
-import ClouseSVG from '../../images/svg/svgheader/ClouseSVG';
-import HeaderButtonRotateSVG from '../../images/svg/svgheader/HeaderButtonRotateSVG';
+import SettingModal from '../../SettingModal/SettingModal';
+import SettingSVG from '../../../images/svg/svgheader/SettingSVG';
+import ClouseSVG from '../../../images/svg/svgheader/ClouseSVG';
+import HeaderButtonRotateSVG from '../../../images/svg/svgheader/HeaderButtonRotateSVG';
 import { useDispatch, useSelector } from 'react-redux';
-import { logoutThunk } from '../../store/auth/thunks';
+import { logoutThunk } from '../../../store/auth/thunks';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
-import { selectUser } from '../../store/auth/selectors';
+import { selectUser } from '../../../store/auth/selectors';
 import { useTranslation } from 'react-i18next';
-import DivSetting from './language/languageSelectorComponent';
+
 import { useMediaQuery } from 'react-responsive';
+import DivSetting from '../../../language/languageSelectorComponent';
 
 const HeaderModal = () => {
   const { t } = useTranslation();
@@ -43,6 +45,7 @@ const HeaderModal = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isTabletOrMobile = useMediaQuery({ query: '(min-width: 768px)' });
+
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === 'Escape') {
@@ -93,12 +96,14 @@ const HeaderModal = () => {
   const toggleHeaderModal = () => {
     setIsHeaderModalOpen((prevState) => !prevState);
     setIsBackdropVisible((prevState) => !prevState);
+    setIsModalOpen(false);
   };
 
   const LogOutHeaderModal = () => {
     setIsHeaderModalLogOut((prevState) => !prevState);
     setIsHeaderModalOpen(false);
     setIsBackdropVisible(false);
+    setIsModalOpen(false);
   };
 
   function handleLogout() {
@@ -159,9 +164,9 @@ const HeaderModal = () => {
                 {t('doYouReallyWantToLeave')}
               </SpanLogOutQuestion>
               <DivButtonLogOut>
-                <ButtonLogOut onClick={LogOutHeaderModal}>
+                <ButtonCancel onClick={LogOutHeaderModal}>
                   {t('cancel')}
-                </ButtonLogOut>
+                </ButtonCancel>
                 <ButtonLogOut onClick={handleLogout}>
                   {t('logOut')}
                 </ButtonLogOut>
