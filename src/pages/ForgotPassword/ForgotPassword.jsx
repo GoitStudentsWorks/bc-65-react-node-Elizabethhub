@@ -15,8 +15,10 @@ import {
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { forgotThunk } from '../../store/auth/thunks';
+import { useTranslation } from 'react-i18next';
 
 const ForgotPassword = () => {
+  const { t } = useTranslation();
   const { register, handleSubmit } = useForm();
   const dispatch = useDispatch();
 
@@ -29,7 +31,7 @@ const ForgotPassword = () => {
 
   return (
     <ForgotWrapper>
-      <ForgotHeading>Forgot password</ForgotHeading>
+      <ForgotHeading>{t('forgotPassword')}</ForgotHeading>
       <ForgotForm onSubmit={handleSubmit(submit)}>
         <ForgotLabel>
           <ForgotInput
@@ -39,7 +41,7 @@ const ForgotPassword = () => {
             placeholder="Your email"
             required
           />
-          <ForgotBtn type="submit">Send</ForgotBtn>
+          <ForgotBtn type="submit">{t('send')}</ForgotBtn>
         </ForgotLabel>
       </ForgotForm>
     </ForgotWrapper>

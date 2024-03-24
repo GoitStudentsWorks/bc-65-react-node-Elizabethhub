@@ -9,10 +9,7 @@ import { radioInputs } from '../../helpers/ModalDayNorma/helper.js';
 import SvgRadioChecked from '../../images/svg/svgModal/SvgRadioChecked.jsx';
 import SvgRadio from '../../images/svg/svgModal/SvgRadio.jsx';
 import { createTheme } from '@mui/material/styles';
-import {
-  lightTheme,
-  darkTheme,
-} from '../../components/Header/ThemeStyled/Theme.styled.jsx';
+import { lightTheme, darkTheme } from '../SwitchTheme/Theme.styled.jsx';
 import { useState, useEffect } from 'react';
 
 function RadioGroupComponent({ genderValue, handleGenderChange }) {

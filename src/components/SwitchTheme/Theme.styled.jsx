@@ -1,12 +1,21 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import imageDesktop from '../../../images/backgroundHome/Background.png';
-import imageDesktopDark from '../../../images/backgroundHome/BackgroundDark.png';
+import imageDesktop from '../../images/backgroundHome/Background.png';
+import imageDesktopDark from '../../images/backgroundHome/BackgroundDark.png';
 
-import imageTablet from '../../../images/backgroundHome/BackgroundTabletWhite.png';
-import imageMobale from '../../../images/backgroundHome/BackgroundMobale.png';
+import imageTablet from '../../images/backgroundHome/BackgroundTabletWhite.png';
+import imageMobale from '../../images/backgroundHome/BackgroundMobale.png';
 
-import imageTabletDark from '../../../images/backgroundHome/BackgroundTabletDark.png';
-import imageMobaleDark from '../../../images/backgroundHome/BackgroundMobaleDark.png';
+import imageTabletDark from '../../images/backgroundHome/BackgroundTabletDark.png';
+import imageMobaleDark from '../../images/backgroundHome/BackgroundMobaleDark.png';
+
+import imageWelcomeDesktop from '../../images/backgroundWelcome/BackgroundWelcomWhiteDesctop.png';
+import imageWelcomeDesktopDark from '../../images/backgroundWelcome/BackgroundWelcomDarkDesctop.png';
+
+import imageWelcomeTablet from '../../images/backgroundWelcome/BackgroundWelcomWhiteTablet.png';
+import imageWelcomeMobale from '../../images/backgroundWelcome/BackgroundWelcomWhiteMobale.png';
+
+import imageWelcomeTabletDark from '../../images/backgroundWelcome/BackgroundWelcomDarkTablet.png';
+import imageWelcomeMobaleDark from '../../images/backgroundWelcome/BackgroundWelcomDarkTablet.png';
 
 export const StyledApp = styled.div`
   min-height: 100vh;
@@ -27,9 +36,9 @@ export const ThemeStyledButton = styled.button`
   background: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.buttonColor};
   /* Контейнер */
-  background: ${(props) => props.theme.modalCantainerBackground};
-  background: ${(props) => props.theme.dayStylesDayBackground};
-  box-shadow: ${(props) => props.theme.modalCantainerBoxShadow};
+  background: ${(props) => props.theme.backgroundWelcomeImageTablet};
+  background: ${(props) => props.theme.backgroundWelcomeImageMobale};
+  box-shadow: ${(props) => props.theme.backgroundWelcomeImage};
 `;
 
 export const darkTheme = {
@@ -40,6 +49,11 @@ export const darkTheme = {
   backgroundImage: `url(${imageDesktopDark})`,
   backgroundImageMobale: `url(${imageMobaleDark})`,
   backgroundImageTablet: `url(${imageTabletDark})`,
+
+  backgroundWelcomeImage: `url(${imageWelcomeDesktopDark})`,
+  backgroundWelcomeImageMobale: `url(${imageWelcomeMobaleDark})`,
+  backgroundWelcomeImageTablet: `url(${imageWelcomeTabletDark})`,
+
   rangeInputBackground: '#1c1d26;',
   colorBody: '#d5dff5;',
   test: '#ee1010',
@@ -64,7 +78,8 @@ export const darkTheme = {
   modalCantainerBoxShadow: '0 4px 14px 0 rgba(0, 0, 0, 0.2);',
 
   dayStylesDayBackground: '#1c1d26;',
-  dayStylesDayPercentage: '#2f3875;;',
+  dayStylesDayPercentage: '#2f3875;',
+  boxShodov: '0 4px 14px 0 rgba(0, 0, 0, 0.54);',
 };
 
 export const lightTheme = {
@@ -73,6 +88,11 @@ export const lightTheme = {
   backgroundImage: `url(${imageDesktop})`,
   backgroundImageMobale: `url(${imageMobale})`,
   backgroundImageTablet: `url(${imageTablet})`,
+
+  backgroundWelcomeImage: `url(${imageWelcomeDesktop})`,
+  backgroundWelcomeImageMobale: `url(${imageWelcomeMobale})`,
+  backgroundWelcomeImageTablet: `url(${imageWelcomeTablet})`,
+
   rangeInputBackground: '#d5dff5;',
 
   backgroundLinearGradientTo: `#9ebbff`,
@@ -102,4 +122,5 @@ export const lightTheme = {
 
   dayStylesDayBackground: '#fff;',
   dayStylesDayPercentage: '#9ebbff;',
+  boxShodov: '0 4px 8px 0 rgba(64, 123, 255, 0.34);',
 };

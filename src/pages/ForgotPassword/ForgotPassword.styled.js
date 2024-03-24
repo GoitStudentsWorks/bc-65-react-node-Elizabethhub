@@ -58,7 +58,7 @@ export const ForgotBtn = styled.button`
   max-width: 150px;
   /* margin-left: auto; */
 
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  box-shadow: ${(props) => props.theme.boxShodov};
   transition: all 0.4s;
 
   &:hover,
