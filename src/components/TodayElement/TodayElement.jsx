@@ -25,7 +25,10 @@ import {
 } from '../../store/water/selectors.js';
 import ModalDeleteWater from '../ModalDeleteWater/ModalDeleteWater.jsx';
 import { useEffect } from 'react';
-import { fetchAllWaterThunk } from '../../store/water/operations.js';
+import {
+  // fetchAllWaterThunk,
+  fetchTodayWaterThunk,
+} from '../../store/water/operations.js';
 import { format } from 'date-fns';
 
 import { selectUser } from '../../store/auth/selectors.js';
@@ -40,8 +43,9 @@ const TodayElement = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    const date = new Date().toISOString().split('T')[0];
     if (isUser) {
-      dispatch(fetchAllWaterThunk());
+      dispatch(fetchTodayWaterThunk({ date }));
     }
   }, [dispatch, isUser]);
 

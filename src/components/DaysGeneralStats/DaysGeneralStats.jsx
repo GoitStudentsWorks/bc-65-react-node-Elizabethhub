@@ -7,7 +7,8 @@ import {
 } from '../../store/water/selectors';
 import { selectDailyWater } from '../../store/auth/selectors';
 
-const DaysGeneralStats = ({ monthData, currentDate, chosenDay }) => {
+const DaysGeneralStats = ({ monthWaterData, currentDate, chosenDay, item }) => {
+  console.log('item: ', item);
   const waterPercentageToday = useSelector(selectorWaterInfo);
   const waterTodayList = useSelector(selectorWaterToday);
   const dailyNorma = useSelector(selectDailyWater);
@@ -26,10 +27,15 @@ const DaysGeneralStats = ({ monthData, currentDate, chosenDay }) => {
       </p>
       <p>
         {t('fulfillmentOfTheDailyNorm')} :{' '}
-        <span>{waterPercentageToday >= 100 ? 100 : waterPercentageToday}%</span>
+        <span>
+          {item?.waterVolPercentage >= 100
+            ? 100
+            : item?.waterVolPercentage || 0}
+          %
+        </span>
       </p>
       <p>
-        {t('howManyServingsOfWater')} : <span>{waterTodayList.length}</span>
+        {t('howManyServingsOfWater')} : <span>{item?.waterPortions || 0}</span>
       </p>
     </DayStatsContainer>
   );

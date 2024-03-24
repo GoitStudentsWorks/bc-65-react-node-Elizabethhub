@@ -12,7 +12,8 @@ import {
   deleteWaterThunk,
   editDailyNormaThunk,
   editWaterThunk,
-  fetchAllWaterThunk,
+  // fetchAllWaterThunk,
+  fetchTodayWaterThunk,
 } from '../water/operations.js';
 
 const loadingSlice = createSlice({
@@ -33,8 +34,9 @@ const loadingSlice = createSlice({
           addWaterThunk.pending,
           editWaterThunk.pending,
           deleteWaterThunk.pending,
-          fetchAllWaterThunk.pending,
-          editDailyNormaThunk.pending
+          // fetchAllWaterThunk.pending,
+          editDailyNormaThunk.pending,
+          fetchTodayWaterThunk.pending
         ),
         (state) => {
           state.loading = true;
@@ -51,8 +53,9 @@ const loadingSlice = createSlice({
           addWaterThunk.rejected,
           editWaterThunk.rejected,
           deleteWaterThunk.rejected,
-          fetchAllWaterThunk.rejected,
-          editDailyNormaThunk.rejected
+          // fetchAllWaterThunk.rejected,
+          editDailyNormaThunk.rejected,
+          fetchTodayWaterThunk.rejected
         ),
         (state) => {
           state.loading = false;
@@ -69,8 +72,9 @@ const loadingSlice = createSlice({
           addWaterThunk.fulfilled,
           editWaterThunk.fulfilled,
           deleteWaterThunk.fulfilled,
-          fetchAllWaterThunk.fulfilled,
-          editDailyNormaThunk.fulfilled
+          // fetchAllWaterThunk.fulfilled,
+          editDailyNormaThunk.fulfilled,
+          fetchTodayWaterThunk.fulfilled
         ),
         (state) => {
           state.loading = false;

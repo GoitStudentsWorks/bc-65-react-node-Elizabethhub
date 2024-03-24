@@ -36,6 +36,9 @@ export const ThemeStyledButton = styled.button`
   background: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.buttonColor};
   /* Контейнер */
+  background: ${(props) => props.theme.modalCantainerBackground};
+  background: ${(props) => props.theme.dayStylesDayBackground};
+  box-shadow: ${(props) => props.theme.settingInputborder};
   background: ${(props) => props.theme.backgroundWelcomeImageTablet};
   background: ${(props) => props.theme.backgroundWelcomeImageMobale};
 `;
@@ -66,14 +69,21 @@ export const darkTheme = {
   formInputBackground: '#1c1d26;',
   formInputColor: '#5082f2;',
   formInputColorPlaceholder: '#2f3875;',
+  formInputCaretColor: '#d5dff5',
+  formInputErrorColor: '#f1616',
 
   dailyWrapperBorder: '1px solid #1f2438;',
   dailyWrapperBackground: '#1c1d26;',
   dailyWrapperBoxShadow: '0 4px 14px 0 rgba(0, 0, 0, 0.2);',
 
   divCantainerBackground: '#1f2438;',
+  settingUploadSvg: '#5082F2',
+  settingRadioButtonFill: '#1C1D26',
+  settingRadioButtonStroke: '#5082F2',
+  settingInputborder: '1px solid #2A3052',
+  settingInputPlaceholder: '#2f3875',
 
-  modalCantainerBackground: '#1f2438;',
+  modalCantainerBackground: '#1c1d26;',
   modalCantainerBoxShadow: '0 4px 14px 0 rgba(0, 0, 0, 0.2);',
 
   dayStylesDayBackground: '#1c1d26;',
@@ -140,14 +150,21 @@ export const lightTheme = {
   BottleSVG: '#F5F5F5;',
 
   formInputBackground: '#fff;',
-  formInputColor: '#407bff;',
-  formInputColorPlaceholder: '#9ebbff;',
+  formInputColor: 'var(--blue)',
+  formInputColorPlaceholder: 'var(--modal-light-blue)',
+  formInputCaretColor: 'var(--black)',
+  formInputErrorColor: 'var(--primary-red)',
 
   dailyWrapperBorder: '1px solid #ecf2ff',
   dailyWrapperBackground: '#fff;',
   dailyWrapperBoxShadow: '0 4px 8px 0 rgba(158, 187, 255, 0.12);',
 
   divCantainerBackground: '#ECF2FF;',
+  settingUploadSvg: 'var(--blue)',
+  settingRadioButtonFill: '#fff',
+  settingRadioButtonStroke: 'var(--blue)',
+  settingInputborder: '1px solid var(--primary-mediumblue)',
+  settingInputPlaceholder: 'var(--modal-light-blue)',
 
   modalCantainerBackground: '#fff;',
   modalCantainerBoxShadow: '0px 4px 4px 0px rgba(64, 123, 255, 0.3);',

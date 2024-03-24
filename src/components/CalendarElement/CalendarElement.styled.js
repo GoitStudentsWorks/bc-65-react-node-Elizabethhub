@@ -80,7 +80,6 @@ export const DayStyles = styled.li`
   cursor: pointer;
   letter-spacing: 0em;
   &.today {
-    background-color: lightblue;
   }
 
   span {
@@ -95,7 +94,9 @@ export const DayStyles = styled.li`
     background: ${(props) => props.theme.dayStylesDayBackground};
     border-radius: 50%;
     border: ${({ $percentage }) =>
-      $percentage < 100 ? '1px solid #FF9D43' : 'none'};
+      $percentage < 100 || $percentage?.length === 0
+        ? '1px solid #FF9D43'
+        : 'none'};
 
     font-size: 14px;
     line-height: 1.29;

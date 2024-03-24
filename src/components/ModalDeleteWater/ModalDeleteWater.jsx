@@ -14,7 +14,10 @@ import {
 } from './ModalDeleteWater.styled.js';
 import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
 import useKeyDown from '../../hooks/modalCloseEsc.js';
-import { deleteWaterThunk } from '../../store/water/operations.js';
+import {
+  deleteWaterThunk,
+  fetchTodayWaterThunk,
+} from '../../store/water/operations.js';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 
@@ -26,11 +29,12 @@ const ModalDeleteWater = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+    const date = new Date().toISOString().split('T')[0];
     dispatch(deleteWaterThunk(id))
       .unwrap()
       .then(() => {
         dispatch(deleteWater(id));
+        dispatch(fetchTodayWaterThunk({ date }));
         dispatch(changeModalClose(false));
         toast.success('Water note was successfully deleted');
       })

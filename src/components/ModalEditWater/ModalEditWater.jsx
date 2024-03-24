@@ -20,7 +20,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 import useCounter from '../../hooks/modalHandleUpdate.js';
 import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
-import { editWaterThunk } from '../../store/water/operations.js';
+import {
+  editWaterThunk,
+  fetchTodayWaterThunk,
+} from '../../store/water/operations.js';
 import { changeModalClose, editWater } from '../../store/water/waterSlice.js';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
@@ -44,11 +47,12 @@ const ModalEditWater = ({ waterItem }) => {
       milliliters: parseInt(manualValue),
       time,
     };
-
+    const date = new Date().toISOString().split('T')[0];
     dispatch(editWaterThunk({ id: waterItem?._id, ...updatedWater }))
       .unwrap()
       .then(() => {
         dispatch(editWater({ id: waterItem?._id, ...updatedWater }));
+        dispatch(fetchTodayWaterThunk({ date }));
         dispatch(changeModalClose(false));
         toast.success('Water note was successfully edited');
       })
