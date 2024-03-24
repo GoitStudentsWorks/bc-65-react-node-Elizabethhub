@@ -13,7 +13,6 @@ import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectMonthWaterData,
-  selectorWaterInfo,
   showDaysGenStats,
 } from '../../store/water/selectors.js';
 import { changeShowDaysStats } from '../../store/water/waterSlice';
@@ -23,7 +22,6 @@ import { fetchMonthWaterThunk } from '../../store/water/operations.js';
 const CalendarElement = () => {
   const { t } = useTranslation();
   const showDaysStats = useSelector(showDaysGenStats);
-  const currentDayPercent = useSelector(selectorWaterInfo);
   const monthWaterData = useSelector(selectMonthWaterData);
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -96,7 +94,7 @@ const CalendarElement = () => {
   for (const span of spans) {
     span.addEventListener('click', function () {
       const value = this.textContent;
-      setChosenDay(value);
+      setChosenDay(Number(value));
     });
   }
   //
@@ -136,25 +134,31 @@ const CalendarElement = () => {
       </HeadingWrapper>
 
       <MonthList>
-        {showDaysStats && (
-          <DaysGeneralStats
-            monthData={monthData}
-            currentDate={currentDate}
-            chosenDay={chosenDay}
-          />
-        )}
-        {monthData.map((item) => (
-          <DayStyles
-            key={item.day}
-            $percentage={currentDayPercent}
-            className={`li-day ${isToday(item.day) ? 'today' : ''}`}
-          >
-            <span className="day">{item.day}</span>
-            <span className="percentage">
-              {currentDayPercent >= 100 ? 100 : currentDayPercent}%
-            </span>
-          </DayStyles>
-        ))}
+        {monthWaterData?.map((item) => {
+          return (
+            <div key={item.day}>
+              <DayStyles
+                key={item.day}
+                $percentage={item.waterVolPercentage}
+                className={`li-day ${isToday(item.day) ? 'today' : ''}`}
+              >
+                <span className="day">{item.day}</span>
+                <span className="percentage">
+                  {item.waterVolPercentage || 0}%
+                </span>
+              </DayStyles>
+              {showDaysStats && item.day === chosenDay && (
+                <DaysGeneralStats
+                  monthWaterData={monthWaterData}
+                  currentDate={currentDate}
+                  chosenDay={chosenDay}
+                  key={`${item.day + 100} `}
+                  item={item}
+                />
+              )}
+            </div>
+          );
+        })}
       </MonthList>
     </ContentWrapperCalendar>
   );
