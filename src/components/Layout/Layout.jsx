@@ -8,7 +8,7 @@ import {
   StyledApp,
   darkTheme,
   lightTheme,
-} from '../Header/ThemeStyled/Theme.styled.jsx';
+} from '../SwitchTheme/Theme.styled.jsx';
 
 import { ThemeProvider } from 'styled-components';
 import { useEffect, useState } from 'react';

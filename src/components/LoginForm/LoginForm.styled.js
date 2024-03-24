@@ -87,7 +87,7 @@ export const LoginBtn = styled.button`
   padding: 8px 30px;
   border-radius: 10px;
 
-  box-shadow: 0 4px 8px 0 rgba(64, 123, 255, 0.34);
+  box-shadow: ${(props) => props.theme.boxShodov};
   transition: all 0.4s;
   background: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.buttonColor};
