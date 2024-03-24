@@ -32,6 +32,8 @@ export const StyledWrapper = styled.form`
   display: flex;
   flex-direction: column;
   background: ${(props) => props.theme.modalCantainerBackground};
+  overflow-y: auto;
+  max-height: 90vh;
 
   @media only screen and (min-width: 768px) {
     width: 704px;
