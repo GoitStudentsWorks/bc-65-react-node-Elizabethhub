@@ -69,6 +69,9 @@ export const darkTheme = {
   borderBottomForToday: '1px solid #2A3052',
   backgroundColorScroll: '#2F3875',
   backgroundTrackScroll: '#2A3052',
+  inputOnlyColor: '--input-dark',
+  inputColorText: '--input-color-dark',
+  inputTheme: '1px solid #2f3875',
 };
 
 export const lightTheme = {
@@ -106,7 +109,12 @@ export const lightTheme = {
 
   dayStylesDayBackground: '#fff;',
   dayStylesDayPercentage: '#9ebbff;',
+
   borderBottomForToday: '1px solid #d7e3ff',
   backgroundColorScroll: '#9ebbff',
   backgroundTrackScroll: '#d7e3ff',
+
+  inputOnlyColor: '--primary-mediumblue',
+  inputColorText: '--primary-blue',
+  inputTheme: '1px solid var(--primary-mediumblue)',
 };

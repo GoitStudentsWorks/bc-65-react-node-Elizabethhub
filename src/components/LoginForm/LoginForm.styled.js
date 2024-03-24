@@ -21,7 +21,7 @@ export const StyledLoginForm = styled.form`
     border: 1px solid
       var(
         ${(props) =>
-          props.$errorEmail ? '--primary-red' : '--primary-mediumblue'}
+          props.$errorEmail ? '--primary-red' : props.theme.inputOnlyColor}
       );
 
     color: var(${(props) => (props.$errorEmail ? '--primary-red' : '--blue')});
@@ -30,7 +30,7 @@ export const StyledLoginForm = styled.form`
     border: 1px solid
       var(
         ${(props) =>
-          props.$errorPassword ? '--primary-red' : '--primary-mediumblue'}
+          props.$errorPassword ? '--primary-red' : props.theme.inputOnlyColor}
       );
 
     color: var(
@@ -41,7 +41,7 @@ export const StyledLoginForm = styled.form`
     border: 1px solid
       var(
         ${(props) =>
-          props.$errorPassword ? '--primary-red' : '--primary-mediumblue'}
+          props.$errorPassword ? '--primary-red' : props.theme.inputOnlyColor}
       );
 
     color: var(
@@ -59,13 +59,13 @@ export const LoginInput = styled.input`
   margin-top: 8px;
   padding: 12px 10px;
   border-radius: 6px;
-  border: 1px solid var(--primary-mediumblue);
+  border: ${(props) => props.theme.input};
   outline: none;
   background-color: ${(props) => props.theme.formInputBackground};
   color: ${(props) => props.theme.formInputColor};
 
   &::placeholder {
-    color: var(--primary-blue);
+    color: var(${(props) => props.theme.inputColorText});
     font-size: 16px;
     line-height: 20px;
   }
