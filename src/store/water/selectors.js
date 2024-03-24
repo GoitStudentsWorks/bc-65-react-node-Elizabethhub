@@ -13,3 +13,5 @@ export const selectorWaterToday = (state) => state.waterSlice.waterTodayList;
 
 export const selectorWaterInfo = (state) =>
   state.waterSlice.waterPercentageToday;
+
+export const selectMonthWaterData = (state) => state.waterSlice?.monthWaterData;
