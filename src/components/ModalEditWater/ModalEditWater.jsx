@@ -141,8 +141,6 @@ const ModalEditWater = ({ waterItem }) => {
         <h3>{t('enterTheValueOfTheWaterUsed')}</h3>
         <StyledModalEditInput
           type="number"
-          // type="text"
-          // pattern="[0-9]*"
           placeholder={`${counter}`}
           min="1"
           max="5000"

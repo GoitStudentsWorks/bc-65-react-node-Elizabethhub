@@ -86,6 +86,32 @@ export const darkTheme = {
   inputOnlyColor: '--input-dark',
   inputColorText: '--input-color-dark',
   inputTheme: '1px solid #2f3875',
+
+  backgroundCancel: '#2A3052',
+  colorCancel: '#5082F2',
+  backgroundDelete: '#F16161',
+  colorDelete: '#1C1D26',
+  backgroundDeleteWindow: '#1C1D26',
+  deleteShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.34);',
+
+  backgroundAdd: '#1C1D26',
+  headerAdd: '#D5DFF5',
+  counterBorderAdd: '#2F3875',
+  counterShadowAdd: '0px 2px 4px 0px rgba(0, 0, 0, 0.2)',
+  counterSpanBg: '#2A3052',
+  counterSpanText: '#5082F2',
+  inputBorderAdd: '#2A3052',
+  inputTextAdd: '#5082F2',
+  buttonBgAdd: '#5082F2',
+  buttonShadowAdd: '0px 4px 8px 0px rgba(0, 0, 0, 0.34)',
+  buttonTextAdd: '#1C1D26',
+  modalSpanAdd: '#5082F2',
+
+  modalSpanBgEdit: '#1F2438',
+  modalSpanEdit: '#5082F2',
+  modalTextEdit: '#D5DFF5',
+
+  modalCloseBtn: '#5082F2',
 };
 
 export const lightTheme = {
@@ -137,4 +163,30 @@ export const lightTheme = {
   inputOnlyColor: '--primary-mediumblue',
   inputColorText: '--primary-blue',
   inputTheme: '1px solid var(--primary-mediumblue)',
+
+  backgroundCancel: '#D7E3FF',
+  colorCancel: '#407BFF',
+  backgroundDelete: '#EF5050',
+  colorDelete: '#FFFFFF',
+  backgroundDeleteWindow: '#FFFFFF',
+  deleteShadow: '0px 4px 8px 0px rgba(64, 123, 255, 0.34);',
+
+  backgroundAdd: '#FFFFFF',
+  headerAdd: '#2F2F2F',
+  counterBorderAdd: '#9EBBFF',
+  counterShadowAdd: '0px 2px 4px 0px rgba(64, 123, 255, 0.2)',
+  counterSpanBg: '#D7E3FF',
+  counterSpanText: '#407bff',
+  inputBorderAdd: '#d7e3ff',
+  inputTextAdd: '#407BFF',
+  buttonBgAdd: '#407BFF',
+  buttonShadowAdd: '0px 4px 8px 0px rgba(64, 123, 255, 0.34)',
+  buttonTextAdd: '#FFFFFF',
+  modalSpanAdd: '#407BFF',
+
+  modalSpanBgEdit: '#ecf2ff',
+  modalSpanEdit: '#407bff',
+  modalTextEdit: '#2F2F2F',
+
+  modalCloseBtn: '#407BFF',
 };
