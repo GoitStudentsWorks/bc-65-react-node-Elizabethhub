@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { editDailyNormaThunk, fetchAllWaterThunk } from './operations';
+import {
+  fetchAllWaterThunk,
+  fetchMonthWaterThunk,
+  editDailyNormaThunk,
+} from './operations';
 
 const waterSlice = createSlice({
   name: 'waterSlice',
@@ -17,6 +21,7 @@ const waterSlice = createSlice({
     isLoading: false,
     waterTodayList: [],
     waterPercentageToday: 0,
+    monthWaterData: [],
   },
   reducers: {
     changeModalClose: (state, { payload }) => {
@@ -75,6 +80,9 @@ const waterSlice = createSlice({
       })
       .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
         state.error = payload;
+      })
+      .addCase(fetchMonthWaterThunk.fulfilled, (state, { payload }) => {
+        state.monthWaterData = payload;
       })
       .addCase(editDailyNormaThunk.rejected, (state, { payload }) => {
         state.error = payload;
