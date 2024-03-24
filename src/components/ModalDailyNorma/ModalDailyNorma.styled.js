@@ -7,7 +7,6 @@ export const StyledBackdrop = styled.div`
   bottom: 0;
   left: 0;
   background: var(--modal-backdrop);
-  backdrop-filter: blur(3.5px);
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -32,6 +31,8 @@ export const StyledWrapper = styled.form`
   display: flex;
   flex-direction: column;
   background: ${(props) => props.theme.modalCantainerBackground};
+  overflow-y: auto;
+  max-height: 90vh;
 
   @media only screen and (min-width: 768px) {
     width: 704px;
