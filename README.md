@@ -11,6 +11,8 @@ notifications. Whether you're a homeowner, a business owner, or simply concerned
 about water conservation, Byte My Water App is here to help you manage your
 water consumption effectively.
 
+![General description](./src/images/welcome.png)
+
 ## Technologies Used
 
 - **Frontend**:
@@ -29,7 +31,7 @@ water consumption effectively.
   - React Toastify: A toast notification library for React applications.
   - i18next: A powerful internationalization framework for JavaScript.
 - **Backend**:
-  - None (Client-side application)
+  - "https://byte-water-back.onrender.com/api-docs"
 - **Build Tools**:
   - Vite: A fast build tool that significantly improves frontend development
     experience.
@@ -37,15 +39,13 @@ water consumption effectively.
   - ESLint: A tool for identifying and reporting on patterns found in
     ECMAScript/JavaScript code.
   - Prettier: An opinionated code formatter.
-- **Testing**:
-  - No testing libraries mentioned in dependencies.
 
 ## Installation
 
 1. Clone the repository:
 
 ```bash
-   git clone https://github.com/your_username/byte-my-water-app.git
+   git clone https://github.com/Elizabethhub/byte-my-water-app.git
 ```
 
 2. Navigate to the project directory:
@@ -76,6 +76,28 @@ npm run dev
   - Set water consumption goals.
   - Receive notifications regarding their water usage.
   - Perform various other tasks related to water management.
+
+## Team Developers
+
+### Project Lead
+
+- [Yelyzaveta Kudelia](https://github.com/Elizabethhub) - Fullstack
+  Developer/Team lead, Modal Norma module
+
+### Developers
+
+- [Oleg Opolonets](https://github.com/Olegopolonets) - Fullstack Developer/Scrum
+  Master, Today & Calendar modules
+- [Dmytro Prymachenko](https://github.com/DmytroPrymachenko) - Fullstack
+  Developer, Welcome page & Header modules, Language, Theme
+- [Kirra Potiekhina](https://github.com/Kirra-acc) - Fullstack Developer, Modal
+  add/edit modules
+- [Victor Filinovych](https://github.com/VictorFil67) - Fullstack Developer,
+  User settings module
+- [Yehor Hryhortsev](https://github.com/Goldenrash-lab) - Fullstack Developer,
+  Authorization module
+- [Anastasiia Farafonova](https://github.com/AsyaDev14) - Fullstack Developer,
+  Today layout
 
 ## Contributing
 
