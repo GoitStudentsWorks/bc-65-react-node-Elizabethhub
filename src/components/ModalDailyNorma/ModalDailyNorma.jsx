@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { isModalDayNorm } from '../../store/water/selectors';
 import { selectUser } from '../../store/auth/selectors.js';
 import { editDailyNormaThunk } from '../../store/water/operations.js';
@@ -12,7 +13,6 @@ import {
   textData,
 } from '../../helpers/ModalDayNorma/helper.js';
 import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
-import SvgCross from '../../images/svg/svgModal/SvgCross';
 import FormulaField from './FormulaField.jsx';
 import RadioGroupComponent from './RadioGroup.jsx';
 import InputBox from './InputBox.jsx';
@@ -24,7 +24,7 @@ import {
   StyledWrapper,
   StyledInputBox,
 } from './ModalDailyNorma.styled.js';
-import { useTranslation } from 'react-i18next';
+import SvgCross from '../../images/svg/svgModal/SvgCross';
 
 const ModalDailyNorma = () => {
   const { t } = useTranslation();
@@ -34,7 +34,7 @@ const ModalDailyNorma = () => {
   const dayNormaValue = userObject?.dailyNorma;
   const genderUserValue = userObject?.gender;
 
-  const [genderValue, setGenderValue] = useState('woman');
+  const [genderValue, setGenderValue] = useState(genderUserValue);
   const [massQuery, setMassQuery] = useState(0);
   const [timeQuery, setTimeQuery] = useState(0);
   const [volume, setVolume] = useState(0);
@@ -110,12 +110,13 @@ const ModalDailyNorma = () => {
             onClick={() => {
               dispatch(changeModalClose(false));
             }}
+            aria-label={t('closeWindow')}
           >
             <SvgCross />
           </StyledCross>
           <FormulaField />
           <RadioGroupComponent
-            genderValue={genderUserValue || genderValue}
+            genderValue={genderValue}
             handleGenderChange={handleGenderChange}
           />
           <InputBox
@@ -152,7 +153,9 @@ const ModalDailyNorma = () => {
               required={volume > 0 ? waterQuery : true}
             />
           </StyledInputBox>
-          <SaveButton type="submit">{t('Save')}</SaveButton>
+          <SaveButton type="submit" aria-label="click to save">
+            {t('save')}
+          </SaveButton>
         </StyledWrapper>
       </StyledBackdrop>
     )

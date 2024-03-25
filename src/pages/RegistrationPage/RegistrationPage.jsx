@@ -146,7 +146,9 @@ const RegistrationPage = () => {
               {eyePass ? <OpenPassEye /> : <PassEye />}
             </PassShowBtn>
           </Loginlabel>
-          <LoginBtn type="submit">{t('signUp')}</LoginBtn>
+          <LoginBtn type="submit" aria-label="click to signup">
+            {t('signUp')}
+          </LoginBtn>
         </AuthForm>
         <SvgContainer>
           {isMobile && <BottleSVG />}

@@ -1,4 +1,3 @@
-// import { useState, useEffect } from 'react';
 import { StyledRangeInput } from './WaterRatio.styled';
 import { useSelector } from 'react-redux';
 import { selectorWaterInfo } from '../../store/water/selectors';

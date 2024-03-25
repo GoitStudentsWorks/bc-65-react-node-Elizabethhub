@@ -6,11 +6,11 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 import { radioInputs } from '../../helpers/ModalDayNorma/helper.js';
-import SvgRadioChecked from '../../images/svg/svgModal/SvgRadioChecked.jsx';
-import SvgRadio from '../../images/svg/svgModal/SvgRadio.jsx';
 import { createTheme } from '@mui/material/styles';
 import { lightTheme, darkTheme } from '../SwitchTheme/Theme.styled.jsx';
 import { useState, useEffect } from 'react';
+import RadioChecked from '../../images/SettingModal/RadioChecked.jsx';
+import RadioUnChecked from '../../images/SettingModal/RadioUnChecked.jsx';
 
 function RadioGroupComponent({ genderValue, handleGenderChange }) {
   const { t } = useTranslation();
@@ -53,8 +53,8 @@ function RadioGroupComponent({ genderValue, handleGenderChange }) {
                 value={radioItem.value}
                 control={
                   <Radio
-                    checkedIcon={<SvgRadioChecked></SvgRadioChecked>}
-                    icon={<SvgRadio></SvgRadio>}
+                    checkedIcon={<RadioChecked></RadioChecked>}
+                    icon={<RadioUnChecked></RadioUnChecked>}
                     style={{
                       padding: 7,
                       marginLeft: 4,

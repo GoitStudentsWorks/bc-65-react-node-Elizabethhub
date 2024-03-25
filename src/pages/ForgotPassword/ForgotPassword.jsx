@@ -41,7 +41,9 @@ const ForgotPassword = () => {
             placeholder="Your email"
             required
           />
-          <ForgotBtn type="submit">{t('send')}</ForgotBtn>
+          <ForgotBtn type="submit" aria-label="click to reset password">
+            {t('send')}
+          </ForgotBtn>
         </ForgotLabel>
       </ForgotForm>
     </ForgotWrapper>

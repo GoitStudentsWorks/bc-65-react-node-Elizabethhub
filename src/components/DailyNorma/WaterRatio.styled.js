@@ -70,6 +70,9 @@ export const RangeButton = styled.button`
   justify-content: center;
   gap: 13px;
   outline: transparent;
+  &:hover {
+    transform: scale(1.05);
+  }
   @media only screen and (min-width: 768px) {
     width: 336px;
     height: 44px;

@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { selectUser } from '../../store/auth/selectors';
 import { isModalDayNorm } from '../../store/water/selectors';
 import { changeModalDailyNorma } from '../../store/water/waterSlice';
 import ModalDailyNorma from '../ModalDailyNorma/ModalDailyNorma';
@@ -10,8 +12,6 @@ import {
   DailyWrapperContainer,
   DailyWrapperEdit,
 } from './DailyEdit.styled';
-import { selectUser } from '../../store/auth/selectors';
-import { useTranslation } from 'react-i18next';
 
 const DailyEdit = () => {
   const { t } = useTranslation();

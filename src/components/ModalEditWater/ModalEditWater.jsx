@@ -107,11 +107,17 @@ const ModalEditWater = ({ waterItem }) => {
           name="decrement"
           onClick={handleUpdate}
           disabled={counter === 0}
+          aria-label={t('decrementWater')}
         >
           <SvgMinus size="24" />
         </button>
         <span>{displayValue ? displayValue : `${counter}ml`}</span>
-        <button type="button" name="increment" onClick={handleUpdate}>
+        <button
+          type="button"
+          name="increment"
+          onClick={handleUpdate}
+          aria-label={t('incrementWater')}
+        >
           <SvgPlus size="24" />
         </button>
       </StyledModalAddTracker>
@@ -159,7 +165,9 @@ const ModalEditWater = ({ waterItem }) => {
 
       <StyledModalAddSave>
         <span>{displayValue}</span>
-        <button type="submit">{t('save')}</button>
+        <button type="submit" aria-label={t('saveWater')}>
+          {t('save')}
+        </button>
       </StyledModalAddSave>
     </StyledModalForm>
   );

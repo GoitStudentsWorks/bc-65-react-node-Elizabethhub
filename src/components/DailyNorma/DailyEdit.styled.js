@@ -57,4 +57,7 @@ export const DailyEditButton = styled.button`
   position: relative;
   z-index: 1;
   outline: transparent;
+  &:hover {
+    transform: scale(1.05);
+  }
 `;

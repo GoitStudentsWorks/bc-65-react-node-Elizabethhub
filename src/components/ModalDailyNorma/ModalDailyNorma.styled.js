@@ -100,9 +100,9 @@ export const SaveButton = styled.button`
   width: 256px;
   border-radius: 10px;
   padding: 8px 30px 8px 30px;
-  background-color: var(--blue);
-  box-shadow: var(--modal-add-shadow);
-  color: var(--white);
+  background-color: ${(props) => props.theme.buttonBgAdd};
+  box-shadow: ${(props) => props.theme.counterShadowAdd};
+  color: ${(props) => props.theme.buttonTextAdd};
   border: none;
   outline: transparent;
   transition: all 0.5s ease;
@@ -116,10 +116,13 @@ export const SaveButton = styled.button`
     width: 160px;
     height: 44px;
     font-size: 18px;
-    flex-direction: row-reverse;
+    /* flex-direction: row-reverse; */
     margin-left: auto;
   }
   @media only screen and (min-width: 1280px) {
+    width: 160px;
+    height: 44px;
+    font-size: 18px;
   }
 `;
 
