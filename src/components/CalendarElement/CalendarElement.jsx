@@ -146,6 +146,7 @@ const CalendarElement = () => {
             <MonthSwitcher>
               <button
                 className="arrow"
+                aria-label="Show prev month"
                 onClick={() => changeMonthQuery('back')}
                 type="button"
               >
@@ -158,6 +159,7 @@ const CalendarElement = () => {
               </p>
               <button
                 className="arrow"
+                aria-label="Show next month"
                 onClick={() => changeMonthQuery('forward')}
                 type="button"
               >
