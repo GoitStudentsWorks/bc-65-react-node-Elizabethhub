@@ -11,7 +11,7 @@ notifications. Whether you're a homeowner, a business owner, or simply concerned
 about water conservation, Byte My Water App is here to help you manage your
 water consumption effectively.
 
-![General description](./src/images/tracker.png)
+![General description](./src/images/trackFrame.png)
 
 ## Technologies Used
 
