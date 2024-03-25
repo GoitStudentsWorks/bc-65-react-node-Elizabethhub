@@ -88,7 +88,6 @@ const CalendarElement = () => {
     closeDayStat(event);
   });
 
-  //
   const spans = document.querySelectorAll('li > .day');
 
   for (const span of spans) {
@@ -97,8 +96,8 @@ const CalendarElement = () => {
       setChosenDay(Number(value));
     });
   }
-  //
-  console.log(monthWaterData);
+
+  // console.log(monthWaterData);
   useEffect(() => {
     const date = new Date();
     const month = date.getMonth() + 1;
@@ -107,6 +106,33 @@ const CalendarElement = () => {
     dispatch(fetchMonthWaterThunk({ year, month }));
   }, [dispatch]);
 
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [year, setYear] = useState(new Date().getFullYear());
+
+  useEffect(() => {
+    dispatch(fetchMonthWaterThunk({ year, month }));
+  }, [dispatch, month, year]);
+
+  function changeMonthQuery(direction) {
+    changeMonth(direction);
+
+    if (direction === 'forward') {
+      if (month >= 12) {
+        setMonth(1);
+        setYear(year + 1);
+      } else {
+        setMonth(month + 1);
+      }
+    } else {
+      if (month <= 1) {
+        setMonth(12);
+        setYear(year - 1);
+      } else {
+        setMonth(month - 1);
+      }
+    }
+  }
+
   return (
     <ContentWrapperCalendar>
       <HeadingWrapper>
@@ -114,7 +140,7 @@ const CalendarElement = () => {
         <MonthSwitcher>
           <button
             className="arrow"
-            onClick={() => changeMonth('back')}
+            onClick={() => changeMonthQuery('back')}
             type="button"
           >
             <ArrowLeftCalendarSvg />
@@ -125,7 +151,7 @@ const CalendarElement = () => {
           </p>
           <button
             className="arrow"
-            onClick={() => changeMonth('forward')}
+            onClick={() => changeMonthQuery('forward')}
             type="button"
           >
             <ArrowRightCalendarSvg />
