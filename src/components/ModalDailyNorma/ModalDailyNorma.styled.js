@@ -79,7 +79,7 @@ export const StyledWrapper = styled.form`
     font-size: 12px;
     padding: 10px;
     border-radius: 6px;
-    border: 1px solid var(--primary-mediumblue);
+    border: 1px solid ${(props) => props.theme.inputBorderAdd};
     color: #8f8f8f;
     margin-bottom: 24px;
     line-height: 16px;
@@ -150,20 +150,20 @@ export const StyledInputBox = styled.div`
   input {
     width: 100%;
     border-radius: 6px;
-    border: 1px solid var(--primary-mediumblue);
+    border: 1px solid ${(props) => props.theme.inputBorderAdd};
     background-color: ${(props) => props.theme.formInputBackground};
     color: ${(props) => props.theme.formInputColor};
     padding: 12px 10px 12px 10px;
     margin-top: 8px;
     margin-bottom: 16px;
     &::placeholder {
-      color: var(--blue);
+      color: ${(props) => props.theme.counterSpanText};
       font-size: 16px;
     }
     &:hover,
     &:focus {
-      color: var(--blue);
-      border: 1px solid var(--primary-mediumblue);
+      color: ${(props) => props.theme.counterSpanText};
+      border: 1px solid ${(props) => props.theme.inputBorderAdd};
       outline: transparent;
     }
     @media only screen and (min-width: 768px) {
