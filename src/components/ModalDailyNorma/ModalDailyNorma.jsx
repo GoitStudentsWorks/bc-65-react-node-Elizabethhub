@@ -110,6 +110,7 @@ const ModalDailyNorma = () => {
             onClick={() => {
               dispatch(changeModalClose(false));
             }}
+            aria-label={t('closeWindow')}
           >
             <SvgCross />
           </StyledCross>
@@ -152,7 +153,9 @@ const ModalDailyNorma = () => {
               required={volume > 0 ? waterQuery : true}
             />
           </StyledInputBox>
-          <SaveButton type="submit">{t('Save')}</SaveButton>
+          <SaveButton type="submit" aria-label="click to save">
+            {t('save')}
+          </SaveButton>
         </StyledWrapper>
       </StyledBackdrop>
     )
