@@ -17,7 +17,6 @@ import useCounter from '../../hooks/modalHandleUpdate.js';
 import { useDispatch } from 'react-redux';
 import {
   addWaterThunk,
-  // fetchAllWaterThunk,
   fetchTodayWaterThunk,
 } from '../../store/water/operations.js';
 import { changeModalClose } from '../../store/water/waterSlice.js';
@@ -93,11 +92,17 @@ const ModalAddWater = () => {
           name="decrement"
           onClick={handleUpdate}
           disabled={counter === 0}
+          aria-label={t('decrementWater')}
         >
           <SvgMinus size="24" />
         </button>
         <span>{displayValue ? displayValue : `${counter}ml`}</span>
-        <button type="button" name="increment" onClick={handleUpdate}>
+        <button
+          type="button"
+          name="increment"
+          onClick={handleUpdate}
+          aria-label={t('incrementWater')}
+        >
           <SvgPlus size="24" />
         </button>
       </StyledModalAddTracker>
@@ -140,7 +145,9 @@ const ModalAddWater = () => {
 
       <StyledModalAddSave>
         <span>{displayValue}</span>
-        <button type="submit">{t('save')}</button>
+        <button type="submit" aria-label="save">
+          {t('save')}
+        </button>
       </StyledModalAddSave>
     </StyledModalForm>
   );

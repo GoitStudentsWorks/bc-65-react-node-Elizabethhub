@@ -57,6 +57,7 @@ const ModalWater = () => {
             onClick={() => {
               dispatch(changeModalClose(false));
             }}
+            aria-label={t('closeWindow')}
           >
             <SvgCross />
           </StyledModalAddClose>
