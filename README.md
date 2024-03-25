@@ -1,3 +1,5 @@
+**Read in other languages: [English](README.md), [Ukrainian](README.ua.md).**
+
 # Byte My Water App
 
 ![Project Logo](./src/images/logo.png)
@@ -79,13 +81,8 @@ npm run dev
 
 ## Team Developers
 
-### Project Lead
-
 - [Yelyzaveta Kudelia](https://github.com/Elizabethhub) - Fullstack
   Developer/Team lead, Modal Norma module
-
-### Developers
-
 - [Oleg Opolonets](https://github.com/Olegopolonets) - Fullstack Developer/Scrum
   Master, Today & Calendar modules
 - [Dmytro Prymachenko](https://github.com/DmytroPrymachenko) - Fullstack
