@@ -14,6 +14,7 @@ export const DivImgContainerWelcome = styled.div`
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
+
   @media only screen and (min-width: 768px) {
     background-image: ${(props) => props.theme.backgroundWelcomeImageTablet};
   }

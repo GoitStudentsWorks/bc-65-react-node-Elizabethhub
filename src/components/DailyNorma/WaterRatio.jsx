@@ -5,6 +5,8 @@ import {
   RangePercentWrap,
   RangeSpanLine,
   RangeInputTitle,
+  RemainingWaterContainer,
+  RemainingWaterSpan,
 } from './WaterRatio.styled';
 import AddSvg from '../../images/svg/svgDailyNorma/AddSvg';
 
@@ -13,19 +15,35 @@ import InputComponent from './InputComponent';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeModalAddForm } from '../../store/water/waterSlice';
 import ModalWater from '../ModalWater/ModalWater';
-import { modalIsOpen } from '../../store/water/selectors';
+import { modalIsOpen, selectorWaterInfo } from '../../store/water/selectors';
 import { useTranslation } from 'react-i18next';
+import { selectDailyWater } from '../../store/auth/selectors';
 
 const WaterRatio = () => {
   const { t } = useTranslation();
   const isModalOpen = useSelector(modalIsOpen);
   const dispatch = useDispatch();
+  const userDailyWater = useSelector(selectDailyWater);
+  console.log(userDailyWater);
+  const percentageRangeValue = useSelector(selectorWaterInfo);
+  console.log(percentageRangeValue);
+  const remainingWater =
+    (userDailyWater - (percentageRangeValue * userDailyWater) / 100) / 1000;
+  console.log(remainingWater);
 
   return (
     <RangeWrapper>
       <div>
-        <RangeInputTitle>{t('today')}</RangeInputTitle>
-
+        <RemainingWaterContainer>
+          <RangeInputTitle>{t('today')}</RangeInputTitle>
+          {remainingWater > 0 ? (
+            <RemainingWaterSpan>
+              Left to drink {remainingWater.toFixed(1)}L
+            </RemainingWaterSpan>
+          ) : (
+            <RemainingWaterSpan>The daily rate of drinking</RemainingWaterSpan>
+          )}
+        </RemainingWaterContainer>
         <InputComponent />
         <RangePercentWrap>
           <RangePercent>

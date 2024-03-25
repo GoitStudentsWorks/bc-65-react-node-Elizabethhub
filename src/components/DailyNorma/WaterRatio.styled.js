@@ -12,7 +12,18 @@ export const RangeInputTitle = styled.p`
   font-size: 18px;
   line-height: 24px;
   color: #407bff;
+`;
+export const RemainingWaterContainer = styled.div`
   margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+`;
+export const RemainingWaterSpan = styled.span`
+  font-size: 18px;
+  line-height: 24px;
+  color: #407bff;
 `;
 
 export const RangePercentWrap = styled.div`
