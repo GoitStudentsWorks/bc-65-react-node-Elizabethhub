@@ -20,7 +20,6 @@ export const StyledModalAddWrapper = styled.div`
   position: relative;
   border-radius: 10px;
   background: ${(props) => props.theme.backgroundAdd};
-  /* color: ${(props) => props.theme.colorBody}; */
   background-size: 130% 130%;
   background-position: center;
   width: 280px;
@@ -281,13 +280,17 @@ export const TimeGlobalStyles = createGlobalStyle`
 .react-datepicker__header .react-datepicker-time__header{
   color: ${(props) => props.theme.backgroundAdd};
 }
+.react-datepicker__time-container .react-datepicker__time {
+    background-color: ${(props) => props.theme.counterSpanBg} !important;
+  }
+
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar {
   width: 12px;
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-track {
-  background-color: ${(props) => props.theme.counterSpanBg};
+  background-color: ${(props) => props.theme.backgroundAdd};
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
@@ -313,3 +316,5 @@ export const TimeGlobalStyles = createGlobalStyle`
   transition: all 0.5s ease;
 }
   `;
+
+

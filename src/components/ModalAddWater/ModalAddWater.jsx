@@ -17,7 +17,6 @@ import useCounter from '../../hooks/modalHandleUpdate.js';
 import { useDispatch } from 'react-redux';
 import {
   addWaterThunk,
-  // fetchAllWaterThunk,
   fetchTodayWaterThunk,
 } from '../../store/water/operations.js';
 import { changeModalClose } from '../../store/water/waterSlice.js';
