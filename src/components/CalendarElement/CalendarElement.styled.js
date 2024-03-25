@@ -83,6 +83,12 @@ export const DayStyles = styled.li`
   &.today {
     span.day {
       font-weight: 900;
+      border: ${({ $percentageToday }) =>
+        $percentageToday < 100 || $percentageToday?.length === 0
+          ? '1px solid #FF9D43'
+          : 'none'};
+      border: ${({ $percentageToday }) =>
+        $percentageToday >= 100 ? '1px solid #407bff' : ''};
     }
   }
 
@@ -110,7 +116,7 @@ export const DayStyles = styled.li`
         ? '1px solid #FF9D43'
         : 'none'};
     border: ${({ $percentage }) =>
-      $percentage > 100 ? '1px solid #407bff' : ''};
+      $percentage >= 100 ? '1px solid #407bff' : ''};
 
     font-size: 14px;
     line-height: 1.29;
