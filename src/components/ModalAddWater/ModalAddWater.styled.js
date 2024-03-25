@@ -8,7 +8,6 @@ export const StyledModalAddBackdrop = styled.div`
   bottom: 0;
   left: 0;
   background: var(--modal-backdrop);
-  backdrop-filter: blur(3.5px);
   z-index: 10;
   display: flex;
   justify-content: center;
@@ -20,8 +19,8 @@ export const StyledModalAddBackdrop = styled.div`
 export const StyledModalAddWrapper = styled.div`
   position: relative;
   border-radius: 10px;
-  background: ${(props) => props.theme.modalCantainerBackground};
-  color: ${(props) => props.theme.colorBody};
+  background: ${(props) => props.theme.backgroundAdd};
+  /* color: ${(props) => props.theme.colorBody}; */
   background-size: 130% 130%;
   background-position: center;
   width: 280px;
@@ -39,7 +38,7 @@ export const StyledModalAddWrapper = styled.div`
   }
 
   h2 {
-    color: ${(props) => props.theme.colorBody};
+    color: ${(props) => props.theme.headerAdd};
     text-align: start;
     font-size: 26px;
     font-weight: 500;
@@ -54,14 +53,14 @@ export const StyledModalForm = styled.form`
     margin: 0;
   }
   h3 {
-    color: ${(props) => props.theme.colorBody};
+    color: ${(props) => props.theme.headerAdd};
     text-align: start;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 16px;
   }
   p {
-    color: ${(props) => props.theme.colorBody};
+    color: ${(props) => props.theme.headerAdd};
     text-align: start;
     font-size: 16px;
     margin-bottom: 12px;
@@ -98,13 +97,13 @@ export const StyledModalAddTracker = styled.div`
   align-items: center;
 
   button {
-    border: 1px solid var(--modal-light-blue);
+    border: 1px solid ${(props) => props.theme.counterBorderAdd};
     outline: transparent;
     border-radius: 30px;
     width: 44px;
     height: 44px;
     background-color: transparent;
-    box-shadow: var(--modal-calc-shadow);
+    box-shadow: ${(props) => props.theme.counterShadowAdd};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -117,7 +116,7 @@ export const StyledModalAddTracker = styled.div`
     }
   }
   span {
-    background-color: var(--primary-mediumblue);
+    background-color: ${(props) => props.theme.counterSpanBg};
     border-radius: 40px;
     padding: 6px 10px 6px 10px;
     min-width: 92px;
@@ -125,7 +124,7 @@ export const StyledModalAddTracker = styled.div`
     text-align: center;
     font-size: 18px;
     font-weight: 700;
-    color: var(--blue);
+    color: ${(props) => props.theme.counterSpanText};
   }
 `;
 
@@ -140,18 +139,18 @@ export const StyledModalAddValue = styled.div`
 export const StyledModalAddInput = styled.input`
   width: 120px;
   border-radius: 6px;
-  border: 1px solid var(--primary-mediumblue);
+  border: 1px solid ${(props) => props.theme.inputBorderAdd};
   padding: 12px 10px 12px 10px;
   background-color: ${(props) => props.theme.formInputBackground};
-  color: ${(props) => props.theme.formInputColor};
+  color: ${(props) => props.theme.inputTextAdd};
   &::placeholder {
     color: var(--blue);
     font-size: 16px;
   }
   &:hover,
   &:focus {
-    color: var(--blue);
-    border: 1px solid var(--primary-mediumblue);
+    color: ${(props) => props.theme.inputTextAdd};
+    border: 1px solid ${(props) => props.theme.inputBorderAdd};
     outline: transparent;
   }
   @media only screen and (min-width: 768px) {
@@ -180,18 +179,19 @@ export const StyledModalAddSave = styled.div`
   }
 
   span {
-    color: var(--blue);
+    color: ${(props) => props.theme.modalSpanAdd};
     font-size: 18px;
     font-weight: 700;
   }
   button {
     width: 256px;
+    height: 36px;
     border-radius: 10px;
     padding: 8px 30px 8px 30px;
 
-    box-shadow: var(--modal-add-shadow);
-    background: ${(props) => props.theme.buttonBackground};
-    color: ${(props) => props.theme.buttonColor};
+    box-shadow: ${(props) => props.theme.buttonShadowAdd};
+    background: ${(props) => props.theme.buttonBgAdd};
+    color: ${(props) => props.theme.buttonTextAdd};
     border: none;
     outline: transparent;
     transition: all 0.5s ease;
@@ -202,10 +202,14 @@ export const StyledModalAddSave = styled.div`
     }
     @media only screen and (min-width: 768px) {
       width: 160px;
+      height: 44px;
+      font-size: 18px;
       padding: 10px 30px 10px 30px;
     }
     @media only screen and (min-width: 1280px) {
       width: 160px;
+      height: 44px;
+      font-size: 18px;
       padding: 10px 30px 10px 30px;
     }
   }
@@ -221,18 +225,18 @@ export const ModalAddDateWrap = styled.div`
   input {
     width: 120px;
     border-radius: 6px;
-    border: 1px solid var(--primary-mediumblue);
+    border: 1px solid ${(props) => props.theme.inputBorderAdd};
     padding: 12px 10px 12px 10px;
     background-color: ${(props) => props.theme.formInputBackground};
-    color: ${(props) => props.theme.formInputColor};
+    color: ${(props) => props.theme.inputTextAdd};
     &::placeholder {
-      color: var(--blue);
+      color: ${(props) => props.theme.modalSpanAdd};
       font-size: 16px;
     }
     &:hover,
     &:focus {
-      color: var(--blue);
-      border: 1px solid var(--primary-mediumblue);
+      color: ${(props) => props.theme.modalSpanAdd};
+      border: 1px solid ${(props) => props.theme.inputBorderAdd};
       outline: transparent;
     }
     @media only screen and (min-width: 768px) {
@@ -264,18 +268,18 @@ export const TimeGlobalStyles = createGlobalStyle`
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--primary-mediumblue);
+    background-color: ${(props) => props.theme.counterSpanBg} !important;
     border-radius: 10px;
-    border:1px solid var(--modal-light-blue);
-    color:var(--blue);
+    border: 1px solid ${(props) => props.theme.counterBorderAdd};
+    color: var(--blue);
   }
 
 .react-datepicker__header.react-datepicker__header--time.react-datepicker__header--time--only{
   background-color: var(--blue);
-  color:var(--white);
+  color: ${(props) => props.theme.backgroundAdd};
 }
 .react-datepicker__header .react-datepicker-time__header{
-  color:var(--white);
+  color: ${(props) => props.theme.backgroundAdd};
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar {
@@ -283,20 +287,20 @@ export const TimeGlobalStyles = createGlobalStyle`
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-track {
-  background-color: var(--primary-mediumblue);
+  background-color: ${(props) => props.theme.counterSpanBg};
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
-  background-color: var(--white);
+  background-color: ${(props) => props.theme.backgroundAdd};
   border-radius: 6px;
-    background: var(--white);
+    background: ${(props) => props.theme.backgroundAdd};
     border: solid 1px var(--blue);
     height: 20px;
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected{
   background-color: var(--blue) !important;
-    color: var(--white);
+    color: ${(props) => props.theme.backgroundAdd};
     font-weight: bold;
 }
 
