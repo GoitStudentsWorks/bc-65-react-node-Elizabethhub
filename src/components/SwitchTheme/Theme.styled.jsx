@@ -88,7 +88,8 @@ export const darkTheme = {
 
   dayStylesDayBackground: '#1c1d26;',
   dayStylesDayPercentage: '#2f3875;',
-  boxShodov: '0 4px 14px 0 rgba(0, 0, 0, 0.54);',
+  boxShodov: '0 4px 8px 0 rgba(0, 0, 0, 0.34);',
+  boxShodovHover: ' 0 4px 14px 0 rgba(0, 0, 0, 0.54)',
 
   borderBottomForToday: '1px solid #2A3052',
   backgroundColorScroll: '#2F3875',
@@ -146,6 +147,7 @@ export const lightTheme = {
   dayStylesDayBackground: '#fff;',
   dayStylesDayPercentage: '#9ebbff;',
   boxShodov: '0 4px 8px 0 rgba(64, 123, 255, 0.34);',
+  boxShodovHover: ' 0 4px 14px 0 rgba(64, 123, 255, 0.54)',
 
   borderBottomForToday: '1px solid #d7e3ff',
   backgroundColorScroll: '#9ebbff',

@@ -131,6 +131,12 @@ export const Form = styled.form`
   }
 `;
 
+export const BlockWrapPhoto = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-self: flex-start;
+`;
 export const BlockWrap8 = styled.div`
   display: flex;
   flex-direction: column;
@@ -301,6 +307,13 @@ export const SaveButton = styled.button`
   text-align: center;
   background: ${(props) => props.theme.buttonBackground};
   color: ${(props) => props.theme.buttonColor};
+  &:hover,
+  :focus {
+    box-shadow: ${(props) => props.theme.boxShodovHover};
+  }
+  &:active {
+    box-shadow: none;
+  }
 
   @media only screen and (min-width: 768px) {
     font-size: 18px;

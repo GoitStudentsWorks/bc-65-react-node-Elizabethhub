@@ -98,7 +98,7 @@ const UploadingPhoto = () => {
         <DivIconInput>
           <PersonIcon />
           <Upload />
-          <PInput>Upload a photo</PInput>
+          <PInput aria-label="Upload a photo">Upload a photo</PInput>
         </DivIconInput>
       )}
     </InputContainer>

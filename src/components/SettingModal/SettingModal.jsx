@@ -25,6 +25,7 @@ import {
   InternalBlockWrap24,
   GenderLabel,
   ErrorSpan,
+  BlockWrapPhoto,
 } from './SettingModal.styled';
 import SvgClose from '../../images/SettingModal/Close';
 import RadioChecked from '../../images/SettingModal/RadioChecked';
@@ -119,10 +120,10 @@ const SettingModal = ({ onClose }) => {
         </CloseButton>
         <ModalTitle>{t('setting')}</ModalTitle>
         <Form onSubmit={handleSubmit(submit)} $errors={errors}>
-          <BlockWrap8>
+          <BlockWrapPhoto>
             <BigLabel htmlFor="avatarURL">{t('yourPhoto')}</BigLabel>
             <UploadingPhoto id="avatarURL" />
-          </BlockWrap8>
+          </BlockWrapPhoto>
 
           <ExternalBlockWrap24>
             <BlockWrap2452>
@@ -258,7 +259,9 @@ const SettingModal = ({ onClose }) => {
             </BlockWrap12>
           </ExternalBlockWrap24>
 
-          <SaveButton type="submit">{t('save')}</SaveButton>
+          <SaveButton type="submit" aria-label="Save changes">
+            {t('save')}
+          </SaveButton>
         </Form>
       </Modal>
     </Overlay>
