@@ -1,4 +1,4 @@
-**Читати на інших мовах:: [Англійська](README.md), [Українська](README.ua.md).**
+**Читати на інших мовах: [Англійська](README.md), [Українська](README.ua.md).**
 
 # Додаток Byte My Water
 
@@ -48,7 +48,7 @@
 1. Клонуйте репозиторій:
 
 ```bash
-   git clone https://github.com/Elizabethhub/byte-my-water-app.git
+git clone https://github.com/Elizabethhub/byte-my-water-app.git
 ```
 
 2. Перейдіть до директорії проекту:
@@ -84,7 +84,7 @@ npm run dev
 ## Команда розробників
 
 - [Єлизавета Куделя](https://github.com/Elizabethhub) - Fullstack
-  Developer/розробник/керівник команди, модуль Норми модальної частини
+  розробник/керівник команди, модальне вікно Норми дня
 - [Олег Ополонець](https://github.com/Olegopolonets) - Fullstack розробник/Скрам
   майстер, модуль Сьогодні та Календар
 - [Дмитро Примаченко](https://github.com/DmytroPrymachenko) - Fullstack
