@@ -8,12 +8,13 @@ export const LoaderContainer = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(20px);
   z-index: 9999;
   background-color: rgba(0, 0, 0, 0.3);
   display: flex;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
+  place-items: center;
 `;
 
 const Loader = () => {

@@ -86,7 +86,7 @@ export const Svg = styled.svg``;
 
 export const StyledRangeInput = styled.input`
   -webkit-appearance: none;
-  width: 100%;
+  width: 96%;
   height: 8px;
   border-radius: 10px;
   border: 1px;
@@ -111,13 +111,22 @@ export const StyledRangeInput = styled.input`
     cursor: default;
   }
 
+  @media only screen and (min-width: 400px) {
+    width: 94%;
+    margin-left: 6px;
+  }
+  @media only screen and (min-width: 450px) {
+    width: 95%;
+  }
+  @media only screen and (min-width: 575px) {
+    width: 96%;
+  }
+
   @media only screen and (min-width: 768px) {
     width: 310px;
-    margin-left: 6px;
   }
   @media only screen and (min-width: 1440px) {
     width: 363px;
-    margin-left: 6px;
   }
 `;
 

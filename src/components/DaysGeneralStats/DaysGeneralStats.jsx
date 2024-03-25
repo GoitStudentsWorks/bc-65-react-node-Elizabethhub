@@ -1,16 +1,9 @@
 import { useTranslation } from 'react-i18next';
 import { DayStatsContainer, UpperElem } from './DaysGeneralStats.styled';
 import { useSelector } from 'react-redux';
-import {
-  selectorWaterInfo,
-  selectorWaterToday,
-} from '../../store/water/selectors';
 import { selectDailyWater } from '../../store/auth/selectors';
 
-const DaysGeneralStats = ({ monthWaterData, currentDate, chosenDay, item }) => {
-  console.log('item: ', item);
-  const waterPercentageToday = useSelector(selectorWaterInfo);
-  const waterTodayList = useSelector(selectorWaterToday);
+const DaysGeneralStats = ({ currentDate, chosenDay, item }) => {
   const dailyNorma = useSelector(selectDailyWater);
 
   const { t } = useTranslation();
