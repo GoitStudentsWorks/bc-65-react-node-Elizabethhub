@@ -71,6 +71,7 @@ const ModalDeleteWater = () => {
             onClick={() => {
               dispatch(changeModalClose(false));
             }}
+            aria-label={t('closeWindow')}
           >
             <SvgCross />
           </StyledModalDeleteClose>
@@ -78,13 +79,17 @@ const ModalDeleteWater = () => {
           <StyledModalDeleteForm onSubmit={onSubmit}>
             <p>{t('areYouSureYouWantToDeleteTheEntry')}</p>
             <StyledModalDeleteButtons>
-              <StyledModalDeleteBtn type="submit">
+              <StyledModalDeleteBtn
+                type="submit"
+                aria-label={t('deleteWaterNote')}
+              >
                 {t('delete')}
               </StyledModalDeleteBtn>
               <StyledModalCancelBtn
                 onClick={() => {
                   dispatch(changeModalClose(false));
                 }}
+                aria-label={t('cancelAction')}
               >
                 {t('cancel')}
               </StyledModalCancelBtn>
