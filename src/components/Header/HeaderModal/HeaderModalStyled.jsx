@@ -114,17 +114,25 @@ export const ButtonCancel = styled.button`
   border: none;
   border-radius: 10px;
   padding: 10px 30px;
-  width: 160px;
-  height: 44px;
+  width: 232px;
+  height: 36px;
   font-weight: 500;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
   color: #407bff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
   transition:
     background 0.3s,
     box-shadow 0.3s,
     color 0.3s;
-
+  @media only screen and (min-width: 768px) {
+    width: 160px;
+    height: 44px;
+    font-size: 18px;
+  }
   &:hover {
     box-shadow: ${(props) => props.theme.boxShodov};
     /* color: #407bff; */
@@ -250,6 +258,35 @@ export const HeaderModalButton = styled.button`
   align-items: center;
   padding: 0;
   height: 20px;
+  transition: all 0.3s ease;
+  svg {
+    path {
+      transition: all 0.3s ease;
+    }
+  }
+  span {
+    transition: all 0.3s ease;
+  }
+
+  &:hover,
+  &:focus {
+    color: #ffa756;
+    outline: none;
+
+    svg {
+      path {
+        stroke: #ffa756;
+      }
+    }
+    span {
+      color: #ffa756;
+      transition: all 0.3s ease;
+    }
+  }
+
+  &:focus {
+    box-shadow: 0 0 3px 1px #ffa756;
+  }
 `;
 
 export const HeaderModalButtonSpan = styled.span`
@@ -257,6 +294,16 @@ export const HeaderModalButtonSpan = styled.span`
   font-size: 16px;
   white-space: nowrap;
   color: #407bff;
+`;
+
+export const SettingSVG = styled.svg`
+  transition: stroke 0.3s ease;
+
+  ${HeaderModalButton}:hover &,
+  ${HeaderModalButton}:focus & {
+    stroke: #ffa756;
+    outline: none;
+  }
 `;
 
 export const UserIMG = styled.img`

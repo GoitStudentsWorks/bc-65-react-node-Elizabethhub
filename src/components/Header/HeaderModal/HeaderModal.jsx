@@ -87,6 +87,7 @@ const HeaderModal = () => {
 
   const openModal = () => {
     setIsModalOpen(true);
+    setIsHeaderModalOpen(false);
   };
 
   const closeModal = () => {
