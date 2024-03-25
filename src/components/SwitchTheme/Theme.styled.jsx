@@ -137,6 +137,8 @@ export const darkTheme = {
   modalTextEdit: '#D5DFF5',
 
   modalCloseBtn: '#5082F2',
+  datepickerBg: '#2A3052',
+  datepickerDisabled: '#1C1D26',
 };
 
 export const lightTheme = {
@@ -229,4 +231,6 @@ export const lightTheme = {
   modalTextEdit: '#2F2F2F',
 
   modalCloseBtn: '#407BFF',
+  datepickerBg: '#ecf2ff',
+  datepickerDisabled: '#ccc',
 };

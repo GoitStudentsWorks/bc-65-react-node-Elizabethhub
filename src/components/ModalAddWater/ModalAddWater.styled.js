@@ -281,7 +281,7 @@ export const TimeGlobalStyles = createGlobalStyle`
   color: ${(props) => props.theme.backgroundAdd};
 }
 .react-datepicker__time-container .react-datepicker__time {
-    background-color: ${(props) => props.theme.counterSpanBg} !important;
+    background-color: ${(props) => props.theme.datepickerBg} !important;
   }
 
 
@@ -290,7 +290,7 @@ export const TimeGlobalStyles = createGlobalStyle`
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-track {
-  background-color: ${(props) => props.theme.backgroundAdd};
+  background-color: ${(props) => props.theme.counterBorderAdd};
 }
 
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list::-webkit-scrollbar-thumb {
@@ -315,6 +315,7 @@ export const TimeGlobalStyles = createGlobalStyle`
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item{
   transition: all 0.5s ease;
 }
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled {
+    color: ${(props) => props.theme.datepickerDisabled} !important;
+  }
   `;
-
-
