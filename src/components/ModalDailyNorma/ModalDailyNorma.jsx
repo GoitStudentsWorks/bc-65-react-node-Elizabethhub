@@ -34,7 +34,7 @@ const ModalDailyNorma = () => {
   const dayNormaValue = userObject?.dailyNorma;
   const genderUserValue = userObject?.gender;
 
-  const [genderValue, setGenderValue] = useState('woman');
+  const [genderValue, setGenderValue] = useState(genderUserValue);
   const [massQuery, setMassQuery] = useState(0);
   const [timeQuery, setTimeQuery] = useState(0);
   const [volume, setVolume] = useState(0);
@@ -115,7 +115,7 @@ const ModalDailyNorma = () => {
           </StyledCross>
           <FormulaField />
           <RadioGroupComponent
-            genderValue={genderUserValue || genderValue}
+            genderValue={genderValue}
             handleGenderChange={handleGenderChange}
           />
           <InputBox
