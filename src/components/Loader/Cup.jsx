@@ -17,9 +17,9 @@ const CupLoader = styled.div`
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   background: url(https://image.ibb.co/fmHm66/wave.png);
-  background-position: 0px 350px;
+  background-position: 0px 0px;
   background-repeat: repeat-x;
-  animation: filling 1s ease-in-out infinite;
+  animation: filling 1.2s ease-in-out infinite;
   box-shadow:
     0 0 0 6px #dddddd,
     0 10px 25px #000000;
