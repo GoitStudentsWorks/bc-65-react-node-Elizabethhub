@@ -112,7 +112,9 @@ const LoginPage = () => {
               {eyePass ? <OpenPassEye /> : <PassEye />}
             </PassShowBtn>
           </Loginlabel>
-          <LoginBtn type="submit">{t('signIn')}</LoginBtn>
+          <LoginBtn type="submit" aria-label="click to signin">
+            {t('signIn')}
+          </LoginBtn>
         </AuthForm>
         <SvgContainer>
           {isMobile && <BottleSVG />}
