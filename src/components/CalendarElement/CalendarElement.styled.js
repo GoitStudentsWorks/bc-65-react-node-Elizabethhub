@@ -80,6 +80,15 @@ export const DayStyles = styled.li`
   cursor: pointer;
   letter-spacing: 0em;
   &.today {
+    span.day {
+      font-weight: 900;
+    }
+  }
+
+  /*  */
+
+  span.day:hover {
+    box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
   }
 
   span {
@@ -97,6 +106,8 @@ export const DayStyles = styled.li`
       $percentage < 100 || $percentage?.length === 0
         ? '1px solid #FF9D43'
         : 'none'};
+    border: ${({ $percentage }) =>
+      $percentage > 100 ? '1px solid #407bff' : ''};
 
     font-size: 14px;
     line-height: 1.29;

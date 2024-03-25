@@ -170,7 +170,10 @@ const CalendarElement = () => {
               >
                 <span className="day">{item.day}</span>
                 <span className="percentage">
-                  {item.waterVolPercentage || 0}%
+                  {item?.waterVolPercentage >= 100
+                    ? 100
+                    : item?.waterVolPercentage || 0}
+                  %
                 </span>
               </DayStyles>
               {showDaysStats && item.day === chosenDay && (
