@@ -1,8 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
-  fetchAllWaterThunk,
+  // fetchAllWaterThunk,
   fetchMonthWaterThunk,
   editDailyNormaThunk,
+  fetchTodayWaterThunk,
 } from './operations';
 
 const waterSlice = createSlice({
@@ -56,9 +57,6 @@ const waterSlice = createSlice({
     changeModalId: (state, { payload }) => {
       state.modal.modalId = payload;
     },
-    updateWaterPercentage: (state, { payload }) => {
-      state.waterPercentageToday = payload;
-    },
     deleteWater: (state, action) => {
       state.waterTodayList = state.waterTodayList.filter(
         (waterItem) => waterItem._id !== action.payload
@@ -75,16 +73,20 @@ const waterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAllWaterThunk.fulfilled, (state, { payload }) => {
-        state.waterTodayList = payload;
+      .addCase(fetchTodayWaterThunk.fulfilled, (state, { payload }) => {
+        state.waterTodayList = payload.waterVolumes;
+        state.waterPercentageToday = payload.waterVolumePercentage;
       })
-      .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
-        state.error = payload;
-      })
+      // .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
+      //   state.error = payload;
+      // })
       .addCase(fetchMonthWaterThunk.fulfilled, (state, { payload }) => {
         state.monthWaterData = payload;
       })
       .addCase(editDailyNormaThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+      })
+      .addCase(fetchTodayWaterThunk.rejected, (state, { payload }) => {
         state.error = payload;
       });
   },
@@ -99,7 +101,6 @@ export const {
   changeShowDaysStats,
   changeTodayList,
   changeModalId,
-  updateWaterPercentage,
   deleteWater,
   editWater,
 } = waterSlice.actions;

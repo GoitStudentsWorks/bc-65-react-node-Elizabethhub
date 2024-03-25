@@ -14,21 +14,35 @@ export const DivImgContainerWelcome = styled.div`
   align-items: center;
   background-repeat: no-repeat;
   background-size: cover;
+  /* background-size: 100% auto;
+  background-position: bottom;
+  /* background-position: bottom; */
+  background-position: center;
+  /* @media (resolution >= 2dppx) */
   @media only screen and (min-width: 768px) {
     background-image: ${(props) => props.theme.backgroundWelcomeImageTablet};
+  }
+  @media only screen and (min-width: 768px) and (resolution >= 2ddpx) {
+    background-image: ${(props) => props.theme.backgroundWelcomeImageTablet2x};
   }
   @media only screen and (min-width: 1280px) {
     background-image: ${(props) => props.theme.backgroundWelcomeImage};
   }
+  @media only screen and (min-width: 1280px) and (resolution >= 2dppx) {
+    background-image: ${(props) => props.theme.backgroundWelcomeImage2x};
+  }
   @media only screen and (max-width: 767px) {
     background-image: ${(props) => props.theme.backgroundWelcomeImageMobale};
+  }
+  @media only screen and (max-width: 767px) and (resolution >= 2dppx) {
+    background-image: ${(props) => props.theme.backgroundWelcomeImageMobale2x};
   }
 `;
 
 export const WelcomeDivCantainer = styled.div`
   display: flex;
   flex-direction: column;
-
+  margin-top: 4px;
   gap: 40px;
   @media only screen and (min-width: 768px) {
     gap: 60px;
@@ -45,7 +59,7 @@ export const Welcomeh1 = styled.h1`
   width: 246px;
   font-weight: 700;
   font-size: 28px;
-  padding-top: 24px;
+
   padding-bottom: 16px;
   @media only screen and (min-width: 768px) {
     width: 100%;
@@ -71,6 +85,7 @@ export const Welcomeh3 = styled.h3`
   font-weight: 500;
   font-size: 18px;
   padding-bottom: 12px;
+
   @media only screen and (min-width: 768px) {
     width: 100%;
   }
@@ -146,13 +161,14 @@ export const WelcomeWhyDrinkLi = styled.li`
 
 export const WelcomeWhyDrinkDivCantainer = styled.div`
   border-radius: 10px;
-  padding: 32px 24px;
+  padding: 24px 16px;
 
   box-shadow: 0 4px 14px 0 rgba(64, 123, 255, 0.3);
   background: ${(props) => props.theme.welcomeWhyDrinkDivCantainerBackground};
   max-width: 380px;
   margin-bottom: 20px;
   @media only screen and (min-width: 768px) {
+    padding: 32px 24px;
     max-width: 494px;
   }
   @media only screen and (min-width: 1440px) {

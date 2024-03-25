@@ -8,16 +8,16 @@ export const StyledModalEditStat = styled.div`
 
   width: 256px;
   border-radius: 10px;
-  background-color: var(--primary-lightblue);
+  background-color: ${(props) => props.theme.modalSpanBgEdit};
   padding: 8px 24px 8px 24px;
   margin-bottom: 24px;
   span {
     font-size: 18px;
-    color: var(--blue);
+    color: ${(props) => props.theme.modalSpanEdit};
   }
   p {
     font-size: 12px;
-    color: ${(props) => props.theme.colorBody};
+    color: ${(props) => props.theme.modalTextEdit};
     margin: 0;
   }
   @media only screen and (min-width: 768px) {
@@ -31,18 +31,18 @@ export const StyledModalEditStat = styled.div`
 export const StyledModalEditInput = styled.input`
   width: 256px;
   border-radius: 6px;
-  border: 1px solid var(--primary-mediumblue);
+  border: 1px solid ${(props) => props.theme.inputBorderAdd};
   padding: 12px 10px 12px 10px;
   background-color: ${(props) => props.theme.formInputBackground};
-  color: ${(props) => props.theme.formInputColor};
+  color: ${(props) => props.theme.inputTextAdd};
   &::placeholder {
-    color: var(--blue);
+    color: ${(props) => props.theme.inputTextAdd};
     font-size: 16px;
   }
   &:hover,
   &:focus {
-    color: var(--blue);
-    border: 1px solid var(--primary-mediumblue);
+    color: ${(props) => props.theme.inputTextAdd};
+    border: 1px solid ${(props) => props.theme.inputBorderAdd};
     outline: transparent;
   }
   @media only screen and (min-width: 768px) {
@@ -63,18 +63,18 @@ export const ModalEditDateWrap = styled.div`
   input {
     width: 256px;
     border-radius: 6px;
-    border: 1px solid var(--primary-mediumblue);
+    border: 1px solid ${(props) => props.theme.inputBorderAdd};
     padding: 12px 10px 12px 10px;
     background-color: ${(props) => props.theme.formInputBackground};
-    color: ${(props) => props.theme.formInputColor};
+    color: ${(props) => props.theme.inputTextAdd};
     &::placeholder {
-      color: var(--blue);
+      color: ${(props) => props.theme.counterSpanText};
       font-size: 16px;
     }
     &:hover,
     &:focus {
-      color: var(--blue);
-      border: 1px solid var(--primary-mediumblue);
+      color: ${(props) => props.theme.counterSpanText};
+      border: 1px solid ${(props) => props.theme.inputBorderAdd};
       outline: transparent;
     }
     @media only screen and (min-width: 768px) {

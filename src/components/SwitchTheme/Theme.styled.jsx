@@ -1,21 +1,29 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import imageDesktop from '../../images/backgroundHome/Background.png';
 import imageDesktopDark from '../../images/backgroundHome/BackgroundDark.png';
-
 import imageTablet from '../../images/backgroundHome/BackgroundTabletWhite.png';
 import imageMobale from '../../images/backgroundHome/BackgroundMobale.png';
-
 import imageTabletDark from '../../images/backgroundHome/BackgroundTabletDark.png';
 import imageMobaleDark from '../../images/backgroundHome/BackgroundMobaleDark.png';
-
 import imageWelcomeDesktop from '../../images/backgroundWelcome/BackgroundWelcomWhiteDesctop.png';
 import imageWelcomeDesktopDark from '../../images/backgroundWelcome/BackgroundWelcomDarkDesctop.png';
-
 import imageWelcomeTablet from '../../images/backgroundWelcome/BackgroundWelcomWhiteTablet.png';
 import imageWelcomeMobale from '../../images/backgroundWelcome/BackgroundWelcomWhiteMobale.png';
-
 import imageWelcomeTabletDark from '../../images/backgroundWelcome/BackgroundWelcomDarkTablet.png';
 import imageWelcomeMobaleDark from '../../images/backgroundWelcome/BackgroundWelcomDarkTablet.png';
+
+import imageDesktop2x from '../../images/backgroundHome/Background2x.png';
+import imageDesktopDark2x from '../../images/backgroundHome/BackgroundDark2x.png';
+import imageTablet2x from '../../images/backgroundHome/BackgroundTabletWhite2x.png';
+import imageMobale2x from '../../images/backgroundHome/BackgroundMobale2x.png';
+import imageTabletDark2x from '../../images/backgroundHome/BackgroundTabletDark2x.png';
+import imageMobaleDark2x from '../../images/backgroundHome/BackgroundMobaleDark2x.png';
+import imageWelcomeDesktop2x from '../../images/backgroundWelcome/BackgroundWelcomWhiteDesctop2x.png';
+import imageWelcomeDesktopDark2x from '../../images/backgroundWelcome/BackgroundWelcomDarkDesctop2x.png';
+import imageWelcomeTablet2x from '../../images/backgroundWelcome/BackgroundWelcomWhiteTablet2x.png';
+import imageWelcomeMobale2x from '../../images/backgroundWelcome/BackgroundWelcomWhiteMobale2x.png';
+import imageWelcomeTabletDark2x from '../../images/backgroundWelcome/BackgroundWelcomDarkTablet2x.png';
+import imageWelcomeMobaleDark2x from '../../images/backgroundWelcome/BackgroundWelcomDarkMobale2x.png';
 
 export const StyledApp = styled.div`
   min-height: 100vh;
@@ -51,10 +59,17 @@ export const darkTheme = {
   backgroundImage: `url(${imageDesktopDark})`,
   backgroundImageMobale: `url(${imageMobaleDark})`,
   backgroundImageTablet: `url(${imageTabletDark})`,
-
   backgroundWelcomeImage: `url(${imageWelcomeDesktopDark})`,
   backgroundWelcomeImageMobale: `url(${imageWelcomeMobaleDark})`,
   backgroundWelcomeImageTablet: `url(${imageWelcomeTabletDark})`,
+
+  backgroundImage2x: `url(${imageDesktopDark2x})`,
+  backgroundImageMobale2x: `url(${imageMobaleDark2x})`,
+  backgroundImageTablet2x: `url(${imageTabletDark2x})`,
+
+  backgroundWelcomeImage2x: `url(${imageWelcomeDesktopDark2x})`,
+  backgroundWelcomeImageMobale2x: `url(${imageWelcomeMobaleDark2x})`,
+  backgroundWelcomeImageTablet2x: `url(${imageWelcomeTabletDark2x})`,
 
   rangeInputBackground: '#1c1d26;',
   colorBody: '#d5dff5;',
@@ -97,6 +112,32 @@ export const darkTheme = {
   inputOnlyColor: '--input-dark',
   inputColorText: '--input-color-dark',
   inputTheme: '1px solid #2f3875',
+
+  backgroundCancel: '#2A3052',
+  colorCancel: '#5082F2',
+  backgroundDelete: '#F16161',
+  colorDelete: '#1C1D26',
+  backgroundDeleteWindow: '#1C1D26',
+  deleteShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.34);',
+
+  backgroundAdd: '#1C1D26',
+  headerAdd: '#D5DFF5',
+  counterBorderAdd: '#2F3875',
+  counterShadowAdd: '0px 2px 4px 0px rgba(0, 0, 0, 0.2)',
+  counterSpanBg: '#2A3052',
+  counterSpanText: '#5082F2',
+  inputBorderAdd: '#2A3052',
+  inputTextAdd: '#5082F2',
+  buttonBgAdd: '#5082F2',
+  buttonShadowAdd: '0px 4px 8px 0px rgba(0, 0, 0, 0.34)',
+  buttonTextAdd: '#1C1D26',
+  modalSpanAdd: '#5082F2',
+
+  modalSpanBgEdit: '#1F2438',
+  modalSpanEdit: '#5082F2',
+  modalTextEdit: '#D5DFF5',
+
+  modalCloseBtn: '#5082F2',
 };
 
 export const lightTheme = {
@@ -109,6 +150,14 @@ export const lightTheme = {
   backgroundWelcomeImage: `url(${imageWelcomeDesktop})`,
   backgroundWelcomeImageMobale: `url(${imageWelcomeMobale})`,
   backgroundWelcomeImageTablet: `url(${imageWelcomeTablet})`,
+
+  backgroundImage2x: `url(${imageDesktop2x})`,
+  backgroundImageMobale2x: `url(${imageMobale2x})`,
+  backgroundImageTablet2x: `url(${imageTablet2x})`,
+
+  backgroundWelcomeImage2x: `url(${imageWelcomeDesktop2x})`,
+  backgroundWelcomeImageMobale2x: `url(${imageWelcomeMobale2x})`,
+  backgroundWelcomeImageTablet2x: `url(${imageWelcomeTablet2x})`,
 
   rangeInputBackground: '#d5dff5;',
 
@@ -156,4 +205,30 @@ export const lightTheme = {
   inputOnlyColor: '--primary-mediumblue',
   inputColorText: '--primary-blue',
   inputTheme: '1px solid var(--primary-mediumblue)',
+
+  backgroundCancel: '#D7E3FF',
+  colorCancel: '#407BFF',
+  backgroundDelete: '#EF5050',
+  colorDelete: '#FFFFFF',
+  backgroundDeleteWindow: '#FFFFFF',
+  deleteShadow: '0px 4px 8px 0px rgba(64, 123, 255, 0.34);',
+
+  backgroundAdd: '#FFFFFF',
+  headerAdd: '#2F2F2F',
+  counterBorderAdd: '#9EBBFF',
+  counterShadowAdd: '0px 2px 4px 0px rgba(64, 123, 255, 0.2)',
+  counterSpanBg: '#D7E3FF',
+  counterSpanText: '#407bff',
+  inputBorderAdd: '#d7e3ff',
+  inputTextAdd: '#407BFF',
+  buttonBgAdd: '#407BFF',
+  buttonShadowAdd: '0px 4px 8px 0px rgba(64, 123, 255, 0.34)',
+  buttonTextAdd: '#FFFFFF',
+  modalSpanAdd: '#407BFF',
+
+  modalSpanBgEdit: '#ecf2ff',
+  modalSpanEdit: '#407bff',
+  modalTextEdit: '#2F2F2F',
+
+  modalCloseBtn: '#407BFF',
 };

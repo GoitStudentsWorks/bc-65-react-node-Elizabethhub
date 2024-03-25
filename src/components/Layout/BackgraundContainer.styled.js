@@ -11,16 +11,26 @@ export const BackgraundContainer = styled.div`
   justify-content: center;
   align-items: center;
   /* background-repeat: repeat-y; */
-
+  background-size: cover;
   background-position: center;
 
   @media only screen and (min-width: 768px) {
     background-image: ${(props) => props.theme.backgroundImageTablet};
   }
+  @media only screen and (min-width: 768px) and (resolution >= 2dppx) {
+    background-image: ${(props) => props.theme.backgroundImageTablet2x};
+  }
+
   @media only screen and (min-width: 1280px) {
     background-image: ${(props) => props.theme.backgroundImage};
   }
+  @media only screen and (min-width: 1280px) and (resolution >= 2dppx) {
+    background-image: ${(props) => props.theme.backgroundImage2x};
+  }
   @media only screen and (max-width: 767px) {
     background-image: ${(props) => props.theme.backgroundImageMobale};
+  }
+  @media only screen and (max-width: 767px) and (resolution >= 2dppx) {
+    background-image: ${(props) => props.theme.backgroundImageMobale2x};
   }
 `;
