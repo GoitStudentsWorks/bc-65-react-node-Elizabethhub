@@ -13,6 +13,7 @@ import DaysGeneralStats from '../DaysGeneralStats/DaysGeneralStats';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectMonthWaterData,
+  selectorWaterInfo,
   showDaysGenStats,
 } from '../../store/water/selectors.js';
 import { changeShowDaysStats } from '../../store/water/waterSlice';
@@ -28,6 +29,8 @@ const CalendarElement = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [chosenDay, setChosenDay] = useState(0);
   const hero = useSelector(selectUser);
+  const percentageToday = useSelector(selectorWaterInfo);
+  const thisToday = new Date();
 
   const changeMonth = (direction) => {
     setCurrentDate((prevDate) => {
@@ -137,6 +140,10 @@ const CalendarElement = () => {
     }
   }
 
+  function correctPercentage(percentage) {
+    return percentage >= 100 ? 100 : percentage || 0;
+  }
+
   return (
     <>
       {monthWaterData && (
@@ -174,16 +181,19 @@ const CalendarElement = () => {
                   <DayStyles
                     key={item.day}
                     $percentage={item.waterVolPercentage}
+                    $percentageToday={percentageToday}
                     className={`li-day ${isToday(item.day) ? 'today' : ''}`}
                   >
                     <span className="day">{item.day}</span>
                     <span className="percentage">
-                      {item?.waterVolPercentage >= 100
-                        ? 100
-                        : item?.waterVolPercentage || 0}
+                      {thisToday.getDate() === item.day &&
+                      thisToday.getMonth() + 1 === month
+                        ? correctPercentage(percentageToday)
+                        : correctPercentage(item?.waterVolPercentage) || 0}
                       %
                     </span>
                   </DayStyles>
+
                   {showDaysStats && item.day === chosenDay && (
                     <DaysGeneralStats
                       monthWaterData={monthWaterData}
