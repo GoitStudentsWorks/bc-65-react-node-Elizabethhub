@@ -21,7 +21,7 @@ export const RemainingWaterContainer = styled.div`
   align-items: center;
 `;
 export const RemainingWaterSpan = styled.span`
-  font-size: 18px;
+  font-size: 14px;
   line-height: 24px;
   color: #407bff;
 `;

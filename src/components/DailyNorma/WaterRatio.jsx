@@ -24,12 +24,11 @@ const WaterRatio = () => {
   const isModalOpen = useSelector(modalIsOpen);
   const dispatch = useDispatch();
   const userDailyWater = useSelector(selectDailyWater);
-  console.log(userDailyWater);
+
   const percentageRangeValue = useSelector(selectorWaterInfo);
-  console.log(percentageRangeValue);
+
   const remainingWater =
     (userDailyWater - (percentageRangeValue * userDailyWater) / 100) / 1000;
-  console.log(remainingWater);
 
   return (
     <RangeWrapper>
