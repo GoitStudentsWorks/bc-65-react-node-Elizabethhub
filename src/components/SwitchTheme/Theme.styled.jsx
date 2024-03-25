@@ -1,21 +1,29 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import imageDesktop from '../../images/backgroundHome/Background.png';
 import imageDesktopDark from '../../images/backgroundHome/BackgroundDark.png';
-
 import imageTablet from '../../images/backgroundHome/BackgroundTabletWhite.png';
 import imageMobale from '../../images/backgroundHome/BackgroundMobale.png';
-
 import imageTabletDark from '../../images/backgroundHome/BackgroundTabletDark.png';
 import imageMobaleDark from '../../images/backgroundHome/BackgroundMobaleDark.png';
-
 import imageWelcomeDesktop from '../../images/backgroundWelcome/BackgroundWelcomWhiteDesctop.png';
 import imageWelcomeDesktopDark from '../../images/backgroundWelcome/BackgroundWelcomDarkDesctop.png';
-
 import imageWelcomeTablet from '../../images/backgroundWelcome/BackgroundWelcomWhiteTablet.png';
 import imageWelcomeMobale from '../../images/backgroundWelcome/BackgroundWelcomWhiteMobale.png';
-
 import imageWelcomeTabletDark from '../../images/backgroundWelcome/BackgroundWelcomDarkTablet.png';
 import imageWelcomeMobaleDark from '../../images/backgroundWelcome/BackgroundWelcomDarkTablet.png';
+
+import imageDesktop2x from '../../images/backgroundHome/Background2x.png';
+import imageDesktopDark2x from '../../images/backgroundHome/BackgroundDark2x.png';
+import imageTablet2x from '../../images/backgroundHome/BackgroundTabletWhite2x.png';
+import imageMobale2x from '../../images/backgroundHome/BackgroundMobale2x.png';
+import imageTabletDark2x from '../../images/backgroundHome/BackgroundTabletDark2x.png';
+import imageMobaleDark2x from '../../images/backgroundHome/BackgroundMobaleDark2x.png';
+import imageWelcomeDesktop2x from '../../images/backgroundWelcome/BackgroundWelcomWhiteDesctop2x.png';
+import imageWelcomeDesktopDark2x from '../../images/backgroundWelcome/BackgroundWelcomDarkDesctop2x.png';
+import imageWelcomeTablet2x from '../../images/backgroundWelcome/BackgroundWelcomWhiteTablet2x.png';
+import imageWelcomeMobale2x from '../../images/backgroundWelcome/BackgroundWelcomWhiteMobale2x.png';
+import imageWelcomeTabletDark2x from '../../images/backgroundWelcome/BackgroundWelcomDarkTablet2x.png';
+import imageWelcomeMobaleDark2x from '../../images/backgroundWelcome/BackgroundWelcomDarkMobale2x.png';
 
 export const StyledApp = styled.div`
   min-height: 100vh;
@@ -51,10 +59,17 @@ export const darkTheme = {
   backgroundImage: `url(${imageDesktopDark})`,
   backgroundImageMobale: `url(${imageMobaleDark})`,
   backgroundImageTablet: `url(${imageTabletDark})`,
-
   backgroundWelcomeImage: `url(${imageWelcomeDesktopDark})`,
   backgroundWelcomeImageMobale: `url(${imageWelcomeMobaleDark})`,
   backgroundWelcomeImageTablet: `url(${imageWelcomeTabletDark})`,
+
+  backgroundImage2x: `url(${imageDesktopDark2x})`,
+  backgroundImageMobale2x: `url(${imageMobaleDark2x})`,
+  backgroundImageTablet2x: `url(${imageTabletDark2x})`,
+
+  backgroundWelcomeImage2x: `url(${imageWelcomeDesktopDark2x})`,
+  backgroundWelcomeImageMobale2x: `url(${imageWelcomeMobaleDark2x})`,
+  backgroundWelcomeImageTablet2x: `url(${imageWelcomeTabletDark2x})`,
 
   rangeInputBackground: '#1c1d26;',
   colorBody: '#d5dff5;',
@@ -134,6 +149,14 @@ export const lightTheme = {
   backgroundWelcomeImage: `url(${imageWelcomeDesktop})`,
   backgroundWelcomeImageMobale: `url(${imageWelcomeMobale})`,
   backgroundWelcomeImageTablet: `url(${imageWelcomeTablet})`,
+
+  backgroundImage2x: `url(${imageDesktop2x})`,
+  backgroundImageMobale2x: `url(${imageMobale2x})`,
+  backgroundImageTablet2x: `url(${imageTablet2x})`,
+
+  backgroundWelcomeImage2x: `url(${imageWelcomeDesktop2x})`,
+  backgroundWelcomeImageMobale2x: `url(${imageWelcomeMobale2x})`,
+  backgroundWelcomeImageTablet2x: `url(${imageWelcomeTablet2x})`,
 
   rangeInputBackground: '#d5dff5;',
 
