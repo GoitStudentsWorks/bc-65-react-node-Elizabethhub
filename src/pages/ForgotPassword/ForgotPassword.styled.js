@@ -28,6 +28,16 @@ export const ForgotLabel = styled.label`
   line-height: 24px;
   margin-bottom: 16px;
   position: relative;
+  button {
+    top: 48%;
+  }
+
+  @media only screen and (min-width: 1280px) {
+    button {
+      top: 48%;
+      right: 37%;
+    }
+  }
 `;
 export const ForgotInput = styled.input`
   margin-top: 8px;
