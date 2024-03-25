@@ -1,3 +1,10 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { changeModalAddForm } from '../../store/water/waterSlice';
+import ModalWater from '../ModalWater/ModalWater';
+import { modalIsOpen, selectorWaterInfo } from '../../store/water/selectors';
+import { selectDailyWater } from '../../store/auth/selectors';
+import InputComponent from './InputComponent';
 import {
   RangeWrapper,
   RangeButton,
@@ -9,15 +16,6 @@ import {
   RemainingWaterSpan,
 } from './WaterRatio.styled';
 import AddSvg from '../../images/svg/svgDailyNorma/AddSvg';
-
-import InputComponent from './InputComponent';
-
-import { useDispatch, useSelector } from 'react-redux';
-import { changeModalAddForm } from '../../store/water/waterSlice';
-import ModalWater from '../ModalWater/ModalWater';
-import { modalIsOpen, selectorWaterInfo } from '../../store/water/selectors';
-import { useTranslation } from 'react-i18next';
-import { selectDailyWater } from '../../store/auth/selectors';
 
 const WaterRatio = () => {
   const { t } = useTranslation();
