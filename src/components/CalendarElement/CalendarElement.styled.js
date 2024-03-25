@@ -79,15 +79,18 @@ export const DayStyles = styled.li`
   font-weight: 400;
   cursor: pointer;
   letter-spacing: 0em;
+
   &.today {
     span.day {
       font-weight: 900;
     }
   }
 
-  /*  */
-
-  span.day:hover {
+  span.day {
+    transition: all 0.5s ease;
+  }
+  span.day:hover,
+  span.day:focus {
     box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
   }
 

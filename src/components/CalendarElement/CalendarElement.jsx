@@ -18,6 +18,7 @@ import {
 import { changeShowDaysStats } from '../../store/water/waterSlice';
 import { useTranslation } from 'react-i18next';
 import { fetchMonthWaterThunk } from '../../store/water/operations.js';
+import { selectUser } from '../../store/auth/selectors.js';
 
 const CalendarElement = () => {
   const { t } = useTranslation();
@@ -26,6 +27,7 @@ const CalendarElement = () => {
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [chosenDay, setChosenDay] = useState(0);
+  const hero = useSelector(selectUser);
 
   const changeMonth = (direction) => {
     setCurrentDate((prevDate) => {
@@ -97,21 +99,23 @@ const CalendarElement = () => {
     });
   }
 
-  // console.log(monthWaterData);
   useEffect(() => {
     const date = new Date();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-
-    dispatch(fetchMonthWaterThunk({ year, month }));
-  }, [dispatch]);
+    if (hero) {
+      dispatch(fetchMonthWaterThunk({ year, month }));
+    }
+  }, [dispatch, hero]);
 
   const [month, setMonth] = useState(new Date().getMonth() + 1);
   const [year, setYear] = useState(new Date().getFullYear());
 
   useEffect(() => {
-    dispatch(fetchMonthWaterThunk({ year, month }));
-  }, [dispatch, month, year]);
+    if (hero) {
+      dispatch(fetchMonthWaterThunk({ year, month }));
+    }
+  }, [dispatch, hero, month, year]);
 
   function changeMonthQuery(direction) {
     changeMonth(direction);
@@ -134,62 +138,66 @@ const CalendarElement = () => {
   }
 
   return (
-    <ContentWrapperCalendar>
-      <HeadingWrapper>
-        <MonthHeading>{t('month')}</MonthHeading>
-        <MonthSwitcher>
-          <button
-            className="arrow"
-            onClick={() => changeMonthQuery('back')}
-            type="button"
-          >
-            <ArrowLeftCalendarSvg />
-          </button>
-          <p className="month__name">
-            {t(currentDate.toLocaleString('en-us', { month: 'long' }))},&nbsp;
-            {currentDate.getFullYear()}
-          </p>
-          <button
-            className="arrow"
-            onClick={() => changeMonthQuery('forward')}
-            type="button"
-          >
-            <ArrowRightCalendarSvg />
-          </button>
-        </MonthSwitcher>
-      </HeadingWrapper>
-
-      <MonthList>
-        {monthWaterData?.map((item) => {
-          return (
-            <div key={item.day}>
-              <DayStyles
-                key={item.day}
-                $percentage={item.waterVolPercentage}
-                className={`li-day ${isToday(item.day) ? 'today' : ''}`}
+    <>
+      {monthWaterData && (
+        <ContentWrapperCalendar>
+          <HeadingWrapper>
+            <MonthHeading>{t('month')}</MonthHeading>
+            <MonthSwitcher>
+              <button
+                className="arrow"
+                onClick={() => changeMonthQuery('back')}
+                type="button"
               >
-                <span className="day">{item.day}</span>
-                <span className="percentage">
-                  {item?.waterVolPercentage >= 100
-                    ? 100
-                    : item?.waterVolPercentage || 0}
-                  %
-                </span>
-              </DayStyles>
-              {showDaysStats && item.day === chosenDay && (
-                <DaysGeneralStats
-                  monthWaterData={monthWaterData}
-                  currentDate={currentDate}
-                  chosenDay={chosenDay}
-                  key={`${item.day + 100} `}
-                  item={item}
-                />
-              )}
-            </div>
-          );
-        })}
-      </MonthList>
-    </ContentWrapperCalendar>
+                <ArrowLeftCalendarSvg />
+              </button>
+              <p className="month__name">
+                {t(currentDate.toLocaleString('en-us', { month: 'long' }))}
+                ,&nbsp;
+                {currentDate.getFullYear()}
+              </p>
+              <button
+                className="arrow"
+                onClick={() => changeMonthQuery('forward')}
+                type="button"
+              >
+                <ArrowRightCalendarSvg />
+              </button>
+            </MonthSwitcher>
+          </HeadingWrapper>
+          <MonthList>
+            {monthWaterData?.map((item) => {
+              return (
+                <div key={item.day}>
+                  <DayStyles
+                    key={item.day}
+                    $percentage={item.waterVolPercentage}
+                    className={`li-day ${isToday(item.day) ? 'today' : ''}`}
+                  >
+                    <span className="day">{item.day}</span>
+                    <span className="percentage">
+                      {item?.waterVolPercentage >= 100
+                        ? 100
+                        : item?.waterVolPercentage || 0}
+                      %
+                    </span>
+                  </DayStyles>
+                  {showDaysStats && item.day === chosenDay && (
+                    <DaysGeneralStats
+                      monthWaterData={monthWaterData}
+                      currentDate={currentDate}
+                      chosenDay={chosenDay}
+                      key={`${item.day + 100} `}
+                      item={item}
+                    />
+                  )}
+                </div>
+              );
+            })}
+          </MonthList>
+        </ContentWrapperCalendar>
+      )}
+    </>
   );
 };
 

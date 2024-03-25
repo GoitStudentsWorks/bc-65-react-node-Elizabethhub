@@ -59,4 +59,10 @@ export const HeaderLink = styled(NavLink)`
   font-size: 18px;
   padding-right: 9px;
   color: #407bff;
+  transition: all ease 0.3s;
+  &:hover,
+  &:focus {
+    color: #ffa756;
+    outline: none;
+  }
 `;
