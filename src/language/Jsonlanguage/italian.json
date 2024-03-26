@@ -87,5 +87,11 @@
   "Write down how much water you will drink:": "Scrivi quanto acqua bevi:",
   "The time of active participation in sports or other activities with a high physical load in hours:": "Il tempo di partecipazione attiva a sport o altre attività con un carico fisico elevato in ore:",
   "L": "L",
-  "send": "Inviare"
+  "send": "Inviare",
+  "wrongPage": "Pagina sbagliata",
+  "mainPage": "Pagina principale",
+  "willOpenIn": "si aprirà in",
+  "seconds": "secondi",
+  "leftToDrink": "Rimasto da bere",
+  "theDailyRateOfDrinking": "Il consumo giornaliero di bevande"
 }

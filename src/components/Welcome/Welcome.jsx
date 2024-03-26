@@ -56,7 +56,11 @@ const Welcome = () => {
             </WelcomeLi>
           </WelcomeUl>
 
-          <WelcomeNavLink to="/signin" style={{ textDecoration: 'none' }}>
+          <WelcomeNavLink
+            to="/signin"
+            aria-label="log in"
+            style={{ textDecoration: 'none' }}
+          >
             {t('tryTracker')}
           </WelcomeNavLink>
         </div>

@@ -89,5 +89,12 @@
   "Write down how much water you will drink:": "Write down how much water you will drink:",
   "The time of active participation in sports or other activities with a high physical load in hours:": "The time of active participation in sports or other activities with a high physical load in hours:",
   "L": "L",
-  "send": "Send"
+  "send": "Send",
+  "wrongPage": "Wrong page",
+  "mainPage": "Main page",
+  "willOpenIn": "will open in",
+  "seconds": "seconds",
+  "leftToDrink": "Left to drink",
+  "theDailyRateOfDrinking": "The daily rate of drinking"
+  
 }

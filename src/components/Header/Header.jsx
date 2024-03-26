@@ -41,7 +41,11 @@ const Header = ({ toggleTheme, isDarkTheme }) => {
     <>
       <HeaderDivContainer>
         <HeaderDivSwitch>
-          <Link to="/" style={{ textDecoration: 'none' }}>
+          <Link
+            to="/"
+            aria-label="logo and return to the main page"
+            style={{ textDecoration: 'none' }}
+          >
             <SvgIconMobail />
           </Link>
           <Switch toggleTheme={toggleTheme} isDarkTheme={isDarkTheme} />
@@ -54,7 +58,11 @@ const Header = ({ toggleTheme, isDarkTheme }) => {
                 <HeaderUserName>{nameUser}</HeaderUserName>
               </>
             ) : (
-              <HeaderLink to="/signin" style={{ textDecoration: 'none' }}>
+              <HeaderLink
+                to="/signin"
+                aria-label="log in"
+                style={{ textDecoration: 'none' }}
+              >
                 {t('signIn')}
               </HeaderLink>
             )}

@@ -87,5 +87,11 @@
   "Write down how much water you will drink:": "Сіз келесі ауытқан су санын жазыңыз:",
   "The time of active participation in sports or other activities with a high physical load in hours:": "Спорттың немесе басқа да азаптық жүкті барлық әрекеттерде әкімшілік уақыты сағатта:",
   "L": "Л",
-  "send": "Жіберу"
+  "send": "Жіберу",
+   "wrongPage": "Дұрыс бет емес",
+  "mainPage": "Негізгі бет",
+  "willOpenIn": "ағылшында ашылады",
+  "seconds": "секунд",
+  "leftToDrink": "Қалдыру",
+  "theDailyRateOfDrinking": "Күндігі ауытты мән"
 }

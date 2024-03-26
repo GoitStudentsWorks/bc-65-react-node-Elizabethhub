@@ -143,11 +143,11 @@ const HeaderModal = () => {
       )}
       <DivHeaderModalContainer>
         <HeaderModalContainer $visible={isHeaderModalOpen}>
-          <HeaderModalButton onClick={openModal}>
+          <HeaderModalButton aria-label="setting" onClick={openModal}>
             <SettingSVG />
             <HeaderModalButtonSpan>{t('setting')}</HeaderModalButtonSpan>
           </HeaderModalButton>
-          <HeaderModalButton onClick={LogOutHeaderModal}>
+          <HeaderModalButton aria-label="logOut" onClick={LogOutHeaderModal}>
             <ClouseSVG />
             <HeaderModalButtonSpan>{t('logOut')}</HeaderModalButtonSpan>
           </HeaderModalButton>
@@ -165,10 +165,10 @@ const HeaderModal = () => {
                 {t('doYouReallyWantToLeave')}
               </SpanLogOutQuestion>
               <DivButtonLogOut>
-                <ButtonCancel onClick={LogOutHeaderModal}>
+                <ButtonCancel aria-label="cancel" onClick={LogOutHeaderModal}>
                   {t('cancel')}
                 </ButtonCancel>
-                <ButtonLogOut onClick={handleLogout}>
+                <ButtonLogOut aria-label="logOut" onClick={handleLogout}>
                   {t('logOut')}
                 </ButtonLogOut>
               </DivButtonLogOut>
