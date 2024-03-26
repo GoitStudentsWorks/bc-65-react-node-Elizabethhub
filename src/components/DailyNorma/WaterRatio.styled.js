@@ -70,6 +70,7 @@ export const RangeButton = styled.button`
   justify-content: center;
   gap: 13px;
   outline: transparent;
+  transition: all 0.5s ease;
   &:hover {
     transform: scale(1.05);
   }

@@ -195,6 +195,10 @@ export const WelcomeNavLink = styled(NavLink)`
   color: ${(props) => props.theme.buttonColor};
 
   border: none;
+  transition: all 0.5s ease;
+  &:hover {
+    transform: scale(1.05);
+  }
   @media only screen and (min-width: 768px) {
     max-width: 336px;
     padding: 13px;
