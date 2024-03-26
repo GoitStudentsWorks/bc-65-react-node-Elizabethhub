@@ -83,7 +83,7 @@ npm run dev
 
 - [Yelyzaveta Kudelia](https://github.com/Elizabethhub) - Fullstack
   Developer/Team lead, Modal Norma module
-- [Oleg Opolonets](https://github.com/Olegopolonets) - Fullstack Developer/Scrum
+- [Oleh Opolonets](https://github.com/Olegopolonets) - Fullstack Developer/Scrum
   Master, Today & Calendar modules
 - [Dmytro Prymachenko](https://github.com/DmytroPrymachenko) - Fullstack
   Developer, Welcome page & Header modules, Language, Theme
