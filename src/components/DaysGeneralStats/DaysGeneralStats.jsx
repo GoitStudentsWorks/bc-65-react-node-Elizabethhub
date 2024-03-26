@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { selectDailyWater } from '../../store/auth/selectors';
 
 const DaysGeneralStats = ({ currentDate, chosenDay, item }) => {
+  console.log('item: ', item);
   const dailyNorma = useSelector(selectDailyWater);
 
   const { t } = useTranslation();
