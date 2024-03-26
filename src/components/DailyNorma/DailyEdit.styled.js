@@ -57,6 +57,7 @@ export const DailyEditButton = styled.button`
   position: relative;
   z-index: 1;
   outline: transparent;
+  transition: all 0.5s ease;
   &:hover {
     transform: scale(1.05);
   }
