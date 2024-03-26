@@ -15,8 +15,10 @@ import {
   HeaderModalLogOutContainer,
   SpanLogOut,
   SpanLogOutQuestion,
+  StyledCros,
   Test1,
   Test2,
+  Test3,
   UserIMG,
 } from './HeaderModalStyled';
 import SettingModal from '../../SettingModal/SettingModal';
@@ -32,6 +34,8 @@ import { useTranslation } from 'react-i18next';
 
 import { useMediaQuery } from 'react-responsive';
 import DivSetting from '../../../language/languageSelectorComponent';
+import { StyledCross } from '../../ModalDailyNorma/ModalDailyNorma.styled';
+import SvgCross from '../../../images/svg/svgModal/SvgCross';
 
 const HeaderModal = () => {
   const { t } = useTranslation();
@@ -160,7 +164,15 @@ const HeaderModal = () => {
           <Backdrop onClick={LogOutHeaderModal} $visible={isBackdropVisible} />
           <Test2>
             <HeaderModalLogOutContainer $visible={isHeaderModalLogOut}>
-              <SpanLogOut>{t('logOut')}</SpanLogOut>
+              <Test3>
+                <SpanLogOut>{t('logOut')}</SpanLogOut>
+                <StyledCros
+                  onClick={LogOutHeaderModal}
+                  aria-label={t('closeWindow')}
+                >
+                  <SvgCross />
+                </StyledCros>
+              </Test3>
               <SpanLogOutQuestion>
                 {t('doYouReallyWantToLeave')}
               </SpanLogOutQuestion>
