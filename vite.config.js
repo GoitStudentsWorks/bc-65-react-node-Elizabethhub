@@ -12,5 +12,5 @@ export default defineConfig({
       assets: '/src/assets',
     },
   },
-  base: '/byte-my-water-app/',
+  base: '/bc-65-react-node-Elizabethhub/',
 });
