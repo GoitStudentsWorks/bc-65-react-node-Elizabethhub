@@ -100,11 +100,13 @@ export const AddBtnWrapper = styled.div`
     background-color: transparent;
     padding: 0;
     outline: transparent;
+
     span {
       color: #407bff;
       font-size: 16px;
       font-weight: 500;
       line-height: 1.33;
+      transition: all 0.3s ease;
       @media screen and (min-width: 768px) {
         font-size: 18px;
       }
