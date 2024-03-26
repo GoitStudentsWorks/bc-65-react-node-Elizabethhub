@@ -16,6 +16,7 @@ import useClickBackdrop from '../../hooks/modalCloseBackdrop.js';
 import useKeyDown from '../../hooks/modalCloseEsc.js';
 import {
   deleteWaterThunk,
+  fetchMonthWaterThunk,
   fetchTodayWaterThunk,
 } from '../../store/water/operations.js';
 import { toast } from 'react-toastify';
@@ -28,6 +29,8 @@ const ModalDeleteWater = () => {
   const { t } = useTranslation();
 
   const onSubmit = (e) => {
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
     e.preventDefault();
     const date = new Date().toISOString().split('T')[0];
     dispatch(deleteWaterThunk(id))
@@ -36,6 +39,7 @@ const ModalDeleteWater = () => {
         dispatch(deleteWater(id));
         dispatch(fetchTodayWaterThunk({ date }));
         dispatch(changeModalClose(false));
+        dispatch(fetchMonthWaterThunk({ year, month }));
         toast.success('Water note was successfully deleted');
       })
       .catch((error) => {
