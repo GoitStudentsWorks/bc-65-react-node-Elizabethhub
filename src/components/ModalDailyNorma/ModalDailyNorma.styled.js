@@ -3,16 +3,22 @@ import styled from 'styled-components';
 export const StyledBackdrop = styled.div`
   position: fixed;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
-  background: var(--modal-backdrop);
-  z-index: 10;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
+  align-items: flex-start;
+  background: var(--modal-backdrop);
+  z-index: 10;
+  padding: 40px 20px;
+  overflow: auto;
+  @media only screen and (min-width: 768px) {
+    padding: 40px 32px;
+  }
+  @media only screen and (min-width: 1440px) {
+    align-items: center;
+  }
 `;
 
 export const StyledWrapper = styled.form`
@@ -27,16 +33,14 @@ export const StyledWrapper = styled.form`
   background-size: 130% 130%;
   background-position: center;
   width: 280px;
-  padding: 24px 12px 24px 12px;
+  padding: 24px 12px;
   display: flex;
   flex-direction: column;
   background: ${(props) => props.theme.modalCantainerBackground};
-  overflow-y: auto;
-  max-height: 90vh;
 
   @media only screen and (min-width: 768px) {
     width: 704px;
-    padding: 32px 24px 32px 24px;
+    padding: 32px 24px;
     .formula {
       display: inline-block;
       margin-right: 24px;
@@ -44,7 +48,6 @@ export const StyledWrapper = styled.form`
   }
   @media only screen and (min-width: 1280px) {
     width: 592px;
-    padding: 32px 24px 32px 24px;
   }
 
   h2 {
