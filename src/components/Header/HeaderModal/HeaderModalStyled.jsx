@@ -285,7 +285,6 @@ export const HeaderModalButton = styled.button`
   }
 
   &:focus {
-    box-shadow: 0 0 3px 1px #ffa756;
   }
 `;
 
