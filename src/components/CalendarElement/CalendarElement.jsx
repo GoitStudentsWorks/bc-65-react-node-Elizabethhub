@@ -27,6 +27,8 @@ const CalendarElement = () => {
   const monthWaterData = useSelector(selectMonthWaterData);
   const dispatch = useDispatch();
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [month, setMonth] = useState(new Date().getMonth() + 1);
+  const [year, setYear] = useState(new Date().getFullYear());
   const [chosenDay, setChosenDay] = useState(0);
   const hero = useSelector(selectUser);
   const percentageToday = useSelector(selectorWaterInfo);
@@ -102,17 +104,14 @@ const CalendarElement = () => {
     });
   }
 
-  useEffect(() => {
-    const date = new Date();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    if (hero) {
-      dispatch(fetchMonthWaterThunk({ year, month }));
-    }
-  }, [dispatch, hero]);
-
-  const [month, setMonth] = useState(new Date().getMonth() + 1);
-  const [year, setYear] = useState(new Date().getFullYear());
+  // useEffect(() => {
+  //   const date = new Date();
+  //   const month = date.getMonth() + 1;
+  //   const year = date.getFullYear();
+  //   if (hero) {
+  //     dispatch(fetchMonthWaterThunk({ year, month }));
+  //   }
+  // }, [dispatch, hero]);
 
   useEffect(() => {
     if (hero) {
@@ -169,6 +168,7 @@ const CalendarElement = () => {
                 aria-label="Show next month"
                 onClick={() => changeMonthQuery('forward')}
                 type="button"
+                disabled={new Date() < new Date(year, month)}
               >
                 <ArrowRightCalendarSvg />
               </button>
