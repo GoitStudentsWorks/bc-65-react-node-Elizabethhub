@@ -35,10 +35,20 @@ export const MonthSwitcher = styled.div`
     padding: 0;
     width: 14px;
     cursor: pointer;
-    transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+    svg {
+      path {
+        transition: all 0.3s ease;
+      }
+    }
   }
-  .arrow:is(:hover, :focus) {
-    transform: translateY(-1px);
+
+  .arrow:hover {
+    svg {
+      path {
+        fill: #ffa756;
+      }
+    }
   }
 
   .month__name {
@@ -51,7 +61,7 @@ export const MonthSwitcher = styled.div`
     width: 120px;
   }
 
-  button[disabled] {
+  .arrow[disabled] {
     cursor: auto;
     svg {
       path {
