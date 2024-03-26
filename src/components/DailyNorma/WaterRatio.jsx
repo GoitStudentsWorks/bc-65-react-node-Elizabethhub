@@ -38,9 +38,7 @@ const WaterRatio = () => {
               {t('leftToDrink')} {remainingWater.toFixed(1)}L
             </RemainingWaterSpan>
           ) : (
-            <RemainingWaterSpan>
-              {t('ttheDailyRateOfDrinkingoday')}
-            </RemainingWaterSpan>
+            <RemainingWaterSpan>{t('dailyRateOf')}</RemainingWaterSpan>
           )}
         </RemainingWaterContainer>
         <InputComponent />
