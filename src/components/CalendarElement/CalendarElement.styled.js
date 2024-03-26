@@ -50,6 +50,15 @@ export const MonthSwitcher = styled.div`
     color: #407bff;
     width: 120px;
   }
+
+  button[disabled] {
+    cursor: auto;
+    svg {
+      path {
+        fill: transparent;
+      }
+    }
+  }
 `;
 
 export const MonthList = styled.ul`
