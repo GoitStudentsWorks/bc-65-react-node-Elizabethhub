@@ -4,7 +4,11 @@ import {
   fetchMonthWaterThunk,
   editDailyNormaThunk,
   fetchTodayWaterThunk,
+  addWaterThunk,
+  editWaterThunk,
+  deleteWaterThunk,
 } from './operations';
+import { toast } from 'react-toastify';
 
 const waterSlice = createSlice({
   name: 'waterSlice',
@@ -88,6 +92,51 @@ const waterSlice = createSlice({
       })
       .addCase(fetchTodayWaterThunk.rejected, (state, { payload }) => {
         state.error = payload;
+      })
+      .addCase(addWaterThunk.fulfilled, (state, { payload }) => {
+        state.waterTodayList.push(payload);
+        state.isLoading = false;
+        toast.success('Water note was successfully added');
+      })
+      .addCase(addWaterThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addWaterThunk.rejected, (state, action) => {
+        toast.error(`Failed to add water: ${action.payload}`);
+        state.isLoading = false;
+      })
+      .addCase(editWaterThunk.fulfilled, (state, { payload }) => {
+        const index = state.waterTodayList.findIndex(
+          (water) => water._id === payload.id
+        );
+        if (index !== -1) {
+          state.waterTodayList[index] = payload;
+        } else {
+          state.waterTodayList.push(payload);
+        }
+        state.isLoading = false;
+        toast.success('Water note was successfully edited');
+      })
+      .addCase(editWaterThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editWaterThunk.rejected, (state, action) => {
+        toast.error(`Failed to edit water: ${action.payload}`);
+        state.isLoading = false;
+      })
+      .addCase(deleteWaterThunk.fulfilled, (state, { payload }) => {
+        state.waterTodayList = state.waterTodayList.filter(
+          (water) => water._id !== payload
+        );
+        state.isLoading = false;
+        toast.success('Water note was successfully deleted!');
+      })
+      .addCase(deleteWaterThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(deleteWaterThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        toast.error(`Failed to delete water: ${action.payload}`);
       });
   },
 });
