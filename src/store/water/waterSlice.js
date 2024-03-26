@@ -77,11 +77,11 @@ const waterSlice = createSlice({
         state.waterTodayList = payload.waterVolumes;
         state.waterPercentageToday = payload.waterVolumePercentage;
       })
-      // .addCase(fetchAllWaterThunk.rejected, (state, { payload }) => {
-      //   state.error = payload;
-      // })
       .addCase(fetchMonthWaterThunk.fulfilled, (state, { payload }) => {
         state.monthWaterData = payload;
+      })
+      .addCase(fetchMonthWaterThunk.rejected, (state, { payload }) => {
+        state.error = payload;
       })
       .addCase(editDailyNormaThunk.rejected, (state, { payload }) => {
         state.error = payload;

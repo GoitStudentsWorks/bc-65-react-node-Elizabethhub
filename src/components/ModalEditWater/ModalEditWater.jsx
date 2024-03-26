@@ -22,6 +22,7 @@ import { format } from 'date-fns';
 import { useDispatch } from 'react-redux';
 import {
   editWaterThunk,
+  fetchMonthWaterThunk,
   fetchTodayWaterThunk,
 } from '../../store/water/operations.js';
 import { changeModalClose, editWater } from '../../store/water/waterSlice.js';
@@ -48,12 +49,15 @@ const ModalEditWater = ({ waterItem }) => {
       time,
     };
     const date = new Date().toISOString().split('T')[0];
+    const month = new Date().getMonth() + 1;
+    const year = new Date().getFullYear();
     dispatch(editWaterThunk({ id: waterItem?._id, ...updatedWater }))
       .unwrap()
       .then(() => {
         dispatch(editWater({ id: waterItem?._id, ...updatedWater }));
         dispatch(fetchTodayWaterThunk({ date }));
         dispatch(changeModalClose(false));
+        dispatch(fetchMonthWaterThunk({ year, month }));
         toast.success('Water note was successfully edited');
       })
       .catch((error) => {

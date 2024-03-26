@@ -104,15 +104,6 @@ const CalendarElement = () => {
     });
   }
 
-  // useEffect(() => {
-  //   const date = new Date();
-  //   const month = date.getMonth() + 1;
-  //   const year = date.getFullYear();
-  //   if (hero) {
-  //     dispatch(fetchMonthWaterThunk({ year, month }));
-  //   }
-  // }, [dispatch, hero]);
-
   useEffect(() => {
     if (hero) {
       dispatch(fetchMonthWaterThunk({ year, month }));
