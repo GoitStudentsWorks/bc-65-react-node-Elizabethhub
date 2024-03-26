@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const StyledErrorCon = styled.div`
   width: 100%;
@@ -56,9 +57,17 @@ const TextSpan1 = styled.span`
   text-transform: uppercase;
   font-size: 2.5em;
   letter-spacing: 0.1em;
-  font-weight: 700;
+  font-weight: 500;
+  font-size: 16px;
   padding: 10px 30px;
   transition: 0.5s;
+  white-space: nowrap;
+  @media only screen and (min-width: 768px) {
+    font-weight: 700;
+
+    padding: 10px 30px;
+    font-size: 32px;
+  }
 `;
 const TextSpan2 = styled.span`
   color: #fff;
@@ -66,20 +75,39 @@ const TextSpan2 = styled.span`
   text-transform: uppercase;
   font-size: 2em;
   letter-spacing: 0.1em;
-  font-weight: 700;
-  padding: 10px 30px;
+  font-weight: 300;
+  font-size: 16px;
+
   transition: 0.5s;
+  @media only screen and (min-width: 768px) {
+    font-weight: 600;
+    font-size: 28px;
+  }
 `;
 
 const ContainerErrorDiv = styled.div`
   width: 100%;
   height: 100%;
-  background-color: #020311;
+  background-color: #1c1d26;
   display: flex;
   justify-content: center;
 `;
 
+const SVG1 = styled.svg`
+  width: 300px;
+  @media only screen and (min-width: 768px) {
+    width: 700px;
+  }
+`;
+const SVG2 = styled.svg`
+  width: 300px;
+  @media only screen and (min-width: 768px) {
+    width: 700px;
+  }
+`;
+
 const ErrorPage = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [redirectTimer, setRedirectTimer] = useState(10);
 
@@ -100,13 +128,10 @@ const ErrorPage = () => {
   return (
     <>
       <ContainerErrorDiv>
-        {/* <h1>You will be redirected to the main page in 15 seconds</h1> */}
-        <span></span>
-
         <StyledErrorCon>
           <StyledErrorWrapper>
             <StyledError1>
-              <svg
+              <SVG1
                 viewBox="0 0 500 500"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -148,10 +173,10 @@ const ErrorPage = () => {
                       "
                   ></animate>
                 </path>
-              </svg>
+              </SVG1>
             </StyledError1>
             <StyledError2>
-              <svg
+              <SVG2
                 viewBox="0 0 500 500"
                 xmlns="http://www.w3.org/2000/svg"
                 xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -193,14 +218,14 @@ const ErrorPage = () => {
                       "
                   ></animate>
                 </path>
-              </svg>
+              </SVG2>
             </StyledError2>
             <TextDiv>
-              <TextSpan1>Sorry</TextSpan1>
-              <TextSpan2>
-                This page is temporarily unavailable {setRedirectTimer}
-              </TextSpan2>
-              <span></span>
+              <TextSpan1>{t('wrongPage')}</TextSpan1>
+              <TextSpan2>{t('mainPage')}</TextSpan2>
+              <TextSpan2>{t('willOpenIn')}</TextSpan2>
+              <TextSpan2>{redirectTimer}</TextSpan2>
+              <TextSpan2>{t('seconds')}</TextSpan2>
             </TextDiv>
           </StyledErrorWrapper>
         </StyledErrorCon>

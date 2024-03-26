@@ -89,5 +89,11 @@
   "Write down how much water you will drink:": "Запишіть, скільки води ви будете пити:",
   "The time of active participation in sports or other activities with a high physical load in hours:": "Час активної участі в заняттях спортом або іншими видами діяльності з великим фізичним навантаженням у годинах:",
   "L": "л",
-  "send": "Надіслати"
+  "send": "Надіслати",
+  "wrongPage": "Невірна сторінка",
+  "mainPage": "Головна сторінка",
+  "willOpenIn": "відкриється через",
+  "seconds": "секунд",
+  "leftToDrink": "Залишилося випити",
+  "dailyRateOf": "Денна норма виконана"
 }
