@@ -50,7 +50,6 @@ const ModalAddWater = () => {
         dispatch(changeModalClose(false));
         dispatch(fetchTodayWaterThunk({ date }));
         dispatch(fetchMonthWaterThunk({ year, month }));
-        toast.success('Water note was successfully added');
       })
       .catch((error) => {
         toast.error(error);

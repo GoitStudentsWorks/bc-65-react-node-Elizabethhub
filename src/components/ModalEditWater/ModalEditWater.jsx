@@ -58,7 +58,6 @@ const ModalEditWater = ({ waterItem }) => {
         dispatch(fetchTodayWaterThunk({ date }));
         dispatch(changeModalClose(false));
         dispatch(fetchMonthWaterThunk({ year, month }));
-        toast.success('Water note was successfully edited');
       })
       .catch((error) => {
         toast.error(error);

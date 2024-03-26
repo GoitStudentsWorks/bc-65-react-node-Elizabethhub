@@ -40,7 +40,6 @@ const ModalDeleteWater = () => {
         dispatch(fetchTodayWaterThunk({ date }));
         dispatch(changeModalClose(false));
         dispatch(fetchMonthWaterThunk({ year, month }));
-        toast.success('Water note was successfully deleted');
       })
       .catch((error) => {
         toast.error(error);
