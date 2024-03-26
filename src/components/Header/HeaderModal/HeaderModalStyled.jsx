@@ -337,3 +337,28 @@ export const Test1 = styled.div`
   visibility: ${(props) => (props.$visible ? 'visible' : 'hidden')};
 `;
 export const Test2 = styled.div``;
+
+export const StyledCros = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: transparent;
+  transition: all 0.5s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+  @media only screen and (min-width: 768px) {
+    top: 36px;
+    right: 24px;
+  }
+  @media only screen and (min-width: 1280px) {
+    top: 36px;
+    right: 24px;
+  }
+`;
+export const Test3 = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
